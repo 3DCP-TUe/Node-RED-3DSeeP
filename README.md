@@ -1,6 +1,6 @@
 # Node-RED-Dashboard-Logger
 
-General 3DCP dashboard and logger for the 3D concrete printer in the Structures Lab at Eindhoven University of Technology. 
+General dashboard and logger for the 3D concrete printer in the Structures Lab at Eindhoven University of Technology. 
 
 ## Dependencies
 
