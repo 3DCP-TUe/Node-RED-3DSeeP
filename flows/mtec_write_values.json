@@ -1,0 +1,312 @@
+[
+    {
+        "id": "acf9bf928d25acab",
+        "type": "tab",
+        "label": "M-tec: Write values",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "cd777bb546c2993a",
+        "type": "trigger",
+        "z": "acf9bf928d25acab",
+        "name": "",
+        "op1": "true",
+        "op2": "false",
+        "op1type": "bool",
+        "op2type": "bool",
+        "duration": "1",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "ns=4;s=|var|ECC2100 0.8S 1131.Application.GVL_OPC.Livebit2DuoMix;datatype=Boolean",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 640,
+        "y": 360,
+        "wires": [
+            [
+                "c93f401aac7a323d"
+            ]
+        ]
+    },
+    {
+        "id": "c93f401aac7a323d",
+        "type": "OpcUa-Item",
+        "z": "acf9bf928d25acab",
+        "item": "ns=4;s=|var|ECC2100 0.8S 1131.Application.GVL_OPC.Livebit2DuoMix.Value.Value;datatype=Boolean",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "Livebit2extern",
+        "x": 860,
+        "y": 360,
+        "wires": [
+            [
+                "7f9f89ea8e2c3ed2"
+            ]
+        ]
+    },
+    {
+        "id": "7f9f89ea8e2c3ed2",
+        "type": "OpcUa-Client",
+        "z": "acf9bf928d25acab",
+        "endpoint": "b02adcf7.368dd",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "name": "",
+        "x": 1180,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7c1308080d1a2007",
+        "type": "inject",
+        "z": "acf9bf928d25acab",
+        "name": "Berghof communication status",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "ns=4;s=|var|ECC2100 0.8S 1131.Application.GVL_OPC.Livebit2DuoMix;datatype=Boolean",
+        "x": 390,
+        "y": 360,
+        "wires": [
+            [
+                "cd777bb546c2993a"
+            ]
+        ]
+    },
+    {
+        "id": "78f78298893202ab",
+        "type": "ui_text_input",
+        "z": "acf9bf928d25acab",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "group": "2159e8a83bb50b67",
+        "order": 1,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 470,
+        "y": 440,
+        "wires": [
+            [
+                "7f933890de9e0524"
+            ]
+        ]
+    },
+    {
+        "id": "a70904f87bfb7797",
+        "type": "OpcUa-Item",
+        "z": "acf9bf928d25acab",
+        "item": "ns=4;s=|var|ECC2100 0.8S 1131.Application.GVL_OPC.set_value_mixingpump.Value.Value;datatype=Uint16",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "Write speed to Berghof",
+        "x": 880,
+        "y": 440,
+        "wires": [
+            [
+                "7f9f89ea8e2c3ed2"
+            ]
+        ]
+    },
+    {
+        "id": "71d322c379310c84",
+        "type": "OpcUa-Item",
+        "z": "acf9bf928d25acab",
+        "item": "ns=4;s=|var|ECC2100 0.8S 1131.Application.GVL_OPC.Remote_start.Value.Value;datatype=Uint16",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "Remote start",
+        "x": 850,
+        "y": 540,
+        "wires": [
+            [
+                "7f9f89ea8e2c3ed2"
+            ]
+        ]
+    },
+    {
+        "id": "169f840b1e02e550",
+        "type": "ui_switch",
+        "z": "acf9bf928d25acab",
+        "name": "",
+        "label": "Enable/disable",
+        "tooltip": "",
+        "group": "2159e8a83bb50b67",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 660,
+        "y": 540,
+        "wires": [
+            [
+                "71d322c379310c84"
+            ]
+        ]
+    },
+    {
+        "id": "538d20805ebee305",
+        "type": "ui_text",
+        "z": "acf9bf928d25acab",
+        "group": "2159e8a83bb50b67",
+        "order": 2,
+        "width": 1,
+        "height": 1,
+        "name": "",
+        "label": "rpm",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 450,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "7f933890de9e0524",
+        "type": "function",
+        "z": "acf9bf928d25acab",
+        "name": "",
+        "func": "if( msg.payload<170){msg.payload=170}\nelse if(msg.payload>420){msg.payload=420}\nmsg.payload=(msg.payload-169.2)*65000/(420-169.2)\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 440,
+        "wires": [
+            [
+                "a70904f87bfb7797"
+            ]
+        ]
+    },
+    {
+        "id": "19073b7ed2fa4615",
+        "type": "inject",
+        "z": "acf9bf928d25acab",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 470,
+        "y": 540,
+        "wires": [
+            [
+                "169f840b1e02e550"
+            ]
+        ]
+    },
+    {
+        "id": "94ad1c60ba741b75",
+        "type": "inject",
+        "z": "acf9bf928d25acab",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "170",
+        "payloadType": "num",
+        "x": 310,
+        "y": 440,
+        "wires": [
+            [
+                "78f78298893202ab"
+            ]
+        ]
+    },
+    {
+        "id": "b02adcf7.368dd",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://10.129.4.73:4840",
+        "secpol": "None",
+        "secmode": "None",
+        "login": false
+    },
+    {
+        "id": "2159e8a83bb50b67",
+        "type": "ui_group",
+        "name": "Write values",
+        "tab": "4809d57f0b02fac6",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "4809d57f0b02fac6",
+        "type": "ui_tab",
+        "name": "M-tec duomix",
+        "icon": "dashboard",
+        "order": 8,
+        "disabled": false,
+        "hidden": false
+    }
+]

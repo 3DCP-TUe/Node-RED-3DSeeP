@@ -1,0 +1,946 @@
+[
+    {
+        "id": "b7e5f2b641339779",
+        "type": "tab",
+        "label": "Datalogging",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "291f77e1c2a0119b",
+        "type": "ui_template",
+        "z": "b7e5f2b641339779",
+        "group": "323dace24804aafe",
+        "name": "Clock Toolbar",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<script id=\"titleScript\" type=\"text/javascript\">\n\n$(function() {\n    if($('.md-toolbar-tools').length != 0){\n        loadClock();\n    }else setTimeout(loadClock, 500)\n});\n\nfunction loadClock(){\n    $('#clock').remove();\n    var toolbar = $('.md-toolbar-tools');\n    \n    var div = $('<div/>');\n    var p = $('<p/ id=\"clock\">');\n    \n    div.append(p);\n    div[0].style.margin = '5px 5px 5px auto';\n    toolbar.append(div);\n\n    function displayTitle(lh) {\n        p.text(lh); \n    }\n    \n    function upTime() {\n        var d = new Date();\n        p.text(d.toLocaleString());\n    }\n\n    if(document.clockInterval){ \n            clearInterval(document.clockInterval);\n            document.clockInterval = null;\n    }\n        \n    document.clockInterval = setInterval(upTime,1000);\n}\n\n</script>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "global",
+        "className": "",
+        "x": 1160,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ffe6a65ba515312d",
+        "type": "ui_text",
+        "z": "b7e5f2b641339779",
+        "group": "599d2b5615f3741e",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Save file before pressing \"Start Trace\" in the following format: YYYYMMDD_Name",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 1430,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "bbd36528211c5bbe",
+        "type": "join",
+        "z": "b7e5f2b641339779",
+        "name": "",
+        "mode": "custom",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 950,
+        "y": 940,
+        "wires": [
+            [
+                "5fa76f14852dfb8f"
+            ]
+        ]
+    },
+    {
+        "id": "f428d326fafc1fcd",
+        "type": "moment",
+        "z": "b7e5f2b641339779",
+        "name": "",
+        "topic": "",
+        "input": "payload",
+        "inputType": "msg",
+        "inTz": "Africa/Abidjan",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "HH:mm:ss.SSS",
+        "locale": "nl-NL",
+        "output": "Time",
+        "outputType": "msg",
+        "outTz": "Europe/Amsterdam",
+        "x": 500,
+        "y": 940,
+        "wires": [
+            [
+                "bbd36528211c5bbe",
+                "58ebe51b10b41888"
+            ]
+        ]
+    },
+    {
+        "id": "5fa76f14852dfb8f",
+        "type": "delay",
+        "z": "b7e5f2b641339779",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1170,
+        "y": 940,
+        "wires": [
+            [
+                "542a66f3263f0cc9"
+            ]
+        ]
+    },
+    {
+        "id": "58ebe51b10b41888",
+        "type": "link out",
+        "z": "b7e5f2b641339779",
+        "name": "Time",
+        "links": [
+            "3f38a7b3.1e8ce8"
+        ],
+        "x": 695,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "542a66f3263f0cc9",
+        "type": "function",
+        "z": "b7e5f2b641339779",
+        "name": "",
+        "func": "msg.payload= {\n'Time': msg.Time,\n'waterTemp_C' : parseFloat(msg.waterTemp_C).toFixed(2),\n'waterFlow_LMin' : parseFloat(msg.waterFlow_LMin).toFixed(2),\n'mortarTempSIEMENS_C' : parseFloat(msg.DryMortarTemp).toFixed(2),\n'mtecPumpMotor_rpm' : parseFloat(msg.mtec_pump_motor_rpm).toFixed(2),\n'setValuePumpMotor_rpm' : parseFloat(msg.setValuePumpMotor_rpm).toFixed(2),\n'solenoidValve_bool' : parseFloat(msg.solenoidValve_bool).toFixed(0),\n'waterPump_bool' : parseFloat(msg.waterPump_bool).toFixed(2),\n'waterDosingTurns': parseFloat(msg.waterDosingTurns).toFixed(1),\n'mai_water_run' : parseFloat(msg.mai_water_run).toFixed(0),\n'mai_water_temp' : parseFloat(msg.mai_water_temp).toFixed(2),\n'mai_water_flow_set' : parseFloat(msg.mai_water_flow_set).toFixed(0),\n'mai_water_flow_actual' : parseFloat(msg.mai_water_flow_actual).toFixed(2),\n'mai_waterpump_ref_freq' : parseFloat(msg.mai_waterpump_ref_freq).toFixed(0),\n'mai_waterpump_output_freq' : parseFloat(msg.mai_waterpump_output_freq).toFixed(0),\n'mai_mixer_run' : parseFloat(msg.mai_mixer_run).toFixed(0),\n'mai_pump_run' : parseFloat(msg.mai_pump_run).toFixed(0),\n'mai_pump_speed' : parseFloat(msg.mai_pump_speed).toFixed(0),\n'mai_pump_ouput_current' : parseFloat(msg.mai_pump_output_current).toFixed(0),\n'mai_pump_output_power' : parseFloat(msg.mai_pump_output_power).toFixed(0),\n'mai_pump_vibration_mode' : parseFloat(msg.mai_pump_vibration_mode).toFixed(0),\n'mai_setting_water_pre_run' : parseFloat(msg.mai_setting_water_pre_run).toFixed(2),\n'mai_setting_mixer_post_run' : parseFloat(msg.mai_setting_mixer_post_run).toFixed(2),\n'mai_setting_wetprobe_covered_delay' : parseFloat(msg.mai_setting_wetprobe_covered_delay).toFixed(0),\n'mai_setting_wetprobe_uncovered_delay,' : parseFloat(msg.mai_setting_wetprobe_uncovered_delay).toFixed(0),\n'SourceTime' : msg.sourceTime,\n'X_mm' : parseFloat(msg.X_mm).toFixed(2),\n'Y_mm' : parseFloat(msg.Y_mm).toFixed(2),\n'Z_mm' : parseFloat(msg.Z_mm).toFixed(2),\n'C_deg' : parseFloat(msg.C_deg).toFixed(2),\n'XVel_mmMin': parseFloat(msg.XVel_mmMin).toFixed(2),\n'YVel_mmMin': parseFloat(msg.YVel_mmMin).toFixed(2),\n'ZVel_mmMin': parseFloat(msg.ZVel_mmMin).toFixed(2),\n'CVel_mmMin': parseFloat(msg.CVel_mmMin).toFixed(2),\n'XFeedRate_mmMin': parseFloat(msg.XFeedRate_mmMin).toFixed(2),\n'YFeedRate_mmMin': parseFloat(msg.YFeedRate_mmMin).toFixed(2),\n'ZFeedRate_mmMin': parseFloat(msg.ZFeedRate_mmMin).toFixed(2),\n'CFeedRate_mmMin': parseFloat(msg.CFeedRate_mmMin).toFixed(2),\n'FeedRateOverride_Perc': parseFloat(msg.FeedRateOverride_Perc).toFixed(2),\n'XPower_W': parseFloat(msg.XPower_W).toFixed(2),\n'YPower_W': parseFloat(msg.YPower_W).toFixed(2),\n'ZPower_W': parseFloat(msg.ZPower_W).toFixed(2),\n'CPower_W': parseFloat(msg.CPower_W).toFixed(2),\n'R100': parseFloat(msg.R100).toFixed(2),\n'R101': parseFloat(msg.R101).toFixed(2),\n'R102': parseFloat(msg.R102).toFixed(2),\n'R103': parseFloat(msg.R103).toFixed(2),\n'R104': parseFloat(msg.R104).toFixed(2),\n'R105': parseFloat(msg.R105).toFixed(2),\n'R106': parseFloat(msg.R106).toFixed(2),\n'R107': parseFloat(msg.R107).toFixed(2),\n'R108': parseFloat(msg.R108).toFixed(2),\n'R109': parseFloat(msg.R109).toFixed(2),\n'sensing_ai0_pressure': parseFloat(msg.pressure_ai0).toFixed(2),\n'sensing_ai1_pressure': parseFloat(msg.pressure_ai1).toFixed(2),\n'sensing_ai0': parseFloat(msg.sensing_ai0).toFixed(6),\n'sensing_ai1': parseFloat(msg.sensing_ai1).toFixed(6),\n'sensing_ai2': parseFloat(msg.sensing_ai2).toFixed(6),\n'sensing_ai3': parseFloat(msg.sensing_ai3).toFixed(6),\n'sensing_ai4': parseFloat(msg.sensing_ai4).toFixed(6),\n'sensing_ai5': parseFloat(msg.sensing_ai5).toFixed(6),\n'sensing_ai6_rh': parseFloat(msg.sensing_ai6).toFixed(2),\n'sensing_ai7_temp': parseFloat(msg.sensing_ai7).toFixed(1),\n'sensing_ao0': parseFloat(msg.sensing_ao0).toFixed(6),\n'sensing_ao1': parseFloat(msg.sensing_ao1).toFixed(6),\n'sensing_ao2': parseFloat(msg.sensing_ao2).toFixed(6),\n'sensing_ao3': parseFloat(msg.sensing_ao3).toFixed(6),\n'sensing_di0': parseFloat(msg.sensing_di0).toFixed(0),\n'sensing_di1': parseFloat(msg.sensing_di1).toFixed(0),\n'sensing_di2': parseFloat(msg.sensing_di2).toFixed(0),\n'sensing_di3': parseFloat(msg.sensing_di3).toFixed(0),\n'sensing_do0': parseFloat(msg.sensing_do0).toFixed(0),\n'sensing_do1': parseFloat(msg.sensing_do1).toFixed(0),\n'sensing_do2': parseFloat(msg.sensing_do2).toFixed(0),\n'sensing_do3': parseFloat(msg.sensing_do3).toFixed(0),\n'sensing_mass_flow': parseFloat(msg.sensing_mass_flow).toFixed(3),\n'sensing_volume_flow': parseFloat(msg.sensing_volume_flow).toFixed(3),\n'sensing_density': parseFloat(msg.sensing_density).toFixed(3),\n'sensing_dynamic_visco': parseFloat(msg.sensing_dynamic_visco).toFixed(1),\n'sensing_temperature': parseFloat(msg.sensing_temperature).toFixed(2),\n'sensing_exciter_current_0': parseFloat(msg.sensing_exciter_current_0).toFixed(6),\n'sensing_oscillation_frequency_0': parseFloat(msg.sensing_oscillation_frequency_0).toFixed(6),\n'sensing_oscillation_amplitude_0': parseFloat(msg.sensing_oscillation_amplitude_0).toFixed(6),\n'sensing_oscillation_damping_0': parseFloat(msg.sensing_oscillation_damping_0).toFixed(3),\n'sensing_signal_asymmetry': parseFloat(msg.sensing_signal_asymmetry).toFixed(9),\n'sensing_exciter_current_1': parseFloat(msg.sensing_exciter_current_1).toFixed(6),\n'sensing_oscillation_frequency_1': parseFloat(msg.sensing_oscillation_frequency_1).toFixed(6),\n'sensing_oscillation_amplitude_1': parseFloat(msg.sensing_oscillation_amplitude_1).toFixed(6),\n'sensing_oscillation_damping_1': parseFloat(msg.sensing_oscillation_damping_1).toFixed(3),\n'material_bronkhorst_read_alarm_info': parseFloat(msg.material_bronkhorst_read_alarm_info).toFixed(0),\n'material_bronkhorst_read_read_setpoint': parseFloat(msg.material_bronkhorst_read_setpoint).toFixed(2),\n'material_bronkhorst_read_measure': parseFloat(msg.material_bronkhorst_read_measure).toFixed(3),\n'material_bronkhorst_read_temperature': parseFloat(msg.material_bronkhorst_read_temperature).toFixed(1),\n'material_bronkhorst_read_density': parseFloat(msg.material_bronkhorst_read_density).toFixed(1),\n'material_bronkhorst_read_analog_input': parseFloat(msg.material_bronkhorst_read_analog_input).toFixed(0),\n'material_bronkhorst_read_valve_output': parseFloat(msg.material_bronkhorst_read_valve_output).toFixed(0),\n'material_bronkhorst_read_setpoint_slope': parseFloat(msg.material_bronkhorst_read_setpoint_slope).toFixed(0),\n'material_peristaltic_pump_actual_velocity': parseFloat(msg.material_peristaltic_pump_actual_velocity).toFixed(3),\n'material_peristaltic_pump_actual_power': parseFloat(msg.material_peristaltic_pump_actual_power).toFixed(3),\n'material_peristaltic_pump_actual_current': parseFloat(msg.material_peristaltic_pump_actual_current).toFixed(3),\n'material_peristaltic_pump_actual_torque': parseFloat(msg.material_peristaltic_pump_actual_torque).toFixed(3),\n'sensing_r0': parseFloat(msg.sensing_r0).toFixed(6),\n'sensing_r1': parseFloat(msg.sensing_r1).toFixed(6),\n'sensing_r2': parseFloat(msg.sensing_r2).toFixed(6),\n'sensing_r3': parseFloat(msg.sensing_r3).toFixed(6),\n'sensing_r4': parseFloat(msg.sensing_r4).toFixed(6),\n'sensing_r5': parseFloat(msg.sensing_r5).toFixed(6),\n'sensing_r6': parseFloat(msg.sensing_r6).toFixed(6),\n'sensing_r7': parseFloat(msg.sensing_r7).toFixed(6),\n'sensing_r8': parseFloat(msg.sensing_r8).toFixed(6),\n'sensing_r9': parseFloat(msg.sensing_r9).toFixed(6),\n'vertico_is_remote_bool': parseFloat(msg.vertico_is_remote).toFixed(0),\n'vertico_is_open_loop_bool': parseFloat(msg.vertico_is_open_loop).toFixed(0),\n'vertico_actual_motor_velocity_rpm': parseFloat(msg.vertico_actual_motor_velocity).toFixed(0),\n'vertico_actual_flow_ml_min': parseFloat(msg.vertico_actual_flow_mlmin).toFixed(2),\n'vertico_actual_flow_ma': parseFloat(msg.vertico_actual_flow_ma).toFixed(6),\n'vertico_actual_pressure_bar': parseFloat(msg.vertico_actual_pressure).toFixed(1),\n'vertico_local_setpoint_open_loop_rpm': parseFloat(msg.vertico_local_setpoint_open_loop).toFixed(0),\n'vertico_local_setpoint_closed_loop_mlmin': parseFloat(msg.vertico_local_setpoint_closed_loop).toFixed(2),\n'vertico_remote_start_stop_bool': parseFloat(msg.vertico_remote_start_stop).toFixed(0),\n'vertico_remote_setpoint_open_loop_rpm': parseFloat(msg.vertico_remote_setpoint_open_loop).toFixed(0),\n'vertico_remote_setpoint_closed_loop_mlmin': parseFloat(msg.vertico_remote_setpoint_closed_loop).toFixed(2),\n'vertico_pid_p': parseFloat(msg.vertico_pid_p).toFixed(1),\n'vertico_pid_i': parseFloat(msg.vertico_pid_i).toFixed(1),\n'vertico_pid_d': parseFloat(msg.vertico_pid_d).toFixed(2),\n'vertico_ai3_ma': parseFloat(msg.vertico_ai3).toFixed(6),\n'vertico_ao0_ma': parseFloat(msg.vertico_ao0).toFixed(6),\n'vertico_do3_bool': parseFloat(msg.vertico_do3).toFixed(0),\n'printhead_power_on_left': parseFloat(msg.printhead_power_on_left).toFixed(0),\n'printhead_move_jog_backward_left': parseFloat(msg.printhead_move_jog_backward_left).toFixed(0),\n'printhead_move_jog_forward_left': parseFloat(msg.printhead_move_jog_forward_left).toFixed(0),\n'printhead_velocity_jog_left': parseFloat(msg.printhead_velocity_jog_left).toFixed(1),\n'printhead_actual_velocity_left': parseFloat(msg.printhead_actual_velocity_left).toFixed(1),\n'printhead_actual_power_left': parseFloat(msg.printhead_actual_power_left).toFixed(3),\n'printhead_actual_current_left': parseFloat(msg.printhead_actual_current_left).toFixed(3),\n'printhead_actual_torque_left': parseFloat(msg.printhead_actual_torque_left).toFixed(3),\n'printhead_power_on_right': parseFloat(msg.printhead_power_on_right).toFixed(0),\n'printhead_move_jog_backward_right': parseFloat(msg.printhead_move_jog_backward_right).toFixed(0),\n'printhead_move_jog_forward_right': parseFloat(msg.printhead_move_jog_forward_right).toFixed(0),\n'printhead_velocity_jog_right': parseFloat(msg.printhead_velocity_jog_right).toFixed(1),\n'printhead_actual_velocity_right': parseFloat(msg.printhead_actual_velocity_right).toFixed(1),\n'printhead_actual_power_right': parseFloat(msg.printhead_actual_power_right).toFixed(3),\n'printhead_actual_current_right': parseFloat(msg.printhead_actual_current_right).toFixed(3),\n'printhead_actual_torque_right': parseFloat(msg.printhead_actual_torque_right).toFixed(3),\n'printhead_box1_ai0': parseFloat(msg.printhead_box1_ai0).toFixed(6),\n'printhead_box1_ai1': parseFloat(msg.printhead_box1_ai1).toFixed(6),\n'printhead_box1_ai2': parseFloat(msg.printhead_box1_ai2).toFixed(6),\n'printhead_box1_ai3': parseFloat(msg.printhead_box1_ai3).toFixed(6),\n'printhead_box1_ai4': parseFloat(msg.printhead_box1_ai4).toFixed(6),\n'printhead_box1_ai5': parseFloat(msg.printhead_box1_ai5).toFixed(6),\n'printhead_box1_ai6': parseFloat(msg.printhead_box1_ai6).toFixed(6),\n'printhead_box1_ai7': parseFloat(msg.printhead_box1_ai7).toFixed(6),\n'printhead_box2_ai0': parseFloat(msg.printhead_box2_ai0).toFixed(6),\n'printhead_box2_ai1': parseFloat(msg.printhead_box2_ai1).toFixed(6),\n'printhead_box2_ai2': parseFloat(msg.printhead_box2_ai2).toFixed(6),\n'printhead_box2_ai3': parseFloat(msg.printhead_box2_ai3).toFixed(6)\n};\n\nreturn msg;\n   \n\n\n\n\n\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1380,
+        "y": 940,
+        "wires": [
+            [
+                "986ce689bd931243"
+            ]
+        ]
+    },
+    {
+        "id": "986ce689bd931243",
+        "type": "csv",
+        "z": "b7e5f2b641339779",
+        "name": "",
+        "sep": ",",
+        "hdrin": false,
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": false,
+        "include_null_values": false,
+        "x": 1570,
+        "y": 940,
+        "wires": [
+            [
+                "cd5770379ae88a9b"
+            ]
+        ]
+    },
+    {
+        "id": "cd5770379ae88a9b",
+        "type": "InterruptFlowUltimate",
+        "z": "b7e5f2b641339779",
+        "name": "Interrupt Flow",
+        "triggertopic": "trigger",
+        "payloadPropName": "payload",
+        "translatorConfig": "",
+        "x": 1900,
+        "y": 940,
+        "wires": [
+            [
+                "28fcc134b8cbf007",
+                "8b1ac9ca21399565"
+            ]
+        ]
+    },
+    {
+        "id": "43b518d1c555af22",
+        "type": "ui_button",
+        "z": "b7e5f2b641339779",
+        "name": "",
+        "group": "599d2b5615f3741e",
+        "order": 4,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Stop trace",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "topic": "trigger",
+        "topicType": "str",
+        "x": 1390,
+        "y": 740,
+        "wires": [
+            [
+                "cd5770379ae88a9b",
+                "6f2ec29e2632e7b0"
+            ]
+        ]
+    },
+    {
+        "id": "678f5b8693235791",
+        "type": "ui_button",
+        "z": "b7e5f2b641339779",
+        "name": "",
+        "group": "599d2b5615f3741e",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Start trace",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "trigger",
+        "topicType": "str",
+        "x": 1390,
+        "y": 700,
+        "wires": [
+            [
+                "cd5770379ae88a9b",
+                "710a5bf5d199adf2"
+            ]
+        ]
+    },
+    {
+        "id": "dcd99783d736a377",
+        "type": "inject",
+        "z": "b7e5f2b641339779",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "trigger",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 1170,
+        "y": 780,
+        "wires": [
+            [
+                "cd5770379ae88a9b"
+            ]
+        ]
+    },
+    {
+        "id": "28fcc134b8cbf007",
+        "type": "function",
+        "z": "b7e5f2b641339779",
+        "name": "",
+        "func": "\nmsg.data = msg.payload\n\nmsg.file = global.get(\"name\") + \".csv\";\n\nmsg.filename=\"D:/Node Red/Files/\" + msg.file;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2180,
+        "y": 820,
+        "wires": [
+            [
+                "f4c11f3f2423970e"
+            ]
+        ]
+    },
+    {
+        "id": "8b1ac9ca21399565",
+        "type": "trigger",
+        "z": "b7e5f2b641339779",
+        "name": "",
+        "op1": "green",
+        "op2": "transparent",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "-1",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 2200,
+        "y": 940,
+        "wires": [
+            [
+                "065fcc0296521cc6"
+            ]
+        ]
+    },
+    {
+        "id": "27d9f9b4e45e7cf0",
+        "type": "inject",
+        "z": "b7e5f2b641339779",
+        "name": "INTERRUPT",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "trigger",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 1160,
+        "y": 740,
+        "wires": [
+            [
+                "43b518d1c555af22"
+            ]
+        ]
+    },
+    {
+        "id": "6f2ec29e2632e7b0",
+        "type": "ui_toast",
+        "z": "b7e5f2b641339779",
+        "position": "bottom right",
+        "displayTime": "10",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "Trace is stopped",
+        "name": "",
+        "x": 1610,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "a1f7f48484dca551",
+        "type": "inject",
+        "z": "b7e5f2b641339779",
+        "name": "ALLOW",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "trigger",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 1180,
+        "y": 700,
+        "wires": [
+            [
+                "678f5b8693235791"
+            ]
+        ]
+    },
+    {
+        "id": "710a5bf5d199adf2",
+        "type": "ui_toast",
+        "z": "b7e5f2b641339779",
+        "position": "bottom right",
+        "displayTime": "10",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "Trace is started",
+        "name": "",
+        "x": 1610,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "453b9280d5246906",
+        "type": "function",
+        "z": "b7e5f2b641339779",
+        "name": "Columns",
+        "func": " global.set(\"name\",msg.payload);\n var data =\"desktop_time,\"+\n \"mtec_water_temperature_c,\"+\n \"mtec_water_flow_l_min,\"+\n \"mtec_dry_mortar_temp_c,\"+\n \"mtec_pump_motor_speed_actual_rpm,\"+\n \"mtec_pump_motor_speed_setpoint_rpm,\"+\n \"mtec_solenoid_valve_bool,\"+\n \"mtec_water_pump_bool,\"+\n \"mtec_water_valve_turns,\"+\n \"mai_water_run_bool,\"+\n \"mai_water_temp_c,\"+\n \"mai_water_flow_set_lh,\"+\n \"mai_water_flow_actual_lh,\"+\n \"mai_waterpump_ref_freq_chz,\"+\n \"mai_waterpump_output_freq_chz,\"+\n \"mai_mixer_run_bool,\"+\n \"mai_pump_run_bool,\"+\n \"mai_pump_speed_chz,\"+\n \"mai_pump_ouput_current_da,\"+\n \"mai_pump_output_power_w,\"+\n \"mai_pump_vibration_mode_i,\"+\n \"mai_setting_water_pre_run_s,\"+\n \"mai_setting_mixer_post_run_s,\"+\n \"mai_setting_wetprobe_covered_delay_s,\"+\n \"mai_setting_wetprobe_uncovered_delay_s,\"+\n \"gantry_source_time,\"+\n \"gantry_pos_x_mm,\"+\n \"gantry_pos_y_mm,\"+\n \"gantry_pos_z_mm,\"+\n \"gantry_pos_c_deg,\"+\n \"gantry_vel_x_mm_min,\"+\n \"gantry_vel_y_mm_min,\"+\n \"gantry_vel_z_mm_min,\"+\n \"gantry_vel_c,\"+\n \"gantry_feedrate_x_mm_min,\"+\n \"gantry_feedrate_y_mm_min,\"+\n \"gantry_feedrate_z_mm_min,\"+\n \"gantry_feedrate_c,\"+\n \"gantry_feedrate_override_perc,\"+\n \"gantry_power_x_w,\"+\n \"gantry_power_y_w,\"+\n \"gantry_power_z_w,\"+\n \"gantry_power_c_w,\"+\n \"gantry_r100,\"+\n \"gantry_r101,\"+\n \"gantry_r102,\"+\n \"gantry_r103,\"+\n \"gantry_r104,\"+\n \"gantry_r105,\"+\n \"gantry_r106,\"+\n \"gantry_r107,\"+\n \"gantry_r108,\"+\n \"gantry_r109,\"+\n \"material_io_ai0_pressure_bar,\"+\n \"material_io_ai1_pressure_bar,\"+\n \"material_io_ai0_ma,\"+\n \"material_io_ai1_ma,\"+\n \"material_io_ai2_ma,\"+\n \"material_io_ai3_ma,\"+\n \"material_io_ai4_ma,\"+\n \"material_io_ai5_ma,\"+\n \"material_io_ai6_relative_humidity_perc,\"+\n \"material_io_ai7_ambient_temperature_c,\"+\n \"material_io_ao0_ma,\"+\n \"material_io_ao1_ma,\"+\n \"material_io_ao2_ma,\"+\n \"material_io_ao3_ma,\"+\n \"material_io_di0_bool,\"+\n \"material_io_di1_bool,\"+\n \"material_io_di2_bool,\"+\n \"material_io_di3_bool,\"+\n \"material_io_do0_bool,\"+\n \"material_io_do1_bool,\"+\n \"material_io_do2_bool,\"+\n \"material_io_do3_bool,\"+\n \"material_coriolis_mass_flow_kg_min,\"+\n \"material_coriolis_volume_flow_l_min,\"+\n \"material_coriolis_density_kg_m3,\"+\n \"material_coriolis_dynamic_viscocity_cp,\"+\n \"material_coriolis_temperature_c,\"+\n \"material_coriolis_exciter_current_0_ma,\"+\n \"material_coriolis_oscillation_frequency_0_hz,\"+\n \"material_coriolis_oscillation_amplitude_0_perc,\"+\n \"material_coriolis_oscillation_damping_0_m_a,\"+\n \"material_coriolis_signal_asymmetry_perc,\"+\n \"material_coriolis_exciter_current_1_ma,\"+\n \"material_coriolis_oscillation_frequency_1_hz,\"+\n \"material_coriolis_oscillation_amplitude_1_perc,\"+\n \"material_coriolis_oscillation_damping_1_m_a,\"+\n \"material_bronkhorst_alarm_info,\"+\n \"material_bronkhorst_setpoint_gmin,\"+\n \"material_bronkhorst_measure_gmin,\"+\n \"material_bronkhorst_temperature,\"+\n \"material_bronkhorst_density_kg_m3,\"+\n \"material_bronkhorst_analog_input,\"+\n \"material_bronkhorst_valve_output,\"+\n \"material_bronkhorst_setpoint_slope_s,\"+\n \"material_peristaltic_pump_velocity_rpm,\"+\n \"material_peristaltic_pump_power_kw,\"+\n \"material_peristaltic_pump_current_a,\"+\n \"material_peristaltic_pump_torque_nm,\"+\n \"material_r0,\"+\n \"material_r1,\"+\n \"material_r2,\"+\n \"material_r3,\"+\n \"material_r4,\"+\n \"material_r5,\"+\n \"material_r6,\"+\n \"material_r7,\"+\n \"material_r8,\"+\n \"material_r9,\"+\n \"vertico_is_remote_bool,\"+\n \"vertico_is_open_loop_bool,\"+\n \"vertico_actual_motor_velocity_rpm,\"+\n \"vertico_actual_flow_ml_min,\"+\n \"vertico_actual_flow_ma,\"+\n \"vertico_actual_pressure_bar,\"+\n \"vertico_local_setpoint_open_loop_rpm,\"+\n \"vertico_local_setpoint_closed_loop_mlmin,\"+\n \"vertico_remote_start_stop_bool,\"+\n \"vertico_remote_setpoint_open_loop_rpm,\"+\n \"vertico_remote_setpoint_closed_loop_mlmin,\"+\n \"vertico_pid_p,\"+\n \"vertico_pid_i,\"+\n \"vertico_pid_d,\"+\n \"vertico_ai3_ma,\"+\n \"vertico_ao0_ma,\"+\n \"vertico_do3_bool,\"+\n \"printhead_motor_1_motor_1_power_on_bool,\"+\n \"printhead_motor_1_move_jog_backward_bool,\"+\n \"printhead_motor_1_move_jog_forward_bool,\"+\n \"printhead_motor_1_velocity_jog_rpm,\"+\n \"printhead_motor_1_actual_velocity_rpm,\"+\n \"printhead_motor_1_actual_power_kw,\"+\n \"printhead_motor_1_actual_current_a,\"+\n \"printhead_motor_1_actual_torque_nm,\"+\n \"printhead_motor_2_power_on_bool,\"+\n \"printhead_motor_2_move_jog_backward_bool,\"+\n \"printhead_motor_2_move_jog_forward_bool,\"+\n \"printhead_motor_2_velocity_jog_rpm,\"+\n \"printhead_motor_2_actual_velocity_rpm,\"+\n \"printhead_motor_2_actual_power_kw,\"+\n \"printhead_motor_2_actual_current_a,\"+\n \"printhead_motor_2_actual_torque_nm,\"+\n \"printhead_box1_io_ai0_ma,\"+\n \"printhead_box1_io_ai1_ma,\"+\n \"printhead_box1_io_ai2_ma,\"+\n \"printhead_box1_io_ai3_ma,\"+\n \"printhead_box1_io_ai4_ma,\"+\n \"printhead_box1_io_ai5_ma,\"+\n \"printhead_box1_io_ai6_ma,\"+\n \"printhead_box1_io_ai7_ma,\"+\n \"printhead_box2_io_ai0_ma,\"+\n \"printhead_box2_io_ai1_ma,\"+\n \"printhead_box2_io_ai2_ma,\"+\n \"printhead_box2_io_ai3_ma\"+\t\n \n \"\\n\"\n\nmsg.payload=data\n \nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1860,
+        "y": 820,
+        "wires": [
+            [
+                "28fcc134b8cbf007"
+            ]
+        ]
+    },
+    {
+        "id": "f4c11f3f2423970e",
+        "type": "file",
+        "z": "b7e5f2b641339779",
+        "name": "File",
+        "filename": "",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 2430,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "065fcc0296521cc6",
+        "type": "ui_template",
+        "z": "b7e5f2b641339779",
+        "group": "599d2b5615f3741e",
+        "name": "Stop/break",
+        "order": 5,
+        "width": 6,
+        "height": 4,
+        "format": "<svg>\n<circle cx=\"150\" cy=\"120\" r=\"20\" style=\"stroke: none; fill: {{msg.payload}};\"/>\n    \n</svg>\n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 2450,
+        "y": 940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b33aa9fe62b7b1ba",
+        "type": "ui_template",
+        "z": "b7e5f2b641339779",
+        "group": "599d2b5615f3741e",
+        "name": "Filename",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<md-input-container  style=\"overflow:hidden;\">\n    <span> \n    <input ng-model=\"user.input\" style=\"width350px\" placeholder={{msg.topic}}><button class=\"bluebutton\" ng-click=\"msg.payload = user.input; send(msg)\" ng-keypress=\"($event.charCode==13)?msg.payload = user.input; send(msg)\" ngstyle=\"{background-color: #008CBA;}\" style=\"\n    color: #fff;\n    background-color: #5bc0de;\n    border-color: #46b8da;\">Save file</button></span>\n</md-input-container>\n    ",
+        "storeOutMessages": true,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 1580,
+        "y": 820,
+        "wires": [
+            [
+                "453b9280d5246906"
+            ]
+        ]
+    },
+    {
+        "id": "7d7c876f16d83a33",
+        "type": "inject",
+        "z": "b7e5f2b641339779",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": ".5",
+        "topic": "",
+        "payload": "transparent",
+        "payloadType": "str",
+        "x": 1170,
+        "y": 860,
+        "wires": [
+            [
+                "065fcc0296521cc6"
+            ]
+        ]
+    },
+    {
+        "id": "c6ea1619fcf30234",
+        "type": "inject",
+        "z": "b7e5f2b641339779",
+        "name": "Filename",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "",
+        "topic": "Filename",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1180,
+        "y": 820,
+        "wires": [
+            [
+                "b33aa9fe62b7b1ba"
+            ]
+        ]
+    },
+    {
+        "id": "6eaa03495700b23a",
+        "type": "link in",
+        "z": "b7e5f2b641339779",
+        "name": "m-tec values in",
+        "links": [
+            "3d367c4645c0c16c"
+        ],
+        "x": 695,
+        "y": 1160,
+        "wires": [
+            [
+                "bbd36528211c5bbe"
+            ]
+        ]
+    },
+    {
+        "id": "c6d9dba04fb03bb9",
+        "type": "link in",
+        "z": "b7e5f2b641339779",
+        "name": "Printhead values in",
+        "links": [
+            "fd7dd966dc1de854",
+            "d0a60548384f5be1"
+        ],
+        "x": 695,
+        "y": 1040,
+        "wires": [
+            [
+                "bbd36528211c5bbe"
+            ]
+        ]
+    },
+    {
+        "id": "ecd23e2819d0c96e",
+        "type": "link in",
+        "z": "b7e5f2b641339779",
+        "name": "Material delivery values in",
+        "links": [
+            "5140f8a9857180c3"
+        ],
+        "x": 695,
+        "y": 1080,
+        "wires": [
+            [
+                "bbd36528211c5bbe"
+            ]
+        ]
+    },
+    {
+        "id": "ac137530bff3e422",
+        "type": "link in",
+        "z": "b7e5f2b641339779",
+        "name": "Gantry values in",
+        "links": [
+            "b618b2a5afcd6387"
+        ],
+        "x": 695,
+        "y": 1120,
+        "wires": [
+            [
+                "bbd36528211c5bbe"
+            ]
+        ]
+    },
+    {
+        "id": "22307808c33194d2",
+        "type": "link in",
+        "z": "b7e5f2b641339779",
+        "name": "MAI values in",
+        "links": [
+            "642b3900b9b85c10"
+        ],
+        "x": 695,
+        "y": 1200,
+        "wires": [
+            [
+                "bbd36528211c5bbe"
+            ]
+        ]
+    },
+    {
+        "id": "d4e842cc4b780c85",
+        "type": "inject",
+        "z": "b7e5f2b641339779",
+        "name": "Timer",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "complete",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "repeat": "0.1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 270,
+        "y": 940,
+        "wires": [
+            [
+                "b847af6089af00ad",
+                "f428d326fafc1fcd"
+            ]
+        ]
+    },
+    {
+        "id": "b847af6089af00ad",
+        "type": "link out",
+        "z": "b7e5f2b641339779",
+        "name": "Timer out",
+        "mode": "link",
+        "links": [
+            "061af7db49517b68",
+            "77c717f37c64d525",
+            "82f6462f77a0b5d1",
+            "bbe3e5208daf1b84",
+            "47bda97acac85ce8",
+            "2d60c8988437581e"
+        ],
+        "x": 425,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "ecaaff316a21ce5a",
+        "type": "comment",
+        "z": "b7e5f2b641339779",
+        "name": "Interval time for logger!",
+        "info": "",
+        "x": 300,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "ef5d7562560cba3c",
+        "type": "link in",
+        "z": "b7e5f2b641339779",
+        "name": "Vertico dosing values in",
+        "links": [
+            "d2862f4e45a2b658"
+        ],
+        "x": 695,
+        "y": 1240,
+        "wires": [
+            [
+                "bbd36528211c5bbe"
+            ]
+        ]
+    },
+    {
+        "id": "bf37b1c267522971",
+        "type": "ui_spacer",
+        "z": "b7e5f2b641339779",
+        "name": "spacer",
+        "group": "53d83661cfcefa23",
+        "order": 3,
+        "width": 27,
+        "height": 1
+    },
+    {
+        "id": "74ef1d0bc1566746",
+        "type": "ui_spacer",
+        "z": "b7e5f2b641339779",
+        "name": "spacer",
+        "group": "53d83661cfcefa23",
+        "order": 4,
+        "width": 27,
+        "height": 1
+    },
+    {
+        "id": "99b8d3da67c0bc46",
+        "type": "ui_spacer",
+        "z": "b7e5f2b641339779",
+        "name": "spacer",
+        "group": "53d83661cfcefa23",
+        "order": 7,
+        "width": 27,
+        "height": 1
+    },
+    {
+        "id": "c63c29e437aa4643",
+        "type": "ui_spacer",
+        "z": "b7e5f2b641339779",
+        "name": "spacer",
+        "group": "53d83661cfcefa23",
+        "order": 8,
+        "width": 27,
+        "height": 1
+    },
+    {
+        "id": "68a915a43ba2b377",
+        "type": "ui_spacer",
+        "z": "b7e5f2b641339779",
+        "name": "spacer",
+        "group": "53d83661cfcefa23",
+        "order": 11,
+        "width": 27,
+        "height": 1
+    },
+    {
+        "id": "930cd29e93c0d98a",
+        "type": "ui_spacer",
+        "z": "b7e5f2b641339779",
+        "name": "spacer",
+        "group": "53d83661cfcefa23",
+        "order": 12,
+        "width": 27,
+        "height": 1
+    },
+    {
+        "id": "ec57a44f5e280d7e",
+        "type": "ui_spacer",
+        "z": "b7e5f2b641339779",
+        "name": "spacer",
+        "group": "d5be84c8a2a9dbe3",
+        "order": 6,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "4eded73b03834063",
+        "type": "ui_spacer",
+        "z": "b7e5f2b641339779",
+        "name": "spacer",
+        "group": "6cb02d1b18effc68",
+        "order": 2,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "963dadfc865f0141",
+        "type": "ui_spacer",
+        "z": "b7e5f2b641339779",
+        "name": "spacer",
+        "group": "6cb02d1b18effc68",
+        "order": 5,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "054a1e026a4d7e7e",
+        "type": "ui_spacer",
+        "z": "b7e5f2b641339779",
+        "name": "spacer",
+        "group": "6cb02d1b18effc68",
+        "order": 9,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "b09aeabd9dc53b14",
+        "type": "ui_spacer",
+        "z": "b7e5f2b641339779",
+        "name": "spacer",
+        "group": "29e604be7d0124bf",
+        "order": 3,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "78704775e1b273bc",
+        "type": "ui_spacer",
+        "z": "b7e5f2b641339779",
+        "name": "spacer",
+        "group": "29e604be7d0124bf",
+        "order": 8,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "22c9f7edc0852761",
+        "type": "ui_spacer",
+        "z": "b7e5f2b641339779",
+        "name": "spacer",
+        "group": "29e604be7d0124bf",
+        "order": 11,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "ec8f81da4fd946c3",
+        "type": "ui_spacer",
+        "z": "b7e5f2b641339779",
+        "name": "spacer",
+        "group": "29e604be7d0124bf",
+        "order": 15,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "0aeb242a677120e7",
+        "type": "ui_spacer",
+        "z": "b7e5f2b641339779",
+        "name": "spacer",
+        "group": "29e604be7d0124bf",
+        "order": 19,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "323dace24804aafe",
+        "type": "ui_group",
+        "name": "Set output",
+        "tab": "",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "599d2b5615f3741e",
+        "type": "ui_group",
+        "name": "Save data",
+        "tab": "53571d4d81ebd061",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false
+    },
+    {
+        "id": "53d83661cfcefa23",
+        "type": "ui_group",
+        "name": "Data Graphs",
+        "tab": "53571d4d81ebd061",
+        "order": 2,
+        "disp": true,
+        "width": 27,
+        "collapse": false
+    },
+    {
+        "id": "d5be84c8a2a9dbe3",
+        "type": "ui_group",
+        "name": "Summary",
+        "tab": "53571d4d81ebd061",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "6cb02d1b18effc68",
+        "type": "ui_group",
+        "name": "Write values",
+        "tab": "ab2d93c8cfc6d927",
+        "order": 1,
+        "disp": true,
+        "width": 8,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "29e604be7d0124bf",
+        "type": "ui_group",
+        "name": "Read values",
+        "tab": "ab2d93c8cfc6d927",
+        "order": 3,
+        "disp": true,
+        "width": 8,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "53571d4d81ebd061",
+        "type": "ui_tab",
+        "name": "Data overview",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "ab2d93c8cfc6d927",
+        "type": "ui_tab",
+        "name": "Vertico dosing system",
+        "icon": "dashboard",
+        "order": 10,
+        "disabled": false,
+        "hidden": false
+    }
+]

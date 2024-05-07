@@ -1,0 +1,785 @@
+[
+    {
+        "id": "90fe9e65ed3db335",
+        "type": "tab",
+        "label": "M-tec: Read values",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "62dc08f6ee2bca64",
+        "type": "switch",
+        "z": "90fe9e65ed3db335",
+        "name": "Values",
+        "property": "browseName",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "mtecPumpMotor_rpm",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "waterTemp_C",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "waterFlow_LMin",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "mortarTemperature_C",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "solenoidValve_bool",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "waterPump_bool",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "setValuePumpMotor_rpm",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "aut_mixer_bool",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": true,
+        "outputs": 8,
+        "x": 1530,
+        "y": 760,
+        "wires": [
+            [
+                "a8bfc820f0494619"
+            ],
+            [
+                "8e1ca87dfa847bad"
+            ],
+            [
+                "800b94b71b7b8b09"
+            ],
+            [
+                "bc98ee777774207a"
+            ],
+            [
+                "21a193f681ae4840"
+            ],
+            [
+                "fbdc9ff66ef1299f"
+            ],
+            [
+                "1f3c971507afc041"
+            ],
+            [
+                "75ce1f0d2985eaf1"
+            ]
+        ]
+    },
+    {
+        "id": "a8bfc820f0494619",
+        "type": "function",
+        "z": "90fe9e65ed3db335",
+        "name": "mtecPumpMotor_rpm",
+        "func": "msg.mtec_pump_motor_rpm=msg.payload.toString()*0.006461217\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1800,
+        "y": 700,
+        "wires": [
+            [
+                "82ad756c33a9dd7a",
+                "697196ecd03d554f"
+            ]
+        ]
+    },
+    {
+        "id": "8e1ca87dfa847bad",
+        "type": "function",
+        "z": "90fe9e65ed3db335",
+        "name": "waterTemp_C",
+        "func": "msg.waterTemp_C=msg.payload.toString()/10000*(50-0)\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1780,
+        "y": 740,
+        "wires": [
+            [
+                "697196ecd03d554f",
+                "5473655a4e4f2bd9"
+            ]
+        ]
+    },
+    {
+        "id": "800b94b71b7b8b09",
+        "type": "function",
+        "z": "90fe9e65ed3db335",
+        "name": "waterFlow_LMin",
+        "func": "msg.waterFlow_LMin=msg.payload.toString()/10000*(10+10)-10\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1780,
+        "y": 780,
+        "wires": [
+            [
+                "457e2c77dd9f1324",
+                "697196ecd03d554f"
+            ]
+        ]
+    },
+    {
+        "id": "bc98ee777774207a",
+        "type": "function",
+        "z": "90fe9e65ed3db335",
+        "name": "Dry mortar temp",
+        "func": "msg.DryMortarTemp=msg.payload.toString()/65536*100\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1780,
+        "y": 820,
+        "wires": [
+            [
+                "b2eb7c4792b59404",
+                "697196ecd03d554f"
+            ]
+        ]
+    },
+    {
+        "id": "21a193f681ae4840",
+        "type": "function",
+        "z": "90fe9e65ed3db335",
+        "name": "solenoidValve_bool",
+        "func": "if (msg.payload==true) {\n    msg.solenoidValve_bool=1\n} else if(msg.payload==false) {\n    msg.solenoidValve_bool=0\n} else {\n     msg.solenoidValve_bool=NaN\n}\n\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1790,
+        "y": 860,
+        "wires": [
+            [
+                "0a897de1e7f95edb",
+                "697196ecd03d554f"
+            ]
+        ]
+    },
+    {
+        "id": "fbdc9ff66ef1299f",
+        "type": "function",
+        "z": "90fe9e65ed3db335",
+        "name": "waterPump_bool",
+        "func": "if (msg.payload==true) {\n    msg.waterPump_bool=1\n} else if(msg.payload==false) {\n    msg.waterPump_bool=0\n} else {\n     msg.waterPump_bool=NaN\n}\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1790,
+        "y": 900,
+        "wires": [
+            [
+                "697196ecd03d554f"
+            ]
+        ]
+    },
+    {
+        "id": "1f3c971507afc041",
+        "type": "function",
+        "z": "90fe9e65ed3db335",
+        "name": "setValuePumpMotor_rpm",
+        "func": "msg.setValuePumpMotor_rpm=msg.payload.toString()*(420-169.2)/65000+169.2\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1810,
+        "y": 940,
+        "wires": [
+            [
+                "12c5fae31f444c58",
+                "697196ecd03d554f"
+            ]
+        ]
+    },
+    {
+        "id": "75ce1f0d2985eaf1",
+        "type": "link out",
+        "z": "90fe9e65ed3db335",
+        "name": "mtec mixer on/off out",
+        "mode": "link",
+        "links": [
+            "2cca5eb8acdf6088"
+        ],
+        "x": 1715,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "82ad756c33a9dd7a",
+        "type": "ui_text",
+        "z": "90fe9e65ed3db335",
+        "group": "e8c93459e3f9c364",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Actual speed [RPM]",
+        "format": "{{msg.mtec_pump_motor_rpm.toFixed(1)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 2580,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "697196ecd03d554f",
+        "type": "join",
+        "z": "90fe9e65ed3db335",
+        "name": "",
+        "mode": "custom",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "8",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 2530,
+        "y": 1120,
+        "wires": [
+            [
+                "3d367c4645c0c16c"
+            ]
+        ]
+    },
+    {
+        "id": "457e2c77dd9f1324",
+        "type": "function",
+        "z": "90fe9e65ed3db335",
+        "name": "",
+        "func": "msg.payload=msg.waterFlow_LMin\nmsg.topic=\"Water flow\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2540,
+        "y": 600,
+        "wires": [
+            [
+                "2c82238ea8de7184"
+            ]
+        ]
+    },
+    {
+        "id": "b2eb7c4792b59404",
+        "type": "ui_text",
+        "z": "90fe9e65ed3db335",
+        "group": "e8c93459e3f9c364",
+        "order": 5,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Dry mortar temperature [C]",
+        "format": "{{msg.DryMortarTemp.toFixed(1)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 2600,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "0a897de1e7f95edb",
+        "type": "link out",
+        "z": "90fe9e65ed3db335",
+        "name": "m-tec solenoid valve on/off out",
+        "mode": "link",
+        "links": [
+            "bba4fb08bf735561"
+        ],
+        "x": 2015,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "12c5fae31f444c58",
+        "type": "ui_text",
+        "z": "90fe9e65ed3db335",
+        "group": "e8c93459e3f9c364",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Set speed [RPM]",
+        "format": "{{msg.setValuePumpMotor_rpm.toFixed(1)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 2570,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "9aaf844671a5d7d3",
+        "type": "inject",
+        "z": "90fe9e65ed3db335",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "waterDosingTurns",
+                "v": "waterDosingTurns",
+                "vt": "global"
+            }
+        ],
+        "repeat": "0.1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "waterDosingTurns",
+        "payloadType": "global",
+        "x": 870,
+        "y": 1120,
+        "wires": [
+            [
+                "697196ecd03d554f"
+            ]
+        ]
+    },
+    {
+        "id": "2c82238ea8de7184",
+        "type": "ui_text",
+        "z": "90fe9e65ed3db335",
+        "group": "e8c93459e3f9c364",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Water flow [L/min]",
+        "format": "{{msg.payload.toFixed(2)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2730,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "3d367c4645c0c16c",
+        "type": "link out",
+        "z": "90fe9e65ed3db335",
+        "name": "m-tec values out",
+        "mode": "link",
+        "links": [
+            "6eaa03495700b23a"
+        ],
+        "x": 2655,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "5473655a4e4f2bd9",
+        "type": "ui_text",
+        "z": "90fe9e65ed3db335",
+        "group": "e8c93459e3f9c364",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Water temperature [C]",
+        "format": "{{msg.waterTemp_C.toFixed(1)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 2580,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "b4038b94f225a651",
+        "type": "function",
+        "z": "90fe9e65ed3db335",
+        "name": "",
+        "func": "global.set(\"waterDosingTurns\", msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1280,
+        "y": 1160,
+        "wires": [
+            [
+                "8e1fa9ca2428c3c3"
+            ]
+        ]
+    },
+    {
+        "id": "3e366ea78d21c856",
+        "type": "inject",
+        "z": "90fe9e65ed3db335",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.1",
+        "topic": "",
+        "payload": "0.0",
+        "payloadType": "num",
+        "x": 810,
+        "y": 1160,
+        "wires": [
+            [
+                "196929d76e9ba5dc"
+            ]
+        ]
+    },
+    {
+        "id": "8e1fa9ca2428c3c3",
+        "type": "ui_text",
+        "z": "90fe9e65ed3db335",
+        "group": "e8c93459e3f9c364",
+        "order": 6,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Water valve [turns]",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1510,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "196929d76e9ba5dc",
+        "type": "ui_numeric",
+        "z": "90fe9e65ed3db335",
+        "name": "",
+        "label": "Water valve [turns]",
+        "tooltip": "",
+        "group": "2159e8a83bb50b67",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "20",
+        "step": "0.1",
+        "className": "",
+        "x": 1050,
+        "y": 1160,
+        "wires": [
+            [
+                "b4038b94f225a651"
+            ]
+        ]
+    },
+    {
+        "id": "90fe4fdb59e88bb7",
+        "type": "inject",
+        "z": "90fe9e65ed3db335",
+        "d": true,
+        "name": "Timer",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "0.1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 390,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "47bda97acac85ce8",
+        "type": "link in",
+        "z": "90fe9e65ed3db335",
+        "name": "Timer in",
+        "links": [
+            "b847af6089af00ad"
+        ],
+        "x": 425,
+        "y": 620,
+        "wires": [
+            [
+                "d6e7c43c6d43e5c9",
+                "c4e262a42003f2cc",
+                "0b4f6bd58ff3e21b",
+                "6dd3d6f0b4d24133",
+                "4a28508479b473d7",
+                "f9960461b6ea446a",
+                "5ddb515e2f3b42d0",
+                "fe9f3794544c6b09",
+                "9b1e6553f715d4a0"
+            ]
+        ]
+    },
+    {
+        "id": "d6e7c43c6d43e5c9",
+        "type": "OpcUa-Item",
+        "z": "90fe9e65ed3db335",
+        "item": "ns=4;s=|var|ECC2100 0.8S 1131.Application.GVL_OPC.reserve_AI_1.Value.Value;datatype=Uint16",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "waterTemp_C",
+        "x": 820,
+        "y": 620,
+        "wires": [
+            [
+                "385c1c17f8469c75"
+            ]
+        ]
+    },
+    {
+        "id": "c4e262a42003f2cc",
+        "type": "OpcUa-Item",
+        "z": "90fe9e65ed3db335",
+        "item": "ns=4;s=|var|ECC2100 0.8S 1131.Application.GVL_OPC.reserve_AI_2.Value.Value;datatype=Uint16",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "waterFlow_LMin",
+        "x": 820,
+        "y": 660,
+        "wires": [
+            [
+                "385c1c17f8469c75"
+            ]
+        ]
+    },
+    {
+        "id": "0b4f6bd58ff3e21b",
+        "type": "OpcUa-Item",
+        "z": "90fe9e65ed3db335",
+        "item": "ns=4;s=|var|ECC2100 0.8S 1131.Application.GVL_OPC.reserve_AI_5.Value.Value;datatype=Uint16",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "dry_mortar_temp",
+        "x": 830,
+        "y": 700,
+        "wires": [
+            [
+                "385c1c17f8469c75"
+            ]
+        ]
+    },
+    {
+        "id": "6dd3d6f0b4d24133",
+        "type": "OpcUa-Item",
+        "z": "90fe9e65ed3db335",
+        "item": "ns=4;s=|var|ECC2100 0.8S 1131.Application.GVL_OPC.reserve_AI_5.Value.Value;datatype=Uint16",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "mortarTemperature_C",
+        "x": 840,
+        "y": 740,
+        "wires": [
+            [
+                "385c1c17f8469c75"
+            ]
+        ]
+    },
+    {
+        "id": "4a28508479b473d7",
+        "type": "OpcUa-Item",
+        "z": "90fe9e65ed3db335",
+        "item": "ns=4;s=|var|ECC2100 0.8S 1131.Application.GVL_OPC.actual_value_mixingpump.Value.Value;datatype=Uint16",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "mtecPumpMotor_rpm",
+        "x": 840,
+        "y": 780,
+        "wires": [
+            [
+                "385c1c17f8469c75"
+            ]
+        ]
+    },
+    {
+        "id": "f9960461b6ea446a",
+        "type": "OpcUa-Item",
+        "z": "90fe9e65ed3db335",
+        "item": "ns=4;s=|var|ECC2100 0.8S 1131.Application.GVL_OPC.aut_solenoid_valve.Value.Value;datatype=Uint16",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "solenoidValve_bool",
+        "x": 830,
+        "y": 820,
+        "wires": [
+            [
+                "385c1c17f8469c75"
+            ]
+        ]
+    },
+    {
+        "id": "5ddb515e2f3b42d0",
+        "type": "OpcUa-Item",
+        "z": "90fe9e65ed3db335",
+        "item": "ns=4;s=|var|ECC2100 0.8S 1131.Application.GVL_OPC.aut_waterpump.Value.Value;datatype=Uint16",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "waterPump_bool",
+        "x": 830,
+        "y": 860,
+        "wires": [
+            [
+                "385c1c17f8469c75"
+            ]
+        ]
+    },
+    {
+        "id": "fe9f3794544c6b09",
+        "type": "OpcUa-Item",
+        "z": "90fe9e65ed3db335",
+        "item": "ns=4;s=|var|ECC2100 0.8S 1131.Application.GVL_OPC.set_value_mixingpump",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "setValuePumpMotor_rpm",
+        "x": 850,
+        "y": 900,
+        "wires": [
+            [
+                "385c1c17f8469c75"
+            ]
+        ]
+    },
+    {
+        "id": "9b1e6553f715d4a0",
+        "type": "OpcUa-Item",
+        "z": "90fe9e65ed3db335",
+        "item": "ns=4;s=|var|ECC2100 0.8S 1131.Application.GVL_OPC.aut_mixer",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "aut_mixer_bool",
+        "x": 820,
+        "y": 940,
+        "wires": [
+            [
+                "385c1c17f8469c75"
+            ]
+        ]
+    },
+    {
+        "id": "385c1c17f8469c75",
+        "type": "OpcUa-Client",
+        "z": "90fe9e65ed3db335",
+        "endpoint": "b02adcf7.368dd",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": "500",
+        "timeUnit": "ms",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "name": "",
+        "x": 1300,
+        "y": 760,
+        "wires": [
+            [
+                "62dc08f6ee2bca64"
+            ]
+        ]
+    },
+    {
+        "id": "e8c93459e3f9c364",
+        "type": "ui_group",
+        "name": "Read values",
+        "tab": "4809d57f0b02fac6",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "2159e8a83bb50b67",
+        "type": "ui_group",
+        "name": "Write values",
+        "tab": "4809d57f0b02fac6",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "b02adcf7.368dd",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://10.129.4.73:4840",
+        "secpol": "None",
+        "secmode": "None",
+        "login": false
+    },
+    {
+        "id": "4809d57f0b02fac6",
+        "type": "ui_tab",
+        "name": "M-tec duomix",
+        "icon": "dashboard",
+        "order": 8,
+        "disabled": false,
+        "hidden": false
+    }
+]

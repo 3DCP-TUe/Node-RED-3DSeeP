@@ -1,0 +1,1381 @@
+[
+    {
+        "id": "1d75215f8e163a3d",
+        "type": "tab",
+        "label": "Printhead: Write values",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "dfab6136b644ecd4",
+        "type": "OpcUa-Item",
+        "z": "1d75215f8e163a3d",
+        "item": "ns=3;s=\"Power_On_left\"",
+        "datatype": "Boolean",
+        "value": "msg.topic",
+        "name": "Power on",
+        "x": 740,
+        "y": 380,
+        "wires": [
+            [
+                "70b9132939690788"
+            ]
+        ]
+    },
+    {
+        "id": "678aa933c9279916",
+        "type": "ui_switch",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "label": "Power",
+        "tooltip": "",
+        "group": "6b810393774c59ed",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 490,
+        "y": 380,
+        "wires": [
+            [
+                "dfab6136b644ecd4"
+            ]
+        ]
+    },
+    {
+        "id": "70b9132939690788",
+        "type": "OpcUa-Client",
+        "z": "1d75215f8e163a3d",
+        "endpoint": "3d6b24f6a6823956",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "name": "",
+        "x": 1380,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4bf069042b39af4c",
+        "type": "OpcUa-Item",
+        "z": "1d75215f8e163a3d",
+        "item": "ns=3;s=\"Reset_S210_left\"",
+        "datatype": "Boolean",
+        "value": "msg.topic",
+        "name": "Reset",
+        "x": 730,
+        "y": 340,
+        "wires": [
+            [
+                "70b9132939690788"
+            ]
+        ]
+    },
+    {
+        "id": "547e34acfa397183",
+        "type": "OpcUa-Item",
+        "z": "1d75215f8e163a3d",
+        "item": "ns=3;s=\"Move_Jog_Backward_left\"",
+        "datatype": "Boolean",
+        "value": "msg.topic",
+        "name": "Move backward",
+        "x": 760,
+        "y": 440,
+        "wires": [
+            [
+                "70b9132939690788"
+            ]
+        ]
+    },
+    {
+        "id": "f8682fe30fc2dc04",
+        "type": "OpcUa-Item",
+        "z": "1d75215f8e163a3d",
+        "item": "ns=3;s=\"Move_Jog_Forward_left\"",
+        "datatype": "Boolean",
+        "value": "msg.topic",
+        "name": "Move forward",
+        "x": 760,
+        "y": 480,
+        "wires": [
+            [
+                "70b9132939690788"
+            ]
+        ]
+    },
+    {
+        "id": "bfcfa1a90bb58af9",
+        "type": "ui_switch",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "label": "Move backward",
+        "tooltip": "",
+        "group": "6b810393774c59ed",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 520,
+        "y": 440,
+        "wires": [
+            [
+                "547e34acfa397183"
+            ]
+        ]
+    },
+    {
+        "id": "67dfd0645c193507",
+        "type": "ui_switch",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "label": "Move forward",
+        "tooltip": "",
+        "group": "6b810393774c59ed",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 520,
+        "y": 480,
+        "wires": [
+            [
+                "f8682fe30fc2dc04"
+            ]
+        ]
+    },
+    {
+        "id": "27d41454baccc06f",
+        "type": "inject",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 330,
+        "y": 340,
+        "wires": [
+            [
+                "678aa933c9279916",
+                "bfcfa1a90bb58af9",
+                "67dfd0645c193507",
+                "0d16ce16859bb698"
+            ]
+        ]
+    },
+    {
+        "id": "ef8eafad5f19195e",
+        "type": "OpcUa-Item",
+        "z": "1d75215f8e163a3d",
+        "item": "ns=3;s=\"Velocity_Jog_left\"",
+        "datatype": "Double",
+        "value": "msg.topic",
+        "name": "Setpoint velocity",
+        "x": 760,
+        "y": 540,
+        "wires": [
+            [
+                "70b9132939690788"
+            ]
+        ]
+    },
+    {
+        "id": "9292899a0ce7ab68",
+        "type": "ui_text_input",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "label": "Velocity setpoint",
+        "tooltip": "",
+        "group": "6b810393774c59ed",
+        "order": 7,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 340,
+        "y": 540,
+        "wires": [
+            [
+                "54f0b0f18ad0a207"
+            ]
+        ]
+    },
+    {
+        "id": "f289df59f77b3bf1",
+        "type": "ui_text",
+        "z": "1d75215f8e163a3d",
+        "group": "6b810393774c59ed",
+        "order": 8,
+        "width": 1,
+        "height": 1,
+        "name": "",
+        "label": "rpm",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 310,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "54f0b0f18ad0a207",
+        "type": "function",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "func": "if( msg.payload<0){msg.payload=0}\nelse if(msg.payload>600){msg.payload=600}\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 540,
+        "wires": [
+            [
+                "ef8eafad5f19195e"
+            ]
+        ]
+    },
+    {
+        "id": "bb63b787bb925bee",
+        "type": "ui_text",
+        "z": "1d75215f8e163a3d",
+        "group": "6b810393774c59ed",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "<b>Write values:",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "x": 350,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "341abc12b054a624",
+        "type": "OpcUa-Item",
+        "z": "1d75215f8e163a3d",
+        "item": "ns=3;s=\"Power_On_right\"",
+        "datatype": "Boolean",
+        "value": "msg.topic",
+        "name": "Power on",
+        "x": 740,
+        "y": 1160,
+        "wires": [
+            [
+                "70b9132939690788"
+            ]
+        ]
+    },
+    {
+        "id": "251e32489f9d90d7",
+        "type": "ui_switch",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "label": "Power",
+        "tooltip": "",
+        "group": "b9011e67f72d8da0",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 490,
+        "y": 1160,
+        "wires": [
+            [
+                "341abc12b054a624"
+            ]
+        ]
+    },
+    {
+        "id": "441429ec07f9639f",
+        "type": "OpcUa-Item",
+        "z": "1d75215f8e163a3d",
+        "item": "ns=3;s=\"Reset_S210_right\"",
+        "datatype": "Boolean",
+        "value": "msg.topic",
+        "name": "Reset",
+        "x": 730,
+        "y": 1120,
+        "wires": [
+            [
+                "70b9132939690788"
+            ]
+        ]
+    },
+    {
+        "id": "91cc57a333d6e168",
+        "type": "OpcUa-Item",
+        "z": "1d75215f8e163a3d",
+        "item": "ns=3;s=\"Move_Jog_Backward_right\"",
+        "datatype": "Boolean",
+        "value": "msg.topic",
+        "name": "Move backward",
+        "x": 760,
+        "y": 1220,
+        "wires": [
+            [
+                "70b9132939690788"
+            ]
+        ]
+    },
+    {
+        "id": "006b678133a3aa5e",
+        "type": "OpcUa-Item",
+        "z": "1d75215f8e163a3d",
+        "item": "ns=3;s=\"Move_Jog_Forward_right\"",
+        "datatype": "Boolean",
+        "value": "msg.topic",
+        "name": "Move forward",
+        "x": 760,
+        "y": 1260,
+        "wires": [
+            [
+                "70b9132939690788"
+            ]
+        ]
+    },
+    {
+        "id": "c510fefbd6da6597",
+        "type": "ui_switch",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "label": "Move backward",
+        "tooltip": "",
+        "group": "b9011e67f72d8da0",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 520,
+        "y": 1220,
+        "wires": [
+            [
+                "91cc57a333d6e168"
+            ]
+        ]
+    },
+    {
+        "id": "0d7323a6363ed875",
+        "type": "ui_switch",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "label": "Move forward",
+        "tooltip": "",
+        "group": "b9011e67f72d8da0",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 520,
+        "y": 1260,
+        "wires": [
+            [
+                "006b678133a3aa5e"
+            ]
+        ]
+    },
+    {
+        "id": "03382cf9007eddf8",
+        "type": "OpcUa-Item",
+        "z": "1d75215f8e163a3d",
+        "item": "ns=3;s=\"Velocity_Jog_right\"",
+        "datatype": "Double",
+        "value": "msg.topic",
+        "name": "Setpoint velocity",
+        "x": 760,
+        "y": 1320,
+        "wires": [
+            [
+                "70b9132939690788"
+            ]
+        ]
+    },
+    {
+        "id": "49642c507f63b373",
+        "type": "ui_text_input",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "label": "Velocity setpoint",
+        "tooltip": "",
+        "group": "b9011e67f72d8da0",
+        "order": 7,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 340,
+        "y": 1320,
+        "wires": [
+            [
+                "339bd50da98efd49"
+            ]
+        ]
+    },
+    {
+        "id": "82861a7bac8d88f0",
+        "type": "ui_text",
+        "z": "1d75215f8e163a3d",
+        "group": "b9011e67f72d8da0",
+        "order": 8,
+        "width": 1,
+        "height": 1,
+        "name": "",
+        "label": "rpm",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 310,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "339bd50da98efd49",
+        "type": "function",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "func": "if( msg.payload<0){msg.payload=0}\nelse if(msg.payload>600){msg.payload=600}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 1320,
+        "wires": [
+            [
+                "03382cf9007eddf8"
+            ]
+        ]
+    },
+    {
+        "id": "e1f9bab54d5c4902",
+        "type": "ui_text",
+        "z": "1d75215f8e163a3d",
+        "group": "b9011e67f72d8da0",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "<b>Write values:",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 350,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "0d501c9584daa36f",
+        "type": "inject",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 150,
+        "y": 540,
+        "wires": [
+            [
+                "9292899a0ce7ab68"
+            ]
+        ]
+    },
+    {
+        "id": "0fbf586543068d6d",
+        "type": "inject",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 150,
+        "y": 1320,
+        "wires": [
+            [
+                "49642c507f63b373"
+            ]
+        ]
+    },
+    {
+        "id": "616f131bcef68bd2",
+        "type": "comment",
+        "z": "1d75215f8e163a3d",
+        "name": "Motor 1 (left)",
+        "info": "",
+        "x": 160,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "2e475ca0e90cc92b",
+        "type": "comment",
+        "z": "1d75215f8e163a3d",
+        "name": "Motor 2 (right)",
+        "info": "",
+        "x": 150,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "e0be01ace176294d",
+        "type": "inject",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 330,
+        "y": 1120,
+        "wires": [
+            [
+                "251e32489f9d90d7",
+                "c510fefbd6da6597",
+                "0d7323a6363ed875",
+                "b03a9e76619efdcf"
+            ]
+        ]
+    },
+    {
+        "id": "2459b12ed239386a",
+        "type": "OpcUa-Item",
+        "z": "1d75215f8e163a3d",
+        "item": "ns=3;s=\"SpeedAxisLeft\".DynamicLimits.MaxAcceleration",
+        "datatype": "Double",
+        "value": "",
+        "name": "Max Acceleration",
+        "x": 770,
+        "y": 680,
+        "wires": [
+            [
+                "70b9132939690788"
+            ]
+        ]
+    },
+    {
+        "id": "4bcbc8bd8e92ffdd",
+        "type": "OpcUa-Item",
+        "z": "1d75215f8e163a3d",
+        "item": "ns=3;s=\"SpeedAxisLeft\".DynamicLimits.MaxDeceleration",
+        "datatype": "Double",
+        "value": "",
+        "name": "Max Deceleration",
+        "x": 770,
+        "y": 720,
+        "wires": [
+            [
+                "70b9132939690788"
+            ]
+        ]
+    },
+    {
+        "id": "419111aea0307fe3",
+        "type": "OpcUa-Item",
+        "z": "1d75215f8e163a3d",
+        "item": "ns=3;s=\"SpeedAxisRight\".DynamicLimits.MaxAcceleration",
+        "datatype": "Double",
+        "value": "",
+        "name": "Max Acceleration",
+        "x": 770,
+        "y": 1480,
+        "wires": [
+            [
+                "70b9132939690788"
+            ]
+        ]
+    },
+    {
+        "id": "b704976f0d04f2da",
+        "type": "OpcUa-Item",
+        "z": "1d75215f8e163a3d",
+        "item": "ns=3;s=\"SpeedAxisRight\".DynamicLimits.MaxDeceleration",
+        "datatype": "Double",
+        "value": "",
+        "name": "Max Deceleration",
+        "x": 770,
+        "y": 1520,
+        "wires": [
+            [
+                "70b9132939690788"
+            ]
+        ]
+    },
+    {
+        "id": "dbf9008f75deecfb",
+        "type": "ui_text_input",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "label": "Set max. acceleration",
+        "tooltip": "",
+        "group": "b9011e67f72d8da0",
+        "order": 9,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 360,
+        "y": 1480,
+        "wires": [
+            [
+                "b2904fc0f5ddc2a1"
+            ]
+        ]
+    },
+    {
+        "id": "68ae6e83ec431485",
+        "type": "ui_text",
+        "z": "1d75215f8e163a3d",
+        "group": "b9011e67f72d8da0",
+        "order": 10,
+        "width": 1,
+        "height": 1,
+        "name": "",
+        "label": "m/s2",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 310,
+        "y": 1520,
+        "wires": []
+    },
+    {
+        "id": "16304740236ca347",
+        "type": "inject",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "15",
+        "payloadType": "num",
+        "x": 150,
+        "y": 1480,
+        "wires": [
+            [
+                "dbf9008f75deecfb"
+            ]
+        ]
+    },
+    {
+        "id": "77396499b092b1f5",
+        "type": "ui_text_input",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "label": "Set max. acceleration",
+        "tooltip": "",
+        "group": "6b810393774c59ed",
+        "order": 9,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 360,
+        "y": 680,
+        "wires": [
+            [
+                "c9a40b2a64d7a4a8"
+            ]
+        ]
+    },
+    {
+        "id": "4b8535a8e4b41649",
+        "type": "ui_text",
+        "z": "1d75215f8e163a3d",
+        "group": "6b810393774c59ed",
+        "order": 10,
+        "width": 1,
+        "height": 1,
+        "name": "",
+        "label": "m/s2",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 310,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "6504daf59f1a18ca",
+        "type": "inject",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "15",
+        "payloadType": "num",
+        "x": 150,
+        "y": 680,
+        "wires": [
+            [
+                "77396499b092b1f5"
+            ]
+        ]
+    },
+    {
+        "id": "c9a40b2a64d7a4a8",
+        "type": "function",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "func": "if( msg.payload<1){msg.payload=1}\nelse if(msg.payload>1000){msg.payload=1000}\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 680,
+        "wires": [
+            [
+                "4bcbc8bd8e92ffdd",
+                "2459b12ed239386a"
+            ]
+        ]
+    },
+    {
+        "id": "b2904fc0f5ddc2a1",
+        "type": "function",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "func": "if( msg.payload<1){msg.payload=1}\nelse if(msg.payload>1000){msg.payload=1000}\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 1480,
+        "wires": [
+            [
+                "419111aea0307fe3",
+                "b704976f0d04f2da"
+            ]
+        ]
+    },
+    {
+        "id": "408c33cf4ee11878",
+        "type": "trigger",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "op1": "true",
+        "op2": "false",
+        "op1type": "bool",
+        "op2type": "bool",
+        "duration": "10",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "ns=3;s=\"Heartbeat\".\"Heartbeat\"",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 370,
+        "y": 100,
+        "wires": [
+            [
+                "cbd565aa62ba695a"
+            ]
+        ]
+    },
+    {
+        "id": "cbd565aa62ba695a",
+        "type": "OpcUa-Item",
+        "z": "1d75215f8e163a3d",
+        "item": "ns=3;s=\"Heartbeat\".\"Heartbeat\"",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "Heartbeat",
+        "x": 740,
+        "y": 100,
+        "wires": [
+            [
+                "70b9132939690788"
+            ]
+        ]
+    },
+    {
+        "id": "56c3c83ea06b6c82",
+        "type": "inject",
+        "z": "1d75215f8e163a3d",
+        "name": "Heartbeat",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "20",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "ns=3;s=\"Heartbeat\".\"Heartbeat\"",
+        "x": 170,
+        "y": 100,
+        "wires": [
+            [
+                "408c33cf4ee11878"
+            ]
+        ]
+    },
+    {
+        "id": "0d16ce16859bb698",
+        "type": "ui_switch",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "label": "Reset",
+        "tooltip": "",
+        "group": "6b810393774c59ed",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 490,
+        "y": 340,
+        "wires": [
+            [
+                "4bf069042b39af4c"
+            ]
+        ]
+    },
+    {
+        "id": "b03a9e76619efdcf",
+        "type": "ui_switch",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "label": "Reset",
+        "tooltip": "",
+        "group": "b9011e67f72d8da0",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 490,
+        "y": 1120,
+        "wires": [
+            [
+                "441429ec07f9639f"
+            ]
+        ]
+    },
+    {
+        "id": "5280c0cebe8ee2ca",
+        "type": "OpcUa-Item",
+        "z": "1d75215f8e163a3d",
+        "item": "ns=3;s=\"Drive_para_left_right\".\"Drive_right_ON_OFF\"",
+        "datatype": "Boolean",
+        "value": "msg.topic",
+        "name": "Motor is connected",
+        "x": 770,
+        "y": 1620,
+        "wires": [
+            [
+                "70b9132939690788"
+            ]
+        ]
+    },
+    {
+        "id": "9e5c245cedf9c451",
+        "type": "ui_switch",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "label": "Motor is connected?",
+        "tooltip": "",
+        "group": "b9011e67f72d8da0",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 360,
+        "y": 1620,
+        "wires": [
+            [
+                "5280c0cebe8ee2ca"
+            ]
+        ]
+    },
+    {
+        "id": "fa16da1c6a40a762",
+        "type": "inject",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 130,
+        "y": 1620,
+        "wires": [
+            [
+                "9e5c245cedf9c451"
+            ]
+        ]
+    },
+    {
+        "id": "a752657e586e20f8",
+        "type": "OpcUa-Item",
+        "z": "1d75215f8e163a3d",
+        "item": "ns=3;s=\"Drive_para_left_right\".\"Drive_left_ON_OFF\"",
+        "datatype": "Boolean",
+        "value": "msg.topic",
+        "name": "Motor is connected",
+        "x": 770,
+        "y": 800,
+        "wires": [
+            [
+                "70b9132939690788"
+            ]
+        ]
+    },
+    {
+        "id": "b50626bc1636bb30",
+        "type": "ui_switch",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "label": "Motor is connected?",
+        "tooltip": "",
+        "group": "6b810393774c59ed",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 360,
+        "y": 800,
+        "wires": [
+            [
+                "a752657e586e20f8"
+            ]
+        ]
+    },
+    {
+        "id": "34b37e9b9abc28ac",
+        "type": "inject",
+        "z": "1d75215f8e163a3d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 150,
+        "y": 800,
+        "wires": [
+            [
+                "b50626bc1636bb30"
+            ]
+        ]
+    },
+    {
+        "id": "fc9e96d2dd44cb36",
+        "type": "ui_spacer",
+        "z": "1d75215f8e163a3d",
+        "name": "spacer",
+        "group": "2766a474835c38ac",
+        "order": 12,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "a1383c88acf1a3e8",
+        "type": "ui_spacer",
+        "z": "1d75215f8e163a3d",
+        "name": "spacer",
+        "group": "e6b1019bb3a082ac",
+        "order": 5,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "c84e724bb0800d6a",
+        "type": "ui_spacer",
+        "z": "1d75215f8e163a3d",
+        "name": "spacer",
+        "group": "e6b1019bb3a082ac",
+        "order": 6,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "cd313611d7c93a5a",
+        "type": "ui_spacer",
+        "z": "1d75215f8e163a3d",
+        "name": "spacer",
+        "group": "e6b1019bb3a082ac",
+        "order": 13,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "19ea0fe57ac5b519",
+        "type": "ui_spacer",
+        "z": "1d75215f8e163a3d",
+        "name": "spacer",
+        "group": "8a339496ca145acd",
+        "order": 6,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "6b810393774c59ed",
+        "type": "ui_group",
+        "name": "Motor 1 (left)",
+        "tab": "6a728bddbd75b4dd",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "3d6b24f6a6823956",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://10.129.4.20:4840",
+        "secpol": "None",
+        "secmode": "None",
+        "login": false
+    },
+    {
+        "id": "b9011e67f72d8da0",
+        "type": "ui_group",
+        "name": "Motor 2 (right)",
+        "tab": "6a728bddbd75b4dd",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "2766a474835c38ac",
+        "type": "ui_group",
+        "name": "Write values",
+        "tab": "afc4f775962a26f4",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e6b1019bb3a082ac",
+        "type": "ui_group",
+        "name": "Read values part 1",
+        "tab": "afc4f775962a26f4",
+        "order": 2,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "8a339496ca145acd",
+        "type": "ui_group",
+        "name": "Read values part 2",
+        "tab": "afc4f775962a26f4",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "6a728bddbd75b4dd",
+        "type": "ui_tab",
+        "name": "Smart printhead PLC",
+        "icon": "dashboard",
+        "order": 5,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "afc4f775962a26f4",
+        "type": "ui_tab",
+        "name": "MAI MULTIMIX",
+        "icon": "dashboard",
+        "order": 7,
+        "disabled": false,
+        "hidden": false
+    }
+]

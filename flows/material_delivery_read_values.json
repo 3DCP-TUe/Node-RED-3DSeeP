@@ -1,0 +1,4376 @@
+[
+    {
+        "id": "abe575161613c123",
+        "type": "tab",
+        "label": "Material delivery: Read values",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "998b2aea97b3679d",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "85f900f2581b92bc",
+        "order": 14,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "<b>Torsion tube:",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3510,
+        "y": 1940,
+        "wires": []
+    },
+    {
+        "id": "a4b3fc28ac0b79a3",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "85f900f2581b92bc",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "<b>Measuring tube:",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3500,
+        "y": 1700,
+        "wires": []
+    },
+    {
+        "id": "d3aeff03ae7b2ab6",
+        "type": "join",
+        "z": "abe575161613c123",
+        "name": "",
+        "mode": "custom",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "58",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 2870,
+        "y": 3400,
+        "wires": [
+            [
+                "5140f8a9857180c3"
+            ]
+        ]
+    },
+    {
+        "id": "96291a7101979b55",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "Pressure 0-25 bar, AI0",
+        "func": "if (msg.payload < 0)\n{\n    msg.pressure_ai0 = 0.0\n}\nelse\n{\n    msg.pressure_ai0=msg.payload.toString()/27468*25.0\n}\n\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2460,
+        "y": 340,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "e72e05c7fadeff01",
+                "53198844a28365fc",
+                "5cbe3e0009c8dc2a"
+            ]
+        ]
+    },
+    {
+        "id": "d672a4dbc0e2882e",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_ai0",
+        "func": "if (msg.payload < 0)\n{\n    msg.sensing_ai0 = 0.0\n}\nelse\n{\n    msg.sensing_ai0=msg.payload.toString()/27468*16.0+4.0\n}\n\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2110,
+        "y": 700,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "838067204a003cba"
+            ]
+        ]
+    },
+    {
+        "id": "e266d73774c80918",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_ai1",
+        "func": "if (msg.payload < 0)\n{\n    msg.sensing_ai1 = 0.0\n}\nelse\n{\n    msg.sensing_ai1=msg.payload.toString()/27468*16.0+4.0\n}\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2110,
+        "y": 740,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "86672d73d9efe1b2",
+                "ba25554b7e46f840"
+            ]
+        ]
+    },
+    {
+        "id": "39761ecd1f267aa9",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_ai2",
+        "func": "if (msg.payload < 0)\n{\n    msg.sensing_ai2 = 0.0\n}\nelse\n{\n    msg.sensing_ai2=msg.payload.toString()/27468*16.0+4.0\n}\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2110,
+        "y": 780,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "0aa4677c77423066"
+            ]
+        ]
+    },
+    {
+        "id": "abf6d12961807413",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_ai3",
+        "func": "if (msg.payload < 0)\n{\n    msg.sensing_ai3 = 0.0\n}\nelse\n{\n    msg.sensing_ai3=msg.payload.toString()/27468*16.0+4.0\n}\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2110,
+        "y": 820,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "656ad92e158dee80"
+            ]
+        ]
+    },
+    {
+        "id": "7892d5edfd6fb139",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_ai4",
+        "func": "if (msg.payload < 0)\n{\n    msg.sensing_ai4 = 0.0\n}\nelse\n{\n    msg.sensing_ai4=msg.payload.toString()/27468*16.0+4.0\n}\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2110,
+        "y": 860,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "3079e7046d01831f"
+            ]
+        ]
+    },
+    {
+        "id": "38a552aba803ed8f",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_ai5",
+        "func": "if (msg.payload < 0)\n{\n    msg.sensing_ai5 = 0.0\n}\nelse\n{\n    msg.sensing_ai5=msg.payload.toString()/27468*16.0+4.0\n}\n\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2110,
+        "y": 900,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "f44ce3ee4a5fa03f"
+            ]
+        ]
+    },
+    {
+        "id": "b2c61a1c005988f8",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_ai6",
+        "func": "msg.sensing_ai6=msg.payload.toString()\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2110,
+        "y": 940,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "23fcd4fed4a928e3"
+            ]
+        ]
+    },
+    {
+        "id": "60eb7153b1086cf2",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_ai7",
+        "func": "msg.sensing_ai7=msg.payload.toString()\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2110,
+        "y": 980,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "3379b33eeb915859"
+            ]
+        ]
+    },
+    {
+        "id": "301d62022648ea51",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_ao0",
+        "func": "msg.sensing_ao0=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2130,
+        "y": 1020,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "ce8e9fb8e390b485"
+            ]
+        ]
+    },
+    {
+        "id": "580c95c48887b08e",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_ao1",
+        "func": "msg.sensing_ao1=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2130,
+        "y": 1060,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "a0037fcdeb37fc73"
+            ]
+        ]
+    },
+    {
+        "id": "6dae9df92b8e5956",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_ao2",
+        "func": "msg.sensing_ao2=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2130,
+        "y": 1100,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "3a3c6373772aedd0"
+            ]
+        ]
+    },
+    {
+        "id": "fb2ab06bc91d20bc",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_ao3",
+        "func": "msg.sensing_ao3=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2130,
+        "y": 1140,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "bef04d151b4a5127"
+            ]
+        ]
+    },
+    {
+        "id": "3aad85e1a7a40593",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_do0",
+        "func": "if (msg.payload==true) \n{\n    msg.sensing_do0=1\n} \nelse if(msg.payload==false) \n{\n    msg.sensing_do0=0\n} \nelse \n{\n     msg.sensing_do0=NaN\n}\n\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2150,
+        "y": 1180,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "0ecfe3f92fa4c674"
+            ]
+        ]
+    },
+    {
+        "id": "0a59024167183d26",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_do1",
+        "func": "if (msg.payload==true) \n{\n    msg.sensing_do1=1\n} \nelse if(msg.payload==false) \n{\n    msg.sensing_do1=0\n}\nelse {\n     msg.sensing_do1=NaN\n}\n\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2150,
+        "y": 1220,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "647d558c06ac1cef"
+            ]
+        ]
+    },
+    {
+        "id": "b92012372c615354",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_do2",
+        "func": "if (msg.payload==true) \n{\n    msg.sensing_do2=1\n} \nelse if(msg.payload==false) \n{\n    msg.sensing_do2=0\n} \nelse \n{\n     msg.sensing_do2=NaN\n}\n\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2150,
+        "y": 1260,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "6e765e5b8c8e7557"
+            ]
+        ]
+    },
+    {
+        "id": "ea172f184aa9edab",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_do3",
+        "func": "if (msg.payload==true) {\n    msg.sensing_do3=1\n} else if(msg.payload==false) {\n    msg.sensing_do3=0\n} else {\n     msg.sensing_do3=NaN\n}\n\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2150,
+        "y": 1300,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "c67351858f340057"
+            ]
+        ]
+    },
+    {
+        "id": "d76e134d392e239b",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_di0",
+        "func": "if (msg.payload==true) \n{\n    msg.sensing_di0=1\n} \nelse if(msg.payload==false) \n{\n    msg.sensing_di0=0\n} \nelse \n{\n     msg.sensing_di0=NaN\n}\n\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2160,
+        "y": 1340,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "76997ff14777cbbd"
+            ]
+        ]
+    },
+    {
+        "id": "3b1499a215aab8f0",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_di1",
+        "func": "if (msg.payload==true) \n{\n    msg.sensing_di1=1\n} \nelse if(msg.payload==false) \n{\n    msg.sensing_di1=0\n} \nelse \n{\n     msg.sensing_di1=NaN\n}\n\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2160,
+        "y": 1380,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "fe1529a0c1603a13"
+            ]
+        ]
+    },
+    {
+        "id": "a86aa120e490998b",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_di2",
+        "func": "if (msg.payload==true) \n{\n    msg.sensing_di2=1\n}\nelse if(msg.payload==false) \n{\n    msg.sensing_di2=0\n} \nelse \n{\n     msg.sensing_di2=NaN\n}\n\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2160,
+        "y": 1420,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "d6e10bec16652380"
+            ]
+        ]
+    },
+    {
+        "id": "653b269f621d8223",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_di3",
+        "func": "if (msg.payload==true) \n{\n    msg.sensing_di3=1\n} \nelse if(msg.payload==false) \n{\n    msg.sensing_di3=0\n} \nelse \n{\n     msg.sensing_di3=NaN\n}\n\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2160,
+        "y": 1460,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "3c2c31aa8035fd39"
+            ]
+        ]
+    },
+    {
+        "id": "b3d8127a8263dc22",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_mass_flow",
+        "func": "msg.sensing_mass_flow=msg.payload.toString()/60.0\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2190,
+        "y": 1500,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "7d8dbdd5ad859b69",
+                "6c9280769943b054"
+            ]
+        ]
+    },
+    {
+        "id": "181ba3b7e880b993",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_volume_flow",
+        "func": "msg.sensing_volume_flow=msg.payload.toString()/60.0\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2200,
+        "y": 1540,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "2cb0a79ef56be720"
+            ]
+        ]
+    },
+    {
+        "id": "73a7a7d810b7ad75",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_density",
+        "func": "msg.sensing_density=msg.payload.toString()*1000.0\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2180,
+        "y": 1580,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "59d3c0ca84141644"
+            ]
+        ]
+    },
+    {
+        "id": "da59d1fb0db4f7d4",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_dynamic_visco",
+        "func": "msg.sensing_dynamic_visco=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2210,
+        "y": 1620,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "e07817166d43351d",
+                "29e4681ba7ab05f5",
+                "e35b5a253eea84bc"
+            ]
+        ]
+    },
+    {
+        "id": "4399a2a5b1806733",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_temperature",
+        "func": "msg.sensing_temperature=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2200,
+        "y": 1660,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "832b513edd936cdd",
+                "ad9e8ff5918592b8"
+            ]
+        ]
+    },
+    {
+        "id": "8bdd585ee67a4101",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_exciter_current_0",
+        "func": "msg.sensing_exciter_current_0=msg.payload.toString()*1000.0\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2220,
+        "y": 1740,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "1ee0d71e7a10ba8e"
+            ]
+        ]
+    },
+    {
+        "id": "8d62222cf8f1dc91",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_oscillation_frequency_0",
+        "func": "msg.sensing_oscillation_frequency_0=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2230,
+        "y": 1780,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "a1ad14655dc2e868"
+            ]
+        ]
+    },
+    {
+        "id": "24a9306d50c88589",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_oscillation_amplitude_0",
+        "func": "msg.sensing_oscillation_amplitude_0=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2230,
+        "y": 1820,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "b486027bbcb416aa"
+            ]
+        ]
+    },
+    {
+        "id": "ceffa38ce5c7ee3d",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_oscillation_damping_0",
+        "func": "msg.sensing_oscillation_damping_0=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2230,
+        "y": 1860,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "df3c01fb41976081"
+            ]
+        ]
+    },
+    {
+        "id": "bca352fb6782d2ea",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_signal_asymmetry",
+        "func": "msg.sensing_signal_asymmetry=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2220,
+        "y": 1900,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "0f7d779eb2c03b24"
+            ]
+        ]
+    },
+    {
+        "id": "1acf9b1bd7604740",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "R0",
+        "func": "msg.sensing_r0=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2170,
+        "y": 2160,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "883b40223526746c"
+            ]
+        ]
+    },
+    {
+        "id": "f14a25aa9402da86",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "R1",
+        "func": "msg.sensing_r1=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2170,
+        "y": 2200,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "562a4b9a9506e28d"
+            ]
+        ]
+    },
+    {
+        "id": "1855c49d86822130",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "R2",
+        "func": "msg.sensing_r2=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2170,
+        "y": 2240,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "556653ee0e75220f"
+            ]
+        ]
+    },
+    {
+        "id": "39097a7af69cfa04",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "R3",
+        "func": "msg.sensing_r3=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2170,
+        "y": 2280,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "f484f8f5f6fcceef"
+            ]
+        ]
+    },
+    {
+        "id": "77402c5402a6b0cc",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "R4",
+        "func": "msg.sensing_r4=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2170,
+        "y": 2320,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "a1d211ba7fdecff3"
+            ]
+        ]
+    },
+    {
+        "id": "27628a9812c6d18d",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "R5",
+        "func": "msg.sensing_r5=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2170,
+        "y": 2360,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "dbfd9444b9172a51"
+            ]
+        ]
+    },
+    {
+        "id": "04a6b4e71f3602da",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "R6",
+        "func": "msg.sensing_r6=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2170,
+        "y": 2400,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "4639dffd877c67f1"
+            ]
+        ]
+    },
+    {
+        "id": "8db42821ef784686",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "R7",
+        "func": "msg.sensing_r7=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2170,
+        "y": 2440,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "f8c577c5f1917860"
+            ]
+        ]
+    },
+    {
+        "id": "ced27476aefc9bda",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "R9",
+        "func": "msg.sensing_r9=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2170,
+        "y": 2520,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "48628dfcc2bf62ee"
+            ]
+        ]
+    },
+    {
+        "id": "d49099d2805f282d",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "R8",
+        "func": "msg.sensing_r8=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2170,
+        "y": 2480,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "60dd36ac3d896e80"
+            ]
+        ]
+    },
+    {
+        "id": "06f767b60a9e82dc",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_exciter_current_1",
+        "func": "msg.sensing_exciter_current_1=msg.payload.toString()*1000.0\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2220,
+        "y": 1980,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "b333240f43e1d6e6"
+            ]
+        ]
+    },
+    {
+        "id": "342808cec4d9730d",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_oscillation_frequency_1",
+        "func": "msg.sensing_oscillation_frequency_1=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2230,
+        "y": 2020,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "1eeec6de4732f583"
+            ]
+        ]
+    },
+    {
+        "id": "3f182053c60ac06e",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_oscillation_amplitude_1",
+        "func": "msg.sensing_oscillation_amplitude_1=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2230,
+        "y": 2060,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "df83d7f86c2b4330"
+            ]
+        ]
+    },
+    {
+        "id": "d43c4bd4be0204b4",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "sensing_oscillation_damping_1",
+        "func": "msg.sensing_oscillation_damping_1=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2230,
+        "y": 2100,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "a6dc5fa76a2b3317"
+            ]
+        ]
+    },
+    {
+        "id": "ba25554b7e46f840",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "Pressure 0-25 bar, AI1",
+        "func": "if (msg.payload < 0)\n{\n    msg.pressure_ai1 = 0.0\n}\nelse\n{\n    msg.pressure_ai1=msg.payload.toString()/27468*25.0\n}\n\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2460,
+        "y": 380,
+        "wires": [
+            [
+                "d3aeff03ae7b2ab6",
+                "968ce13d5643fffb",
+                "c48ce70beb5ae34b",
+                "b6668a91b499ba34"
+            ]
+        ]
+    },
+    {
+        "id": "caea0e868464b398",
+        "type": "switch",
+        "z": "abe575161613c123",
+        "name": "Values",
+        "property": "browseName",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "sensing_ai0",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_ai1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_ai2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_ai3",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_ai4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_ai5",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_ai6",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_ai7",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_ao0",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_ao1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_ao2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_ao3",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_do0",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_do1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_do2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_do3",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_di0",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_di1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_di2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_di3",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_mass_flow",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_volume_flow",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_density",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_dynamic_visco",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_kynematic_visco",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_temperature",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_exciter_current_0",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_oscillation_frequency_0",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_oscillation_amplitude_0",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_oscillation_damping_0",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_signal_asymmetry",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_exciter_current_1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_oscillation_frequency_1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_oscillation_amplitude_1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_oscillation_damping_1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_r0",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_r1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_r2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_r3",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_r4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_r5",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_r6",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_r7",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_r8",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sensing_r9",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "material_bronkhorst_read_alarm_info",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "material_bronkhorst_read_actual_density",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "material_bronkhorst_read_analog_input",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "material_bronkhorst_read_measure",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "material_bronkhorst_read_setpoint",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "material_bronkhorst_read_setpoint_slope",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "material_bronkhorst_read_temperature",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "material_bronkhorst_read_valve_output",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "material_peristaltic_pump_actual_velocity",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "material_peristaltic_pump_actual_power",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "material_peristaltic_pump_actual_current",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "material_peristaltic_pump_actual_torque",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": true,
+        "outputs": 57,
+        "x": 1790,
+        "y": 1160,
+        "wires": [
+            [
+                "96291a7101979b55",
+                "d672a4dbc0e2882e"
+            ],
+            [
+                "e266d73774c80918"
+            ],
+            [
+                "39761ecd1f267aa9"
+            ],
+            [
+                "abf6d12961807413"
+            ],
+            [
+                "7892d5edfd6fb139",
+                "9cd88373a427ffd0"
+            ],
+            [
+                "38a552aba803ed8f"
+            ],
+            [
+                "b2c61a1c005988f8"
+            ],
+            [
+                "60eb7153b1086cf2"
+            ],
+            [
+                "301d62022648ea51"
+            ],
+            [
+                "580c95c48887b08e"
+            ],
+            [
+                "6dae9df92b8e5956"
+            ],
+            [
+                "fb2ab06bc91d20bc"
+            ],
+            [
+                "3aad85e1a7a40593"
+            ],
+            [
+                "0a59024167183d26"
+            ],
+            [
+                "b92012372c615354"
+            ],
+            [
+                "ea172f184aa9edab"
+            ],
+            [
+                "d76e134d392e239b"
+            ],
+            [
+                "3b1499a215aab8f0"
+            ],
+            [
+                "a86aa120e490998b"
+            ],
+            [
+                "653b269f621d8223"
+            ],
+            [
+                "b3d8127a8263dc22"
+            ],
+            [
+                "181ba3b7e880b993"
+            ],
+            [
+                "73a7a7d810b7ad75"
+            ],
+            [
+                "da59d1fb0db4f7d4"
+            ],
+            [],
+            [
+                "4399a2a5b1806733"
+            ],
+            [
+                "8bdd585ee67a4101"
+            ],
+            [
+                "8d62222cf8f1dc91"
+            ],
+            [
+                "24a9306d50c88589"
+            ],
+            [
+                "ceffa38ce5c7ee3d"
+            ],
+            [
+                "bca352fb6782d2ea"
+            ],
+            [
+                "06f767b60a9e82dc"
+            ],
+            [
+                "342808cec4d9730d"
+            ],
+            [
+                "3f182053c60ac06e"
+            ],
+            [
+                "d43c4bd4be0204b4"
+            ],
+            [
+                "1acf9b1bd7604740"
+            ],
+            [
+                "f14a25aa9402da86"
+            ],
+            [
+                "1855c49d86822130"
+            ],
+            [
+                "39097a7af69cfa04"
+            ],
+            [
+                "77402c5402a6b0cc"
+            ],
+            [
+                "27628a9812c6d18d"
+            ],
+            [
+                "04a6b4e71f3602da"
+            ],
+            [
+                "8db42821ef784686"
+            ],
+            [
+                "d49099d2805f282d"
+            ],
+            [
+                "ced27476aefc9bda"
+            ],
+            [
+                "43bda781aed8217a"
+            ],
+            [
+                "43173b8fdbd85f25"
+            ],
+            [
+                "41838ab95a6fbe4c"
+            ],
+            [
+                "30d77adc7a719ba8"
+            ],
+            [
+                "a05e194c66261f88"
+            ],
+            [
+                "3a751b2e51a37ea9"
+            ],
+            [
+                "93362b56bc2383a4"
+            ],
+            [
+                "b10fde97251fb313"
+            ],
+            [
+                "dbef7a47f3a33262"
+            ],
+            [
+                "5462b16dddd78955"
+            ],
+            [
+                "3e57f78de5168714"
+            ],
+            [
+                "ba8a70c715f3e78b"
+            ]
+        ]
+    },
+    {
+        "id": "e72e05c7fadeff01",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "",
+        "func": "msg.payload=msg.pressure_ai0\nmsg.topic=\"AI0: WIKA Pressure sensor 0-25 bar\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2740,
+        "y": 340,
+        "wires": [
+            [
+                "1dc96366df50e764"
+            ]
+        ]
+    },
+    {
+        "id": "53198844a28365fc",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "19d1813dc6889b02",
+        "order": 8,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Pressure AI0 0-25 bar [bar] ",
+        "format": "{{msg.pressure_ai0.toFixed(2)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 2980,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "838067204a003cba",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "19d1813dc6889b02",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "AI0 [mA]",
+        "format": "{{msg.sensing_ai0.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3360,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "86672d73d9efe1b2",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "19d1813dc6889b02",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "AI1 [mA]",
+        "format": "{{msg.sensing_ai1.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3360,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "0aa4677c77423066",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "19d1813dc6889b02",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "AI2 [mA]",
+        "format": "{{msg.sensing_ai2.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3360,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "656ad92e158dee80",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "19d1813dc6889b02",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "AI3 [mA]",
+        "format": "{{msg.sensing_ai3.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3360,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "3079e7046d01831f",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "19d1813dc6889b02",
+        "order": 5,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "AI4 [mA]",
+        "format": "{{msg.sensing_ai4.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3360,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "f44ce3ee4a5fa03f",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "19d1813dc6889b02",
+        "order": 6,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "AI5 [mA]",
+        "format": "{{msg.sensing_ai5.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3360,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "23fcd4fed4a928e3",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "19d1813dc6889b02",
+        "order": 11,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Relative humidity [%]",
+        "format": "{{msg.payload.toFixed(2)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3400,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "3379b33eeb915859",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "19d1813dc6889b02",
+        "order": 12,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Ambient temperature [C]",
+        "format": "{{msg.payload.toFixed(1)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3410,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "ce8e9fb8e390b485",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "93a79a9496bde61c",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "AO0 [mA]",
+        "format": "{{msg.sensing_ao0.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3380,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "a0037fcdeb37fc73",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "93a79a9496bde61c",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "AO1 [mA]",
+        "format": "{{msg.sensing_ao1.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3380,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "3a3c6373772aedd0",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "93a79a9496bde61c",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "AO2 [mA]",
+        "format": "{{msg.sensing_ao2.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3380,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "bef04d151b4a5127",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "93a79a9496bde61c",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "AO3 [mA]",
+        "format": "{{msg.sensing_ao3.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3380,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "0ecfe3f92fa4c674",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "59a353dccbd25e8d",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "DO0 [0/1]",
+        "format": "{{msg.sensing_do0.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3400,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "647d558c06ac1cef",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "59a353dccbd25e8d",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "DO1 [0/1]",
+        "format": "{{msg.sensing_do1.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3400,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "6e765e5b8c8e7557",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "59a353dccbd25e8d",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "DO2 [0/1]",
+        "format": "{{msg.sensing_do2.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3400,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "c67351858f340057",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "59a353dccbd25e8d",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "DO3 [0/1]",
+        "format": "{{msg.sensing_do3.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3400,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "76997ff14777cbbd",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "9c8639e609d0387f",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "DI0 [0/1]",
+        "format": "{{msg.sensing_di0.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3420,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "fe1529a0c1603a13",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "9c8639e609d0387f",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "DI1 [0/1]",
+        "format": "{{msg.sensing_di1.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3420,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "d6e10bec16652380",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "9c8639e609d0387f",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "DI2 [0/1]",
+        "format": "{{msg.sensing_di2.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3420,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "3c2c31aa8035fd39",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "9c8639e609d0387f",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "DI3 [0/1]",
+        "format": "{{msg.sensing_di3.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3420,
+        "y": 1460,
+        "wires": []
+    },
+    {
+        "id": "7d8dbdd5ad859b69",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "85f900f2581b92bc",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Mass flow rate [kg/min]",
+        "format": "{{msg.sensing_mass_flow.toFixed(2)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3480,
+        "y": 1500,
+        "wires": []
+    },
+    {
+        "id": "6c9280769943b054",
+        "type": "function",
+        "z": "abe575161613c123",
+        "d": true,
+        "name": "",
+        "func": "msg.payload=msg.sensing_mass_flow\nmsg.topic=\"Coriolis sensor: mass flow rate [kg/min]\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2740,
+        "y": 480,
+        "wires": [
+            [
+                "d94e978bae5f61f4"
+            ]
+        ]
+    },
+    {
+        "id": "2cb0a79ef56be720",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "85f900f2581b92bc",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Volume flow rate [l/min]",
+        "format": "{{msg.sensing_volume_flow.toFixed(2)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3490,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "59d3c0ca84141644",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "85f900f2581b92bc",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Density [kg/m3]",
+        "format": "{{msg.sensing_density.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3460,
+        "y": 1580,
+        "wires": []
+    },
+    {
+        "id": "e07817166d43351d",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "85f900f2581b92bc",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Apparent dynamic viscocity [cP]",
+        "format": "{{msg.sensing_dynamic_visco.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3510,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "29e4681ba7ab05f5",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "",
+        "func": "msg.payload=msg.sensing_dynamic_visco\nmsg.topic=\"Coriolis sensor: apparent dynamic viscocity [cP]\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2740,
+        "y": 640,
+        "wires": [
+            [
+                "2fd0b8df6ae911a3"
+            ]
+        ]
+    },
+    {
+        "id": "832b513edd936cdd",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "85f900f2581b92bc",
+        "order": 5,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Temperature [C]",
+        "format": "{{msg.sensing_temperature.toFixed(1)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3460,
+        "y": 1660,
+        "wires": []
+    },
+    {
+        "id": "1ee0d71e7a10ba8e",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "85f900f2581b92bc",
+        "order": 8,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Exciter current 0 [mA]",
+        "format": "{{msg.sensing_exciter_current_0.toFixed(2)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3500,
+        "y": 1740,
+        "wires": []
+    },
+    {
+        "id": "a1ad14655dc2e868",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "85f900f2581b92bc",
+        "order": 9,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Oscillation frequency 0 [Hz]",
+        "format": "{{msg.sensing_oscillation_frequency_0.toFixed(1)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3520,
+        "y": 1780,
+        "wires": []
+    },
+    {
+        "id": "b486027bbcb416aa",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "85f900f2581b92bc",
+        "order": 10,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Oscillation amplitude 0 [%]",
+        "format": "{{msg.sensing_oscillation_amplitude_0.toFixed(1)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3520,
+        "y": 1820,
+        "wires": []
+    },
+    {
+        "id": "df3c01fb41976081",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "85f900f2581b92bc",
+        "order": 11,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Oscillation damping 0 [A/m]",
+        "format": "{{msg.sensing_oscillation_damping_0.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3520,
+        "y": 1860,
+        "wires": []
+    },
+    {
+        "id": "0f7d779eb2c03b24",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "85f900f2581b92bc",
+        "order": 12,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Signal asymmetry [%]",
+        "format": "{{msg.sensing_signal_asymmetry.toFixed(2)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3500,
+        "y": 1900,
+        "wires": []
+    },
+    {
+        "id": "883b40223526746c",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "9793d35b1449dfd7",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "R0",
+        "format": "{{msg.sensing_r0.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3490,
+        "y": 2160,
+        "wires": []
+    },
+    {
+        "id": "562a4b9a9506e28d",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "9793d35b1449dfd7",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "R1",
+        "format": "{{msg.sensing_r1.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3490,
+        "y": 2200,
+        "wires": []
+    },
+    {
+        "id": "556653ee0e75220f",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "9793d35b1449dfd7",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "R2",
+        "format": "{{msg.sensing_r2.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3490,
+        "y": 2240,
+        "wires": []
+    },
+    {
+        "id": "f484f8f5f6fcceef",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "9793d35b1449dfd7",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "R3",
+        "format": "{{msg.sensing_r3.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3490,
+        "y": 2280,
+        "wires": []
+    },
+    {
+        "id": "a1d211ba7fdecff3",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "9793d35b1449dfd7",
+        "order": 5,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "R4",
+        "format": "{{msg.sensing_r4.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3490,
+        "y": 2320,
+        "wires": []
+    },
+    {
+        "id": "dbfd9444b9172a51",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "9793d35b1449dfd7",
+        "order": 6,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "R5",
+        "format": "{{msg.sensing_r5.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3490,
+        "y": 2360,
+        "wires": []
+    },
+    {
+        "id": "4639dffd877c67f1",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "9793d35b1449dfd7",
+        "order": 7,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "R6",
+        "format": "{{msg.sensing_r6.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3490,
+        "y": 2400,
+        "wires": []
+    },
+    {
+        "id": "f8c577c5f1917860",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "9793d35b1449dfd7",
+        "order": 8,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "R7",
+        "format": "{{msg.sensing_r7.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3490,
+        "y": 2440,
+        "wires": []
+    },
+    {
+        "id": "48628dfcc2bf62ee",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "9793d35b1449dfd7",
+        "order": 10,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "R9",
+        "format": "{{msg.sensing_r9.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3490,
+        "y": 2520,
+        "wires": []
+    },
+    {
+        "id": "60dd36ac3d896e80",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "9793d35b1449dfd7",
+        "order": 9,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "R8",
+        "format": "{{msg.sensing_r8.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3490,
+        "y": 2480,
+        "wires": []
+    },
+    {
+        "id": "b333240f43e1d6e6",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "85f900f2581b92bc",
+        "order": 15,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Exciter current 1 [mA]",
+        "format": "{{msg.sensing_exciter_current_1.toFixed(2)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3520,
+        "y": 1980,
+        "wires": []
+    },
+    {
+        "id": "1eeec6de4732f583",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "85f900f2581b92bc",
+        "order": 16,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Oscillation frequency 1 [Hz]",
+        "format": "{{msg.sensing_oscillation_frequency_1.toFixed(1)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3540,
+        "y": 2020,
+        "wires": []
+    },
+    {
+        "id": "df83d7f86c2b4330",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "85f900f2581b92bc",
+        "order": 17,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Oscillation amplitude 1 [%]",
+        "format": "{{msg.sensing_oscillation_amplitude_1.toFixed(1)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3540,
+        "y": 2060,
+        "wires": []
+    },
+    {
+        "id": "a6dc5fa76a2b3317",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "85f900f2581b92bc",
+        "order": 18,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Oscillation damping 1 [A/m]",
+        "format": "{{msg.sensing_oscillation_damping_1.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3540,
+        "y": 2100,
+        "wires": []
+    },
+    {
+        "id": "968ce13d5643fffb",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "19d1813dc6889b02",
+        "order": 9,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Pressure AI1 0-25 bar [bar] ",
+        "format": "{{msg.pressure_ai1.toFixed(2)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 2980,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "d1e861b93008eb93",
+        "type": "OpcUa-Client",
+        "z": "abe575161613c123",
+        "endpoint": "9c6664b374f58bc5",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "name": "",
+        "x": 1600,
+        "y": 1160,
+        "wires": [
+            [
+                "caea0e868464b398"
+            ]
+        ]
+    },
+    {
+        "id": "9cd88373a427ffd0",
+        "type": "function",
+        "z": "abe575161613c123",
+        "d": true,
+        "name": "Mass flow 0-16 kg/min, 90s",
+        "func": "if (msg.payload < 0)\n{\n    msg.flow_ai4 = 0.0\n}\nelse\n{\n    msg.flow_ai4=(msg.payload.toString()/27468*16.0)\n}\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2460,
+        "y": 520,
+        "wires": [
+            [
+                "e302a03997b9bee8"
+            ]
+        ]
+    },
+    {
+        "id": "1dc96366df50e764",
+        "type": "ui_chart",
+        "z": "abe575161613c123",
+        "name": "",
+        "group": "53d83661cfcefa23",
+        "order": 2,
+        "width": 27,
+        "height": 6,
+        "label": "Pressure at sensing station [bar]",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "25",
+        "removeOlder": "5",
+        "removeOlderPoints": "500",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#0011ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 2990,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2fd0b8df6ae911a3",
+        "type": "ui_chart",
+        "z": "abe575161613c123",
+        "name": "",
+        "group": "53d83661cfcefa23",
+        "order": 10,
+        "width": 27,
+        "height": 6,
+        "label": "Apparent dynamic viscocity [cP]",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "8000",
+        "removeOlder": "5",
+        "removeOlderPoints": "500",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#0011ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 2990,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e302a03997b9bee8",
+        "type": "function",
+        "z": "abe575161613c123",
+        "d": true,
+        "name": "",
+        "func": "msg.payload=msg.flow_ai4\nmsg.topic=\"Coriolis sensor: mass flow rate [kg/min], 90s damping\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2740,
+        "y": 520,
+        "wires": [
+            [
+                "d94e978bae5f61f4"
+            ]
+        ]
+    },
+    {
+        "id": "a97cf2cc0889ad35",
+        "type": "ui_button",
+        "z": "abe575161613c123",
+        "name": "Clear chart",
+        "group": "53d83661cfcefa23",
+        "order": 1,
+        "width": 27,
+        "height": 1,
+        "passthru": false,
+        "label": "Clear pressure chart",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 2730,
+        "y": 300,
+        "wires": [
+            [
+                "1dc96366df50e764"
+            ]
+        ]
+    },
+    {
+        "id": "c2f01b46e437c598",
+        "type": "ui_button",
+        "z": "abe575161613c123",
+        "d": true,
+        "name": "Clear chart",
+        "group": "53d83661cfcefa23",
+        "order": 13,
+        "width": 27,
+        "height": 1,
+        "passthru": false,
+        "label": "Clear mass flow rate chart",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 2730,
+        "y": 440,
+        "wires": [
+            [
+                "d94e978bae5f61f4"
+            ]
+        ]
+    },
+    {
+        "id": "808276e840c8e584",
+        "type": "ui_button",
+        "z": "abe575161613c123",
+        "name": "Clear chart",
+        "group": "53d83661cfcefa23",
+        "order": 9,
+        "width": 27,
+        "height": 1,
+        "passthru": false,
+        "label": "Clear viscocity chart",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 2730,
+        "y": 600,
+        "wires": [
+            [
+                "2fd0b8df6ae911a3"
+            ]
+        ]
+    },
+    {
+        "id": "5140f8a9857180c3",
+        "type": "link out",
+        "z": "abe575161613c123",
+        "name": "Material delivery values out",
+        "mode": "link",
+        "links": [
+            "ecd23e2819d0c96e"
+        ],
+        "x": 2975,
+        "y": 3400,
+        "wires": []
+    },
+    {
+        "id": "c48ce70beb5ae34b",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "",
+        "func": "msg.payload=msg.pressure_ai1\nmsg.topic=\"AI1: WIKA Pressure sensor 0-25 bar\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2740,
+        "y": 380,
+        "wires": [
+            [
+                "1dc96366df50e764"
+            ]
+        ]
+    },
+    {
+        "id": "5cbe3e0009c8dc2a",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "d5be84c8a2a9dbe3",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Pressure AI0 0-25 bar [bar] ",
+        "format": "{{msg.pressure_ai0.toFixed(2)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3320,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "b6668a91b499ba34",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "d5be84c8a2a9dbe3",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Pressure AI1 0-25 bar [bar] ",
+        "format": "{{msg.pressure_ai1.toFixed(2)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3320,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "e35b5a253eea84bc",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "d5be84c8a2a9dbe3",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Apparent dynamic viscocity [cP]",
+        "format": "{{msg.sensing_dynamic_visco.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3870,
+        "y": 1580,
+        "wires": []
+    },
+    {
+        "id": "ad9e8ff5918592b8",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "d5be84c8a2a9dbe3",
+        "order": 5,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Mortar temperature [C]",
+        "format": "{{msg.sensing_temperature.toFixed(1)}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3840,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "24c5a9c718ac0f29",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "d5be84c8a2a9dbe3",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "<b>Sensing station:",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "x": 3300,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "d94e978bae5f61f4",
+        "type": "ui_chart",
+        "z": "abe575161613c123",
+        "d": true,
+        "name": "",
+        "group": "53d83661cfcefa23",
+        "order": 14,
+        "width": 27,
+        "height": 6,
+        "label": "Mass flow rate [kg/min]",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "-5",
+        "ymax": "10",
+        "removeOlder": "5",
+        "removeOlderPoints": "500",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#0011ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 2960,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "defda3f124d64584",
+        "type": "inject",
+        "z": "abe575161613c123",
+        "d": true,
+        "name": "Timer",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "0.1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 500,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "061af7db49517b68",
+        "type": "link in",
+        "z": "abe575161613c123",
+        "name": "Timer in",
+        "links": [
+            "b847af6089af00ad"
+        ],
+        "x": 535,
+        "y": 800,
+        "wires": [
+            [
+                "286f9f6e3ecdac3e",
+                "29e00b5033a9d5c5",
+                "5836f6203bdd48db",
+                "e8daf182fb00ea1c",
+                "895fd3a2d480807f",
+                "24531bc729ce2731",
+                "5690b215e4c20632",
+                "290ef63eb97e2bcd",
+                "37a9ea09f7ae2e88",
+                "42bc25aba09943b8",
+                "ee760ef422ddd7d4",
+                "408ac8c9e6ba2b9f",
+                "9c2cdd75cefbac5d",
+                "7e0bfd2b431bd24a",
+                "72c0f36e03a021b3",
+                "4e810bd457a5e797",
+                "beb51a2f990d2e01",
+                "0596cd7d9d4afa91",
+                "3fa55493ea2b345b",
+                "507f27d2c89c0326",
+                "dd110a391668ba88",
+                "af5dcb59da7ea28f",
+                "a98a4fd122a1fdb2",
+                "04da1c34162026a7",
+                "09d68586dcf4d68b",
+                "c76d0ee9fd2d6ab5",
+                "df59b3e70777f214",
+                "d217f6dc9725d48c",
+                "16d509f5cddfe367",
+                "ba81da07f5f47bd2",
+                "c3e8eb14e03ef99b",
+                "fb673f3dab3faf64",
+                "7910f43a9d2d415b",
+                "1678c94ecc87f7fa",
+                "bd9d327da2c11276",
+                "c6779d2387d0410c",
+                "f40ae6292a7c5127",
+                "f1ff709787713266",
+                "489b4b48062fe33a",
+                "01d5172b3728b711",
+                "77131648bbeccb8f",
+                "3e4fb9d72129c30a",
+                "6df86aee7cdc5539",
+                "2808fbcc16c1ae30",
+                "c031abd76cfa7d7a",
+                "004e86f38ec0b7d8",
+                "810d166938b33295",
+                "bb16f59ecfadc8b4",
+                "042c01e0a691cc84",
+                "e23bee13eb4f7837",
+                "566d367deb31294a",
+                "886ea18e0d5c8116",
+                "9ffaf455d8c3f2cd",
+                "b1b3c43939998bc1",
+                "ed9c3c29b4caad9a",
+                "84b1fb4e48866535"
+            ]
+        ]
+    },
+    {
+        "id": "286f9f6e3ecdac3e",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=70",
+        "datatype": "Int16",
+        "value": "",
+        "name": "sensing_ai0",
+        "x": 790,
+        "y": 800,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "29e00b5033a9d5c5",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=71",
+        "datatype": "Int16",
+        "value": "",
+        "name": "sensing_ai1",
+        "x": 790,
+        "y": 840,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "5836f6203bdd48db",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=72",
+        "datatype": "Int16",
+        "value": "",
+        "name": "sensing_ai2",
+        "x": 790,
+        "y": 880,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "895fd3a2d480807f",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=74",
+        "datatype": "Int16",
+        "value": "",
+        "name": "sensing_ai4",
+        "x": 790,
+        "y": 960,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "24531bc729ce2731",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=75",
+        "datatype": "Int16",
+        "value": "",
+        "name": "sensing_ai5",
+        "x": 790,
+        "y": 1000,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "e8daf182fb00ea1c",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=73",
+        "datatype": "Int16",
+        "value": "",
+        "name": "sensing_ai3",
+        "x": 790,
+        "y": 920,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "5690b215e4c20632",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=76",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_ai6",
+        "x": 790,
+        "y": 1040,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "290ef63eb97e2bcd",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=77",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_ai7",
+        "x": 790,
+        "y": 1080,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "37a9ea09f7ae2e88",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=78",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_ao0",
+        "x": 790,
+        "y": 1160,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "42bc25aba09943b8",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=79",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_ao1",
+        "x": 790,
+        "y": 1200,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "ee760ef422ddd7d4",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=80",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_ao2",
+        "x": 790,
+        "y": 1240,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "408ac8c9e6ba2b9f",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=81",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_ao3",
+        "x": 790,
+        "y": 1280,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "9c2cdd75cefbac5d",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=22",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "sensing_do0",
+        "x": 790,
+        "y": 1360,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "beb51a2f990d2e01",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=14",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "sensing_di0",
+        "x": 790,
+        "y": 1560,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "01d5172b3728b711",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=82",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_mass_flow",
+        "x": 810,
+        "y": 1800,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "77131648bbeccb8f",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=83",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_volume_flow",
+        "x": 820,
+        "y": 1840,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "3e4fb9d72129c30a",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=85",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_density",
+        "x": 800,
+        "y": 1880,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "6df86aee7cdc5539",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=86",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_dynamic_visco",
+        "x": 830,
+        "y": 1920,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "c3e8eb14e03ef99b",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=115",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_exciter_current_0",
+        "x": 840,
+        "y": 2060,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "fb673f3dab3faf64",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=88",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_oscillation_frequency_0",
+        "x": 850,
+        "y": 2100,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "7910f43a9d2d415b",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=90",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_oscillation_amplitude_0",
+        "x": 850,
+        "y": 2140,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "1678c94ecc87f7fa",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=110",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_oscillation_damping_0",
+        "x": 850,
+        "y": 2180,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "c6779d2387d0410c",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=114",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_exciter_current_1",
+        "x": 840,
+        "y": 2280,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "f40ae6292a7c5127",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=89",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_oscillation_frequency_1",
+        "x": 850,
+        "y": 2320,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "f1ff709787713266",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=91",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_oscillation_amplitude_1",
+        "x": 850,
+        "y": 2360,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "489b4b48062fe33a",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=93",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_oscillation_damping_1",
+        "x": 850,
+        "y": 2400,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "bd9d327da2c11276",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=113",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_signal_asymmetry",
+        "x": 840,
+        "y": 2220,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "2808fbcc16c1ae30",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=87",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_temperature",
+        "x": 820,
+        "y": 1960,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "dd110a391668ba88",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=116",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_r0",
+        "x": 790,
+        "y": 2500,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "7e0bfd2b431bd24a",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=23",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "sensing_do1",
+        "x": 790,
+        "y": 1400,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "72c0f36e03a021b3",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=24",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "sensing_do2",
+        "x": 790,
+        "y": 1440,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "4e810bd457a5e797",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=25",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "sensing_do3",
+        "x": 790,
+        "y": 1480,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "0596cd7d9d4afa91",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=15",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "sensing_di1",
+        "x": 790,
+        "y": 1600,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "3fa55493ea2b345b",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=16",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "sensing_di2",
+        "x": 790,
+        "y": 1640,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "507f27d2c89c0326",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=17",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "sensing_di3",
+        "x": 790,
+        "y": 1680,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "af5dcb59da7ea28f",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=94",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_r1",
+        "x": 790,
+        "y": 2540,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "a98a4fd122a1fdb2",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=95",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_r2",
+        "x": 790,
+        "y": 2580,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "04da1c34162026a7",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=96",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_r3",
+        "x": 790,
+        "y": 2620,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "09d68586dcf4d68b",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=97",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_r4",
+        "x": 790,
+        "y": 2660,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "c76d0ee9fd2d6ab5",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=98",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_r5",
+        "x": 790,
+        "y": 2700,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "df59b3e70777f214",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=99",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_r6",
+        "x": 790,
+        "y": 2740,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "d217f6dc9725d48c",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=100",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_r7",
+        "x": 790,
+        "y": 2780,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "16d509f5cddfe367",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=101",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_r8",
+        "x": 790,
+        "y": 2820,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "ba81da07f5f47bd2",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=4;i=102",
+        "datatype": "Float",
+        "value": "",
+        "name": "sensing_r9",
+        "x": 790,
+        "y": 2860,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "51cda06c89909240",
+        "type": "comment",
+        "z": "abe575161613c123",
+        "name": "Read Bronkhorst",
+        "info": "",
+        "x": 800,
+        "y": 2960,
+        "wires": []
+    },
+    {
+        "id": "684d56570227c574",
+        "type": "comment",
+        "z": "abe575161613c123",
+        "name": "Read peristaltic pump",
+        "info": "",
+        "x": 820,
+        "y": 3380,
+        "wires": []
+    },
+    {
+        "id": "c031abd76cfa7d7a",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=3;s=\"BH_read_Actual_density\"",
+        "datatype": "Float",
+        "value": "",
+        "name": "material_bronkhorst_read_actual_density",
+        "x": 880,
+        "y": 3040,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "004e86f38ec0b7d8",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=3;s=\"BH_read_analog_input\"",
+        "datatype": "Int16",
+        "value": "",
+        "name": "material_bronkhorst_read_analog_input",
+        "x": 880,
+        "y": 3080,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "810d166938b33295",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=3;s=\"BH_read_meassure\"",
+        "datatype": "Float",
+        "value": "",
+        "name": "material_bronkhorst_read_measure",
+        "x": 860,
+        "y": 3120,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "bb16f59ecfadc8b4",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=3;s=\"BH_read_setpoint\"",
+        "datatype": "Float",
+        "value": "",
+        "name": "material_bronkhorst_read_setpoint",
+        "x": 860,
+        "y": 3160,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "042c01e0a691cc84",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=3;s=\"BH_read_setpoint_slope\"",
+        "datatype": "Int16",
+        "value": "",
+        "name": "material_bronkhorst_read_setpoint_slope",
+        "x": 880,
+        "y": 3200,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "e23bee13eb4f7837",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=3;s=\"BH_read_temperature\"",
+        "datatype": "Float",
+        "value": "",
+        "name": "material_bronkhorst_read_temperature",
+        "x": 870,
+        "y": 3240,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "566d367deb31294a",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=3;s=\"BH_read_valve_output\"",
+        "datatype": "Int16",
+        "value": "",
+        "name": "material_bronkhorst_read_valve_output",
+        "x": 880,
+        "y": 3280,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "886ea18e0d5c8116",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=3;s=\"BH_read_alarm_info\"",
+        "datatype": "Int16",
+        "value": "",
+        "name": "material_bronkhorst_read_alarm_info",
+        "x": 870,
+        "y": 3000,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "9ffaf455d8c3f2cd",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=3;s=\"G120C_DB\".\"G120C_Current\"",
+        "datatype": "Float",
+        "value": "",
+        "name": "material_peristaltic_pump_actual_current",
+        "x": 880,
+        "y": 3500,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "b1b3c43939998bc1",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=3;s=\"G120C_DB\".\"G120C_Power\"",
+        "datatype": "Float",
+        "value": "",
+        "name": "material_peristaltic_pump_actual_power",
+        "x": 880,
+        "y": 3460,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "ed9c3c29b4caad9a",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=3;s=\"G120C_DB\".\"G120C_Torque\"",
+        "datatype": "Float",
+        "value": "",
+        "name": "material_peristaltic_pump_actual_torque",
+        "x": 880,
+        "y": 3540,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "84b1fb4e48866535",
+        "type": "OpcUa-Item",
+        "z": "abe575161613c123",
+        "item": "ns=3;s=\"G120C_DB\".\"G120C_Speed\"",
+        "datatype": "Float",
+        "value": "",
+        "name": "material_peristaltic_pump_actual_velocity",
+        "x": 880,
+        "y": 3420,
+        "wires": [
+            [
+                "d1e861b93008eb93"
+            ]
+        ]
+    },
+    {
+        "id": "3e57f78de5168714",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "material_peristaltic_pump_actual_current",
+        "func": "msg.material_peristaltic_pump_actual_current=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2320,
+        "y": 3200,
+        "wires": [
+            [
+                "25daf64e6e65dda9",
+                "d3aeff03ae7b2ab6"
+            ]
+        ]
+    },
+    {
+        "id": "5462b16dddd78955",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "material_peristaltic_pump_actual_power",
+        "func": "msg.material_peristaltic_pump_actual_power=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2320,
+        "y": 3160,
+        "wires": [
+            [
+                "6721e27bcf9cb1ec",
+                "d3aeff03ae7b2ab6"
+            ]
+        ]
+    },
+    {
+        "id": "ba8a70c715f3e78b",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "material_peristaltic_pump_actual_torque",
+        "func": "msg.material_peristaltic_pump_actual_torque=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2320,
+        "y": 3240,
+        "wires": [
+            [
+                "f223480612ae9333",
+                "d3aeff03ae7b2ab6"
+            ]
+        ]
+    },
+    {
+        "id": "dbef7a47f3a33262",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "material_peristaltic_pump_actual_velocity",
+        "func": "msg.material_peristaltic_pump_actual_velocity=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2320,
+        "y": 3120,
+        "wires": [
+            [
+                "0b7744607d2358e2",
+                "d3aeff03ae7b2ab6"
+            ]
+        ]
+    },
+    {
+        "id": "25daf64e6e65dda9",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "cdb560365232a81d",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Actual current [A]",
+        "format": "{{msg.material_peristaltic_pump_actual_current.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3550,
+        "y": 3200,
+        "wires": []
+    },
+    {
+        "id": "6721e27bcf9cb1ec",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "cdb560365232a81d",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Actual power [kW]",
+        "format": "{{msg.material_peristaltic_pump_actual_power.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3550,
+        "y": 3160,
+        "wires": []
+    },
+    {
+        "id": "f223480612ae9333",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "cdb560365232a81d",
+        "order": 5,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Actual torque [Nm]",
+        "format": "{{msg.material_peristaltic_pump_actual_torque.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3550,
+        "y": 3240,
+        "wires": []
+    },
+    {
+        "id": "0b7744607d2358e2",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "cdb560365232a81d",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Actual velocity [RPM]",
+        "format": "{{msg.material_peristaltic_pump_actual_velocity.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3560,
+        "y": 3120,
+        "wires": []
+    },
+    {
+        "id": "43bda781aed8217a",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "material_bronkhorst_read_alarm_info",
+        "func": "msg.material_bronkhorst_read_alarm_info=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2290,
+        "y": 2680,
+        "wires": [
+            [
+                "120a8f2f77c31c99",
+                "d3aeff03ae7b2ab6"
+            ]
+        ]
+    },
+    {
+        "id": "43173b8fdbd85f25",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "material_bronkhorst_read_actual_density",
+        "func": "msg.material_bronkhorst_read_actual_density=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2300,
+        "y": 2720,
+        "wires": [
+            [
+                "0d690e5e68f96349",
+                "d3aeff03ae7b2ab6"
+            ]
+        ]
+    },
+    {
+        "id": "41838ab95a6fbe4c",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "material_bronkhorst_read_analog_input",
+        "func": "msg.material_bronkhorst_read_analog_input=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2300,
+        "y": 2760,
+        "wires": [
+            [
+                "9555374c67998e9c",
+                "d3aeff03ae7b2ab6"
+            ]
+        ]
+    },
+    {
+        "id": "30d77adc7a719ba8",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "material_bronkhorst_read_measure",
+        "func": "msg.material_bronkhorst_read_measure=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2280,
+        "y": 2800,
+        "wires": [
+            [
+                "9836b3b96701fcdc",
+                "d3aeff03ae7b2ab6"
+            ]
+        ]
+    },
+    {
+        "id": "a05e194c66261f88",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "material_bronkhorst_read_setpoint",
+        "func": "msg.material_bronkhorst_read_setpoint=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2280,
+        "y": 2840,
+        "wires": [
+            [
+                "237dbc34e8799342",
+                "d3aeff03ae7b2ab6"
+            ]
+        ]
+    },
+    {
+        "id": "3a751b2e51a37ea9",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "material_bronkhorst_read_setpoint_slope",
+        "func": "msg.material_bronkhorst_read_setpoint_slope=msg.payload.toString()*1.0/10.0\nreturn msg\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2300,
+        "y": 2880,
+        "wires": [
+            [
+                "0cc7592806f5d893",
+                "d3aeff03ae7b2ab6"
+            ]
+        ]
+    },
+    {
+        "id": "93362b56bc2383a4",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "material_bronkhorst_read_temperature",
+        "func": "msg.material_bronkhorst_read_temperature=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2290,
+        "y": 2920,
+        "wires": [
+            [
+                "3190fa2fb16f0ab5",
+                "d3aeff03ae7b2ab6"
+            ]
+        ]
+    },
+    {
+        "id": "b10fde97251fb313",
+        "type": "function",
+        "z": "abe575161613c123",
+        "name": "material_bronkhorst_read_valve_output",
+        "func": "msg.material_bronkhorst_read_valve_output=msg.payload.toString()*1.0\nreturn msg\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2300,
+        "y": 2960,
+        "wires": [
+            [
+                "edb37f78b28eaf07",
+                "d3aeff03ae7b2ab6"
+            ]
+        ]
+    },
+    {
+        "id": "120a8f2f77c31c99",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "abfd115f36655ac8",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Alarm info [int]",
+        "format": "{{msg.material_bronkhorst_read_alarm_info.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3520,
+        "y": 2680,
+        "wires": []
+    },
+    {
+        "id": "0d690e5e68f96349",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "abfd115f36655ac8",
+        "order": 5,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Actual density [kg/m3]",
+        "format": "{{msg.material_bronkhorst_read_actual_density.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3540,
+        "y": 2720,
+        "wires": []
+    },
+    {
+        "id": "9555374c67998e9c",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "abfd115f36655ac8",
+        "order": 7,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Analog input [-]",
+        "format": "{{msg.material_bronkhorst_read_analog_input.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3520,
+        "y": 2760,
+        "wires": []
+    },
+    {
+        "id": "9836b3b96701fcdc",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "abfd115f36655ac8",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Measure [g/min]",
+        "format": "{{msg.material_bronkhorst_read_measure.toFixed(2)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3520,
+        "y": 2800,
+        "wires": []
+    },
+    {
+        "id": "237dbc34e8799342",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "abfd115f36655ac8",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Setpoint [g/min]",
+        "format": "{{msg.material_bronkhorst_read_setpoint.toFixed(2)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3520,
+        "y": 2840,
+        "wires": []
+    },
+    {
+        "id": "0cc7592806f5d893",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "abfd115f36655ac8",
+        "order": 9,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Setpoint slope [s]",
+        "format": "{{msg.material_bronkhorst_read_setpoint_slope.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3530,
+        "y": 2880,
+        "wires": []
+    },
+    {
+        "id": "3190fa2fb16f0ab5",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "abfd115f36655ac8",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Temperature [C]",
+        "format": "{{msg.material_bronkhorst_read_temperature.toFixed(1)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3520,
+        "y": 2920,
+        "wires": []
+    },
+    {
+        "id": "edb37f78b28eaf07",
+        "type": "ui_text",
+        "z": "abe575161613c123",
+        "group": "abfd115f36655ac8",
+        "order": 8,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Valve output [-]",
+        "format": "{{msg.material_bronkhorst_read_valve_output.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3520,
+        "y": 2960,
+        "wires": []
+    },
+    {
+        "id": "85f900f2581b92bc",
+        "type": "ui_group",
+        "name": "Coriolis sensor",
+        "tab": "4596e568da630a4f",
+        "order": 6,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "19d1813dc6889b02",
+        "type": "ui_group",
+        "name": "Analog inputs",
+        "tab": "4596e568da630a4f",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "93a79a9496bde61c",
+        "type": "ui_group",
+        "name": "Analog outputs",
+        "tab": "4596e568da630a4f",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "59a353dccbd25e8d",
+        "type": "ui_group",
+        "name": "Digital outputs",
+        "tab": "4596e568da630a4f",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "9c8639e609d0387f",
+        "type": "ui_group",
+        "name": "Digital inputs",
+        "tab": "4596e568da630a4f",
+        "order": 5,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "9793d35b1449dfd7",
+        "type": "ui_group",
+        "name": "R-parameters",
+        "tab": "4596e568da630a4f",
+        "order": 8,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "9c6664b374f58bc5",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://10.129.4.30:4840",
+        "secpol": "None",
+        "secmode": "None",
+        "login": false
+    },
+    {
+        "id": "53d83661cfcefa23",
+        "type": "ui_group",
+        "name": "Data Graphs",
+        "tab": "53571d4d81ebd061",
+        "order": 2,
+        "disp": true,
+        "width": 27,
+        "collapse": false
+    },
+    {
+        "id": "d5be84c8a2a9dbe3",
+        "type": "ui_group",
+        "name": "Summary",
+        "tab": "53571d4d81ebd061",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "cdb560365232a81d",
+        "type": "ui_group",
+        "name": "Peristaltic pump",
+        "tab": "4596e568da630a4f",
+        "order": 7,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "abfd115f36655ac8",
+        "type": "ui_group",
+        "name": "Read values",
+        "tab": "bf699577502254b8",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "4596e568da630a4f",
+        "type": "ui_tab",
+        "name": "Material delivery PLC",
+        "icon": "dashboard",
+        "order": 6,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "53571d4d81ebd061",
+        "type": "ui_tab",
+        "name": "Data overview",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "bf699577502254b8",
+        "type": "ui_tab",
+        "name": "Bronkhorst dosing pump",
+        "icon": "dashboard",
+        "order": 9,
+        "disabled": false,
+        "hidden": false
+    }
+]

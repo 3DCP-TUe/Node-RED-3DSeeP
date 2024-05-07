@@ -1,0 +1,656 @@
+[
+    {
+        "id": "37e53a375a7ac235",
+        "type": "tab",
+        "label": "Vertico dosing: Write values",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "951d27b017733914",
+        "type": "OpcUa-Client",
+        "z": "37e53a375a7ac235",
+        "endpoint": "df0e8d096d8a204d",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "name": "",
+        "x": 1340,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ea544a0196336cce",
+        "type": "OpcUa-Item",
+        "z": "37e53a375a7ac235",
+        "item": "ns=6;i=5",
+        "datatype": "Float",
+        "value": "msg.topic",
+        "name": "P",
+        "x": 770,
+        "y": 260,
+        "wires": [
+            [
+                "951d27b017733914"
+            ]
+        ]
+    },
+    {
+        "id": "740ad2bce20497fe",
+        "type": "inject",
+        "z": "37e53a375a7ac235",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "x": 250,
+        "y": 260,
+        "wires": [
+            [
+                "3bd03b215b7d6efb"
+            ]
+        ]
+    },
+    {
+        "id": "2ee4be7006e02af3",
+        "type": "OpcUa-Item",
+        "z": "37e53a375a7ac235",
+        "item": "ns=6;i=6",
+        "datatype": "Float",
+        "value": "msg.topic",
+        "name": "I",
+        "x": 770,
+        "y": 300,
+        "wires": [
+            [
+                "951d27b017733914"
+            ]
+        ]
+    },
+    {
+        "id": "e5f5f25168b99201",
+        "type": "inject",
+        "z": "37e53a375a7ac235",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "1.2",
+        "payloadType": "num",
+        "x": 250,
+        "y": 300,
+        "wires": [
+            [
+                "20fb0de2bc86d0e8"
+            ]
+        ]
+    },
+    {
+        "id": "3447a0979eb4ef27",
+        "type": "OpcUa-Item",
+        "z": "37e53a375a7ac235",
+        "item": "ns=6;i=7",
+        "datatype": "Float",
+        "value": "msg.topic",
+        "name": "D",
+        "x": 770,
+        "y": 340,
+        "wires": [
+            [
+                "951d27b017733914"
+            ]
+        ]
+    },
+    {
+        "id": "d177ad976952660a",
+        "type": "inject",
+        "z": "37e53a375a7ac235",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 250,
+        "y": 340,
+        "wires": [
+            [
+                "18b3c8c2b870484a"
+            ]
+        ]
+    },
+    {
+        "id": "3bd03b215b7d6efb",
+        "type": "ui_numeric",
+        "z": "37e53a375a7ac235",
+        "name": "",
+        "label": "Write P",
+        "tooltip": "",
+        "group": "6cb02d1b18effc68",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "10",
+        "step": "0.05",
+        "className": "",
+        "x": 460,
+        "y": 260,
+        "wires": [
+            [
+                "ea544a0196336cce"
+            ]
+        ]
+    },
+    {
+        "id": "20fb0de2bc86d0e8",
+        "type": "ui_numeric",
+        "z": "37e53a375a7ac235",
+        "name": "",
+        "label": "Write I",
+        "tooltip": "",
+        "group": "6cb02d1b18effc68",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "10",
+        "step": "0.05",
+        "className": "",
+        "x": 450,
+        "y": 300,
+        "wires": [
+            [
+                "2ee4be7006e02af3"
+            ]
+        ]
+    },
+    {
+        "id": "18b3c8c2b870484a",
+        "type": "ui_numeric",
+        "z": "37e53a375a7ac235",
+        "name": "",
+        "label": "Write D",
+        "tooltip": "",
+        "group": "6cb02d1b18effc68",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "10",
+        "step": "0.05",
+        "className": "",
+        "x": 460,
+        "y": 340,
+        "wires": [
+            [
+                "3447a0979eb4ef27"
+            ]
+        ]
+    },
+    {
+        "id": "339bdec02f4e4697",
+        "type": "OpcUa-Item",
+        "z": "37e53a375a7ac235",
+        "item": "ns=4;i=9",
+        "datatype": "Float",
+        "value": "msg.topic",
+        "name": "setpoint_closed_loop",
+        "x": 820,
+        "y": 380,
+        "wires": [
+            [
+                "951d27b017733914"
+            ]
+        ]
+    },
+    {
+        "id": "a374f222ef57a585",
+        "type": "OpcUa-Item",
+        "z": "37e53a375a7ac235",
+        "item": "ns=4;i=12",
+        "datatype": "Float",
+        "value": "msg.topic",
+        "name": "setpoint_open_loop",
+        "x": 810,
+        "y": 420,
+        "wires": [
+            [
+                "951d27b017733914"
+            ]
+        ]
+    },
+    {
+        "id": "b6da76355323dbd2",
+        "type": "OpcUa-Item",
+        "z": "37e53a375a7ac235",
+        "item": "ns=4;i=4",
+        "datatype": "Boolean",
+        "value": "msg.topic",
+        "name": "start_stop",
+        "x": 780,
+        "y": 460,
+        "wires": [
+            [
+                "951d27b017733914"
+            ]
+        ]
+    },
+    {
+        "id": "83b779bb453b0512",
+        "type": "ui_switch",
+        "z": "37e53a375a7ac235",
+        "name": "",
+        "label": "Start/stop [bool]",
+        "tooltip": "",
+        "group": "6cb02d1b18effc68",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 480,
+        "y": 460,
+        "wires": [
+            [
+                "b6da76355323dbd2"
+            ]
+        ]
+    },
+    {
+        "id": "c0daf4e905742b73",
+        "type": "inject",
+        "z": "37e53a375a7ac235",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 250,
+        "y": 460,
+        "wires": [
+            [
+                "83b779bb453b0512"
+            ]
+        ]
+    },
+    {
+        "id": "2f3190b6efa57a0f",
+        "type": "inject",
+        "z": "37e53a375a7ac235",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "20",
+        "payloadType": "num",
+        "x": 250,
+        "y": 380,
+        "wires": [
+            [
+                "65cd2091e6ee831a"
+            ]
+        ]
+    },
+    {
+        "id": "65cd2091e6ee831a",
+        "type": "ui_numeric",
+        "z": "37e53a375a7ac235",
+        "name": "",
+        "label": "Setpoint closed loop [ml/min]",
+        "tooltip": "",
+        "group": "6cb02d1b18effc68",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "100",
+        "step": "0.1",
+        "className": "",
+        "x": 520,
+        "y": 380,
+        "wires": [
+            [
+                "339bdec02f4e4697"
+            ]
+        ]
+    },
+    {
+        "id": "1ad8a32959de0499",
+        "type": "inject",
+        "z": "37e53a375a7ac235",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "280",
+        "payloadType": "num",
+        "x": 250,
+        "y": 420,
+        "wires": [
+            [
+                "2d7f387be0c9ef86"
+            ]
+        ]
+    },
+    {
+        "id": "2d7f387be0c9ef86",
+        "type": "ui_numeric",
+        "z": "37e53a375a7ac235",
+        "name": "",
+        "label": "Setpoint open loop [RPM]",
+        "tooltip": "",
+        "group": "6cb02d1b18effc68",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": "140",
+        "max": "1405",
+        "step": "1",
+        "className": "",
+        "x": 510,
+        "y": 420,
+        "wires": [
+            [
+                "a374f222ef57a585"
+            ]
+        ]
+    },
+    {
+        "id": "dc4e6f9159d3f45c",
+        "type": "ui_switch",
+        "z": "37e53a375a7ac235",
+        "name": "",
+        "label": "Write DO3 [0/1]",
+        "tooltip": "",
+        "group": "6cb02d1b18effc68",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 480,
+        "y": 500,
+        "wires": [
+            [
+                "a4bec9406f24b7e5"
+            ]
+        ]
+    },
+    {
+        "id": "dae93f63d4194c09",
+        "type": "ui_numeric",
+        "z": "37e53a375a7ac235",
+        "name": "",
+        "label": "Write AO0 [mA]",
+        "tooltip": "",
+        "group": "6cb02d1b18effc68",
+        "order": 11,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": "4",
+        "max": "20",
+        "step": "0.02",
+        "className": "",
+        "x": 480,
+        "y": 540,
+        "wires": [
+            [
+                "01eb8b33cc57f52b"
+            ]
+        ]
+    },
+    {
+        "id": "7c8b81654dbfad82",
+        "type": "inject",
+        "z": "37e53a375a7ac235",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 250,
+        "y": 500,
+        "wires": [
+            [
+                "dc4e6f9159d3f45c"
+            ]
+        ]
+    },
+    {
+        "id": "d824baa53ba3a962",
+        "type": "inject",
+        "z": "37e53a375a7ac235",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "4",
+        "payloadType": "num",
+        "x": 250,
+        "y": 540,
+        "wires": [
+            [
+                "dae93f63d4194c09"
+            ]
+        ]
+    },
+    {
+        "id": "a4bec9406f24b7e5",
+        "type": "OpcUa-Item",
+        "z": "37e53a375a7ac235",
+        "item": "ns=5;i=2",
+        "datatype": "Boolean",
+        "value": "msg.topic",
+        "name": "vertico_do3",
+        "x": 790,
+        "y": 500,
+        "wires": [
+            [
+                "951d27b017733914"
+            ]
+        ]
+    },
+    {
+        "id": "01eb8b33cc57f52b",
+        "type": "OpcUa-Item",
+        "z": "37e53a375a7ac235",
+        "item": "ns=5;i=13",
+        "datatype": "Float",
+        "value": "msg.topic",
+        "name": "vertico_ao0",
+        "x": 790,
+        "y": 540,
+        "wires": [
+            [
+                "951d27b017733914"
+            ]
+        ]
+    },
+    {
+        "id": "df0e8d096d8a204d",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://10.129.4.40:4840",
+        "secpol": "None",
+        "secmode": "None",
+        "login": false
+    },
+    {
+        "id": "6cb02d1b18effc68",
+        "type": "ui_group",
+        "name": "Write values",
+        "tab": "ab2d93c8cfc6d927",
+        "order": 1,
+        "disp": true,
+        "width": 8,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "ab2d93c8cfc6d927",
+        "type": "ui_tab",
+        "name": "Vertico dosing system",
+        "icon": "dashboard",
+        "order": 10,
+        "disabled": false,
+        "hidden": false
+    }
+]

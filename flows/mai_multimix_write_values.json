@@ -1,0 +1,1316 @@
+[
+    {
+        "id": "392223ecd6b86107",
+        "type": "tab",
+        "label": "MAI: Write values",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "16c2908bd3728696",
+        "type": "OpcUa-Client",
+        "z": "392223ecd6b86107",
+        "endpoint": "b6399b95df174ec3",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "name": "",
+        "x": 1380,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5262d6a791688a6e",
+        "type": "OpcUa-Item",
+        "z": "392223ecd6b86107",
+        "item": "ns=2;s=Tags.GECO/MP_Auto_On",
+        "datatype": "Boolean",
+        "value": "msg.topic",
+        "name": "Auto on",
+        "x": 880,
+        "y": 340,
+        "wires": [
+            [
+                "16c2908bd3728696"
+            ]
+        ]
+    },
+    {
+        "id": "e92b3d98bc8c3ab2",
+        "type": "ui_switch",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "label": "Auto on",
+        "tooltip": "",
+        "group": "2766a474835c38ac",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 360,
+        "y": 340,
+        "wires": [
+            [
+                "5262d6a791688a6e"
+            ]
+        ]
+    },
+    {
+        "id": "5640807ce4952e61",
+        "type": "OpcUa-Item",
+        "z": "392223ecd6b86107",
+        "item": "ns=2;s=Tags.GECO/MPRX_DI_Reset_Error",
+        "datatype": "Boolean",
+        "value": "msg.topic",
+        "name": "Reset",
+        "x": 870,
+        "y": 300,
+        "wires": [
+            [
+                "16c2908bd3728696"
+            ]
+        ]
+    },
+    {
+        "id": "8657f943a0234a57",
+        "type": "inject",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 190,
+        "y": 300,
+        "wires": [
+            [
+                "e92b3d98bc8c3ab2",
+                "3c145a774dca0fef",
+                "29b25c1d6bb89ab9",
+                "237077e93e0ed5ac",
+                "991e44e4e33aee1a"
+            ]
+        ]
+    },
+    {
+        "id": "4d033f8dcf8645e6",
+        "type": "OpcUa-Item",
+        "z": "392223ecd6b86107",
+        "item": "ns=2;s=Tags.GECO/MPRX_DI_Water_Flowrate_Set_lh_I",
+        "datatype": "Int16",
+        "value": "msg.payload",
+        "name": "Set water flow",
+        "x": 1120,
+        "y": 1240,
+        "wires": [
+            [
+                "16c2908bd3728696"
+            ]
+        ]
+    },
+    {
+        "id": "2419373a3ec96594",
+        "type": "ui_text_input",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "label": "Water flow",
+        "tooltip": "",
+        "group": "2766a474835c38ac",
+        "order": 6,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 350,
+        "y": 1300,
+        "wires": [
+            [
+                "82d585b09fbd9a47"
+            ]
+        ]
+    },
+    {
+        "id": "82d585b09fbd9a47",
+        "type": "function",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "func": "if( msg.payload<170){msg.payload=170}\nelse if(msg.payload>500){msg.payload=500}\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 1300,
+        "wires": [
+            [
+                "1186b0b31434d1d4"
+            ]
+        ]
+    },
+    {
+        "id": "433398790323d439",
+        "type": "inject",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "230",
+        "payloadType": "num",
+        "x": 190,
+        "y": 1300,
+        "wires": [
+            [
+                "2419373a3ec96594"
+            ]
+        ]
+    },
+    {
+        "id": "54728077b4e46b2b",
+        "type": "OpcUa-Item",
+        "z": "392223ecd6b86107",
+        "item": "ns=2;s=Tags.GECO/MPRX_EXT_Pump_Run",
+        "datatype": "Boolean",
+        "value": "msg.topic",
+        "name": "Pump run",
+        "x": 880,
+        "y": 380,
+        "wires": [
+            [
+                "16c2908bd3728696"
+            ]
+        ]
+    },
+    {
+        "id": "3c145a774dca0fef",
+        "type": "ui_switch",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "label": "Pump run",
+        "tooltip": "",
+        "group": "2766a474835c38ac",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 360,
+        "y": 380,
+        "wires": [
+            [
+                "54728077b4e46b2b"
+            ]
+        ]
+    },
+    {
+        "id": "5a087c2dd685304a",
+        "type": "OpcUa-Item",
+        "z": "392223ecd6b86107",
+        "item": "ns=2;s=Tags.GECO/MPRX_DI_Mixer_Disabled",
+        "datatype": "Boolean",
+        "value": "msg.topic",
+        "name": "Mixer disabled",
+        "x": 900,
+        "y": 420,
+        "wires": [
+            [
+                "16c2908bd3728696"
+            ]
+        ]
+    },
+    {
+        "id": "29b25c1d6bb89ab9",
+        "type": "ui_switch",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "label": "Mixer disabled",
+        "tooltip": "",
+        "group": "2766a474835c38ac",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 380,
+        "y": 420,
+        "wires": [
+            [
+                "5a087c2dd685304a"
+            ]
+        ]
+    },
+    {
+        "id": "935f40b22df46d81",
+        "type": "ui_text_input",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "label": "Pump speed",
+        "tooltip": "",
+        "group": "2766a474835c38ac",
+        "order": 10,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 370,
+        "y": 640,
+        "wires": [
+            [
+                "f6dbcdce3deca65a"
+            ]
+        ]
+    },
+    {
+        "id": "ed09f1bd69c80b07",
+        "type": "inject",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "2100",
+        "payloadType": "num",
+        "x": 190,
+        "y": 640,
+        "wires": [
+            [
+                "935f40b22df46d81"
+            ]
+        ]
+    },
+    {
+        "id": "951548a881f2de56",
+        "type": "OpcUa-Item",
+        "z": "392223ecd6b86107",
+        "item": "ns=2;s=Tags.GECO/MPRX_EXT_Pump_Speed_cHz_I",
+        "datatype": "Int16",
+        "value": "msg.payload",
+        "name": "Set pump speed",
+        "x": 900,
+        "y": 640,
+        "wires": [
+            [
+                "16c2908bd3728696"
+            ]
+        ]
+    },
+    {
+        "id": "f6dbcdce3deca65a",
+        "type": "function",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "func": "if( msg.payload<1500){msg.payload=1500}\nelse if(msg.payload>8000){msg.payload=8000}\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 640,
+        "wires": [
+            [
+                "951548a881f2de56"
+            ]
+        ]
+    },
+    {
+        "id": "237077e93e0ed5ac",
+        "type": "ui_switch",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "label": "Vibration block enabled",
+        "tooltip": "",
+        "group": "2766a474835c38ac",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 410,
+        "y": 460,
+        "wires": [
+            [
+                "d72a94ebf6f15c2e"
+            ]
+        ]
+    },
+    {
+        "id": "103768d0f13d6ec9",
+        "type": "OpcUa-Item",
+        "z": "392223ecd6b86107",
+        "item": "ns=2;s=Tags.GECO/MPRX_DI_Pump_Vib_Mode_I",
+        "datatype": "Int16",
+        "value": "msg.topic",
+        "name": "Mixer disabled",
+        "x": 900,
+        "y": 460,
+        "wires": [
+            [
+                "16c2908bd3728696"
+            ]
+        ]
+    },
+    {
+        "id": "d72a94ebf6f15c2e",
+        "type": "function",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "func": "msg.payload = msg.payload == true ? 1 : 0\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 460,
+        "wires": [
+            [
+                "103768d0f13d6ec9"
+            ]
+        ]
+    },
+    {
+        "id": "ae4d0939721d321d",
+        "type": "ui_text",
+        "z": "392223ecd6b86107",
+        "group": "2766a474835c38ac",
+        "order": 11,
+        "width": 1,
+        "height": 1,
+        "name": "",
+        "label": "cHz",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1090,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "75fb90a097fc1aa2",
+        "type": "inject",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "x": 190,
+        "y": 860,
+        "wires": [
+            [
+                "e5a5b172d9ad7e47"
+            ]
+        ]
+    },
+    {
+        "id": "3e95d53fab53a6dc",
+        "type": "inject",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "x": 190,
+        "y": 900,
+        "wires": [
+            [
+                "8c6a3e30b1b2dbd5"
+            ]
+        ]
+    },
+    {
+        "id": "e5a5b172d9ad7e47",
+        "type": "ui_text_input",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "label": "Wetprobe covered delay",
+        "tooltip": "",
+        "group": "2766a474835c38ac",
+        "order": 17,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 410,
+        "y": 860,
+        "wires": [
+            [
+                "448305bdf4c7f07e"
+            ]
+        ]
+    },
+    {
+        "id": "8c6a3e30b1b2dbd5",
+        "type": "ui_text_input",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "label": "Wetprobe uncovered delay",
+        "tooltip": "",
+        "group": "2766a474835c38ac",
+        "order": 19,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 420,
+        "y": 900,
+        "wires": [
+            [
+                "d748ecc5fff15ece"
+            ]
+        ]
+    },
+    {
+        "id": "448305bdf4c7f07e",
+        "type": "function",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "func": "if( msg.payload<2){msg.payload=2}\nelse if(msg.payload>120){msg.payload=120}\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 860,
+        "wires": [
+            [
+                "6a7e380713d8604f"
+            ]
+        ]
+    },
+    {
+        "id": "d748ecc5fff15ece",
+        "type": "function",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "func": "if( msg.payload<2){msg.payload=2}\nelse if(msg.payload>120){msg.payload=120}\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 900,
+        "wires": [
+            [
+                "f313d446469d202c"
+            ]
+        ]
+    },
+    {
+        "id": "6a7e380713d8604f",
+        "type": "OpcUa-Item",
+        "z": "392223ecd6b86107",
+        "item": "ns=2;s=Tags.GECO/MPRX_DI_Wetprobe_Upper_Cov_Delay_s_I",
+        "datatype": "Int16",
+        "value": "msg.payload",
+        "name": "Covered delay",
+        "x": 900,
+        "y": 860,
+        "wires": [
+            [
+                "16c2908bd3728696"
+            ]
+        ]
+    },
+    {
+        "id": "f313d446469d202c",
+        "type": "OpcUa-Item",
+        "z": "392223ecd6b86107",
+        "item": "ns=2;s=Tags.GECO/MPRX_DI_Wetprobe_Upper_NCov_Delay_s_I",
+        "datatype": "Int16",
+        "value": "msg.payload",
+        "name": "Uncovered delay",
+        "x": 910,
+        "y": 900,
+        "wires": [
+            [
+                "16c2908bd3728696"
+            ]
+        ]
+    },
+    {
+        "id": "f74537518f17fc00",
+        "type": "ui_text",
+        "z": "392223ecd6b86107",
+        "group": "2766a474835c38ac",
+        "order": 14,
+        "width": 1,
+        "height": 1,
+        "name": "",
+        "label": "s",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1090,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "69a9ec1fd939317f",
+        "type": "ui_text",
+        "z": "392223ecd6b86107",
+        "group": "2766a474835c38ac",
+        "order": 16,
+        "width": 1,
+        "height": 1,
+        "name": "",
+        "label": "s",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1090,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "a17241ee14c67750",
+        "type": "ui_text_input",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "label": "Water pre-run",
+        "tooltip": "",
+        "group": "2766a474835c38ac",
+        "order": 13,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 380,
+        "y": 780,
+        "wires": [
+            [
+                "e0cd092dd60968a7"
+            ]
+        ]
+    },
+    {
+        "id": "482e9519e2483b24",
+        "type": "ui_text_input",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "label": "Mixer post-run",
+        "tooltip": "",
+        "group": "2766a474835c38ac",
+        "order": 15,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 380,
+        "y": 820,
+        "wires": [
+            [
+                "f7f639fee88899e2"
+            ]
+        ]
+    },
+    {
+        "id": "aaf2d8318eb84135",
+        "type": "inject",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "0.2",
+        "payloadType": "num",
+        "x": 190,
+        "y": 780,
+        "wires": [
+            [
+                "a17241ee14c67750"
+            ]
+        ]
+    },
+    {
+        "id": "dbb84f8b5368ec31",
+        "type": "inject",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "0.1",
+        "payloadType": "num",
+        "x": 190,
+        "y": 820,
+        "wires": [
+            [
+                "482e9519e2483b24"
+            ]
+        ]
+    },
+    {
+        "id": "e0cd092dd60968a7",
+        "type": "function",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "func": "if( msg.payload<0.1){msg.payload=0.1}\nelse if(msg.payload>2.5){msg.payload=2.5}\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 780,
+        "wires": [
+            [
+                "a60e19a013cd86c2"
+            ]
+        ]
+    },
+    {
+        "id": "f7f639fee88899e2",
+        "type": "function",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "func": "if( msg.payload<0.1){msg.payload=0.1}\nelse if(msg.payload>2.5){msg.payload=2.5}\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 820,
+        "wires": [
+            [
+                "a798e3a40e359cd0"
+            ]
+        ]
+    },
+    {
+        "id": "306d65945488b6b3",
+        "type": "ui_text",
+        "z": "392223ecd6b86107",
+        "group": "2766a474835c38ac",
+        "order": 18,
+        "width": 1,
+        "height": 1,
+        "name": "",
+        "label": "s",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1090,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "6bd9411495b9ded7",
+        "type": "ui_text",
+        "z": "392223ecd6b86107",
+        "group": "2766a474835c38ac",
+        "order": 20,
+        "width": 1,
+        "height": 1,
+        "name": "",
+        "label": "s",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1090,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "a60e19a013cd86c2",
+        "type": "OpcUa-Item",
+        "z": "392223ecd6b86107",
+        "item": "ns=2;s=Tags.GECO/MPRX_DI_Water_Before_Mixer_s_R",
+        "datatype": "Float",
+        "value": "msg.payload",
+        "name": "Water pre-run",
+        "x": 900,
+        "y": 780,
+        "wires": [
+            [
+                "16c2908bd3728696"
+            ]
+        ]
+    },
+    {
+        "id": "a798e3a40e359cd0",
+        "type": "OpcUa-Item",
+        "z": "392223ecd6b86107",
+        "item": "ns=2;s=Tags.GECO/MPRX_DI_Mixer_After_Water_s_R",
+        "datatype": "Float",
+        "value": "msg.payload",
+        "name": "Mixer post-run",
+        "x": 900,
+        "y": 820,
+        "wires": [
+            [
+                "16c2908bd3728696"
+            ]
+        ]
+    },
+    {
+        "id": "3d1f459175195854",
+        "type": "function",
+        "z": "392223ecd6b86107",
+        "name": "Throw value",
+        "func": "if (flow.get(\"last\") === undefined) \n{\n    flow.set(\"last\", 270)\n}\n\nif (flow.get(\"mai_water_set_value\") === undefined) \n{\n    flow.set(\"mai_water_set_value\", 270)\n}\n\n\nif (msg.payload == true) \n{\n    msg.payload = flow.get(\"mai_water_set_value\")\n    flow.set(\"last\", flow.get(\"mai_water_set_value\"))\n}\nelse \n{\n    msg.payload = flow.get(\"last\")\n\n}\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 1240,
+        "wires": [
+            [
+                "106fb001073f1abf"
+            ]
+        ]
+    },
+    {
+        "id": "1186b0b31434d1d4",
+        "type": "function",
+        "z": "392223ecd6b86107",
+        "name": "Water flow set value",
+        "func": "flow.set(\"mai_water_set_value\", msg.payload)\n\nreturn msg",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 1300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "106fb001073f1abf",
+        "type": "delay",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 860,
+        "y": 1240,
+        "wires": [
+            [
+                "4d033f8dcf8645e6"
+            ]
+        ]
+    },
+    {
+        "id": "dfbf54f71192afbc",
+        "type": "comment",
+        "z": "392223ecd6b86107",
+        "name": "Water input: only adjust at water pump run with delay of 2s",
+        "info": "",
+        "x": 350,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "bd0196b4646dce8f",
+        "type": "link in",
+        "z": "392223ecd6b86107",
+        "name": "Mai water run in",
+        "links": [
+            "838de73e3a69865f"
+        ],
+        "x": 155,
+        "y": 1240,
+        "wires": [
+            [
+                "a551f8caeb9b0011"
+            ]
+        ]
+    },
+    {
+        "id": "840b16cf63e32d59",
+        "type": "ui_text",
+        "z": "392223ecd6b86107",
+        "group": "2766a474835c38ac",
+        "order": 9,
+        "width": 1,
+        "height": 1,
+        "name": "",
+        "label": "l/h",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 330,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "a551f8caeb9b0011",
+        "type": "function",
+        "z": "392223ecd6b86107",
+        "name": "Only inject when value changes",
+        "func": "if (context.get('prevValue') === 'undefined') {\n    context.set('prevValue', false);\n}\n\nif (msg.payload !== context.get('prevValue')) {\n    context.set('prevValue', msg.payload);\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 1240,
+        "wires": [
+            [
+                "3d1f459175195854"
+            ]
+        ]
+    },
+    {
+        "id": "eea69c0d70a88b31",
+        "type": "trigger",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "op1": "true",
+        "op2": "false",
+        "op1type": "bool",
+        "op2type": "bool",
+        "duration": "1",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "ns=2;s=Tags.GECO/MPRX_EXT_Heartbeat",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 360,
+        "y": 140,
+        "wires": [
+            [
+                "41a06192865afdc4"
+            ]
+        ]
+    },
+    {
+        "id": "41a06192865afdc4",
+        "type": "OpcUa-Item",
+        "z": "392223ecd6b86107",
+        "item": "ns=2;s=Tags.GECO/MPRX_EXT_Heartbeat",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "Heartbeat",
+        "x": 880,
+        "y": 140,
+        "wires": [
+            [
+                "16c2908bd3728696"
+            ]
+        ]
+    },
+    {
+        "id": "a62e1a87992ea4e0",
+        "type": "inject",
+        "z": "392223ecd6b86107",
+        "name": "Heartbeat",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "ns=2;s=Tags.GECO/MPRX_EXT_Heartbeat",
+        "x": 170,
+        "y": 140,
+        "wires": [
+            [
+                "eea69c0d70a88b31"
+            ]
+        ]
+    },
+    {
+        "id": "1fe0c28e541b438e",
+        "type": "inject",
+        "z": "392223ecd6b86107",
+        "d": true,
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "270",
+        "payloadType": "num",
+        "x": 190,
+        "y": 600,
+        "wires": [
+            [
+                "172a33cb408ec76f"
+            ]
+        ]
+    },
+    {
+        "id": "172a33cb408ec76f",
+        "type": "ui_text_input",
+        "z": "392223ecd6b86107",
+        "d": true,
+        "name": "",
+        "label": "Water flow",
+        "tooltip": "",
+        "group": "2766a474835c38ac",
+        "order": 8,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 370,
+        "y": 600,
+        "wires": [
+            [
+                "d8850be6804336df"
+            ]
+        ]
+    },
+    {
+        "id": "d8850be6804336df",
+        "type": "function",
+        "z": "392223ecd6b86107",
+        "d": true,
+        "name": "",
+        "func": "if( msg.payload<170){msg.payload=170}\nelse if(msg.payload>500){msg.payload=500}\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 600,
+        "wires": [
+            [
+                "3f471ae01c2582df"
+            ]
+        ]
+    },
+    {
+        "id": "3f471ae01c2582df",
+        "type": "OpcUa-Item",
+        "z": "392223ecd6b86107",
+        "d": true,
+        "item": "ns=2;s=Tags.GECO/MPRX_DI_Water_Flowrate_Set_lh_I",
+        "datatype": "Int16",
+        "value": "msg.payload",
+        "name": "Set water flow",
+        "x": 900,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "90baa2d4f602ef72",
+        "type": "ui_text",
+        "z": "392223ecd6b86107",
+        "d": true,
+        "group": "2766a474835c38ac",
+        "order": 7,
+        "width": 1,
+        "height": 1,
+        "name": "",
+        "label": "l/h",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1090,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "991e44e4e33aee1a",
+        "type": "ui_switch",
+        "z": "392223ecd6b86107",
+        "name": "",
+        "label": "Reset",
+        "tooltip": "",
+        "group": "2766a474835c38ac",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 350,
+        "y": 300,
+        "wires": [
+            [
+                "5640807ce4952e61"
+            ]
+        ]
+    },
+    {
+        "id": "b6399b95df174ec3",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://10.129.4.80:48010",
+        "secpol": "None",
+        "secmode": "None",
+        "login": false
+    },
+    {
+        "id": "2766a474835c38ac",
+        "type": "ui_group",
+        "name": "Write values",
+        "tab": "afc4f775962a26f4",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "afc4f775962a26f4",
+        "type": "ui_tab",
+        "name": "MAI MULTIMIX",
+        "icon": "dashboard",
+        "order": 7,
+        "disabled": false,
+        "hidden": false
+    }
+]

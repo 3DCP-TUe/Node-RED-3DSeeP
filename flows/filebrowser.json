@@ -1,0 +1,914 @@
+[
+    {
+        "id": "25cfbc1.7cb50c4",
+        "type": "tab",
+        "label": "Filebrowser",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "cee6b071.35f91",
+        "type": "comment",
+        "z": "25cfbc1.7cb50c4",
+        "name": "File Browser",
+        "info": "1) Update the default folder in the Init node\n2) Update the default folder in the Reset node as well\n3) You can duplicate the Reset nodes and use them as saved shortcuts\n4) Check the Convert Timestamps function node if you want to see your dates in a different format. I just used the Javascript toISOString format.\n5) The Graph button can read any CSV file which have any number of values, but the first column always contains a timestamp column with javascript timestamp of the data point.",
+        "x": 290,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "c4d38db6.3bd348",
+        "type": "inject",
+        "z": "25cfbc1.7cb50c4",
+        "name": "Init",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "change",
+        "payload": "D:\\Node Red\\Files",
+        "payloadType": "str",
+        "x": 290,
+        "y": 260,
+        "wires": [
+            [
+                "3401e043.ab8328"
+            ]
+        ]
+    },
+    {
+        "id": "2d7953da.39b6a4",
+        "type": "ui_button",
+        "z": "25cfbc1.7cb50c4",
+        "name": "",
+        "group": "f4f266b4.cb455",
+        "order": 1,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "label": "Refresh",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "refresh",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "refresh",
+        "topicType": "str",
+        "x": 280,
+        "y": 300,
+        "wires": [
+            [
+                "3401e043.ab8328"
+            ]
+        ]
+    },
+    {
+        "id": "8f572f57.0b9d78",
+        "type": "ui_dropdown",
+        "z": "25cfbc1.7cb50c4",
+        "name": "File Selector",
+        "label": "",
+        "tooltip": "",
+        "place": "Select a file",
+        "group": "f4f266b4.cb455",
+        "order": 9,
+        "width": "5",
+        "height": "1",
+        "passthru": false,
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "",
+        "x": 1090,
+        "y": 300,
+        "wires": [
+            [
+                "17598a85.674f15"
+            ]
+        ]
+    },
+    {
+        "id": "557534d8.70feac",
+        "type": "function",
+        "z": "25cfbc1.7cb50c4",
+        "name": "Format data",
+        "func": "// format the data for the dropdown\nmsg.options = [];\nfor (var i=0; i<msg.payload.length; i++) {\n    // This is a file\n    obj = {};\n    obj [msg.payload[i].name.replace(/^.*(\\\\|\\/|\\:)/, '')]=msg.payload[i].name;\n    msg.options.push(obj);\n}\nmsg.payload={};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 890,
+        "y": 300,
+        "wires": [
+            [
+                "8f572f57.0b9d78"
+            ]
+        ]
+    },
+    {
+        "id": "6ab552fd.a8659c",
+        "type": "ui_template",
+        "z": "25cfbc1.7cb50c4",
+        "group": "f4f266b4.cb455",
+        "name": "",
+        "order": 6,
+        "width": "18",
+        "height": "6",
+        "format": "<div ng-bind-html=\"msg.payload\" height=\"400\" style=\"height: 400px;\"><br/>\n</div>\n\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 1280,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "91b4e887.0026c8",
+        "type": "template",
+        "z": "25cfbc1.7cb50c4",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<table width=\"100%\">\n    <tr><th>File Name</th><th>Size</th><th>Created</th><th>Changed</th></tr>\n    {{#payload}}\n        <tr>\n            <td><a href=\"/download?filename={{name}}\" target=\"blank\">{{fname}}</a></td>\n            <td>{{stat.size}}</td>\n            <td>{{stat.created}}</td>\n            <td>{{stat.changed}}</td>\n        </tr>\n    {{/payload}}\n</table>\n",
+        "output": "str",
+        "x": 1120,
+        "y": 360,
+        "wires": [
+            [
+                "6ab552fd.a8659c"
+            ]
+        ]
+    },
+    {
+        "id": "a55c9b29.65d8d",
+        "type": "function",
+        "z": "25cfbc1.7cb50c4",
+        "name": "Convert timestamps",
+        "func": "for (var i=0; i<msg.payload.length; i++) {\n    msg.payload[i].stat.created = msg.payload[i].stat.created.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.changed = msg.payload[i].stat.changed.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.accessed = msg.payload[i].stat.accessed.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.statusChanged = msg.payload[i].stat.statusChanged.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].fname = msg.payload[i].name.replace(/^.*(\\\\|\\/|\\:)/, '');\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 920,
+        "y": 360,
+        "wires": [
+            [
+                "91b4e887.0026c8"
+            ]
+        ]
+    },
+    {
+        "id": "45f43041.ff3e98",
+        "type": "ui_button",
+        "z": "25cfbc1.7cb50c4",
+        "name": "",
+        "group": "f4f266b4.cb455",
+        "order": 10,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "label": "Delete",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "delete",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 310,
+        "y": 460,
+        "wires": [
+            [
+                "74a949ad.722ef"
+            ]
+        ]
+    },
+    {
+        "id": "fe6931ed.71a788",
+        "type": "function",
+        "z": "25cfbc1.7cb50c4",
+        "name": "Get filename",
+        "func": "// Get the filename from the flow context\nlet filename = flow.get(\"fileselected\");\n\n// check, if the filename is undefined that means it does not exist yet, nothing is selected yet\n// return: do not output anything\nif (filename===undefined) {\n    return;\n}\n\n// return the filename to the file-in node to delete\nmsg.filename = filename;\n\nif (msg.filename.replace(/^.*(\\\\|\\/|\\:)/, '')[0]!==\".\") {\n    // Only do this if this is a file, we don't delete folders\n    // and delete the context/selection as we are deleting the file as well\n    flow.set(\"fileselected\");\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 510,
+        "y": 520,
+        "wires": [
+            [
+                "98ad3fc0.cb775"
+            ]
+        ]
+    },
+    {
+        "id": "98ad3fc0.cb775",
+        "type": "file",
+        "z": "25cfbc1.7cb50c4",
+        "name": "Delete file",
+        "filename": "",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "delete",
+        "encoding": "none",
+        "x": 720,
+        "y": 520,
+        "wires": [
+            [
+                "bd091aa5.9565d8",
+                "7a576f97.3417f"
+            ]
+        ]
+    },
+    {
+        "id": "84cb7418.29d1e8",
+        "type": "http in",
+        "z": "25cfbc1.7cb50c4",
+        "name": "",
+        "url": "/download",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 320,
+        "y": 660,
+        "wires": [
+            [
+                "5401ca53.598a84"
+            ]
+        ]
+    },
+    {
+        "id": "ae7aac9.f5acad",
+        "type": "http response",
+        "z": "25cfbc1.7cb50c4",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1110,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "5401ca53.598a84",
+        "type": "function",
+        "z": "25cfbc1.7cb50c4",
+        "name": "Get the file name",
+        "func": "msg.filename = msg.req.query.filename;\nmsg.contentdisposition = \"attachment; filename=\\\"\" + msg.req.query.filename.replace(/^.*(\\\\|\\/|\\:)/, '') + \"\\\"\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 570,
+        "y": 660,
+        "wires": [
+            [
+                "2bad031d.83558c"
+            ]
+        ],
+        "outputLabels": [
+            "Folder selected",
+            "File selected"
+        ]
+    },
+    {
+        "id": "2bad031d.83558c",
+        "type": "file in",
+        "z": "25cfbc1.7cb50c4",
+        "name": "",
+        "filename": "",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 760,
+        "y": 660,
+        "wires": [
+            [
+                "c2d0e956.1218e8"
+            ]
+        ]
+    },
+    {
+        "id": "c2d0e956.1218e8",
+        "type": "change",
+        "z": "25cfbc1.7cb50c4",
+        "name": "Set Headers",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "headers.content-type",
+                "pt": "msg",
+                "to": "text/csv",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.Content-Disposition",
+                "pt": "msg",
+                "to": "contentdisposition",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 930,
+        "y": 660,
+        "wires": [
+            [
+                "ae7aac9.f5acad"
+            ]
+        ]
+    },
+    {
+        "id": "885463c.9df4e2",
+        "type": "ui_button",
+        "z": "25cfbc1.7cb50c4",
+        "name": "",
+        "group": "f4f266b4.cb455",
+        "order": 11,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "label": "Graph",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "show_chart",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 270,
+        "y": 780,
+        "wires": [
+            [
+                "a84f81a5.cef7f"
+            ]
+        ]
+    },
+    {
+        "id": "a84f81a5.cef7f",
+        "type": "function",
+        "z": "25cfbc1.7cb50c4",
+        "name": "Get filename",
+        "func": "// Get the filename from the flow context\nlet filename = flow.get(\"fileselected\");\n\n// check, if the filename is undefined that means it does not exist yet, nothing is selected yet\n// return: do not output anything\nif (filename===undefined) {\n    return;\n}\n\n// return the filename to the file-in node to delete\nmsg.filename = filename;\n\nif (msg.filename.replace(/^.*(\\\\|\\/|\\:)/, '')[0]!==\".\") {\n    // Only do this if this is a file, we don't delete folders\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 440,
+        "y": 780,
+        "wires": [
+            [
+                "402f4aec.57e55c"
+            ]
+        ]
+    },
+    {
+        "id": "402f4aec.57e55c",
+        "type": "file in",
+        "z": "25cfbc1.7cb50c4",
+        "name": "",
+        "filename": "",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 620,
+        "y": 780,
+        "wires": [
+            [
+                "c47d0198.eeec8"
+            ]
+        ]
+    },
+    {
+        "id": "c47d0198.eeec8",
+        "type": "csv",
+        "z": "25cfbc1.7cb50c4",
+        "name": "",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "x": 770,
+        "y": 780,
+        "wires": [
+            [
+                "7686009e.e9c42"
+            ]
+        ]
+    },
+    {
+        "id": "7dc0481.2520538",
+        "type": "debug",
+        "z": "25cfbc1.7cb50c4",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1190,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "7686009e.e9c42",
+        "type": "function",
+        "z": "25cfbc1.7cb50c4",
+        "name": "Format data for chart",
+        "func": "var chart = [{\n    \"series\":[],\n    \"data\":[],\n    \"labels\":[msg.filename]\n}];\n\n\n/*\nvar pressure = [];\nvar out2 = [];\n\nfor (var i=0; i<msg.payload.length; i++) {\n    pressure.push({\"x\":msg.payload[i].timestamp, \"y\":msg.payload[i].pressure});\n    out2.push({\"x\":msg.payload[i].timestamp, \"y\":msg.payload[i].out2*200});\n\n}\nchart[0].data.push(pressure);\nchart[0].data.push(out2);\n*/\n\nlet columns = 0;\n\nfor(var series in msg.payload[0]) {\n    if(series!==\"timestamp\") {\n        chart[0].series.push(series);\n        chart[0].data.push([]);\n        columns++;\n    }\n}\n\n\nfor (var j=0; j<msg.payload.length; j++) {\n   for(var i=0;i<columns;i++) {\n       chart[0].data[i].push({\"x\":msg.payload[j].timestamp, \"y\":msg.payload[j][chart[0].series[i]]});\n   } \n}\n\n\n\n\nmsg.payload = chart;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 980,
+        "y": 780,
+        "wires": [
+            [
+                "30c1d296.e5e406",
+                "7dc0481.2520538"
+            ]
+        ]
+    },
+    {
+        "id": "30c1d296.e5e406",
+        "type": "ui_chart",
+        "z": "25cfbc1.7cb50c4",
+        "name": "",
+        "group": "f4f266b4.cb455",
+        "order": 12,
+        "width": "18",
+        "height": "6",
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "x": 1180,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cd6cf35f.43107",
+        "type": "ui_toast",
+        "z": "25cfbc1.7cb50c4",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "Yes",
+        "cancel": "No",
+        "raw": false,
+        "topic": "",
+        "name": "Confirmation",
+        "x": 690,
+        "y": 460,
+        "wires": [
+            [
+                "d3f9a076.979c08"
+            ]
+        ]
+    },
+    {
+        "id": "74a949ad.722ef",
+        "type": "change",
+        "z": "25cfbc1.7cb50c4",
+        "name": "Set message",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Delete confirmation",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Are you sure you want to delete this file?",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 460,
+        "wires": [
+            [
+                "cd6cf35f.43107"
+            ]
+        ]
+    },
+    {
+        "id": "d3f9a076.979c08",
+        "type": "switch",
+        "z": "25cfbc1.7cb50c4",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Yes",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 890,
+        "y": 460,
+        "wires": [
+            [
+                "fe6931ed.71a788"
+            ]
+        ]
+    },
+    {
+        "id": "3401e043.ab8328",
+        "type": "function",
+        "z": "25cfbc1.7cb50c4",
+        "name": "Folder handling",
+        "func": "let folder = context.get(\"folder\");\nif (folder===undefined) {\n    folder=\"/\";\n    context.set(\"folder\", folder);\n}\n\nlet hidden = context.get(\"hidden\");\nif (hidden===undefined) {\n    hidden=false;\n    context.set(\"hidden\", hidden);\n}\n\nif (msg.topic===\"up\") {\n    var the_arr = folder.split('/');\n    the_arr.pop();\n    folder=the_arr.join('/'); \n    context.set(\"folder\", folder);\n}\nif (msg.topic===\"change\") {\n    folder=msg.payload;    \n    context.set(\"folder\", folder);\n}\nif (msg.topic===\"hidden\") {\n    hidden=msg.payload;    \n    context.set(\"hidden\", hidden);\n}\n\nmsg.payload = {\"start\":folder, \"hidden\": hidden};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 360,
+        "wires": [
+            [
+                "bd091aa5.9565d8",
+                "9b17cd1d.b5ff4",
+                "7a576f97.3417f"
+            ]
+        ]
+    },
+    {
+        "id": "9b17cd1d.b5ff4",
+        "type": "ui_text",
+        "z": "25cfbc1.7cb50c4",
+        "group": "f4f266b4.cb455",
+        "order": 4,
+        "width": "9",
+        "height": "1",
+        "name": "",
+        "label": "Folder:",
+        "format": "{{msg.payload.start}}",
+        "layout": "row-left",
+        "x": 680,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "7a23a639.4c9018",
+        "type": "ui_button",
+        "z": "25cfbc1.7cb50c4",
+        "name": "",
+        "group": "f4f266b4.cb455",
+        "order": 3,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "label": "Up",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "arrow_upwards",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "up",
+        "topicType": "str",
+        "x": 290,
+        "y": 380,
+        "wires": [
+            [
+                "3401e043.ab8328"
+            ]
+        ]
+    },
+    {
+        "id": "4f045d8d.135f94",
+        "type": "ui_button",
+        "z": "25cfbc1.7cb50c4",
+        "name": "",
+        "group": "f4f266b4.cb455",
+        "order": 8,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "label": "Open",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "folder_open",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 310,
+        "y": 580,
+        "wires": [
+            [
+                "d630f5b3.5c4648"
+            ]
+        ]
+    },
+    {
+        "id": "d630f5b3.5c4648",
+        "type": "function",
+        "z": "25cfbc1.7cb50c4",
+        "name": "Change folder",
+        "func": "// Get the filename from the flow context\nlet folderselected = flow.get(\"folderselected\");\n\n// check, if the filename is undefined that means it does not exist yet, nothing is selected yet\n// return: do not output anything\nif (folderselected===undefined) {\n    return;\n}\n\nmsg.topic = \"change\";\nmsg.payload = folderselected;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 520,
+        "y": 580,
+        "wires": [
+            [
+                "3401e043.ab8328"
+            ]
+        ]
+    },
+    {
+        "id": "4185fc91.180244",
+        "type": "ui_button",
+        "z": "25cfbc1.7cb50c4",
+        "name": "",
+        "group": "f4f266b4.cb455",
+        "order": 2,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "label": "Reset",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "autorenew",
+        "payload": "/home",
+        "payloadType": "str",
+        "topic": "change",
+        "topicType": "str",
+        "x": 290,
+        "y": 340,
+        "wires": [
+            [
+                "3401e043.ab8328"
+            ]
+        ]
+    },
+    {
+        "id": "83c56eba.21048",
+        "type": "ui_dropdown",
+        "z": "25cfbc1.7cb50c4",
+        "name": "Folder Selector",
+        "label": "",
+        "tooltip": "",
+        "place": "Select a folder",
+        "group": "f4f266b4.cb455",
+        "order": 7,
+        "width": "5",
+        "height": "1",
+        "passthru": false,
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "",
+        "x": 1100,
+        "y": 400,
+        "wires": [
+            [
+                "21cb93ba.0cdaa4"
+            ]
+        ]
+    },
+    {
+        "id": "7da3bde.822b7c4",
+        "type": "function",
+        "z": "25cfbc1.7cb50c4",
+        "name": "Format data",
+        "func": "// format the data for the dropdown\nmsg.options = [];\nfor (var i=0; i<msg.payload.length; i++) {\n    // This is a foler\n    obj = {};\n    obj [\"[\"+msg.payload[i].name.replace(/^.*(\\\\|\\/|\\:)/, '')+\"]\"]=msg.payload[i].name;\n    msg.options.push(obj);\n}\nmsg.payload={};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 890,
+        "y": 400,
+        "wires": [
+            [
+                "83c56eba.21048"
+            ]
+        ]
+    },
+    {
+        "id": "17598a85.674f15",
+        "type": "change",
+        "z": "25cfbc1.7cb50c4",
+        "name": "Save selection",
+        "rules": [
+            {
+                "t": "set",
+                "p": "fileselected",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1300,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "21cb93ba.0cdaa4",
+        "type": "change",
+        "z": "25cfbc1.7cb50c4",
+        "name": "Save selection",
+        "rules": [
+            {
+                "t": "set",
+                "p": "folderselected",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1300,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "45df5de3.6031b4",
+        "type": "ui_switch",
+        "z": "25cfbc1.7cb50c4",
+        "name": "",
+        "label": "Hidden",
+        "tooltip": "Show hidden files or not",
+        "group": "f4f266b4.cb455",
+        "order": 5,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "decouple": "false",
+        "topic": "hidden",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "check_box",
+        "oncolor": "#000000",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "check_box_outline_blank",
+        "offcolor": "#000000",
+        "animate": true,
+        "className": "",
+        "x": 280,
+        "y": 420,
+        "wires": [
+            [
+                "3401e043.ab8328"
+            ]
+        ]
+    },
+    {
+        "id": "bd091aa5.9565d8",
+        "type": "fs-file-lister",
+        "z": "25cfbc1.7cb50c4",
+        "name": "Files",
+        "start": "../",
+        "pattern": "*.*",
+        "folders": "*",
+        "hidden": false,
+        "lstype": "files",
+        "path": true,
+        "single": true,
+        "depth": 0,
+        "stat": true,
+        "showWarnings": false,
+        "x": 690,
+        "y": 300,
+        "wires": [
+            [
+                "557534d8.70feac",
+                "a55c9b29.65d8d"
+            ]
+        ]
+    },
+    {
+        "id": "7a576f97.3417f",
+        "type": "fs-file-lister",
+        "z": "25cfbc1.7cb50c4",
+        "name": "Folders",
+        "start": "../",
+        "pattern": "*.*",
+        "folders": "*",
+        "hidden": false,
+        "lstype": "directories",
+        "path": true,
+        "single": true,
+        "depth": 0,
+        "stat": true,
+        "showWarnings": false,
+        "x": 700,
+        "y": 400,
+        "wires": [
+            [
+                "7da3bde.822b7c4"
+            ]
+        ]
+    },
+    {
+        "id": "f4f266b4.cb455",
+        "type": "ui_group",
+        "name": "File Browser",
+        "tab": "f10c466.c448038",
+        "order": 1,
+        "disp": true,
+        "width": "18",
+        "collapse": false
+    },
+    {
+        "id": "f10c466.c448038",
+        "type": "ui_tab",
+        "name": "Files",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    }
+]

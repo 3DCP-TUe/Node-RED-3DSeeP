@@ -1,0 +1,1489 @@
+[
+    {
+        "id": "44daa70687b7ded2",
+        "type": "tab",
+        "label": "MAI: Read values",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e68624c9b06faaef",
+        "type": "OpcUa-Client",
+        "z": "44daa70687b7ded2",
+        "endpoint": "b6399b95df174ec3",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "name": "",
+        "x": 1660,
+        "y": 920,
+        "wires": [
+            [
+                "1ee0c5275f125b9e"
+            ]
+        ]
+    },
+    {
+        "id": "1ee0c5275f125b9e",
+        "type": "switch",
+        "z": "44daa70687b7ded2",
+        "name": "Values",
+        "property": "browseName",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "mai_master_on",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "mai_auto_on",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "mai_active_errors",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "mai_water_run",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "mai_water_temp",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "mai_water_flow_set",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "mai_water_flow_actual",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "mai_waterpump_ref_freq",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "mai_waterpump_output_freq",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "mai_mixer_run",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "mai_pump_run",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "mai_pump_speed",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "mai_pump_output_current",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "mai_pump_output_power",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "mai_pump_vibration_mode",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "mai_setting_water_pre_run",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "mai_setting_mixer_post_run",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "mai_setting_wetprobe_covered_delay",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "mai_setting_wetprobe_uncovered_delay",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 19,
+        "x": 1870,
+        "y": 920,
+        "wires": [
+            [
+                "91d3d822705d4350"
+            ],
+            [
+                "dac5c21fdd0adfe9"
+            ],
+            [
+                "62a53c047f188be6"
+            ],
+            [
+                "0970dae186db49a7",
+                "ab9c75f8625319cf",
+                "838de73e3a69865f"
+            ],
+            [
+                "b0beaf2f96ee4a1a",
+                "8c3a0868dc529bed"
+            ],
+            [
+                "e483c80d9b622428",
+                "1ef6c1ec1f84be3d"
+            ],
+            [
+                "82e53a6657259f3c",
+                "4cf27120164ac1bf"
+            ],
+            [
+                "968cb01cfa7076e5",
+                "dc782e8d668c9d6f"
+            ],
+            [
+                "0480fee82bcccbcb",
+                "b75fdc1cde6b678f"
+            ],
+            [
+                "7a62acf7a2f66313",
+                "01800e7ec5b9fe1d"
+            ],
+            [
+                "81a2d6777e0b6cc6",
+                "be4d102ce46de5c1"
+            ],
+            [
+                "cfdebabeab80a756",
+                "70ab0f191f405ada"
+            ],
+            [
+                "7c90eceb47694e52",
+                "6eb65753d10b0946"
+            ],
+            [
+                "dfbb86e0b5062f36",
+                "b319b0ceb19d5640"
+            ],
+            [
+                "b8930d62ce0e8b8f",
+                "dc0273bf4af94f29"
+            ],
+            [
+                "0350338e2e979b30",
+                "ec64381a037aa443"
+            ],
+            [
+                "8547c9877bb10b15",
+                "bd5444b34182012f"
+            ],
+            [
+                "5e5bf0d5b6aa2caa",
+                "33ab9ed5ed2032d0"
+            ],
+            [
+                "3bd853846ce2e12b",
+                "edc472633c7ddc23"
+            ]
+        ]
+    },
+    {
+        "id": "0970dae186db49a7",
+        "type": "ui_text",
+        "z": "44daa70687b7ded2",
+        "group": "8a339496ca145acd",
+        "order": 8,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Water run [bool]",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2460,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "76a7c670fafe5fee",
+        "type": "ui_text",
+        "z": "44daa70687b7ded2",
+        "group": "8a339496ca145acd",
+        "order": 7,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "<b>Water:",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2450,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "d3da48119741ab23",
+        "type": "join",
+        "z": "44daa70687b7ded2",
+        "name": "",
+        "mode": "custom",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "16",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 2550,
+        "y": 1980,
+        "wires": [
+            [
+                "642b3900b9b85c10"
+            ]
+        ]
+    },
+    {
+        "id": "642b3900b9b85c10",
+        "type": "link out",
+        "z": "44daa70687b7ded2",
+        "name": "MAI values out",
+        "mode": "link",
+        "links": [
+            "22307808c33194d2"
+        ],
+        "x": 2665,
+        "y": 1980,
+        "wires": []
+    },
+    {
+        "id": "b0beaf2f96ee4a1a",
+        "type": "ui_text",
+        "z": "44daa70687b7ded2",
+        "group": "8a339496ca145acd",
+        "order": 13,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Water temp [C]",
+        "format": "{{msg.payload.toFixed(1)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2460,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "e483c80d9b622428",
+        "type": "ui_text",
+        "z": "44daa70687b7ded2",
+        "group": "8a339496ca145acd",
+        "order": 9,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Water flow set [L/h]",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2470,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "82e53a6657259f3c",
+        "type": "ui_text",
+        "z": "44daa70687b7ded2",
+        "group": "8a339496ca145acd",
+        "order": 10,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Water flow current [L/h]",
+        "format": "{{msg.payload.toFixed(2)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2490,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "858ef0a2e15b741e",
+        "type": "ui_text",
+        "z": "44daa70687b7ded2",
+        "group": "e6b1019bb3a082ac",
+        "order": 14,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "<b>Mixer:",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2440,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "0e74dc2d47da97c5",
+        "type": "ui_text",
+        "z": "44daa70687b7ded2",
+        "group": "e6b1019bb3a082ac",
+        "order": 7,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "<b>Pump:",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2450,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "1bfa9be589b27668",
+        "type": "ui_text",
+        "z": "44daa70687b7ded2",
+        "group": "8a339496ca145acd",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "<b>Settings:",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2450,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "7a62acf7a2f66313",
+        "type": "ui_text",
+        "z": "44daa70687b7ded2",
+        "group": "e6b1019bb3a082ac",
+        "order": 15,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Mixer run [bool]",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 2460,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "81a2d6777e0b6cc6",
+        "type": "ui_text",
+        "z": "44daa70687b7ded2",
+        "group": "e6b1019bb3a082ac",
+        "order": 8,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Pump run [bool]",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2460,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "7c90eceb47694e52",
+        "type": "ui_text",
+        "z": "44daa70687b7ded2",
+        "group": "e6b1019bb3a082ac",
+        "order": 11,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Pump output current [dA]",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2490,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "dfbb86e0b5062f36",
+        "type": "ui_text",
+        "z": "44daa70687b7ded2",
+        "group": "e6b1019bb3a082ac",
+        "order": 10,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Pump output power [W]",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2490,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "b8930d62ce0e8b8f",
+        "type": "ui_text",
+        "z": "44daa70687b7ded2",
+        "group": "e6b1019bb3a082ac",
+        "order": 12,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Pump vibration mode [int]",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2490,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "5e5bf0d5b6aa2caa",
+        "type": "ui_text",
+        "z": "44daa70687b7ded2",
+        "group": "8a339496ca145acd",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Wetprobe cov. delay [s]",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2490,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "3bd853846ce2e12b",
+        "type": "ui_text",
+        "z": "44daa70687b7ded2",
+        "group": "8a339496ca145acd",
+        "order": 5,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Wetprobe uncov. delay [s]",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2490,
+        "y": 1580,
+        "wires": []
+    },
+    {
+        "id": "ab9c75f8625319cf",
+        "type": "function",
+        "z": "44daa70687b7ded2",
+        "name": "mai_water_run",
+        "func": "msg.mai_water_run = msg.payload == true ? 1 : 0\n\nreturn msg\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2060,
+        "y": 1760,
+        "wires": [
+            [
+                "d3da48119741ab23"
+            ]
+        ]
+    },
+    {
+        "id": "8c3a0868dc529bed",
+        "type": "function",
+        "z": "44daa70687b7ded2",
+        "name": "mai_water_temp",
+        "func": "msg.mai_water_temp = msg.payload\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2070,
+        "y": 1800,
+        "wires": [
+            [
+                "d3da48119741ab23"
+            ]
+        ]
+    },
+    {
+        "id": "01800e7ec5b9fe1d",
+        "type": "function",
+        "z": "44daa70687b7ded2",
+        "name": "mai_mixer_run",
+        "func": "msg.mai_mixer_run=msg.payload == true ? 1 : 0\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2060,
+        "y": 2040,
+        "wires": [
+            [
+                "d3da48119741ab23"
+            ]
+        ]
+    },
+    {
+        "id": "1ef6c1ec1f84be3d",
+        "type": "function",
+        "z": "44daa70687b7ded2",
+        "name": "mai_water_flow_set",
+        "func": "msg.mai_water_flow_set = msg.payload\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2080,
+        "y": 1840,
+        "wires": [
+            [
+                "d3da48119741ab23"
+            ]
+        ]
+    },
+    {
+        "id": "4cf27120164ac1bf",
+        "type": "function",
+        "z": "44daa70687b7ded2",
+        "name": "mai_water_flow_actual",
+        "func": "msg.mai_water_flow_actual = msg.payload\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2080,
+        "y": 1880,
+        "wires": [
+            [
+                "d3da48119741ab23"
+            ]
+        ]
+    },
+    {
+        "id": "be4d102ce46de5c1",
+        "type": "function",
+        "z": "44daa70687b7ded2",
+        "name": "mai_pump_run",
+        "func": "msg.mai_pump_run= msg.payload == true ? 1 : 0\nreturn msg\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2060,
+        "y": 2140,
+        "wires": [
+            [
+                "d3da48119741ab23"
+            ]
+        ]
+    },
+    {
+        "id": "6eb65753d10b0946",
+        "type": "function",
+        "z": "44daa70687b7ded2",
+        "name": "mai_pump_output_current",
+        "func": "msg.mai_pump_output_current= msg.payload\nreturn msg\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2090,
+        "y": 2220,
+        "wires": [
+            [
+                "d3da48119741ab23"
+            ]
+        ]
+    },
+    {
+        "id": "b319b0ceb19d5640",
+        "type": "function",
+        "z": "44daa70687b7ded2",
+        "name": "mai_pump_output_power",
+        "func": "msg.mai_pump_output_power= msg.payload\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2090,
+        "y": 2260,
+        "wires": [
+            [
+                "d3da48119741ab23"
+            ]
+        ]
+    },
+    {
+        "id": "dc0273bf4af94f29",
+        "type": "function",
+        "z": "44daa70687b7ded2",
+        "name": "mai_pump_vibration_mode",
+        "func": "msg.mai_pump_vibration_mode= msg.payload\nreturn msg\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2100,
+        "y": 2300,
+        "wires": [
+            [
+                "d3da48119741ab23"
+            ]
+        ]
+    },
+    {
+        "id": "33ab9ed5ed2032d0",
+        "type": "function",
+        "z": "44daa70687b7ded2",
+        "name": "mai_setting_wetprobe_covered_delay",
+        "func": "msg.mai_setting_wetprobe_covered_delay = msg.payload\nreturn msg\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2130,
+        "y": 2440,
+        "wires": [
+            [
+                "d3da48119741ab23"
+            ]
+        ]
+    },
+    {
+        "id": "edc472633c7ddc23",
+        "type": "function",
+        "z": "44daa70687b7ded2",
+        "name": "mai_setting_wetprobe_covered_delay",
+        "func": "msg.mai_setting_wetprobe_uncovered_delay = msg.payload\nreturn msg\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2130,
+        "y": 2480,
+        "wires": [
+            [
+                "d3da48119741ab23"
+            ]
+        ]
+    },
+    {
+        "id": "cfdebabeab80a756",
+        "type": "function",
+        "z": "44daa70687b7ded2",
+        "name": "mai_pump_speed",
+        "func": "msg.mai_pump_speed = msg.payload\nreturn msg\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2070,
+        "y": 2180,
+        "wires": [
+            [
+                "d3da48119741ab23"
+            ]
+        ]
+    },
+    {
+        "id": "168714c7d76462ea",
+        "type": "ui_text",
+        "z": "44daa70687b7ded2",
+        "group": "e6b1019bb3a082ac",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "<b>Mode:",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2440,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "91d3d822705d4350",
+        "type": "ui_text",
+        "z": "44daa70687b7ded2",
+        "group": "e6b1019bb3a082ac",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Master on [bool]",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2460,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "dac5c21fdd0adfe9",
+        "type": "ui_text",
+        "z": "44daa70687b7ded2",
+        "group": "e6b1019bb3a082ac",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Auto on [bool]",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2460,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "968cb01cfa7076e5",
+        "type": "function",
+        "z": "44daa70687b7ded2",
+        "name": "mai_waterpump_ref_freq",
+        "func": "msg.mai_waterpump_ref_freq = msg.payload\nreturn msg\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2090,
+        "y": 1920,
+        "wires": [
+            [
+                "d3da48119741ab23"
+            ]
+        ]
+    },
+    {
+        "id": "0480fee82bcccbcb",
+        "type": "function",
+        "z": "44daa70687b7ded2",
+        "name": "mai_waterpump_output_freq",
+        "func": "msg.mai_waterpump_output_freq = msg.payload\nreturn msg\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2100,
+        "y": 1960,
+        "wires": [
+            [
+                "d3da48119741ab23"
+            ]
+        ]
+    },
+    {
+        "id": "dc782e8d668c9d6f",
+        "type": "ui_text",
+        "z": "44daa70687b7ded2",
+        "group": "8a339496ca145acd",
+        "order": 11,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Waterpump reference freq. [cHz]",
+        "format": "{{msg.payload.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2510,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "b75fdc1cde6b678f",
+        "type": "ui_text",
+        "z": "44daa70687b7ded2",
+        "group": "8a339496ca145acd",
+        "order": 12,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Waterpump output freq. [cHz]",
+        "format": "{{msg.payload.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2500,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "62a53c047f188be6",
+        "type": "ui_text",
+        "z": "44daa70687b7ded2",
+        "group": "e6b1019bb3a082ac",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Active errors [bool]",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2470,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "0350338e2e979b30",
+        "type": "function",
+        "z": "44daa70687b7ded2",
+        "name": "mai_setting_water_pre_run",
+        "func": "msg.mai_setting_water_pre_run = msg.payload\nreturn msg\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2100,
+        "y": 2360,
+        "wires": [
+            [
+                "d3da48119741ab23"
+            ]
+        ]
+    },
+    {
+        "id": "8547c9877bb10b15",
+        "type": "function",
+        "z": "44daa70687b7ded2",
+        "name": "mai_setting_mixer_post_run",
+        "func": "msg.mai_setting_mixer_post_run = msg.payload\nreturn msg\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2100,
+        "y": 2400,
+        "wires": [
+            [
+                "d3da48119741ab23"
+            ]
+        ]
+    },
+    {
+        "id": "ec64381a037aa443",
+        "type": "ui_text",
+        "z": "44daa70687b7ded2",
+        "group": "8a339496ca145acd",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Water pre-run [s]",
+        "format": "{{msg.payload.toFixed(1)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2470,
+        "y": 1460,
+        "wires": []
+    },
+    {
+        "id": "bd5444b34182012f",
+        "type": "ui_text",
+        "z": "44daa70687b7ded2",
+        "group": "8a339496ca145acd",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Mixer post-run [s]",
+        "format": "{{msg.payload.toFixed(1)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2470,
+        "y": 1500,
+        "wires": []
+    },
+    {
+        "id": "70ab0f191f405ada",
+        "type": "ui_text",
+        "z": "44daa70687b7ded2",
+        "group": "e6b1019bb3a082ac",
+        "order": 9,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Pump speed [cHz]",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2470,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "bb0fa678ef79abf7",
+        "type": "inject",
+        "z": "44daa70687b7ded2",
+        "d": true,
+        "name": "Timer",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "0.1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 890,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bbe3e5208daf1b84",
+        "type": "link in",
+        "z": "44daa70687b7ded2",
+        "name": "Timer in",
+        "links": [
+            "b847af6089af00ad"
+        ],
+        "x": 855,
+        "y": 600,
+        "wires": [
+            [
+                "59da93dbe09d2399",
+                "241ed1e5c1bff851",
+                "96e3874d54288a14",
+                "4f0afaee14884e09",
+                "98c4244217221223",
+                "d0979a62c9b7bc24",
+                "56c40c445a42f4cd",
+                "fe6206839dc786a5",
+                "35b97ff43a85ac5d",
+                "0baef2036d41bf1f",
+                "8477067dec88e775",
+                "141b91dbcd79ff8a",
+                "1ed73017412d55a9",
+                "47b83194e2e7351a",
+                "ecd1f0318b73474a",
+                "7fbe83d8d4e30db4",
+                "0b277e071f92c273",
+                "875c2aea4f73517f",
+                "a355753efeaab669"
+            ]
+        ]
+    },
+    {
+        "id": "241ed1e5c1bff851",
+        "type": "OpcUa-Item",
+        "z": "44daa70687b7ded2",
+        "item": "ns=2;s=Tags.GECO/MP_Auto_On",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "mai_auto_on",
+        "x": 1170,
+        "y": 640,
+        "wires": [
+            [
+                "e68624c9b06faaef"
+            ]
+        ]
+    },
+    {
+        "id": "59da93dbe09d2399",
+        "type": "OpcUa-Item",
+        "z": "44daa70687b7ded2",
+        "item": "ns=2;s=Tags.GECO/MP_Master_On",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "mai_master_on",
+        "x": 1180,
+        "y": 600,
+        "wires": [
+            [
+                "e68624c9b06faaef"
+            ]
+        ]
+    },
+    {
+        "id": "96e3874d54288a14",
+        "type": "OpcUa-Item",
+        "z": "44daa70687b7ded2",
+        "item": "ns=2;s=Tags.GECO/MP_Error_Any_Active",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "mai_active_errors",
+        "x": 1190,
+        "y": 680,
+        "wires": [
+            [
+                "e68624c9b06faaef"
+            ]
+        ]
+    },
+    {
+        "id": "4f0afaee14884e09",
+        "type": "OpcUa-Item",
+        "z": "44daa70687b7ded2",
+        "item": "ns=2;s=Tags.GECO/MP_Water_Run",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "mai_water_run",
+        "x": 1180,
+        "y": 760,
+        "wires": [
+            [
+                "e68624c9b06faaef"
+            ]
+        ]
+    },
+    {
+        "id": "98c4244217221223",
+        "type": "OpcUa-Item",
+        "z": "44daa70687b7ded2",
+        "item": "ns=2;s=Tags.GECO/MPTX_DI_Water_Temperature_C_R",
+        "datatype": "Float",
+        "value": "",
+        "name": "mai_water_temp",
+        "x": 1180,
+        "y": 800,
+        "wires": [
+            [
+                "e68624c9b06faaef"
+            ]
+        ]
+    },
+    {
+        "id": "d0979a62c9b7bc24",
+        "type": "OpcUa-Item",
+        "z": "44daa70687b7ded2",
+        "item": "ns=2;s=Tags.GECO/MPRX_DI_Water_Flowrate_Set_lh_I",
+        "datatype": "Int16",
+        "value": "",
+        "name": "mai_water_flow_set",
+        "x": 1200,
+        "y": 840,
+        "wires": [
+            [
+                "e68624c9b06faaef"
+            ]
+        ]
+    },
+    {
+        "id": "56c40c445a42f4cd",
+        "type": "OpcUa-Item",
+        "z": "44daa70687b7ded2",
+        "item": "ns=2;s=Tags.GECO/MP_Waterflowrate_current_Lh_R",
+        "datatype": "Float",
+        "value": "",
+        "name": "mai_water_flow_actual",
+        "x": 1200,
+        "y": 880,
+        "wires": [
+            [
+                "e68624c9b06faaef"
+            ]
+        ]
+    },
+    {
+        "id": "fe6206839dc786a5",
+        "type": "OpcUa-Item",
+        "z": "44daa70687b7ded2",
+        "item": "ns=2;s=Tags.GECO/MPYMB_Waterpump_FrequencyRef_cHz_I",
+        "datatype": "Int16",
+        "value": "",
+        "name": "mai_waterpump_ref_freq",
+        "x": 1210,
+        "y": 920,
+        "wires": [
+            [
+                "e68624c9b06faaef"
+            ]
+        ]
+    },
+    {
+        "id": "35b97ff43a85ac5d",
+        "type": "OpcUa-Item",
+        "z": "44daa70687b7ded2",
+        "item": "ns=2;s=Tags.GECO/MPXMB_Waterpump_OutputFrequency_cHz_I",
+        "datatype": "Int16",
+        "value": "",
+        "name": "mai_waterpump_output_freq",
+        "x": 1220,
+        "y": 960,
+        "wires": [
+            [
+                "e68624c9b06faaef"
+            ]
+        ]
+    },
+    {
+        "id": "0baef2036d41bf1f",
+        "type": "OpcUa-Item",
+        "z": "44daa70687b7ded2",
+        "item": "ns=2;s=Tags.GECO/MP_Mixer_Run",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "mai_mixer_run",
+        "x": 1180,
+        "y": 1080,
+        "wires": [
+            [
+                "e68624c9b06faaef"
+            ]
+        ]
+    },
+    {
+        "id": "8477067dec88e775",
+        "type": "OpcUa-Item",
+        "z": "44daa70687b7ded2",
+        "item": "ns=2;s=Tags.GECO/MP_Pump_Run",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "mai_pump_run",
+        "x": 1180,
+        "y": 1200,
+        "wires": [
+            [
+                "e68624c9b06faaef"
+            ]
+        ]
+    },
+    {
+        "id": "141b91dbcd79ff8a",
+        "type": "OpcUa-Item",
+        "z": "44daa70687b7ded2",
+        "item": "ns=2;s=Tags.GECO/MPRX_EXT_Pump_Speed_cHz_I",
+        "datatype": "Int16",
+        "value": "",
+        "name": "mai_pump_speed",
+        "x": 1190,
+        "y": 1240,
+        "wires": [
+            [
+                "e68624c9b06faaef"
+            ]
+        ]
+    },
+    {
+        "id": "1ed73017412d55a9",
+        "type": "OpcUa-Item",
+        "z": "44daa70687b7ded2",
+        "item": "ns=2;s=Tags.GECO/MPXMB_Pump_OutputCurrent_dA_I",
+        "datatype": "Int16",
+        "value": "",
+        "name": "mai_pump_output_current",
+        "x": 1210,
+        "y": 1280,
+        "wires": [
+            [
+                "e68624c9b06faaef"
+            ]
+        ]
+    },
+    {
+        "id": "47b83194e2e7351a",
+        "type": "OpcUa-Item",
+        "z": "44daa70687b7ded2",
+        "item": "ns=2;s=Tags.GECO/MPXMB_Pump_OutputPower_W_I",
+        "datatype": "Int16",
+        "value": "",
+        "name": "mai_pump_output_power",
+        "x": 1210,
+        "y": 1320,
+        "wires": [
+            [
+                "e68624c9b06faaef"
+            ]
+        ]
+    },
+    {
+        "id": "ecd1f0318b73474a",
+        "type": "OpcUa-Item",
+        "z": "44daa70687b7ded2",
+        "item": "ns=2;s=Tags.GECO/MPRX_DI_Pump_Vib_Mode_I",
+        "datatype": "Int16",
+        "value": "",
+        "name": "mai_pump_vibration_mode",
+        "x": 1220,
+        "y": 1360,
+        "wires": [
+            [
+                "e68624c9b06faaef"
+            ]
+        ]
+    },
+    {
+        "id": "7fbe83d8d4e30db4",
+        "type": "OpcUa-Item",
+        "z": "44daa70687b7ded2",
+        "item": "ns=2;s=Tags.GECO/MPRX_DI_Water_Before_Mixer_s_R",
+        "datatype": "Float",
+        "value": "",
+        "name": "mai_setting_water_pre_run",
+        "x": 1220,
+        "y": 1420,
+        "wires": [
+            [
+                "e68624c9b06faaef"
+            ]
+        ]
+    },
+    {
+        "id": "0b277e071f92c273",
+        "type": "OpcUa-Item",
+        "z": "44daa70687b7ded2",
+        "item": "ns=2;s=Tags.GECO/MPRX_DI_Mixer_After_Water_s_R",
+        "datatype": "Float",
+        "value": "",
+        "name": "mai_setting_mixer_post_run",
+        "x": 1220,
+        "y": 1460,
+        "wires": [
+            [
+                "e68624c9b06faaef"
+            ]
+        ]
+    },
+    {
+        "id": "875c2aea4f73517f",
+        "type": "OpcUa-Item",
+        "z": "44daa70687b7ded2",
+        "item": "ns=2;s=Tags.GECO/MPRX_DI_Wetprobe_Upper_Cov_Delay_s_I",
+        "datatype": "Int16",
+        "value": "",
+        "name": "mai_setting_wetprobe_covered_delay",
+        "x": 1250,
+        "y": 1500,
+        "wires": [
+            [
+                "e68624c9b06faaef"
+            ]
+        ]
+    },
+    {
+        "id": "a355753efeaab669",
+        "type": "OpcUa-Item",
+        "z": "44daa70687b7ded2",
+        "item": "ns=2;s=Tags.GECO/MPRX_DI_Wetprobe_Upper_NCov_Delay_s_I",
+        "datatype": "Int16",
+        "value": "",
+        "name": "mai_setting_wetprobe_uncovered_delay",
+        "x": 1260,
+        "y": 1540,
+        "wires": [
+            [
+                "e68624c9b06faaef"
+            ]
+        ]
+    },
+    {
+        "id": "838de73e3a69865f",
+        "type": "link out",
+        "z": "44daa70687b7ded2",
+        "name": "MAI water run out",
+        "mode": "link",
+        "links": [
+            "bd0196b4646dce8f"
+        ],
+        "x": 2585,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "b6399b95df174ec3",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://10.129.4.80:48010",
+        "secpol": "None",
+        "secmode": "None",
+        "login": false
+    },
+    {
+        "id": "8a339496ca145acd",
+        "type": "ui_group",
+        "name": "Read values part 2",
+        "tab": "afc4f775962a26f4",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e6b1019bb3a082ac",
+        "type": "ui_group",
+        "name": "Read values part 1",
+        "tab": "afc4f775962a26f4",
+        "order": 2,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "afc4f775962a26f4",
+        "type": "ui_tab",
+        "name": "MAI MULTIMIX",
+        "icon": "dashboard",
+        "order": 7,
+        "disabled": false,
+        "hidden": false
+    }
+]

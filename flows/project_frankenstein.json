@@ -1,0 +1,482 @@
+[
+    {
+        "id": "dd125b8f591531ed",
+        "type": "tab",
+        "label": "Project Frankenstein",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2cca5eb8acdf6088",
+        "type": "link in",
+        "z": "dd125b8f591531ed",
+        "name": "",
+        "links": [
+            "75ce1f0d2985eaf1"
+        ],
+        "x": 145,
+        "y": 280,
+        "wires": [
+            [
+                "70378d22cc0c3adc"
+            ]
+        ]
+    },
+    {
+        "id": "5d3e76e0e2fb3e88",
+        "type": "OpcUa-Item",
+        "z": "dd125b8f591531ed",
+        "item": "ns=4;i=22",
+        "datatype": "Boolean",
+        "value": "msg.topic",
+        "name": "Write DO0",
+        "x": 1090,
+        "y": 280,
+        "wires": [
+            [
+                "b737d03adcf2b020"
+            ]
+        ]
+    },
+    {
+        "id": "b737d03adcf2b020",
+        "type": "OpcUa-Client",
+        "z": "dd125b8f591531ed",
+        "endpoint": "9c6664b374f58bc5",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "name": "",
+        "x": 1460,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c362932f265f155a",
+        "type": "OpcUa-Item",
+        "z": "dd125b8f591531ed",
+        "item": "ns=4;i=78",
+        "datatype": "Float",
+        "value": "msg.topic",
+        "name": "Write AO0",
+        "x": 1090,
+        "y": 320,
+        "wires": [
+            [
+                "b737d03adcf2b020"
+            ]
+        ]
+    },
+    {
+        "id": "87f13470d81a28fa",
+        "type": "ui_numeric",
+        "z": "dd125b8f591531ed",
+        "name": "",
+        "label": "Write AO0 [mA]",
+        "tooltip": "",
+        "group": "941553f899610cff",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": "4",
+        "max": "20",
+        "step": "0.02",
+        "className": "",
+        "x": 900,
+        "y": 320,
+        "wires": [
+            [
+                "c362932f265f155a"
+            ]
+        ]
+    },
+    {
+        "id": "1f2837a437d9636e",
+        "type": "inject",
+        "z": "dd125b8f591531ed",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "4",
+        "payloadType": "num",
+        "x": 730,
+        "y": 320,
+        "wires": [
+            [
+                "87f13470d81a28fa"
+            ]
+        ]
+    },
+    {
+        "id": "8d2d37d2cd1421ed",
+        "type": "ui_switch",
+        "z": "dd125b8f591531ed",
+        "name": "",
+        "label": "Sync with m-tec [0/1]",
+        "tooltip": "",
+        "group": "941553f899610cff",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 680,
+        "y": 360,
+        "wires": [
+            [
+                "98e93caccdbdc720"
+            ]
+        ]
+    },
+    {
+        "id": "98e93caccdbdc720",
+        "type": "function",
+        "z": "dd125b8f591531ed",
+        "name": "",
+        "func": "global.set(\"isEnabled\", msg.payload);",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "da6c33eda5543d46",
+        "type": "function",
+        "z": "dd125b8f591531ed",
+        "name": "",
+        "func": "valve = msg.payload;\nisEnabled = false;\n\n// Global value\nif (global.get(\"isEnabled\")!==undefined)\n{\n    isEnabled = global.get(\"isEnabled\");\n}\n\n// Check valve\nif (valve == true)\n{\n    msg.payload = true\n}\nelse\n{\n    msg.payload = false\n}\n\n// Is enabled?\nif (isEnabled == true & valve == false)\n{\n    msg.payload = false\n}\n\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 280,
+        "wires": [
+            [
+                "5d3e76e0e2fb3e88",
+                "e45480b8ed827f96"
+            ]
+        ]
+    },
+    {
+        "id": "e45480b8ed827f96",
+        "type": "ui_text",
+        "z": "dd125b8f591531ed",
+        "group": "941553f899610cff",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "ADS on/off [0/1]",
+        "format": "{{msg.payload.toString()}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1100,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "d89063d7ce0f84f4",
+        "type": "comment",
+        "z": "dd125b8f591531ed",
+        "name": "Write values to material delivery PLC",
+        "info": "",
+        "x": 820,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "d1aefb9152deb1a2",
+        "type": "comment",
+        "z": "dd125b8f591531ed",
+        "name": "Write values to Vertico dosing system",
+        "info": "",
+        "x": 830,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "d6d2363d5b8c91c5",
+        "type": "OpcUa-Client",
+        "z": "dd125b8f591531ed",
+        "endpoint": "df0e8d096d8a204d",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "name": "",
+        "x": 1460,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "70378d22cc0c3adc",
+        "type": "function",
+        "z": "dd125b8f591531ed",
+        "name": "Only inject when value changes",
+        "func": "if (context.get('prevValue1') === 'undefined') {\n    context.set('prevValue1', false);\n}\n\nif (msg.payload !== context.get('prevValue1')) {\n    context.set('prevValue1', msg.payload);\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 280,
+        "wires": [
+            [
+                "da6c33eda5543d46",
+                "5d7ccd29b3219be1",
+                "91bb5914b130ab06"
+            ]
+        ]
+    },
+    {
+        "id": "5d7ccd29b3219be1",
+        "type": "OpcUa-Item",
+        "z": "dd125b8f591531ed",
+        "item": "ns=5;i=2",
+        "datatype": "Boolean",
+        "value": "msg.topic",
+        "name": "vertico_do3",
+        "x": 1110,
+        "y": 640,
+        "wires": [
+            [
+                "d6d2363d5b8c91c5"
+            ]
+        ]
+    },
+    {
+        "id": "e9061c5808c4246e",
+        "type": "ui_switch",
+        "z": "dd125b8f591531ed",
+        "name": "",
+        "label": "Sync with m-tec [0/1]",
+        "tooltip": "",
+        "group": "b1d6f3e06f0a0eff",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 680,
+        "y": 680,
+        "wires": [
+            [
+                "13698af1e5eb8964"
+            ]
+        ]
+    },
+    {
+        "id": "13698af1e5eb8964",
+        "type": "function",
+        "z": "dd125b8f591531ed",
+        "name": "",
+        "func": "global.set(\"isEnabled2\", msg.payload);",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "91bb5914b130ab06",
+        "type": "function",
+        "z": "dd125b8f591531ed",
+        "name": "",
+        "func": "valve = msg.payload;\nisEnabled = false;\n\n// Global value\nif (global.get(\"isEnabled2\")!==undefined)\n{\n    isEnabled = global.get(\"isEnabled2\");\n}\n\n// Check valve\nif (valve == true)\n{\n    msg.payload = true\n}\nelse\n{\n    msg.payload = false\n}\n\n// Is enabled?\nif (isEnabled == true & valve == false)\n{\n    msg.payload = false\n}\n\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 640,
+        "wires": [
+            [
+                "5d7ccd29b3219be1",
+                "7026429b9b5cc2b3"
+            ]
+        ]
+    },
+    {
+        "id": "7026429b9b5cc2b3",
+        "type": "ui_text",
+        "z": "dd125b8f591531ed",
+        "group": "b1d6f3e06f0a0eff",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Liquid dosing on/off [0/1]",
+        "format": "{{msg.payload.toString()}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1150,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "3a8114956501cd52",
+        "type": "ui_spacer",
+        "z": "dd125b8f591531ed",
+        "name": "spacer",
+        "group": "941553f899610cff",
+        "order": 3,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "3858993998e0a91d",
+        "type": "ui_spacer",
+        "z": "dd125b8f591531ed",
+        "name": "spacer",
+        "group": "b1d6f3e06f0a0eff",
+        "order": 2,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "199743bde951fc49",
+        "type": "ui_spacer",
+        "z": "dd125b8f591531ed",
+        "name": "spacer",
+        "group": "b1d6f3e06f0a0eff",
+        "order": 3,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "9c6664b374f58bc5",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://10.129.4.30:4840",
+        "secpol": "None",
+        "secmode": "None",
+        "login": false
+    },
+    {
+        "id": "941553f899610cff",
+        "type": "ui_group",
+        "name": "ADS",
+        "tab": "d16e0686aa3f78d3",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "df0e8d096d8a204d",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://10.129.4.40:4840",
+        "secpol": "None",
+        "secmode": "None",
+        "login": false
+    },
+    {
+        "id": "b1d6f3e06f0a0eff",
+        "type": "ui_group",
+        "name": "Vertico liquid dosing",
+        "tab": "d16e0686aa3f78d3",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "d16e0686aa3f78d3",
+        "type": "ui_tab",
+        "name": "Project Frankestein",
+        "icon": "dashboard",
+        "order": 11,
+        "disabled": false,
+        "hidden": false
+    }
+]
