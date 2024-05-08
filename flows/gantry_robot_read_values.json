@@ -21,14 +21,14 @@
         "joinerType": "str",
         "accumulate": false,
         "timeout": "",
-        "count": "16",
+        "count": "7",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
         "reduceInitType": "num",
         "reduceFixup": "",
-        "x": 1670,
-        "y": 1260,
+        "x": 2150,
+        "y": 1240,
         "wires": [
             [
                 "b618b2a5afcd6387"
@@ -47,8 +47,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1265,
-        "y": 252,
+        "x": 1270,
+        "y": 260,
         "wires": [
             [
                 "569cbbcd9c221e22",
@@ -71,8 +71,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1275,
-        "y": 292,
+        "x": 1280,
+        "y": 300,
         "wires": [
             [
                 "569cbbcd9c221e22",
@@ -90,12 +90,13 @@
         "name": "cmdFeedRate",
         "func": "msg.XFeedRate_mmMin=msg.payload[0].toString()\nmsg.YFeedRate_mmMin=msg.payload[1].toString()\nmsg.ZFeedRate_mmMin=msg.payload[2].toString()\nmsg.CFeedRate_mmMin=msg.payload[3].toString()\nreturn msg\n",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1295,
-        "y": 332,
+        "x": 1300,
+        "y": 340,
         "wires": [
             [
                 "569cbbcd9c221e22"
@@ -114,8 +115,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1285,
-        "y": 372,
+        "x": 1290,
+        "y": 380,
         "wires": [
             [
                 "569cbbcd9c221e22"
@@ -129,12 +130,13 @@
         "name": "vaPower",
         "func": "msg.XPower_W=msg.payload[0].toString()\nmsg.YPower_W=msg.payload[1].toString()\nmsg.ZPower_W=msg.payload[2].toString()\nmsg.CPower_W=msg.payload[3].toString()\nreturn msg\n",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1275,
-        "y": 412,
+        "x": 1280,
+        "y": 420,
         "wires": [
             [
                 "569cbbcd9c221e22",
@@ -142,26 +144,6 @@
                 "8b1ca803d9b4b749",
                 "d68dc2a261983d6f",
                 "614311a69b92bb68"
-            ]
-        ]
-    },
-    {
-        "id": "623d4724eb8c84de",
-        "type": "function",
-        "z": "71261ff4e362dfc9",
-        "name": "R100",
-        "func": "msg.R100=msg.payload.toString()\nreturn msg\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1265,
-        "y": 452,
-        "wires": [
-            [
-                "569cbbcd9c221e22",
-                "4483b25e45becc2f"
             ]
         ]
     },
@@ -182,191 +164,11 @@
         "output": "sourceTime",
         "outputType": "msg",
         "outTz": "Europe/Amsterdam",
-        "x": 1315,
-        "y": 212,
+        "x": 1320,
+        "y": 220,
         "wires": [
             [
                 "569cbbcd9c221e22"
-            ]
-        ]
-    },
-    {
-        "id": "e80a070dd82077e9",
-        "type": "function",
-        "z": "71261ff4e362dfc9",
-        "name": "R101",
-        "func": "msg.R101=msg.payload.toString()\nreturn msg\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1265,
-        "y": 532,
-        "wires": [
-            [
-                "569cbbcd9c221e22",
-                "d09f73723709053f"
-            ]
-        ]
-    },
-    {
-        "id": "c932879087f8c233",
-        "type": "function",
-        "z": "71261ff4e362dfc9",
-        "name": "R102",
-        "func": "msg.R102=msg.payload.toString()\nreturn msg\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1265,
-        "y": 572,
-        "wires": [
-            [
-                "569cbbcd9c221e22",
-                "d9ab2a3b4b92b9fd"
-            ]
-        ]
-    },
-    {
-        "id": "25c5840f7afdeaf1",
-        "type": "function",
-        "z": "71261ff4e362dfc9",
-        "name": "R103",
-        "func": "msg.R103=msg.payload.toString()\nreturn msg\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1265,
-        "y": 612,
-        "wires": [
-            [
-                "569cbbcd9c221e22",
-                "f1a214eed371c87f"
-            ]
-        ]
-    },
-    {
-        "id": "acb12089f765833a",
-        "type": "function",
-        "z": "71261ff4e362dfc9",
-        "name": "R104",
-        "func": "msg.R104=msg.payload.toString()\nreturn msg\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1265,
-        "y": 652,
-        "wires": [
-            [
-                "569cbbcd9c221e22",
-                "a4d571d857413224"
-            ]
-        ]
-    },
-    {
-        "id": "e7f24aa011fcf90d",
-        "type": "function",
-        "z": "71261ff4e362dfc9",
-        "name": "R105",
-        "func": "msg.R105=msg.payload.toString()\nreturn msg\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1265,
-        "y": 692,
-        "wires": [
-            [
-                "569cbbcd9c221e22",
-                "a292abb4e4016267"
-            ]
-        ]
-    },
-    {
-        "id": "ee154d55865fbe94",
-        "type": "function",
-        "z": "71261ff4e362dfc9",
-        "name": "R106",
-        "func": "msg.R106=msg.payload.toString()\nreturn msg\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1265,
-        "y": 732,
-        "wires": [
-            [
-                "569cbbcd9c221e22",
-                "186c4e2d985c4a0b"
-            ]
-        ]
-    },
-    {
-        "id": "abb6093697eb9453",
-        "type": "function",
-        "z": "71261ff4e362dfc9",
-        "name": "R107",
-        "func": "msg.R107=msg.payload.toString()\nreturn msg\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1265,
-        "y": 772,
-        "wires": [
-            [
-                "569cbbcd9c221e22",
-                "32dc1d08bb4ac58c"
-            ]
-        ]
-    },
-    {
-        "id": "8b3706a0dd167428",
-        "type": "function",
-        "z": "71261ff4e362dfc9",
-        "name": "R108",
-        "func": "msg.R108=msg.payload.toString()\nreturn msg\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1265,
-        "y": 812,
-        "wires": [
-            [
-                "569cbbcd9c221e22",
-                "e979ef019c4a3833"
-            ]
-        ]
-    },
-    {
-        "id": "93ff75e63ec177d1",
-        "type": "function",
-        "z": "71261ff4e362dfc9",
-        "name": "R109",
-        "func": "msg.R109=msg.payload.toString()\nreturn msg\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1265,
-        "y": 852,
-        "wires": [
-            [
-                "569cbbcd9c221e22",
-                "ca9041b540d10759"
             ]
         ]
     },
@@ -405,60 +207,15 @@
             },
             {
                 "t": "eq",
-                "v": "R100",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "R101",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "R102",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "R103",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "R104",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "R105",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "R106",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "R107",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "R108",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "R109",
+                "v": "R",
                 "vt": "str"
             }
         ],
         "checkall": "true",
         "repair": true,
-        "outputs": 15,
+        "outputs": 6,
         "x": 1010,
-        "y": 460,
+        "y": 320,
         "wires": [
             [
                 "b0db6d1a5f3bec61",
@@ -477,35 +234,7 @@
                 "3c520222712bcfaf"
             ],
             [
-                "623d4724eb8c84de",
-                "6156936ca7e31638"
-            ],
-            [
-                "e80a070dd82077e9"
-            ],
-            [
-                "c932879087f8c233"
-            ],
-            [
-                "25c5840f7afdeaf1"
-            ],
-            [
-                "acb12089f765833a"
-            ],
-            [
-                "e7f24aa011fcf90d"
-            ],
-            [
-                "ee154d55865fbe94"
-            ],
-            [
-                "abb6093697eb9453"
-            ],
-            [
-                "8b3706a0dd167428"
-            ],
-            [
-                "93ff75e63ec177d1"
+                "2d323e50ce986709"
             ]
         ]
     },
@@ -723,9 +452,13 @@
         "height": 1,
         "name": "",
         "label": "R100",
-        "format": "{{msg.payload.toFixed(3)}}",
+        "format": "{{msg.R100.toFixed(3)}}",
         "layout": "row-spread",
         "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
         "x": 2150,
         "y": 720,
         "wires": []
@@ -740,9 +473,13 @@
         "height": 1,
         "name": "",
         "label": "R101",
-        "format": "{{msg.payload.toFixed(3)}}",
+        "format": "{{msg.R101.toFixed(3)}}",
         "layout": "row-spread",
         "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
         "x": 2150,
         "y": 760,
         "wires": []
@@ -757,9 +494,13 @@
         "height": 1,
         "name": "",
         "label": "R102",
-        "format": "{{msg.payload.toFixed(3)}}",
+        "format": "{{msg.R102.toFixed(3)}}",
         "layout": "row-spread",
         "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
         "x": 2150,
         "y": 800,
         "wires": []
@@ -774,9 +515,13 @@
         "height": 1,
         "name": "",
         "label": "R103",
-        "format": "{{msg.payload.toFixed(3)}}",
+        "format": "{{msg.R103.toFixed(3)}}",
         "layout": "row-spread",
         "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
         "x": 2150,
         "y": 840,
         "wires": []
@@ -791,9 +536,13 @@
         "height": 1,
         "name": "",
         "label": "R104",
-        "format": "{{msg.payload.toFixed(3)}}",
+        "format": "{{msg.R104.toFixed(3)}}",
         "layout": "row-spread",
         "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
         "x": 2150,
         "y": 880,
         "wires": []
@@ -808,9 +557,13 @@
         "height": 1,
         "name": "",
         "label": "R105",
-        "format": "{{msg.payload.toFixed(3)}}",
+        "format": "{{msg.R105.toFixed(3)}}",
         "layout": "row-spread",
         "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
         "x": 2150,
         "y": 920,
         "wires": []
@@ -825,9 +578,13 @@
         "height": 1,
         "name": "",
         "label": "R106",
-        "format": "{{msg.payload.toFixed(3)}}",
+        "format": "{{msg.R106.toFixed(3)}}",
         "layout": "row-spread",
         "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
         "x": 2150,
         "y": 960,
         "wires": []
@@ -842,9 +599,13 @@
         "height": 1,
         "name": "",
         "label": "R107",
-        "format": "{{msg.payload.toFixed(3)}}",
+        "format": "{{msg.R107.toFixed(3)}}",
         "layout": "row-spread",
         "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
         "x": 2150,
         "y": 1000,
         "wires": []
@@ -859,9 +620,13 @@
         "height": 1,
         "name": "",
         "label": "R108",
-        "format": "{{msg.payload.toFixed(3)}}",
+        "format": "{{msg.R108.toFixed(3)}}",
         "layout": "row-spread",
         "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
         "x": 2150,
         "y": 1040,
         "wires": []
@@ -876,24 +641,15 @@
         "height": 1,
         "name": "",
         "label": "R109",
-        "format": "{{msg.payload.toFixed(3)}}",
+        "format": "{{msg.R109.toFixed(3)}}",
         "layout": "row-spread",
         "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
         "x": 2150,
         "y": 1080,
-        "wires": []
-    },
-    {
-        "id": "6156936ca7e31638",
-        "type": "link out",
-        "z": "71261ff4e362dfc9",
-        "name": "R100 out",
-        "mode": "link",
-        "links": [
-            "fdb2288c758f6bf5"
-        ],
-        "x": 1230,
-        "y": 492,
         "wires": []
     },
     {
@@ -905,249 +661,9 @@
         "links": [
             "ac137530bff3e422"
         ],
-        "x": 1815,
-        "y": 1260,
+        "x": 2295,
+        "y": 1240,
         "wires": []
-    },
-    {
-        "id": "7b3bc7c6128f53fa",
-        "type": "OpcUa-Item",
-        "z": "71261ff4e362dfc9",
-        "item": "ns=2;s=/Channel/MachineAxis/aaIm[1,4]",
-        "datatype": "Double Array",
-        "value": "",
-        "name": "aaIm",
-        "x": 430,
-        "y": 460,
-        "wires": [
-            [
-                "74c2ed4e4f99efea"
-            ]
-        ]
-    },
-    {
-        "id": "57a5a8037cf7efa7",
-        "type": "OpcUa-Item",
-        "z": "71261ff4e362dfc9",
-        "item": "ns=2;s=/Channel/MachineAxis/aaVactM[1,4]",
-        "datatype": "Double Array",
-        "value": "",
-        "name": "aaVactM",
-        "x": 440,
-        "y": 500,
-        "wires": [
-            [
-                "74c2ed4e4f99efea"
-            ]
-        ]
-    },
-    {
-        "id": "971393380fc1c5fe",
-        "type": "OpcUa-Item",
-        "z": "71261ff4e362dfc9",
-        "item": "ns=2;s=/Channel/MachineAxis/cmdFeedRate[1,4]",
-        "datatype": "Double Array",
-        "value": "",
-        "name": "cmdFeedRate",
-        "x": 460,
-        "y": 540,
-        "wires": [
-            [
-                "74c2ed4e4f99efea"
-            ]
-        ]
-    },
-    {
-        "id": "6aeaa8c8322dee8e",
-        "type": "OpcUa-Item",
-        "z": "71261ff4e362dfc9",
-        "item": "ns=2;s=/Channel/MachineAxis/feedRateOvr",
-        "datatype": "Double",
-        "value": "",
-        "name": "feedRateOvr",
-        "x": 450,
-        "y": 580,
-        "wires": [
-            [
-                "74c2ed4e4f99efea"
-            ]
-        ]
-    },
-    {
-        "id": "fa26547a5264758b",
-        "type": "OpcUa-Item",
-        "z": "71261ff4e362dfc9",
-        "item": "ns=2;s=/Nck/MachineAxis/vaPower[1,4]",
-        "datatype": "Double Array",
-        "value": "",
-        "name": "vaPower",
-        "x": 440,
-        "y": 620,
-        "wires": [
-            [
-                "74c2ed4e4f99efea"
-            ]
-        ]
-    },
-    {
-        "id": "afd9e08b7b80ca2c",
-        "type": "OpcUa-Item",
-        "z": "71261ff4e362dfc9",
-        "item": "ns=2;s=/Channel/Parameter/R[100]",
-        "datatype": "Double",
-        "value": "",
-        "name": "R100",
-        "x": 430,
-        "y": 660,
-        "wires": [
-            [
-                "74c2ed4e4f99efea"
-            ]
-        ]
-    },
-    {
-        "id": "4b02c372fdbf7457",
-        "type": "OpcUa-Item",
-        "z": "71261ff4e362dfc9",
-        "item": "ns=2;s=/Channel/Parameter/R[101]",
-        "datatype": "Double",
-        "value": "",
-        "name": "R101",
-        "x": 430,
-        "y": 700,
-        "wires": [
-            [
-                "74c2ed4e4f99efea"
-            ]
-        ]
-    },
-    {
-        "id": "35be7d593a84a26c",
-        "type": "OpcUa-Item",
-        "z": "71261ff4e362dfc9",
-        "item": "ns=2;s=/Channel/Parameter/R[102]",
-        "datatype": "Double",
-        "value": "",
-        "name": "R102",
-        "x": 430,
-        "y": 740,
-        "wires": [
-            [
-                "74c2ed4e4f99efea"
-            ]
-        ]
-    },
-    {
-        "id": "f62aa91ff6738c2a",
-        "type": "OpcUa-Item",
-        "z": "71261ff4e362dfc9",
-        "item": "ns=2;s=/Channel/Parameter/R[103]",
-        "datatype": "Double",
-        "value": "",
-        "name": "R103",
-        "x": 430,
-        "y": 780,
-        "wires": [
-            [
-                "74c2ed4e4f99efea"
-            ]
-        ]
-    },
-    {
-        "id": "2d8cffea6f5e11da",
-        "type": "OpcUa-Item",
-        "z": "71261ff4e362dfc9",
-        "item": "ns=2;s=/Channel/Parameter/R[104]",
-        "datatype": "Double",
-        "value": "",
-        "name": "R104",
-        "x": 430,
-        "y": 820,
-        "wires": [
-            [
-                "74c2ed4e4f99efea"
-            ]
-        ]
-    },
-    {
-        "id": "edc15326b1187a7f",
-        "type": "OpcUa-Item",
-        "z": "71261ff4e362dfc9",
-        "item": "ns=2;s=/Channel/Parameter/R[105]",
-        "datatype": "Double",
-        "value": "",
-        "name": "R105",
-        "x": 430,
-        "y": 860,
-        "wires": [
-            [
-                "74c2ed4e4f99efea"
-            ]
-        ]
-    },
-    {
-        "id": "1b8710197ba63720",
-        "type": "OpcUa-Item",
-        "z": "71261ff4e362dfc9",
-        "item": "ns=2;s=/Channel/Parameter/R[106]",
-        "datatype": "Double",
-        "value": "",
-        "name": "R106",
-        "x": 430,
-        "y": 900,
-        "wires": [
-            [
-                "74c2ed4e4f99efea"
-            ]
-        ]
-    },
-    {
-        "id": "5ba242afeb0ea385",
-        "type": "OpcUa-Item",
-        "z": "71261ff4e362dfc9",
-        "item": "ns=2;s=/Channel/Parameter/R[107]",
-        "datatype": "Double",
-        "value": "",
-        "name": "R107",
-        "x": 430,
-        "y": 940,
-        "wires": [
-            [
-                "74c2ed4e4f99efea"
-            ]
-        ]
-    },
-    {
-        "id": "364b40e4250ef87e",
-        "type": "OpcUa-Item",
-        "z": "71261ff4e362dfc9",
-        "item": "ns=2;s=/Channel/Parameter/R[108]",
-        "datatype": "Double",
-        "value": "",
-        "name": "R108",
-        "x": 430,
-        "y": 980,
-        "wires": [
-            [
-                "74c2ed4e4f99efea"
-            ]
-        ]
-    },
-    {
-        "id": "ddbd6c1b3cda08a2",
-        "type": "OpcUa-Item",
-        "z": "71261ff4e362dfc9",
-        "item": "ns=2;s=/Channel/Parameter/R[109]",
-        "datatype": "Double",
-        "value": "",
-        "name": "R109",
-        "x": 430,
-        "y": 1020,
-        "wires": [
-            [
-                "74c2ed4e4f99efea"
-            ]
-        ]
     },
     {
         "id": "74c2ed4e4f99efea",
@@ -1164,13 +680,19 @@
         "localkeyfile": "",
         "securitymode": "None",
         "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": "",
+        "maxMessageSize": "",
+        "receiveBufferSize": "",
+        "sendBufferSize": "",
         "name": "",
-        "x": 820,
-        "y": 460,
+        "x": 800,
+        "y": 320,
         "wires": [
             [
                 "3e167bd351b96a9b"
-            ]
+            ],
+            []
         ]
     },
     {
@@ -1178,8 +700,144 @@
         "type": "inject",
         "z": "71261ff4e362dfc9",
         "d": true,
-        "name": "Timer",
+        "name": "Set items",
         "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 420,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7b3bc7c6128f53fa",
+        "type": "OpcUa-Item",
+        "z": "71261ff4e362dfc9",
+        "item": "ns=2;s=/Channel/MachineAxis/aaIm[1,4]",
+        "datatype": "Double Array",
+        "value": "",
+        "name": "aaIm",
+        "x": 430,
+        "y": 320,
+        "wires": [
+            [
+                "74c2ed4e4f99efea"
+            ]
+        ]
+    },
+    {
+        "id": "57a5a8037cf7efa7",
+        "type": "OpcUa-Item",
+        "z": "71261ff4e362dfc9",
+        "item": "ns=2;s=/Channel/MachineAxis/aaVactM[1,4]",
+        "datatype": "Double Array",
+        "value": "",
+        "name": "aaVactM",
+        "x": 440,
+        "y": 360,
+        "wires": [
+            [
+                "74c2ed4e4f99efea"
+            ]
+        ]
+    },
+    {
+        "id": "971393380fc1c5fe",
+        "type": "OpcUa-Item",
+        "z": "71261ff4e362dfc9",
+        "item": "ns=2;s=/Channel/MachineAxis/cmdFeedRate[1,4]",
+        "datatype": "Double Array",
+        "value": "",
+        "name": "cmdFeedRate",
+        "x": 460,
+        "y": 400,
+        "wires": [
+            [
+                "74c2ed4e4f99efea"
+            ]
+        ]
+    },
+    {
+        "id": "6aeaa8c8322dee8e",
+        "type": "OpcUa-Item",
+        "z": "71261ff4e362dfc9",
+        "item": "ns=2;s=/Channel/MachineAxis/feedRateOvr",
+        "datatype": "Double",
+        "value": "",
+        "name": "feedRateOvr",
+        "x": 450,
+        "y": 440,
+        "wires": [
+            [
+                "74c2ed4e4f99efea"
+            ]
+        ]
+    },
+    {
+        "id": "fa26547a5264758b",
+        "type": "OpcUa-Item",
+        "z": "71261ff4e362dfc9",
+        "item": "ns=2;s=/Nck/MachineAxis/vaPower[1,4]",
+        "datatype": "Double Array",
+        "value": "",
+        "name": "vaPower",
+        "x": 440,
+        "y": 480,
+        "wires": [
+            [
+                "74c2ed4e4f99efea"
+            ]
+        ]
+    },
+    {
+        "id": "ad094fc96d40e38f",
+        "type": "inject",
+        "z": "71261ff4e362dfc9",
+        "d": true,
+        "name": "Clear items",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "clearitems",
+        "payload": "",
+        "payloadType": "str",
+        "x": 410,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d42206c3abc5381d",
+        "type": "inject",
+        "z": "71261ff4e362dfc9",
+        "d": true,
+        "name": "Read items",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            },
             {
                 "p": "payload"
             }
@@ -1187,18 +845,18 @@
         "repeat": "0.1",
         "crontab": "",
         "once": true,
-        "onceDelay": "1",
-        "topic": "",
+        "onceDelay": "3",
+        "topic": "readmultiple",
         "payload": "",
-        "payloadType": "date",
-        "x": 190,
-        "y": 420,
+        "payloadType": "str",
+        "x": 410,
+        "y": 200,
         "wires": [
             []
         ]
     },
     {
-        "id": "82f6462f77a0b5d1",
+        "id": "0eca5e3ea008443a",
         "type": "link in",
         "z": "71261ff4e362dfc9",
         "name": "Timer in",
@@ -1206,24 +864,61 @@
             "b847af6089af00ad"
         ],
         "x": 225,
-        "y": 460,
+        "y": 320,
         "wires": [
             [
-                "7b3bc7c6128f53fa",
                 "57a5a8037cf7efa7",
                 "971393380fc1c5fe",
                 "6aeaa8c8322dee8e",
                 "fa26547a5264758b",
-                "afd9e08b7b80ca2c",
-                "4b02c372fdbf7457",
-                "35be7d593a84a26c",
-                "f62aa91ff6738c2a",
-                "2d8cffea6f5e11da",
-                "edc15326b1187a7f",
-                "1b8710197ba63720",
-                "5ba242afeb0ea385",
-                "364b40e4250ef87e",
-                "ddbd6c1b3cda08a2"
+                "7b3bc7c6128f53fa",
+                "40a14ba37d873c4d"
+            ]
+        ]
+    },
+    {
+        "id": "40a14ba37d873c4d",
+        "type": "OpcUa-Item",
+        "z": "71261ff4e362dfc9",
+        "item": "ns=2;s=/Channel/Parameter/R[100,109]",
+        "datatype": "Double Array",
+        "value": "",
+        "name": "R",
+        "x": 430,
+        "y": 520,
+        "wires": [
+            [
+                "74c2ed4e4f99efea"
+            ]
+        ]
+    },
+    {
+        "id": "2d323e50ce986709",
+        "type": "function",
+        "z": "71261ff4e362dfc9",
+        "name": "R parameters",
+        "func": "msg.R100=msg.payload[0]\nmsg.R101=msg.payload[1]\nmsg.R102=msg.payload[2]\nmsg.R103=msg.payload[3]\nmsg.R104=msg.payload[4]\nmsg.R105=msg.payload[5]\nmsg.R106=msg.payload[6]\nmsg.R107=msg.payload[7]\nmsg.R108=msg.payload[8]\nmsg.R109=msg.payload[9]\nreturn msg\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1300,
+        "y": 460,
+        "wires": [
+            [
+                "569cbbcd9c221e22",
+                "4483b25e45becc2f",
+                "d09f73723709053f",
+                "d9ab2a3b4b92b9fd",
+                "f1a214eed371c87f",
+                "a4d571d857413224",
+                "a292abb4e4016267",
+                "186c4e2d985c4a0b",
+                "32dc1d08bb4ac58c",
+                "e979ef019c4a3833",
+                "ca9041b540d10759"
             ]
         ]
     },
@@ -1255,6 +950,7 @@
         "endpoint": "opc.tcp://10.129.4.100:4840",
         "secpol": "Basic256Sha256",
         "secmode": "SignAndEncrypt",
+        "none": false,
         "login": true
     },
     {
@@ -1262,7 +958,7 @@
         "type": "ui_tab",
         "name": "Gantry robot",
         "icon": "dashboard",
-        "order": 4,
+        "order": 3,
         "disabled": false,
         "hidden": false
     }
