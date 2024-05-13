@@ -1,15 +1,15 @@
 [
     {
-        "id": "25cfbc1.7cb50c4",
+        "id": "eb70c43778e8f00c",
         "type": "tab",
         "label": "Filebrowser",
         "disabled": false,
         "info": ""
     },
     {
-        "id": "cee6b071.35f91",
+        "id": "76e63bc5e47ea1b0",
         "type": "comment",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "File Browser",
         "info": "1) Update the default folder in the Init node\n2) Update the default folder in the Reset node as well\n3) You can duplicate the Reset nodes and use them as saved shortcuts\n4) Check the Convert Timestamps function node if you want to see your dates in a different format. I just used the Javascript toISOString format.\n5) The Graph button can read any CSV file which have any number of values, but the first column always contains a timestamp column with javascript timestamp of the data point.",
         "x": 290,
@@ -17,9 +17,9 @@
         "wires": []
     },
     {
-        "id": "c4d38db6.3bd348",
+        "id": "f272a53c4288ce28",
         "type": "inject",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "Init",
         "props": [
             {
@@ -41,14 +41,14 @@
         "y": 260,
         "wires": [
             [
-                "3401e043.ab8328"
+                "9ee2212a5f6f671f"
             ]
         ]
     },
     {
-        "id": "2d7953da.39b6a4",
+        "id": "0eb35b3aa7c87452",
         "type": "ui_button",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "",
         "group": "f4f266b4.cb455",
         "order": 1,
@@ -69,14 +69,14 @@
         "y": 300,
         "wires": [
             [
-                "3401e043.ab8328"
+                "9ee2212a5f6f671f"
             ]
         ]
     },
     {
-        "id": "8f572f57.0b9d78",
+        "id": "443f884ba94da87d",
         "type": "ui_dropdown",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "File Selector",
         "label": "",
         "tooltip": "",
@@ -99,14 +99,14 @@
         "y": 300,
         "wires": [
             [
-                "17598a85.674f15"
+                "c1246c38bd035d8d"
             ]
         ]
     },
     {
-        "id": "557534d8.70feac",
+        "id": "46c306c72e40a789",
         "type": "function",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "Format data",
         "func": "// format the data for the dropdown\nmsg.options = [];\nfor (var i=0; i<msg.payload.length; i++) {\n    // This is a file\n    obj = {};\n    obj [msg.payload[i].name.replace(/^.*(\\\\|\\/|\\:)/, '')]=msg.payload[i].name;\n    msg.options.push(obj);\n}\nmsg.payload={};\nreturn msg;",
         "outputs": 1,
@@ -115,14 +115,14 @@
         "y": 300,
         "wires": [
             [
-                "8f572f57.0b9d78"
+                "443f884ba94da87d"
             ]
         ]
     },
     {
-        "id": "6ab552fd.a8659c",
+        "id": "9c7b56ce60832b3b",
         "type": "ui_template",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "group": "f4f266b4.cb455",
         "name": "",
         "order": 6,
@@ -139,9 +139,9 @@
         ]
     },
     {
-        "id": "91b4e887.0026c8",
+        "id": "6c938e6f8a8e36df",
         "type": "template",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "",
         "field": "payload",
         "fieldType": "msg",
@@ -153,14 +153,14 @@
         "y": 360,
         "wires": [
             [
-                "6ab552fd.a8659c"
+                "9c7b56ce60832b3b"
             ]
         ]
     },
     {
-        "id": "a55c9b29.65d8d",
+        "id": "b6cba765456ef985",
         "type": "function",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "Convert timestamps",
         "func": "for (var i=0; i<msg.payload.length; i++) {\n    msg.payload[i].stat.created = msg.payload[i].stat.created.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.changed = msg.payload[i].stat.changed.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.accessed = msg.payload[i].stat.accessed.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].stat.statusChanged = msg.payload[i].stat.statusChanged.toISOString().slice(0, 19).replace('T', ' ');\n    msg.payload[i].fname = msg.payload[i].name.replace(/^.*(\\\\|\\/|\\:)/, '');\n}\nreturn msg;",
         "outputs": 1,
@@ -169,14 +169,14 @@
         "y": 360,
         "wires": [
             [
-                "91b4e887.0026c8"
+                "6c938e6f8a8e36df"
             ]
         ]
     },
     {
-        "id": "45f43041.ff3e98",
+        "id": "fe0c88651aa35d7c",
         "type": "ui_button",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "",
         "group": "f4f266b4.cb455",
         "order": 10,
@@ -197,14 +197,14 @@
         "y": 460,
         "wires": [
             [
-                "74a949ad.722ef"
+                "1611054c6523bf1f"
             ]
         ]
     },
     {
-        "id": "fe6931ed.71a788",
+        "id": "2cf1707de458c51e",
         "type": "function",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "Get filename",
         "func": "// Get the filename from the flow context\nlet filename = flow.get(\"fileselected\");\n\n// check, if the filename is undefined that means it does not exist yet, nothing is selected yet\n// return: do not output anything\nif (filename===undefined) {\n    return;\n}\n\n// return the filename to the file-in node to delete\nmsg.filename = filename;\n\nif (msg.filename.replace(/^.*(\\\\|\\/|\\:)/, '')[0]!==\".\") {\n    // Only do this if this is a file, we don't delete folders\n    // and delete the context/selection as we are deleting the file as well\n    flow.set(\"fileselected\");\n    return msg;\n}",
         "outputs": 1,
@@ -213,14 +213,14 @@
         "y": 520,
         "wires": [
             [
-                "98ad3fc0.cb775"
+                "222522da59a83a8c"
             ]
         ]
     },
     {
-        "id": "98ad3fc0.cb775",
+        "id": "222522da59a83a8c",
         "type": "file",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "Delete file",
         "filename": "",
         "appendNewline": true,
@@ -231,15 +231,15 @@
         "y": 520,
         "wires": [
             [
-                "bd091aa5.9565d8",
-                "7a576f97.3417f"
+                "1c80e8ec744d9dfe",
+                "c871eab730b30099"
             ]
         ]
     },
     {
-        "id": "84cb7418.29d1e8",
+        "id": "a45a0cba39d92aef",
         "type": "http in",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "",
         "url": "/download",
         "method": "get",
@@ -249,14 +249,14 @@
         "y": 660,
         "wires": [
             [
-                "5401ca53.598a84"
+                "1cac646a516e2d68"
             ]
         ]
     },
     {
-        "id": "ae7aac9.f5acad",
+        "id": "74e17d9c2d3f9721",
         "type": "http response",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "",
         "statusCode": "",
         "headers": {},
@@ -265,9 +265,9 @@
         "wires": []
     },
     {
-        "id": "5401ca53.598a84",
+        "id": "1cac646a516e2d68",
         "type": "function",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "Get the file name",
         "func": "msg.filename = msg.req.query.filename;\nmsg.contentdisposition = \"attachment; filename=\\\"\" + msg.req.query.filename.replace(/^.*(\\\\|\\/|\\:)/, '') + \"\\\"\";\nreturn msg;\n",
         "outputs": 1,
@@ -276,7 +276,7 @@
         "y": 660,
         "wires": [
             [
-                "2bad031d.83558c"
+                "e1d009bb0c05211f"
             ]
         ],
         "outputLabels": [
@@ -285,9 +285,9 @@
         ]
     },
     {
-        "id": "2bad031d.83558c",
+        "id": "e1d009bb0c05211f",
         "type": "file in",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "",
         "filename": "",
         "format": "",
@@ -298,14 +298,14 @@
         "y": 660,
         "wires": [
             [
-                "c2d0e956.1218e8"
+                "9d198569c41bc2a4"
             ]
         ]
     },
     {
-        "id": "c2d0e956.1218e8",
+        "id": "9d198569c41bc2a4",
         "type": "change",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "Set Headers",
         "rules": [
             {
@@ -339,14 +339,14 @@
         "y": 660,
         "wires": [
             [
-                "ae7aac9.f5acad"
+                "74e17d9c2d3f9721"
             ]
         ]
     },
     {
-        "id": "885463c.9df4e2",
+        "id": "4a328aa1487e7023",
         "type": "ui_button",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "",
         "group": "f4f266b4.cb455",
         "order": 11,
@@ -367,14 +367,14 @@
         "y": 780,
         "wires": [
             [
-                "a84f81a5.cef7f"
+                "7c8d7716a4c3829e"
             ]
         ]
     },
     {
-        "id": "a84f81a5.cef7f",
+        "id": "7c8d7716a4c3829e",
         "type": "function",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "Get filename",
         "func": "// Get the filename from the flow context\nlet filename = flow.get(\"fileselected\");\n\n// check, if the filename is undefined that means it does not exist yet, nothing is selected yet\n// return: do not output anything\nif (filename===undefined) {\n    return;\n}\n\n// return the filename to the file-in node to delete\nmsg.filename = filename;\n\nif (msg.filename.replace(/^.*(\\\\|\\/|\\:)/, '')[0]!==\".\") {\n    // Only do this if this is a file, we don't delete folders\n    return msg;\n}",
         "outputs": 1,
@@ -383,14 +383,14 @@
         "y": 780,
         "wires": [
             [
-                "402f4aec.57e55c"
+                "af77931092a65f4d"
             ]
         ]
     },
     {
-        "id": "402f4aec.57e55c",
+        "id": "af77931092a65f4d",
         "type": "file in",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "",
         "filename": "",
         "format": "utf8",
@@ -401,14 +401,14 @@
         "y": 780,
         "wires": [
             [
-                "c47d0198.eeec8"
+                "be1038bb50aedf3e"
             ]
         ]
     },
     {
-        "id": "c47d0198.eeec8",
+        "id": "be1038bb50aedf3e",
         "type": "csv",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "",
         "sep": ",",
         "hdrin": true,
@@ -421,14 +421,14 @@
         "y": 780,
         "wires": [
             [
-                "7686009e.e9c42"
+                "4bced5e8bed01af2"
             ]
         ]
     },
     {
-        "id": "7dc0481.2520538",
+        "id": "1784dd0f6141afb5",
         "type": "debug",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "",
         "active": false,
         "tosidebar": true,
@@ -440,9 +440,9 @@
         "wires": []
     },
     {
-        "id": "7686009e.e9c42",
+        "id": "4bced5e8bed01af2",
         "type": "function",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "Format data for chart",
         "func": "var chart = [{\n    \"series\":[],\n    \"data\":[],\n    \"labels\":[msg.filename]\n}];\n\n\n/*\nvar pressure = [];\nvar out2 = [];\n\nfor (var i=0; i<msg.payload.length; i++) {\n    pressure.push({\"x\":msg.payload[i].timestamp, \"y\":msg.payload[i].pressure});\n    out2.push({\"x\":msg.payload[i].timestamp, \"y\":msg.payload[i].out2*200});\n\n}\nchart[0].data.push(pressure);\nchart[0].data.push(out2);\n*/\n\nlet columns = 0;\n\nfor(var series in msg.payload[0]) {\n    if(series!==\"timestamp\") {\n        chart[0].series.push(series);\n        chart[0].data.push([]);\n        columns++;\n    }\n}\n\n\nfor (var j=0; j<msg.payload.length; j++) {\n   for(var i=0;i<columns;i++) {\n       chart[0].data[i].push({\"x\":msg.payload[j].timestamp, \"y\":msg.payload[j][chart[0].series[i]]});\n   } \n}\n\n\n\n\nmsg.payload = chart;\n\nreturn msg;",
         "outputs": 1,
@@ -451,15 +451,15 @@
         "y": 780,
         "wires": [
             [
-                "30c1d296.e5e406",
-                "7dc0481.2520538"
+                "2352a6c6aac3b27b",
+                "1784dd0f6141afb5"
             ]
         ]
     },
     {
-        "id": "30c1d296.e5e406",
+        "id": "2352a6c6aac3b27b",
         "type": "ui_chart",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "",
         "group": "f4f266b4.cb455",
         "order": 12,
@@ -498,9 +498,9 @@
         ]
     },
     {
-        "id": "cd6cf35f.43107",
+        "id": "1d7a12d0aa5726fd",
         "type": "ui_toast",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "position": "dialog",
         "displayTime": "3",
         "highlight": "",
@@ -515,14 +515,14 @@
         "y": 460,
         "wires": [
             [
-                "d3f9a076.979c08"
+                "cefb1b7951eb91ea"
             ]
         ]
     },
     {
-        "id": "74a949ad.722ef",
+        "id": "1611054c6523bf1f",
         "type": "change",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "Set message",
         "rules": [
             {
@@ -549,14 +549,14 @@
         "y": 460,
         "wires": [
             [
-                "cd6cf35f.43107"
+                "1d7a12d0aa5726fd"
             ]
         ]
     },
     {
-        "id": "d3f9a076.979c08",
+        "id": "cefb1b7951eb91ea",
         "type": "switch",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "",
         "property": "payload",
         "propertyType": "msg",
@@ -574,14 +574,14 @@
         "y": 460,
         "wires": [
             [
-                "fe6931ed.71a788"
+                "2cf1707de458c51e"
             ]
         ]
     },
     {
-        "id": "3401e043.ab8328",
+        "id": "9ee2212a5f6f671f",
         "type": "function",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "Folder handling",
         "func": "let folder = context.get(\"folder\");\nif (folder===undefined) {\n    folder=\"/\";\n    context.set(\"folder\", folder);\n}\n\nlet hidden = context.get(\"hidden\");\nif (hidden===undefined) {\n    hidden=false;\n    context.set(\"hidden\", hidden);\n}\n\nif (msg.topic===\"up\") {\n    var the_arr = folder.split('/');\n    the_arr.pop();\n    folder=the_arr.join('/'); \n    context.set(\"folder\", folder);\n}\nif (msg.topic===\"change\") {\n    folder=msg.payload;    \n    context.set(\"folder\", folder);\n}\nif (msg.topic===\"hidden\") {\n    hidden=msg.payload;    \n    context.set(\"hidden\", hidden);\n}\n\nmsg.payload = {\"start\":folder, \"hidden\": hidden};\nreturn msg;",
         "outputs": 1,
@@ -593,16 +593,16 @@
         "y": 360,
         "wires": [
             [
-                "bd091aa5.9565d8",
-                "9b17cd1d.b5ff4",
-                "7a576f97.3417f"
+                "1c80e8ec744d9dfe",
+                "0526ef11cc58dbac",
+                "c871eab730b30099"
             ]
         ]
     },
     {
-        "id": "9b17cd1d.b5ff4",
+        "id": "0526ef11cc58dbac",
         "type": "ui_text",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "group": "f4f266b4.cb455",
         "order": 4,
         "width": "9",
@@ -616,9 +616,9 @@
         "wires": []
     },
     {
-        "id": "7a23a639.4c9018",
+        "id": "4a44eb2ba2283f60",
         "type": "ui_button",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "",
         "group": "f4f266b4.cb455",
         "order": 3,
@@ -639,14 +639,14 @@
         "y": 380,
         "wires": [
             [
-                "3401e043.ab8328"
+                "9ee2212a5f6f671f"
             ]
         ]
     },
     {
-        "id": "4f045d8d.135f94",
+        "id": "e0f8ec7e37e58f04",
         "type": "ui_button",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "",
         "group": "f4f266b4.cb455",
         "order": 8,
@@ -667,14 +667,14 @@
         "y": 580,
         "wires": [
             [
-                "d630f5b3.5c4648"
+                "bed6b23db816f1dd"
             ]
         ]
     },
     {
-        "id": "d630f5b3.5c4648",
+        "id": "bed6b23db816f1dd",
         "type": "function",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "Change folder",
         "func": "// Get the filename from the flow context\nlet folderselected = flow.get(\"folderselected\");\n\n// check, if the filename is undefined that means it does not exist yet, nothing is selected yet\n// return: do not output anything\nif (folderselected===undefined) {\n    return;\n}\n\nmsg.topic = \"change\";\nmsg.payload = folderselected;\n\nreturn msg;",
         "outputs": 1,
@@ -683,14 +683,14 @@
         "y": 580,
         "wires": [
             [
-                "3401e043.ab8328"
+                "9ee2212a5f6f671f"
             ]
         ]
     },
     {
-        "id": "4185fc91.180244",
+        "id": "6e23752b3461a25b",
         "type": "ui_button",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "",
         "group": "f4f266b4.cb455",
         "order": 2,
@@ -711,14 +711,14 @@
         "y": 340,
         "wires": [
             [
-                "3401e043.ab8328"
+                "9ee2212a5f6f671f"
             ]
         ]
     },
     {
-        "id": "83c56eba.21048",
+        "id": "2a86bed87b53c4f2",
         "type": "ui_dropdown",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "Folder Selector",
         "label": "",
         "tooltip": "",
@@ -741,14 +741,14 @@
         "y": 400,
         "wires": [
             [
-                "21cb93ba.0cdaa4"
+                "6ab94e0b153d52ce"
             ]
         ]
     },
     {
-        "id": "7da3bde.822b7c4",
+        "id": "1ae8481b1ac1e318",
         "type": "function",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "Format data",
         "func": "// format the data for the dropdown\nmsg.options = [];\nfor (var i=0; i<msg.payload.length; i++) {\n    // This is a foler\n    obj = {};\n    obj [\"[\"+msg.payload[i].name.replace(/^.*(\\\\|\\/|\\:)/, '')+\"]\"]=msg.payload[i].name;\n    msg.options.push(obj);\n}\nmsg.payload={};\nreturn msg;",
         "outputs": 1,
@@ -757,14 +757,14 @@
         "y": 400,
         "wires": [
             [
-                "83c56eba.21048"
+                "2a86bed87b53c4f2"
             ]
         ]
     },
     {
-        "id": "17598a85.674f15",
+        "id": "c1246c38bd035d8d",
         "type": "change",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "Save selection",
         "rules": [
             {
@@ -787,9 +787,9 @@
         ]
     },
     {
-        "id": "21cb93ba.0cdaa4",
+        "id": "6ab94e0b153d52ce",
         "type": "change",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "Save selection",
         "rules": [
             {
@@ -812,9 +812,9 @@
         ]
     },
     {
-        "id": "45df5de3.6031b4",
+        "id": "26739a6c7efa53c3",
         "type": "ui_switch",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "",
         "label": "Hidden",
         "tooltip": "Show hidden files or not",
@@ -841,14 +841,14 @@
         "y": 420,
         "wires": [
             [
-                "3401e043.ab8328"
+                "9ee2212a5f6f671f"
             ]
         ]
     },
     {
-        "id": "bd091aa5.9565d8",
+        "id": "1c80e8ec744d9dfe",
         "type": "fs-file-lister",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "Files",
         "start": "../",
         "pattern": "*.*",
@@ -864,15 +864,15 @@
         "y": 300,
         "wires": [
             [
-                "557534d8.70feac",
-                "a55c9b29.65d8d"
+                "46c306c72e40a789",
+                "b6cba765456ef985"
             ]
         ]
     },
     {
-        "id": "7a576f97.3417f",
+        "id": "c871eab730b30099",
         "type": "fs-file-lister",
-        "z": "25cfbc1.7cb50c4",
+        "z": "eb70c43778e8f00c",
         "name": "Folders",
         "start": "../",
         "pattern": "*.*",
@@ -888,7 +888,7 @@
         "y": 400,
         "wires": [
             [
-                "7da3bde.822b7c4"
+                "1ae8481b1ac1e318"
             ]
         ]
     },

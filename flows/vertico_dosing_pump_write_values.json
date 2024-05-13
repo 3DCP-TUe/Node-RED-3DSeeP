@@ -1,16 +1,16 @@
 [
     {
-        "id": "37e53a375a7ac235",
+        "id": "aa92b93f0e76caa9",
         "type": "tab",
         "label": "Vertico dosing: Write values",
-        "disabled": true,
+        "disabled": false,
         "info": "",
         "env": []
     },
     {
-        "id": "951d27b017733914",
+        "id": "17fd444a55bb11b3",
         "type": "OpcUa-Client",
-        "z": "37e53a375a7ac235",
+        "z": "aa92b93f0e76caa9",
         "endpoint": "df0e8d096d8a204d",
         "action": "write",
         "deadbandtype": "a",
@@ -31,9 +31,9 @@
         ]
     },
     {
-        "id": "ea544a0196336cce",
+        "id": "0fb260ecda3a49b3",
         "type": "OpcUa-Item",
-        "z": "37e53a375a7ac235",
+        "z": "aa92b93f0e76caa9",
         "item": "ns=6;i=5",
         "datatype": "Float",
         "value": "msg.topic",
@@ -42,14 +42,14 @@
         "y": 260,
         "wires": [
             [
-                "951d27b017733914"
+                "17fd444a55bb11b3"
             ]
         ]
     },
     {
-        "id": "740ad2bce20497fe",
+        "id": "e66c771ce91d2e3a",
         "type": "inject",
-        "z": "37e53a375a7ac235",
+        "z": "aa92b93f0e76caa9",
         "name": "",
         "props": [
             {
@@ -71,14 +71,14 @@
         "y": 260,
         "wires": [
             [
-                "3bd03b215b7d6efb"
+                "5b28a36bfb163789"
             ]
         ]
     },
     {
-        "id": "2ee4be7006e02af3",
+        "id": "7ecac4a0fbfb17ef",
         "type": "OpcUa-Item",
-        "z": "37e53a375a7ac235",
+        "z": "aa92b93f0e76caa9",
         "item": "ns=6;i=6",
         "datatype": "Float",
         "value": "msg.topic",
@@ -87,14 +87,14 @@
         "y": 300,
         "wires": [
             [
-                "951d27b017733914"
+                "17fd444a55bb11b3"
             ]
         ]
     },
     {
-        "id": "e5f5f25168b99201",
+        "id": "5d5fd4142fae423e",
         "type": "inject",
-        "z": "37e53a375a7ac235",
+        "z": "aa92b93f0e76caa9",
         "name": "",
         "props": [
             {
@@ -116,14 +116,14 @@
         "y": 300,
         "wires": [
             [
-                "20fb0de2bc86d0e8"
+                "48124613956c986c"
             ]
         ]
     },
     {
-        "id": "3447a0979eb4ef27",
+        "id": "b5ec351c64a164be",
         "type": "OpcUa-Item",
-        "z": "37e53a375a7ac235",
+        "z": "aa92b93f0e76caa9",
         "item": "ns=6;i=7",
         "datatype": "Float",
         "value": "msg.topic",
@@ -132,14 +132,14 @@
         "y": 340,
         "wires": [
             [
-                "951d27b017733914"
+                "17fd444a55bb11b3"
             ]
         ]
     },
     {
-        "id": "d177ad976952660a",
+        "id": "aaaca8b81cbea299",
         "type": "inject",
-        "z": "37e53a375a7ac235",
+        "z": "aa92b93f0e76caa9",
         "name": "",
         "props": [
             {
@@ -161,21 +161,21 @@
         "y": 340,
         "wires": [
             [
-                "18b3c8c2b870484a"
+                "0cfecc1255ad1dbd"
             ]
         ]
     },
     {
-        "id": "3bd03b215b7d6efb",
+        "id": "5b28a36bfb163789",
         "type": "ui_numeric",
-        "z": "37e53a375a7ac235",
+        "z": "aa92b93f0e76caa9",
         "name": "",
         "label": "Write P",
         "tooltip": "",
         "group": "6cb02d1b18effc68",
         "order": 6,
-        "width": 0,
-        "height": 0,
+        "width": 8,
+        "height": 1,
         "wrap": false,
         "passthru": true,
         "topic": "topic",
@@ -189,21 +189,21 @@
         "y": 260,
         "wires": [
             [
-                "ea544a0196336cce"
+                "0fb260ecda3a49b3"
             ]
         ]
     },
     {
-        "id": "20fb0de2bc86d0e8",
+        "id": "48124613956c986c",
         "type": "ui_numeric",
-        "z": "37e53a375a7ac235",
+        "z": "aa92b93f0e76caa9",
         "name": "",
         "label": "Write I",
         "tooltip": "",
         "group": "6cb02d1b18effc68",
         "order": 7,
-        "width": 0,
-        "height": 0,
+        "width": 8,
+        "height": 1,
         "wrap": false,
         "passthru": true,
         "topic": "topic",
@@ -217,21 +217,21 @@
         "y": 300,
         "wires": [
             [
-                "2ee4be7006e02af3"
+                "7ecac4a0fbfb17ef"
             ]
         ]
     },
     {
-        "id": "18b3c8c2b870484a",
+        "id": "0cfecc1255ad1dbd",
         "type": "ui_numeric",
-        "z": "37e53a375a7ac235",
+        "z": "aa92b93f0e76caa9",
         "name": "",
         "label": "Write D",
         "tooltip": "",
         "group": "6cb02d1b18effc68",
         "order": 8,
-        "width": 0,
-        "height": 0,
+        "width": 8,
+        "height": 1,
         "wrap": false,
         "passthru": true,
         "topic": "topic",
@@ -245,14 +245,14 @@
         "y": 340,
         "wires": [
             [
-                "3447a0979eb4ef27"
+                "b5ec351c64a164be"
             ]
         ]
     },
     {
-        "id": "339bdec02f4e4697",
+        "id": "aa18fd49eb7d44bb",
         "type": "OpcUa-Item",
-        "z": "37e53a375a7ac235",
+        "z": "aa92b93f0e76caa9",
         "item": "ns=4;i=9",
         "datatype": "Float",
         "value": "msg.topic",
@@ -261,14 +261,14 @@
         "y": 380,
         "wires": [
             [
-                "951d27b017733914"
+                "17fd444a55bb11b3"
             ]
         ]
     },
     {
-        "id": "a374f222ef57a585",
+        "id": "7bedeb6433038f76",
         "type": "OpcUa-Item",
-        "z": "37e53a375a7ac235",
+        "z": "aa92b93f0e76caa9",
         "item": "ns=4;i=12",
         "datatype": "Float",
         "value": "msg.topic",
@@ -277,14 +277,14 @@
         "y": 420,
         "wires": [
             [
-                "951d27b017733914"
+                "17fd444a55bb11b3"
             ]
         ]
     },
     {
-        "id": "b6da76355323dbd2",
+        "id": "c63cc8288018c950",
         "type": "OpcUa-Item",
-        "z": "37e53a375a7ac235",
+        "z": "aa92b93f0e76caa9",
         "item": "ns=4;i=4",
         "datatype": "Boolean",
         "value": "msg.topic",
@@ -293,21 +293,21 @@
         "y": 460,
         "wires": [
             [
-                "951d27b017733914"
+                "17fd444a55bb11b3"
             ]
         ]
     },
     {
-        "id": "83b779bb453b0512",
+        "id": "be0a1a9b0e603cbd",
         "type": "ui_switch",
-        "z": "37e53a375a7ac235",
+        "z": "aa92b93f0e76caa9",
         "name": "",
         "label": "Start/stop [bool]",
         "tooltip": "",
         "group": "6cb02d1b18effc68",
         "order": 1,
-        "width": 0,
-        "height": 0,
+        "width": 8,
+        "height": 1,
         "passthru": true,
         "decouple": "false",
         "topic": "topic",
@@ -327,14 +327,14 @@
         "y": 460,
         "wires": [
             [
-                "b6da76355323dbd2"
+                "c63cc8288018c950"
             ]
         ]
     },
     {
-        "id": "c0daf4e905742b73",
+        "id": "5a539802cf222927",
         "type": "inject",
-        "z": "37e53a375a7ac235",
+        "z": "aa92b93f0e76caa9",
         "name": "",
         "props": [
             {
@@ -356,14 +356,14 @@
         "y": 460,
         "wires": [
             [
-                "83b779bb453b0512"
+                "be0a1a9b0e603cbd"
             ]
         ]
     },
     {
-        "id": "2f3190b6efa57a0f",
+        "id": "6f919520f594e709",
         "type": "inject",
-        "z": "37e53a375a7ac235",
+        "z": "aa92b93f0e76caa9",
         "name": "",
         "props": [
             {
@@ -385,21 +385,21 @@
         "y": 380,
         "wires": [
             [
-                "65cd2091e6ee831a"
+                "90537671aeb4ae1e"
             ]
         ]
     },
     {
-        "id": "65cd2091e6ee831a",
+        "id": "90537671aeb4ae1e",
         "type": "ui_numeric",
-        "z": "37e53a375a7ac235",
+        "z": "aa92b93f0e76caa9",
         "name": "",
         "label": "Setpoint closed loop [ml/min]",
         "tooltip": "",
         "group": "6cb02d1b18effc68",
         "order": 3,
-        "width": 0,
-        "height": 0,
+        "width": 8,
+        "height": 1,
         "wrap": false,
         "passthru": true,
         "topic": "topic",
@@ -413,14 +413,14 @@
         "y": 380,
         "wires": [
             [
-                "339bdec02f4e4697"
+                "aa18fd49eb7d44bb"
             ]
         ]
     },
     {
-        "id": "1ad8a32959de0499",
+        "id": "52c2864e315e1804",
         "type": "inject",
-        "z": "37e53a375a7ac235",
+        "z": "aa92b93f0e76caa9",
         "name": "",
         "props": [
             {
@@ -442,21 +442,21 @@
         "y": 420,
         "wires": [
             [
-                "2d7f387be0c9ef86"
+                "a1340b46b2ed1c43"
             ]
         ]
     },
     {
-        "id": "2d7f387be0c9ef86",
+        "id": "a1340b46b2ed1c43",
         "type": "ui_numeric",
-        "z": "37e53a375a7ac235",
+        "z": "aa92b93f0e76caa9",
         "name": "",
         "label": "Setpoint open loop [RPM]",
         "tooltip": "",
         "group": "6cb02d1b18effc68",
         "order": 4,
-        "width": 0,
-        "height": 0,
+        "width": 8,
+        "height": 1,
         "wrap": false,
         "passthru": true,
         "topic": "topic",
@@ -470,21 +470,21 @@
         "y": 420,
         "wires": [
             [
-                "a374f222ef57a585"
+                "7bedeb6433038f76"
             ]
         ]
     },
     {
-        "id": "dc4e6f9159d3f45c",
+        "id": "62db3f5ccf28962e",
         "type": "ui_switch",
-        "z": "37e53a375a7ac235",
+        "z": "aa92b93f0e76caa9",
         "name": "",
         "label": "Write DO3 [0/1]",
         "tooltip": "",
         "group": "6cb02d1b18effc68",
         "order": 10,
-        "width": 0,
-        "height": 0,
+        "width": 8,
+        "height": 1,
         "passthru": true,
         "decouple": "false",
         "topic": "topic",
@@ -504,21 +504,21 @@
         "y": 500,
         "wires": [
             [
-                "a4bec9406f24b7e5"
+                "d98522af266cd978"
             ]
         ]
     },
     {
-        "id": "dae93f63d4194c09",
+        "id": "b622b3623a5f6833",
         "type": "ui_numeric",
-        "z": "37e53a375a7ac235",
+        "z": "aa92b93f0e76caa9",
         "name": "",
         "label": "Write AO0 [mA]",
         "tooltip": "",
         "group": "6cb02d1b18effc68",
         "order": 11,
-        "width": 0,
-        "height": 0,
+        "width": 8,
+        "height": 1,
         "wrap": false,
         "passthru": true,
         "topic": "topic",
@@ -532,14 +532,14 @@
         "y": 540,
         "wires": [
             [
-                "01eb8b33cc57f52b"
+                "95a40f2837e2f3de"
             ]
         ]
     },
     {
-        "id": "7c8b81654dbfad82",
+        "id": "128d3b98e5d8d591",
         "type": "inject",
-        "z": "37e53a375a7ac235",
+        "z": "aa92b93f0e76caa9",
         "name": "",
         "props": [
             {
@@ -561,14 +561,14 @@
         "y": 500,
         "wires": [
             [
-                "dc4e6f9159d3f45c"
+                "62db3f5ccf28962e"
             ]
         ]
     },
     {
-        "id": "d824baa53ba3a962",
+        "id": "31f1554733c6b41b",
         "type": "inject",
-        "z": "37e53a375a7ac235",
+        "z": "aa92b93f0e76caa9",
         "name": "",
         "props": [
             {
@@ -590,14 +590,14 @@
         "y": 540,
         "wires": [
             [
-                "dae93f63d4194c09"
+                "b622b3623a5f6833"
             ]
         ]
     },
     {
-        "id": "a4bec9406f24b7e5",
+        "id": "d98522af266cd978",
         "type": "OpcUa-Item",
-        "z": "37e53a375a7ac235",
+        "z": "aa92b93f0e76caa9",
         "item": "ns=5;i=2",
         "datatype": "Boolean",
         "value": "msg.topic",
@@ -606,14 +606,14 @@
         "y": 500,
         "wires": [
             [
-                "951d27b017733914"
+                "17fd444a55bb11b3"
             ]
         ]
     },
     {
-        "id": "01eb8b33cc57f52b",
+        "id": "95a40f2837e2f3de",
         "type": "OpcUa-Item",
-        "z": "37e53a375a7ac235",
+        "z": "aa92b93f0e76caa9",
         "item": "ns=5;i=13",
         "datatype": "Float",
         "value": "msg.topic",
@@ -622,9 +622,89 @@
         "y": 540,
         "wires": [
             [
-                "951d27b017733914"
+                "17fd444a55bb11b3"
             ]
         ]
+    },
+    {
+        "id": "d03b3c339a802428",
+        "type": "ui_spacer",
+        "z": "aa92b93f0e76caa9",
+        "name": "spacer",
+        "group": "6cb02d1b18effc68",
+        "order": 2,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "52ff2dc20ef107df",
+        "type": "ui_spacer",
+        "z": "aa92b93f0e76caa9",
+        "name": "spacer",
+        "group": "6cb02d1b18effc68",
+        "order": 5,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "b116bf9cd1a7cb99",
+        "type": "ui_spacer",
+        "z": "aa92b93f0e76caa9",
+        "name": "spacer",
+        "group": "6cb02d1b18effc68",
+        "order": 9,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "fa8927a05b4d35f9",
+        "type": "ui_spacer",
+        "z": "aa92b93f0e76caa9",
+        "name": "spacer",
+        "group": "29e604be7d0124bf",
+        "order": 3,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "f476009372705fe3",
+        "type": "ui_spacer",
+        "z": "aa92b93f0e76caa9",
+        "name": "spacer",
+        "group": "29e604be7d0124bf",
+        "order": 8,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "8d72e93a0b3ace03",
+        "type": "ui_spacer",
+        "z": "aa92b93f0e76caa9",
+        "name": "spacer",
+        "group": "29e604be7d0124bf",
+        "order": 11,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "1fb6e0b8c31f1ca1",
+        "type": "ui_spacer",
+        "z": "aa92b93f0e76caa9",
+        "name": "spacer",
+        "group": "29e604be7d0124bf",
+        "order": 15,
+        "width": 8,
+        "height": 1
+    },
+    {
+        "id": "1304af13563a1db4",
+        "type": "ui_spacer",
+        "z": "aa92b93f0e76caa9",
+        "name": "spacer",
+        "group": "29e604be7d0124bf",
+        "order": 19,
+        "width": 8,
+        "height": 1
     },
     {
         "id": "df0e8d096d8a204d",
@@ -640,6 +720,17 @@
         "name": "Write values",
         "tab": "ab2d93c8cfc6d927",
         "order": 1,
+        "disp": true,
+        "width": 8,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "29e604be7d0124bf",
+        "type": "ui_group",
+        "name": "Read values",
+        "tab": "ab2d93c8cfc6d927",
+        "order": 3,
         "disp": true,
         "width": 8,
         "collapse": false,

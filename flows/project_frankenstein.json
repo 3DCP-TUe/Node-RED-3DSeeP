@@ -1,48 +1,113 @@
 [
     {
-        "id": "dd125b8f591531ed",
+        "id": "ee47eb5696c14296",
         "type": "tab",
         "label": "Project Frankenstein",
-        "disabled": true,
+        "disabled": false,
         "info": "",
         "env": []
     },
     {
-        "id": "2cca5eb8acdf6088",
+        "id": "d2eb16ee9ae04a13",
+        "type": "group",
+        "z": "ee47eb5696c14296",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "bf753dfe3ad9c622",
+            "583c29a24e03c966",
+            "6a7e88d590b86b94",
+            "1a8b8f5a702258bd",
+            "550b1f04471ba124",
+            "1d53aba126c3d4dc",
+            "da6ccf9fc66732e0",
+            "690ad64443e5497e",
+            "cdfacf2c22dc4148"
+        ],
+        "x": 554,
+        "y": 539,
+        "w": 1232,
+        "h": 262
+    },
+    {
+        "id": "f3ae6258e2ef6f06",
+        "type": "group",
+        "z": "ee47eb5696c14296",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "a7683fe7de9658f8",
+            "f5ef904fba65b4fc",
+            "16e7149e63b6d0f5",
+            "7ca8b94cf12f1edf",
+            "ecbb2e13d123a18e",
+            "faf12f5c1c0ec6ec",
+            "86f191dd05946674",
+            "29eff04a28d6e027",
+            "9b45896c68d03d31",
+            "0e37bf3b7d21edc2",
+            "54cdf15801bd459e",
+            "ba72a35ca15897db",
+            "cd2f68db4a520efe",
+            "1e87d2551754cbe1"
+        ],
+        "x": 554,
+        "y": 159,
+        "w": 1232,
+        "h": 322
+    },
+    {
+        "id": "3f1241c96c7c2565",
         "type": "link in",
-        "z": "dd125b8f591531ed",
-        "name": "",
+        "z": "ee47eb5696c14296",
+        "name": "Mai mixer on.off in",
         "links": [
-            "75ce1f0d2985eaf1"
+            "769cbc7c61ddfd9b"
         ],
         "x": 145,
-        "y": 280,
+        "y": 360,
         "wires": [
             [
-                "70378d22cc0c3adc"
+                "dfd880c639b8903f"
             ]
         ]
     },
     {
-        "id": "5d3e76e0e2fb3e88",
+        "id": "a7683fe7de9658f8",
         "type": "OpcUa-Item",
-        "z": "dd125b8f591531ed",
+        "z": "ee47eb5696c14296",
+        "g": "f3ae6258e2ef6f06",
         "item": "ns=4;i=22",
         "datatype": "Boolean",
         "value": "msg.topic",
         "name": "Write DO0",
-        "x": 1090,
-        "y": 280,
+        "x": 1290,
+        "y": 360,
         "wires": [
             [
-                "b737d03adcf2b020"
+                "f5ef904fba65b4fc"
             ]
         ]
     },
     {
-        "id": "b737d03adcf2b020",
+        "id": "f5ef904fba65b4fc",
         "type": "OpcUa-Client",
-        "z": "dd125b8f591531ed",
+        "z": "ee47eb5696c14296",
+        "g": "f3ae6258e2ef6f06",
         "endpoint": "9c6664b374f58bc5",
         "action": "write",
         "deadbandtype": "a",
@@ -55,97 +120,42 @@
         "securitymode": "None",
         "securitypolicy": "None",
         "name": "",
-        "x": 1460,
-        "y": 300,
+        "x": 1660,
+        "y": 360,
         "wires": [
             [],
             []
         ]
     },
     {
-        "id": "c362932f265f155a",
+        "id": "16e7149e63b6d0f5",
         "type": "OpcUa-Item",
-        "z": "dd125b8f591531ed",
+        "z": "ee47eb5696c14296",
+        "g": "f3ae6258e2ef6f06",
         "item": "ns=4;i=78",
         "datatype": "Float",
         "value": "msg.topic",
         "name": "Write AO0",
-        "x": 1090,
-        "y": 320,
+        "x": 1290,
+        "y": 400,
         "wires": [
             [
-                "b737d03adcf2b020"
+                "f5ef904fba65b4fc"
             ]
         ]
     },
     {
-        "id": "87f13470d81a28fa",
-        "type": "ui_numeric",
-        "z": "dd125b8f591531ed",
+        "id": "7ca8b94cf12f1edf",
+        "type": "ui_switch",
+        "z": "ee47eb5696c14296",
+        "g": "f3ae6258e2ef6f06",
         "name": "",
-        "label": "Write AO0 [mA]",
+        "label": "Sync with m-tec [bool]",
         "tooltip": "",
         "group": "941553f899610cff",
         "order": 2,
-        "width": 0,
-        "height": 0,
-        "wrap": false,
-        "passthru": true,
-        "topic": "topic",
-        "topicType": "msg",
-        "format": "{{value}}",
-        "min": "4",
-        "max": "20",
-        "step": "0.02",
-        "className": "",
-        "x": 900,
-        "y": 320,
-        "wires": [
-            [
-                "c362932f265f155a"
-            ]
-        ]
-    },
-    {
-        "id": "1f2837a437d9636e",
-        "type": "inject",
-        "z": "dd125b8f591531ed",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "1",
-        "topic": "",
-        "payload": "4",
-        "payloadType": "num",
-        "x": 730,
-        "y": 320,
-        "wires": [
-            [
-                "87f13470d81a28fa"
-            ]
-        ]
-    },
-    {
-        "id": "8d2d37d2cd1421ed",
-        "type": "ui_switch",
-        "z": "dd125b8f591531ed",
-        "name": "",
-        "label": "Sync with m-tec [0/1]",
-        "tooltip": "",
-        "group": "941553f899610cff",
-        "order": 1,
-        "width": 0,
-        "height": 0,
+        "width": 6,
+        "height": 1,
         "passthru": true,
         "decouple": "false",
         "topic": "topic",
@@ -161,63 +171,66 @@
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 680,
-        "y": 360,
+        "x": 880,
+        "y": 440,
         "wires": [
             [
-                "98e93caccdbdc720"
+                "ecbb2e13d123a18e"
             ]
         ]
     },
     {
-        "id": "98e93caccdbdc720",
+        "id": "ecbb2e13d123a18e",
         "type": "function",
-        "z": "dd125b8f591531ed",
+        "z": "ee47eb5696c14296",
+        "g": "f3ae6258e2ef6f06",
         "name": "",
-        "func": "global.set(\"isEnabled\", msg.payload);",
+        "func": "global.set(\"frankenstein_sync_ads\", msg.payload);",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 880,
-        "y": 360,
+        "x": 1080,
+        "y": 440,
         "wires": [
             []
         ]
     },
     {
-        "id": "da6c33eda5543d46",
+        "id": "faf12f5c1c0ec6ec",
         "type": "function",
-        "z": "dd125b8f591531ed",
+        "z": "ee47eb5696c14296",
+        "g": "f3ae6258e2ef6f06",
         "name": "",
-        "func": "valve = msg.payload;\nisEnabled = false;\n\n// Global value\nif (global.get(\"isEnabled\")!==undefined)\n{\n    isEnabled = global.get(\"isEnabled\");\n}\n\n// Check valve\nif (valve == true)\n{\n    msg.payload = true\n}\nelse\n{\n    msg.payload = false\n}\n\n// Is enabled?\nif (isEnabled == false)\n{\n    msg.payload = false\n}\n\nreturn msg",
+        "func": "var mixer_run = msg.payload;\nvar sync = false;\n\n// Global value\nif (global.get(\"frankenstein_sync_ads\")!==undefined)\n{\n    sync = global.get(\"frankenstein_sync_ads\");\n}\n\n// Check mixer\nmsg.payload = mixer_run\n\n// Sync?\nif (sync == false)\n{\n    msg.payload = false\n}\n\nreturn msg",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 880,
-        "y": 280,
+        "x": 1080,
+        "y": 360,
         "wires": [
             [
-                "5d3e76e0e2fb3e88",
-                "e45480b8ed827f96"
+                "a7683fe7de9658f8",
+                "86f191dd05946674"
             ]
         ]
     },
     {
-        "id": "e45480b8ed827f96",
+        "id": "86f191dd05946674",
         "type": "ui_text",
-        "z": "dd125b8f591531ed",
+        "z": "ee47eb5696c14296",
+        "g": "f3ae6258e2ef6f06",
         "group": "941553f899610cff",
-        "order": 4,
+        "order": 7,
         "width": 6,
         "height": 1,
         "name": "",
-        "label": "ADS on/off [0/1]",
+        "label": "ADS on/off [bool]",
         "format": "{{msg.payload.toString()}}",
         "layout": "row-spread",
         "className": "",
@@ -225,34 +238,37 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 1100,
-        "y": 240,
+        "x": 1310,
+        "y": 320,
         "wires": []
     },
     {
-        "id": "d89063d7ce0f84f4",
+        "id": "29eff04a28d6e027",
         "type": "comment",
-        "z": "dd125b8f591531ed",
+        "z": "ee47eb5696c14296",
+        "g": "f3ae6258e2ef6f06",
         "name": "Write values to material delivery PLC",
         "info": "",
-        "x": 820,
-        "y": 180,
+        "x": 720,
+        "y": 200,
         "wires": []
     },
     {
-        "id": "d1aefb9152deb1a2",
+        "id": "bf753dfe3ad9c622",
         "type": "comment",
-        "z": "dd125b8f591531ed",
+        "z": "ee47eb5696c14296",
+        "g": "d2eb16ee9ae04a13",
         "name": "Write values to Vertico dosing system",
         "info": "",
-        "x": 830,
-        "y": 540,
+        "x": 730,
+        "y": 580,
         "wires": []
     },
     {
-        "id": "d6d2363d5b8c91c5",
+        "id": "583c29a24e03c966",
         "type": "OpcUa-Client",
-        "z": "dd125b8f591531ed",
+        "z": "ee47eb5696c14296",
+        "g": "d2eb16ee9ae04a13",
         "endpoint": "df0e8d096d8a204d",
         "action": "write",
         "deadbandtype": "a",
@@ -264,20 +280,25 @@
         "localkeyfile": "",
         "securitymode": "None",
         "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": "",
+        "maxMessageSize": "",
+        "receiveBufferSize": "",
+        "sendBufferSize": "",
         "name": "",
-        "x": 1460,
-        "y": 640,
+        "x": 1660,
+        "y": 720,
         "wires": [
             [],
             []
         ]
     },
     {
-        "id": "70378d22cc0c3adc",
+        "id": "dfd880c639b8903f",
         "type": "function",
-        "z": "dd125b8f591531ed",
+        "z": "ee47eb5696c14296",
         "name": "Only inject when value changes",
-        "func": "if (context.get('prevValue1') === 'undefined') {\n    context.set('prevValue1', false);\n}\n\nif (msg.payload !== context.get('prevValue1')) {\n    context.set('prevValue1', msg.payload);\n    return msg;\n}",
+        "func": "if (context.get('prev_mixer_run') === 'undefined') {\n    context.set('prev_mixer_run', false);\n}\n\nif (msg.payload !== context.get('prev_mixer_run')) {\n    context.set('prev_mixer_run', msg.payload);\n    return msg;\n}",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -285,42 +306,44 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 280,
+        "y": 360,
         "wires": [
             [
-                "da6c33eda5543d46",
-                "5d7ccd29b3219be1",
-                "91bb5914b130ab06"
+                "faf12f5c1c0ec6ec",
+                "6a7e88d590b86b94",
+                "1d53aba126c3d4dc"
             ]
         ]
     },
     {
-        "id": "5d7ccd29b3219be1",
+        "id": "6a7e88d590b86b94",
         "type": "OpcUa-Item",
-        "z": "dd125b8f591531ed",
+        "z": "ee47eb5696c14296",
+        "g": "d2eb16ee9ae04a13",
         "item": "ns=5;i=2",
         "datatype": "Boolean",
         "value": "msg.topic",
         "name": "vertico_do3",
-        "x": 1110,
-        "y": 640,
+        "x": 1310,
+        "y": 720,
         "wires": [
             [
-                "d6d2363d5b8c91c5"
+                "583c29a24e03c966"
             ]
         ]
     },
     {
-        "id": "e9061c5808c4246e",
+        "id": "1a8b8f5a702258bd",
         "type": "ui_switch",
-        "z": "dd125b8f591531ed",
+        "z": "ee47eb5696c14296",
+        "g": "d2eb16ee9ae04a13",
         "name": "",
-        "label": "Sync with m-tec [0/1]",
+        "label": "Sync with m-tec [bool]",
         "tooltip": "",
         "group": "b1d6f3e06f0a0eff",
-        "order": 1,
-        "width": 0,
-        "height": 0,
+        "order": 2,
+        "width": 6,
+        "height": 1,
         "passthru": true,
         "decouple": "false",
         "topic": "topic",
@@ -336,63 +359,66 @@
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 680,
-        "y": 680,
+        "x": 880,
+        "y": 760,
         "wires": [
             [
-                "13698af1e5eb8964"
+                "550b1f04471ba124"
             ]
         ]
     },
     {
-        "id": "13698af1e5eb8964",
+        "id": "550b1f04471ba124",
         "type": "function",
-        "z": "dd125b8f591531ed",
+        "z": "ee47eb5696c14296",
+        "g": "d2eb16ee9ae04a13",
         "name": "",
-        "func": "global.set(\"isEnabled2\", msg.payload);",
+        "func": "global.set(\"frankenstein_sync_verticp\", msg.payload);",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 900,
-        "y": 680,
+        "x": 1080,
+        "y": 760,
         "wires": [
             []
         ]
     },
     {
-        "id": "91bb5914b130ab06",
+        "id": "1d53aba126c3d4dc",
         "type": "function",
-        "z": "dd125b8f591531ed",
+        "z": "ee47eb5696c14296",
+        "g": "d2eb16ee9ae04a13",
         "name": "",
-        "func": "valve = msg.payload;\nisEnabled = false;\n\n// Global value\nif (global.get(\"isEnabled2\")!==undefined)\n{\n    isEnabled = global.get(\"isEnabled2\");\n}\n\n// Check valve\nif (valve == true)\n{\n    msg.payload = true\n}\nelse\n{\n    msg.payload = false\n}\n\n// Is enabled?\nif (isEnabled == false)\n{\n    msg.payload = false\n}\n\nreturn msg",
+        "func": "var mixer_run = msg.payload;\nvar sync = false;\n\n// Global value\nif (global.get(\"frankenstein_sync_vertico\")!==undefined)\n{\n    sync = global.get(\"frankenstein_sync_vertico\");\n}\n\n// Check mixer\nmsg.payload = mixer_run\n\n// Is enabled?\nif (sync == false)\n{\n    msg.payload = false\n}\n\nreturn msg",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 900,
-        "y": 640,
+        "x": 1080,
+        "y": 720,
         "wires": [
             [
-                "5d7ccd29b3219be1",
-                "7026429b9b5cc2b3"
+                "6a7e88d590b86b94",
+                "da6ccf9fc66732e0"
             ]
         ]
     },
     {
-        "id": "7026429b9b5cc2b3",
+        "id": "da6ccf9fc66732e0",
         "type": "ui_text",
-        "z": "dd125b8f591531ed",
+        "z": "ee47eb5696c14296",
+        "g": "d2eb16ee9ae04a13",
         "group": "b1d6f3e06f0a0eff",
-        "order": 4,
+        "order": 6,
         "width": 6,
         "height": 1,
         "name": "",
-        "label": "Liquid dosing on/off [0/1]",
+        "label": "Liquid dosing on/off [bool]",
         "format": "{{msg.payload.toString()}}",
         "layout": "row-spread",
         "className": "",
@@ -400,37 +426,241 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 1150,
-        "y": 600,
+        "x": 1350,
+        "y": 680,
         "wires": []
     },
     {
-        "id": "3a8114956501cd52",
-        "type": "ui_spacer",
-        "z": "dd125b8f591531ed",
-        "name": "spacer",
+        "id": "9b45896c68d03d31",
+        "type": "ui_text",
+        "z": "ee47eb5696c14296",
+        "g": "f3ae6258e2ef6f06",
+        "group": "941553f899610cff",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "<b>Write values:",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1670,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "0e37bf3b7d21edc2",
+        "type": "ui_text",
+        "z": "ee47eb5696c14296",
+        "g": "f3ae6258e2ef6f06",
+        "group": "941553f899610cff",
+        "order": 6,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "<b>Read values:",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1670,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "690ad64443e5497e",
+        "type": "ui_text",
+        "z": "ee47eb5696c14296",
+        "g": "d2eb16ee9ae04a13",
+        "group": "b1d6f3e06f0a0eff",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "<b>Write values:",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1670,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "cdfacf2c22dc4148",
+        "type": "ui_text",
+        "z": "ee47eb5696c14296",
+        "g": "d2eb16ee9ae04a13",
+        "group": "b1d6f3e06f0a0eff",
+        "order": 5,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "<b>Read values:",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1670,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "1e87d2551754cbe1",
+        "type": "inject",
+        "z": "ee47eb5696c14296",
+        "g": "f3ae6258e2ef6f06",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "4",
+        "payloadType": "num",
+        "x": 670,
+        "y": 400,
+        "wires": [
+            [
+                "ba72a35ca15897db"
+            ]
+        ]
+    },
+    {
+        "id": "ba72a35ca15897db",
+        "type": "ui_text_input",
+        "z": "ee47eb5696c14296",
+        "g": "f3ae6258e2ef6f06",
+        "name": "",
+        "label": "Write AO0",
+        "tooltip": "",
         "group": "941553f899610cff",
         "order": 3,
-        "width": 6,
-        "height": 1
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 910,
+        "y": 400,
+        "wires": [
+            [
+                "54cdf15801bd459e"
+            ]
+        ]
     },
     {
-        "id": "3858993998e0a91d",
+        "id": "54cdf15801bd459e",
+        "type": "function",
+        "z": "ee47eb5696c14296",
+        "g": "f3ae6258e2ef6f06",
+        "name": "",
+        "func": "if( msg.payload<4){msg.payload=4}\nelse if(msg.payload>20){msg.payload=20}\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1080,
+        "y": 400,
+        "wires": [
+            [
+                "16e7149e63b6d0f5"
+            ]
+        ]
+    },
+    {
+        "id": "cd2f68db4a520efe",
+        "type": "ui_text",
+        "z": "ee47eb5696c14296",
+        "g": "f3ae6258e2ef6f06",
+        "group": "941553f899610cff",
+        "order": 4,
+        "width": 1,
+        "height": 1,
+        "name": "",
+        "label": "mA",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 930,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "d17051311784d564",
         "type": "ui_spacer",
-        "z": "dd125b8f591531ed",
+        "z": "ee47eb5696c14296",
         "name": "spacer",
-        "group": "b1d6f3e06f0a0eff",
-        "order": 2,
+        "group": "941553f899610cff",
+        "order": 5,
         "width": 6,
         "height": 1
     },
     {
-        "id": "199743bde951fc49",
+        "id": "a00eaabc2aad39d4",
         "type": "ui_spacer",
-        "z": "dd125b8f591531ed",
+        "z": "ee47eb5696c14296",
         "name": "spacer",
         "group": "b1d6f3e06f0a0eff",
         "order": 3,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "e63546c9a6cd3ba2",
+        "type": "ui_spacer",
+        "z": "ee47eb5696c14296",
+        "name": "spacer",
+        "group": "b1d6f3e06f0a0eff",
+        "order": 4,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "fda0c253fa1a3147",
+        "type": "ui_spacer",
+        "z": "ee47eb5696c14296",
+        "name": "spacer",
+        "group": "42ab9b98873d81c6",
+        "order": 3,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "08535c2e62e7e63a",
+        "type": "ui_spacer",
+        "z": "ee47eb5696c14296",
+        "name": "spacer",
+        "group": "abfd115f36655ac8",
+        "order": 6,
         "width": 6,
         "height": 1
     },
@@ -473,11 +703,42 @@
         "className": ""
     },
     {
+        "id": "42ab9b98873d81c6",
+        "type": "ui_group",
+        "name": "Write values",
+        "tab": "bf699577502254b8",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "abfd115f36655ac8",
+        "type": "ui_group",
+        "name": "Read values",
+        "tab": "bf699577502254b8",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
         "id": "d16e0686aa3f78d3",
         "type": "ui_tab",
-        "name": "Project Frankestein",
+        "name": "Project Frankenstein",
         "icon": "dashboard",
         "order": 10,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "bf699577502254b8",
+        "type": "ui_tab",
+        "name": "Bronkhorst dosing pump",
+        "icon": "dashboard",
+        "order": 8,
         "disabled": false,
         "hidden": false
     }

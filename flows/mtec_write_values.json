@@ -1,16 +1,16 @@
 [
     {
-        "id": "acf9bf928d25acab",
+        "id": "09f74a936e34ed02",
         "type": "tab",
         "label": "M-tec: Write values",
-        "disabled": true,
+        "disabled": false,
         "info": "",
         "env": []
     },
     {
-        "id": "cd777bb546c2993a",
+        "id": "ed9fe8e0a4294cfa",
         "type": "trigger",
-        "z": "acf9bf928d25acab",
+        "z": "09f74a936e34ed02",
         "name": "",
         "op1": "true",
         "op2": "false",
@@ -20,7 +20,7 @@
         "extend": false,
         "overrideDelay": false,
         "units": "s",
-        "reset": "ns=4;s=|var|ECC2100 0.8S 1131.Application.GVL_OPC.Livebit2DuoMix;datatype=Boolean",
+        "reset": "",
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
@@ -28,14 +28,14 @@
         "y": 360,
         "wires": [
             [
-                "c93f401aac7a323d"
+                "0b08100827d5f1c3"
             ]
         ]
     },
     {
-        "id": "c93f401aac7a323d",
+        "id": "0b08100827d5f1c3",
         "type": "OpcUa-Item",
-        "z": "acf9bf928d25acab",
+        "z": "09f74a936e34ed02",
         "item": "ns=4;s=|var|ECC2100 0.8S 1131.Application.GVL_OPC.Livebit2DuoMix.Value.Value;datatype=Boolean",
         "datatype": "Boolean",
         "value": "",
@@ -44,14 +44,14 @@
         "y": 360,
         "wires": [
             [
-                "7f9f89ea8e2c3ed2"
+                "28934a46c30d4da5"
             ]
         ]
     },
     {
-        "id": "7f9f89ea8e2c3ed2",
+        "id": "28934a46c30d4da5",
         "type": "OpcUa-Client",
-        "z": "acf9bf928d25acab",
+        "z": "09f74a936e34ed02",
         "endpoint": "b02adcf7.368dd",
         "action": "write",
         "deadbandtype": "a",
@@ -63,6 +63,11 @@
         "localkeyfile": "",
         "securitymode": "None",
         "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": "",
+        "maxMessageSize": "",
+        "receiveBufferSize": "",
+        "sendBufferSize": "",
         "name": "",
         "x": 1180,
         "y": 440,
@@ -72,9 +77,9 @@
         ]
     },
     {
-        "id": "7c1308080d1a2007",
+        "id": "52bed2e245433535",
         "type": "inject",
-        "z": "acf9bf928d25acab",
+        "z": "09f74a936e34ed02",
         "name": "Berghof communication status",
         "props": [
             {
@@ -91,19 +96,19 @@
         "y": 360,
         "wires": [
             [
-                "cd777bb546c2993a"
+                "ed9fe8e0a4294cfa"
             ]
         ]
     },
     {
-        "id": "78f78298893202ab",
+        "id": "b8805f6fab92b756",
         "type": "ui_text_input",
-        "z": "acf9bf928d25acab",
+        "z": "09f74a936e34ed02",
         "name": "",
-        "label": "",
+        "label": "Pump velocity",
         "tooltip": "",
         "group": "2159e8a83bb50b67",
-        "order": 1,
+        "order": 2,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -113,18 +118,18 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 470,
+        "x": 480,
         "y": 440,
         "wires": [
             [
-                "7f933890de9e0524"
+                "6ddb910815ccf34d"
             ]
         ]
     },
     {
-        "id": "a70904f87bfb7797",
+        "id": "b62c4f4064b75c9c",
         "type": "OpcUa-Item",
-        "z": "acf9bf928d25acab",
+        "z": "09f74a936e34ed02",
         "item": "ns=4;s=|var|ECC2100 0.8S 1131.Application.GVL_OPC.set_value_mixingpump.Value.Value;datatype=Uint16",
         "datatype": "UInt16",
         "value": "",
@@ -133,14 +138,14 @@
         "y": 440,
         "wires": [
             [
-                "7f9f89ea8e2c3ed2"
+                "28934a46c30d4da5"
             ]
         ]
     },
     {
-        "id": "71d322c379310c84",
+        "id": "eb1bd0f2fca4d807",
         "type": "OpcUa-Item",
-        "z": "acf9bf928d25acab",
+        "z": "09f74a936e34ed02",
         "item": "ns=4;s=|var|ECC2100 0.8S 1131.Application.GVL_OPC.Remote_start.Value.Value;datatype=Uint16",
         "datatype": "Boolean",
         "value": "",
@@ -149,19 +154,19 @@
         "y": 540,
         "wires": [
             [
-                "7f9f89ea8e2c3ed2"
+                "28934a46c30d4da5"
             ]
         ]
     },
     {
-        "id": "169f840b1e02e550",
+        "id": "531f6c94260ac779",
         "type": "ui_switch",
-        "z": "acf9bf928d25acab",
+        "z": "09f74a936e34ed02",
         "name": "",
         "label": "Enable/disable",
         "tooltip": "",
         "group": "2159e8a83bb50b67",
-        "order": 3,
+        "order": 1,
         "width": 6,
         "height": 1,
         "passthru": true,
@@ -183,16 +188,16 @@
         "y": 540,
         "wires": [
             [
-                "71d322c379310c84"
+                "eb1bd0f2fca4d807"
             ]
         ]
     },
     {
-        "id": "538d20805ebee305",
+        "id": "921831315afc8cd9",
         "type": "ui_text",
-        "z": "acf9bf928d25acab",
+        "z": "09f74a936e34ed02",
         "group": "2159e8a83bb50b67",
-        "order": 2,
+        "order": 3,
         "width": 1,
         "height": 1,
         "name": "",
@@ -205,9 +210,9 @@
         "wires": []
     },
     {
-        "id": "7f933890de9e0524",
+        "id": "6ddb910815ccf34d",
         "type": "function",
-        "z": "acf9bf928d25acab",
+        "z": "09f74a936e34ed02",
         "name": "",
         "func": "if( msg.payload<170){msg.payload=170}\nelse if(msg.payload>420){msg.payload=420}\nmsg.payload=(msg.payload-169.2)*65000/(420-169.2)\nreturn msg",
         "outputs": 1,
@@ -220,14 +225,14 @@
         "y": 440,
         "wires": [
             [
-                "a70904f87bfb7797"
+                "b62c4f4064b75c9c"
             ]
         ]
     },
     {
-        "id": "19073b7ed2fa4615",
+        "id": "4945a8b5df711968",
         "type": "inject",
-        "z": "acf9bf928d25acab",
+        "z": "09f74a936e34ed02",
         "name": "",
         "props": [
             {
@@ -249,14 +254,14 @@
         "y": 540,
         "wires": [
             [
-                "169f840b1e02e550"
+                "531f6c94260ac779"
             ]
         ]
     },
     {
-        "id": "94ad1c60ba741b75",
+        "id": "65884eac94a8b64a",
         "type": "inject",
-        "z": "acf9bf928d25acab",
+        "z": "09f74a936e34ed02",
         "name": "",
         "props": [
             {
@@ -278,7 +283,7 @@
         "y": 440,
         "wires": [
             [
-                "78f78298893202ab"
+                "b8805f6fab92b756"
             ]
         ]
     },

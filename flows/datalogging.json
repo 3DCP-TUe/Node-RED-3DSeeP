@@ -1,15 +1,15 @@
 [
     {
-        "id": "b7e5f2b641339779",
+        "id": "830497da8cdf302a",
         "type": "tab",
         "label": "Datalogging",
         "disabled": false,
         "info": ""
     },
     {
-        "id": "291f77e1c2a0119b",
+        "id": "1deaa966069ed1b9",
         "type": "ui_template",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "group": "",
         "name": "Clock Toolbar",
         "order": 2,
@@ -22,15 +22,15 @@
         "templateScope": "global",
         "className": "",
         "x": 1160,
-        "y": 640,
+        "y": 660,
         "wires": [
             []
         ]
     },
     {
-        "id": "ffe6a65ba515312d",
+        "id": "99e0e8aa734fe370",
         "type": "ui_text",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "group": "599d2b5615f3741e",
         "order": 1,
         "width": 0,
@@ -40,17 +40,21 @@
         "format": "{{msg.payload}}",
         "layout": "col-center",
         "className": "",
-        "x": 1430,
-        "y": 280,
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1350,
+        "y": 540,
         "wires": []
     },
     {
-        "id": "bbd36528211c5bbe",
+        "id": "30c5a4b3a4e0a417",
         "type": "join",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "name": "",
         "mode": "custom",
-        "build": "string",
+        "build": "object",
         "property": "payload",
         "propertyType": "msg",
         "key": "topic",
@@ -68,16 +72,16 @@
         "y": 940,
         "wires": [
             [
-                "5fa76f14852dfb8f"
+                "287c3757d44d9aed"
             ]
         ]
     },
     {
-        "id": "f428d326fafc1fcd",
+        "id": "f3c6f7ac361ff9c9",
         "type": "moment",
-        "z": "b7e5f2b641339779",
-        "name": "",
-        "topic": "",
+        "z": "830497da8cdf302a",
+        "name": "Desktop time",
+        "topic": "time",
         "input": "payload",
         "inputType": "msg",
         "inTz": "Africa/Abidjan",
@@ -86,22 +90,21 @@
         "adjDir": "add",
         "format": "HH:mm:ss.SSS",
         "locale": "nl-NL",
-        "output": "Time",
+        "output": "payload",
         "outputType": "msg",
         "outTz": "Europe/Amsterdam",
-        "x": 500,
+        "x": 470,
         "y": 940,
         "wires": [
             [
-                "bbd36528211c5bbe",
-                "58ebe51b10b41888"
+                "30c5a4b3a4e0a417"
             ]
         ]
     },
     {
-        "id": "5fa76f14852dfb8f",
+        "id": "287c3757d44d9aed",
         "type": "delay",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "name": "",
         "pauseType": "delay",
         "timeout": "2",
@@ -119,46 +122,34 @@
         "y": 940,
         "wires": [
             [
-                "542a66f3263f0cc9"
+                "31d673b20ee261f8"
             ]
         ]
     },
     {
-        "id": "58ebe51b10b41888",
-        "type": "link out",
-        "z": "b7e5f2b641339779",
-        "name": "Time",
-        "links": [
-            "3f38a7b3.1e8ce8"
-        ],
-        "x": 695,
-        "y": 900,
-        "wires": []
-    },
-    {
-        "id": "542a66f3263f0cc9",
+        "id": "31d673b20ee261f8",
         "type": "function",
-        "z": "b7e5f2b641339779",
-        "name": "",
-        "func": "msg.payload= {\n'Time': msg.Time,\n'waterTemp_C' : parseFloat(msg.waterTemp_C).toFixed(2),\n'waterFlow_LMin' : parseFloat(msg.waterFlow_LMin).toFixed(2),\n'mortarTempSIEMENS_C' : parseFloat(msg.DryMortarTemp).toFixed(2),\n'mtecPumpMotor_rpm' : parseFloat(msg.mtec_pump_motor_rpm).toFixed(2),\n'setValuePumpMotor_rpm' : parseFloat(msg.setValuePumpMotor_rpm).toFixed(2),\n'solenoidValve_bool' : parseFloat(msg.solenoidValve_bool).toFixed(0),\n'waterPump_bool' : parseFloat(msg.waterPump_bool).toFixed(2),\n'waterDosingTurns': parseFloat(msg.waterDosingTurns).toFixed(1),\n'mai_water_run' : parseFloat(msg.mai_water_run).toFixed(0),\n'mai_water_temp' : parseFloat(msg.mai_water_temp).toFixed(2),\n'mai_water_flow_set' : parseFloat(msg.mai_water_flow_set).toFixed(0),\n'mai_water_flow_actual' : parseFloat(msg.mai_water_flow_actual).toFixed(2),\n'mai_waterpump_ref_freq' : parseFloat(msg.mai_waterpump_ref_freq).toFixed(0),\n'mai_waterpump_output_freq' : parseFloat(msg.mai_waterpump_output_freq).toFixed(0),\n'mai_mixer_run' : parseFloat(msg.mai_mixer_run).toFixed(0),\n'mai_pump_run' : parseFloat(msg.mai_pump_run).toFixed(0),\n'mai_pump_speed' : parseFloat(msg.mai_pump_speed).toFixed(0),\n'mai_pump_ouput_current' : parseFloat(msg.mai_pump_output_current).toFixed(0),\n'mai_pump_output_power' : parseFloat(msg.mai_pump_output_power).toFixed(0),\n'mai_pump_vibration_mode' : parseFloat(msg.mai_pump_vibration_mode).toFixed(0),\n'mai_setting_water_pre_run' : parseFloat(msg.mai_setting_water_pre_run).toFixed(2),\n'mai_setting_mixer_post_run' : parseFloat(msg.mai_setting_mixer_post_run).toFixed(2),\n'mai_setting_wetprobe_covered_delay' : parseFloat(msg.mai_setting_wetprobe_covered_delay).toFixed(0),\n'mai_setting_wetprobe_uncovered_delay,' : parseFloat(msg.mai_setting_wetprobe_uncovered_delay).toFixed(0),\n'SourceTime' : msg.sourceTime,\n'X_mm' : parseFloat(msg.X_mm).toFixed(2),\n'Y_mm' : parseFloat(msg.Y_mm).toFixed(2),\n'Z_mm' : parseFloat(msg.Z_mm).toFixed(2),\n'C_deg' : parseFloat(msg.C_deg).toFixed(2),\n'XVel_mmMin': parseFloat(msg.XVel_mmMin).toFixed(2),\n'YVel_mmMin': parseFloat(msg.YVel_mmMin).toFixed(2),\n'ZVel_mmMin': parseFloat(msg.ZVel_mmMin).toFixed(2),\n'CVel_mmMin': parseFloat(msg.CVel_mmMin).toFixed(2),\n'XFeedRate_mmMin': parseFloat(msg.XFeedRate_mmMin).toFixed(2),\n'YFeedRate_mmMin': parseFloat(msg.YFeedRate_mmMin).toFixed(2),\n'ZFeedRate_mmMin': parseFloat(msg.ZFeedRate_mmMin).toFixed(2),\n'CFeedRate_mmMin': parseFloat(msg.CFeedRate_mmMin).toFixed(2),\n'FeedRateOverride_Perc': parseFloat(msg.FeedRateOverride_Perc).toFixed(2),\n'XPower_W': parseFloat(msg.XPower_W).toFixed(2),\n'YPower_W': parseFloat(msg.YPower_W).toFixed(2),\n'ZPower_W': parseFloat(msg.ZPower_W).toFixed(2),\n'CPower_W': parseFloat(msg.CPower_W).toFixed(2),\n'R100': parseFloat(msg.R100).toFixed(2),\n'R101': parseFloat(msg.R101).toFixed(2),\n'R102': parseFloat(msg.R102).toFixed(2),\n'R103': parseFloat(msg.R103).toFixed(2),\n'R104': parseFloat(msg.R104).toFixed(2),\n'R105': parseFloat(msg.R105).toFixed(2),\n'R106': parseFloat(msg.R106).toFixed(2),\n'R107': parseFloat(msg.R107).toFixed(2),\n'R108': parseFloat(msg.R108).toFixed(2),\n'R109': parseFloat(msg.R109).toFixed(2),\n'sensing_ai0_pressure': parseFloat(msg.pressure_ai0).toFixed(2),\n'sensing_ai1_pressure': parseFloat(msg.pressure_ai1).toFixed(2),\n'sensing_ai0': parseFloat(msg.sensing_ai0).toFixed(6),\n'sensing_ai1': parseFloat(msg.sensing_ai1).toFixed(6),\n'sensing_ai2': parseFloat(msg.sensing_ai2).toFixed(6),\n'sensing_ai3': parseFloat(msg.sensing_ai3).toFixed(6),\n'sensing_ai4': parseFloat(msg.sensing_ai4).toFixed(6),\n'sensing_ai5': parseFloat(msg.sensing_ai5).toFixed(6),\n'sensing_ai6_rh': parseFloat(msg.sensing_ai6).toFixed(2),\n'sensing_ai7_temp': parseFloat(msg.sensing_ai7).toFixed(1),\n'sensing_ao0': parseFloat(msg.sensing_ao0).toFixed(6),\n'sensing_ao1': parseFloat(msg.sensing_ao1).toFixed(6),\n'sensing_ao2': parseFloat(msg.sensing_ao2).toFixed(6),\n'sensing_ao3': parseFloat(msg.sensing_ao3).toFixed(6),\n'sensing_di0': parseFloat(msg.sensing_di0).toFixed(0),\n'sensing_di1': parseFloat(msg.sensing_di1).toFixed(0),\n'sensing_di2': parseFloat(msg.sensing_di2).toFixed(0),\n'sensing_di3': parseFloat(msg.sensing_di3).toFixed(0),\n'sensing_do0': parseFloat(msg.sensing_do0).toFixed(0),\n'sensing_do1': parseFloat(msg.sensing_do1).toFixed(0),\n'sensing_do2': parseFloat(msg.sensing_do2).toFixed(0),\n'sensing_do3': parseFloat(msg.sensing_do3).toFixed(0),\n'sensing_mass_flow': parseFloat(msg.sensing_mass_flow).toFixed(3),\n'sensing_volume_flow': parseFloat(msg.sensing_volume_flow).toFixed(3),\n'sensing_density': parseFloat(msg.sensing_density).toFixed(3),\n'sensing_dynamic_visco': parseFloat(msg.sensing_dynamic_visco).toFixed(1),\n'sensing_temperature': parseFloat(msg.sensing_temperature).toFixed(2),\n'sensing_exciter_current_0': parseFloat(msg.sensing_exciter_current_0).toFixed(6),\n'sensing_oscillation_frequency_0': parseFloat(msg.sensing_oscillation_frequency_0).toFixed(6),\n'sensing_oscillation_amplitude_0': parseFloat(msg.sensing_oscillation_amplitude_0).toFixed(6),\n'sensing_oscillation_damping_0': parseFloat(msg.sensing_oscillation_damping_0).toFixed(3),\n'sensing_signal_asymmetry': parseFloat(msg.sensing_signal_asymmetry).toFixed(9),\n'sensing_exciter_current_1': parseFloat(msg.sensing_exciter_current_1).toFixed(6),\n'sensing_oscillation_frequency_1': parseFloat(msg.sensing_oscillation_frequency_1).toFixed(6),\n'sensing_oscillation_amplitude_1': parseFloat(msg.sensing_oscillation_amplitude_1).toFixed(6),\n'sensing_oscillation_damping_1': parseFloat(msg.sensing_oscillation_damping_1).toFixed(3),\n'material_bronkhorst_read_alarm_info': parseFloat(msg.material_bronkhorst_read_alarm_info).toFixed(0),\n'material_bronkhorst_read_read_setpoint': parseFloat(msg.material_bronkhorst_read_setpoint).toFixed(2),\n'material_bronkhorst_read_measure': parseFloat(msg.material_bronkhorst_read_measure).toFixed(3),\n'material_bronkhorst_read_temperature': parseFloat(msg.material_bronkhorst_read_temperature).toFixed(1),\n'material_bronkhorst_read_density': parseFloat(msg.material_bronkhorst_read_density).toFixed(1),\n'material_bronkhorst_read_analog_input': parseFloat(msg.material_bronkhorst_read_analog_input).toFixed(0),\n'material_bronkhorst_read_valve_output': parseFloat(msg.material_bronkhorst_read_valve_output).toFixed(0),\n'material_bronkhorst_read_setpoint_slope': parseFloat(msg.material_bronkhorst_read_setpoint_slope).toFixed(0),\n'material_peristaltic_pump_actual_velocity': parseFloat(msg.material_peristaltic_pump_actual_velocity).toFixed(3),\n'material_peristaltic_pump_actual_power': parseFloat(msg.material_peristaltic_pump_actual_power).toFixed(3),\n'material_peristaltic_pump_actual_current': parseFloat(msg.material_peristaltic_pump_actual_current).toFixed(3),\n'material_peristaltic_pump_actual_torque': parseFloat(msg.material_peristaltic_pump_actual_torque).toFixed(3),\n'sensing_r0': parseFloat(msg.sensing_r0).toFixed(6),\n'sensing_r1': parseFloat(msg.sensing_r1).toFixed(6),\n'sensing_r2': parseFloat(msg.sensing_r2).toFixed(6),\n'sensing_r3': parseFloat(msg.sensing_r3).toFixed(6),\n'sensing_r4': parseFloat(msg.sensing_r4).toFixed(6),\n'sensing_r5': parseFloat(msg.sensing_r5).toFixed(6),\n'sensing_r6': parseFloat(msg.sensing_r6).toFixed(6),\n'sensing_r7': parseFloat(msg.sensing_r7).toFixed(6),\n'sensing_r8': parseFloat(msg.sensing_r8).toFixed(6),\n'sensing_r9': parseFloat(msg.sensing_r9).toFixed(6),\n'vertico_is_remote_bool': parseFloat(msg.vertico_is_remote).toFixed(0),\n'vertico_is_open_loop_bool': parseFloat(msg.vertico_is_open_loop).toFixed(0),\n'vertico_actual_motor_velocity_rpm': parseFloat(msg.vertico_actual_motor_velocity).toFixed(0),\n'vertico_actual_flow_ml_min': parseFloat(msg.vertico_actual_flow_mlmin).toFixed(2),\n'vertico_actual_flow_ma': parseFloat(msg.vertico_actual_flow_ma).toFixed(6),\n'vertico_actual_pressure_bar': parseFloat(msg.vertico_actual_pressure).toFixed(1),\n'vertico_local_setpoint_open_loop_rpm': parseFloat(msg.vertico_local_setpoint_open_loop).toFixed(0),\n'vertico_local_setpoint_closed_loop_mlmin': parseFloat(msg.vertico_local_setpoint_closed_loop).toFixed(2),\n'vertico_remote_start_stop_bool': parseFloat(msg.vertico_remote_start_stop).toFixed(0),\n'vertico_remote_setpoint_open_loop_rpm': parseFloat(msg.vertico_remote_setpoint_open_loop).toFixed(0),\n'vertico_remote_setpoint_closed_loop_mlmin': parseFloat(msg.vertico_remote_setpoint_closed_loop).toFixed(2),\n'vertico_pid_p': parseFloat(msg.vertico_pid_p).toFixed(1),\n'vertico_pid_i': parseFloat(msg.vertico_pid_i).toFixed(1),\n'vertico_pid_d': parseFloat(msg.vertico_pid_d).toFixed(2),\n'vertico_ai3_ma': parseFloat(msg.vertico_ai3).toFixed(6),\n'vertico_ao0_ma': parseFloat(msg.vertico_ao0).toFixed(6),\n'vertico_do3_bool': parseFloat(msg.vertico_do3).toFixed(0),\n'printhead_power_on_left': parseFloat(msg.printhead_power_on_left).toFixed(0),\n'printhead_move_jog_backward_left': parseFloat(msg.printhead_move_jog_backward_left).toFixed(0),\n'printhead_move_jog_forward_left': parseFloat(msg.printhead_move_jog_forward_left).toFixed(0),\n'printhead_velocity_jog_left': parseFloat(msg.printhead_velocity_jog_left).toFixed(1),\n'printhead_actual_velocity_left': parseFloat(msg.printhead_actual_velocity_left).toFixed(1),\n'printhead_actual_power_left': parseFloat(msg.printhead_actual_power_left).toFixed(3),\n'printhead_actual_current_left': parseFloat(msg.printhead_actual_current_left).toFixed(3),\n'printhead_actual_torque_left': parseFloat(msg.printhead_actual_torque_left).toFixed(3),\n'printhead_power_on_right': parseFloat(msg.printhead_power_on_right).toFixed(0),\n'printhead_move_jog_backward_right': parseFloat(msg.printhead_move_jog_backward_right).toFixed(0),\n'printhead_move_jog_forward_right': parseFloat(msg.printhead_move_jog_forward_right).toFixed(0),\n'printhead_velocity_jog_right': parseFloat(msg.printhead_velocity_jog_right).toFixed(1),\n'printhead_actual_velocity_right': parseFloat(msg.printhead_actual_velocity_right).toFixed(1),\n'printhead_actual_power_right': parseFloat(msg.printhead_actual_power_right).toFixed(3),\n'printhead_actual_current_right': parseFloat(msg.printhead_actual_current_right).toFixed(3),\n'printhead_actual_torque_right': parseFloat(msg.printhead_actual_torque_right).toFixed(3),\n'printhead_box1_ai0': parseFloat(msg.printhead_box1_ai0).toFixed(6),\n'printhead_box1_ai1': parseFloat(msg.printhead_box1_ai1).toFixed(6),\n'printhead_box1_ai2': parseFloat(msg.printhead_box1_ai2).toFixed(6),\n'printhead_box1_ai3': parseFloat(msg.printhead_box1_ai3).toFixed(6),\n'printhead_box1_ai4': parseFloat(msg.printhead_box1_ai4).toFixed(6),\n'printhead_box1_ai5': parseFloat(msg.printhead_box1_ai5).toFixed(6),\n'printhead_box1_ai6': parseFloat(msg.printhead_box1_ai6).toFixed(6),\n'printhead_box1_ai7': parseFloat(msg.printhead_box1_ai7).toFixed(6),\n'printhead_box2_ai0': parseFloat(msg.printhead_box2_ai0).toFixed(6),\n'printhead_box2_ai1': parseFloat(msg.printhead_box2_ai1).toFixed(6),\n'printhead_box2_ai2': parseFloat(msg.printhead_box2_ai2).toFixed(6),\n'printhead_box2_ai3': parseFloat(msg.printhead_box2_ai3).toFixed(6)\n};\n\nreturn msg;\n   \n\n\n\n\n\n",
+        "z": "830497da8cdf302a",
+        "name": "Values for csv row",
+        "func": "// Check if data exists\nconst mtec = msg.payload.mtec ?? {};\nconst gantry = msg.payload.gantry ?? {};\nconst mai = msg.payload.mai ?? {};\nconst material = msg.payload.material ?? {};\nconst vertico = msg.payload.vertico ?? {};\nconst printhead = msg.payload.printhead ?? {};\n\n// Gantry arrays\nvar gantry_position = gantry.gantry_position ?? [NaN, NaN, NaN, NaN];\nvar gantry_velocity = gantry.gantry_velocity ?? [NaN, NaN, NaN, NaN];\nvar gantry_feedrate = gantry.gantry_feedrate ?? [NaN, NaN, NaN, NaN];\nvar gantry_r_parameters = gantry.gantry_r_parameters ?? [NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN];\n\nmsg.payload = {\n\n    // Desktop time\n    'Time': msg.payload.time,\n\n    // mtec\n    'mtec_source_time': mtec.mtec_source_time ?? NaN,\n    'mtec_water_temp': mtec.mtec_water_temp?.toFixed(2) ?? NaN,\n    'mtec_water_flow': mtec.mtec_water_flow?.toFixed(2) ?? NaN,\n    'mtec_dry_mortar_temp': mtec.mtec_dry_mortar_temp?.toFixed(2) ?? NaN,\n    'mtec_pump_velocity': mtec.mtec_pump_velocity?.toFixed(2) ?? NaN,\n    'mtec_set_value_pump_speed': mtec.mtec_set_value_pump_speed?.toFixed(2) ?? NaN,\n    'mtec_solenoid_valve': +mtec.mtec_solenoid_valve ?? NaN,\n    'mtec_water_pump_run': +mtec.mtec_water_pump_run ?? NaN,\n    'mtec_mixer_run': +mtec.mtec_mixer_run ?? NaN,\n    'mtec_water_dosing_turns': mtec.mtec_water_dosing_turns?.toFixed(1) ?? NaN,\n\n    // MAI\n    'mai_source_time': mai.mai_source_time ?? NaN,\n    'mai_water_run': +mai.mai_water_run ?? NaN,\n    'mai_water_temp': mai.mai_water_temp?.toFixed(2) ?? NaN,\n    'mai_water_flow_set': mai.mai_water_flow_set ?? NaN,\n    'mai_water_flow_actual': mai.mai_water_flow_actual?.toFixed(2) ?? NaN,\n    'mai_waterpump_ref_freq': mai.mai_waterpump_ref_freq ?? NaN,\n    'mai_waterpump_output_freq': mai.mai_waterpump_output_freq ?? NaN,\n    'mai_mixer_run': +mai.mai_mixer_run ?? NaN,\n    'mai_pump_run': +mai.mai_pump_run ?? NaN,\n    'mai_pump_speed': mai.mai_pump_speed ?? NaN,\n    'mai_pump_ouput_current': mai.mai_pump_output_current ?? NaN,\n    'mai_pump_output_power': mai.mai_pump_output_power ?? NaN,\n    'mai_pump_vibration_mode': mai.mai_pump_vibration_mode ?? NaN,\n    'mai_setting_water_pre_run': mai.mai_setting_water_pre_run?.toFixed(2) ?? NaN,\n    'mai_setting_mixer_post_run': mai.mai_setting_mixer_post_run?.toFixed(2) ?? NaN,\n    'mai_setting_wetprobe_covered_delay': mai.mai_setting_wetprobe_covered_delay ?? NaN,\n    'mai_setting_wetprobe_uncovered_delay,': mai.mai_setting_wetprobe_uncovered_delay ?? NaN,\n\n    // Gantry\n    'gantry_source_time': gantry.gantry_source_time ?? NaN,\n    'gantry_position_x': gantry_position[0].toFixed(2),\n    'gantry_position_y': gantry_position[1].toFixed(2),\n    'gantry_position_z': gantry_position[2].toFixed(2),\n    'gantry_position_c': gantry_position[3].toFixed(2),\n    'gantry_velocity_x': gantry_velocity[0].toFixed(2),\n    'gantry_velocity_y': gantry_velocity[1].toFixed(2),\n    'gantry_velocity_z': gantry_velocity[2].toFixed(2),\n    'gantry_velocity_c': gantry_velocity[3].toFixed(2),\n    'gantry_feedrate_x': gantry_feedrate[0].toFixed(2),\n    'gantry_feedrate_y': gantry_feedrate[1].toFixed(2),\n    'gantry_feedrate_z': gantry_feedrate[2].toFixed(2),\n    'gantry_feedrate_c': gantry_feedrate[3].toFixed(2),\n    'gantry_feedrate_overwrite': gantry.gantry_feedrate_overwrite?.toFixed(2) ?? NaN,\n    'gantry_r100': gantry_r_parameters[0].toFixed(3),\n    'gantry_r101': gantry_r_parameters[1].toFixed(3),\n    'gantry_r102': gantry_r_parameters[2].toFixed(3),\n    'gantry_r103': gantry_r_parameters[3].toFixed(3),\n    'gantry_r104': gantry_r_parameters[4].toFixed(3),\n    'gantry_r105': gantry_r_parameters[5].toFixed(3),\n    'gantry_r106': gantry_r_parameters[6].toFixed(3),\n    'gantry_r107': gantry_r_parameters[7].toFixed(3),\n    'gantry_r108': gantry_r_parameters[8].toFixed(3),\n    'gantry_r109': gantry_r_parameters[9].toFixed(3),\n\n    // Material\n    'material_source_time': material.material_source_time ?? NaN,\n    'material_pressure_ai0': material.material_pressure_ai0?.toFixed(2) ?? NaN,\n    'material_pressure_ai1': material.material_pressure_ai1?.toFixed(2) ?? NaN,\n    'material_io_ai0': material.material_io_ai0?.toFixed(6) ?? NaN,\n    'material_io_ai1': material.material_io_ai1?.toFixed(6) ?? NaN,\n    'material_io_ai2': material.material_io_ai2?.toFixed(6) ?? NaN,\n    'material_io_ai3': material.material_io_ai3?.toFixed(6) ?? NaN,\n    'material_io_ai4': material.material_io_ai4?.toFixed(6) ?? NaN,\n    'material_io_ai5': material.material_io_ai5?.toFixed(6) ?? NaN,\n    'material_io_relative_humidity': material.material_io_relative_humidity?.toFixed(2) ?? NaN,\n    'material_io_ambient_temperature': material.material_io_ambient_temperature?.toFixed(1) ?? NaN,\n    'material_io_ao0': material.material_io_ao0?.toFixed(6) ?? NaN,\n    'material_io_ao1': material.material_io_ao1?.toFixed(6) ?? NaN,\n    'material_io_ao2': material.material_io_ao2?.toFixed(6) ?? NaN,\n    'material_io_ao3': material.material_io_ao3?.toFixed(6) ?? NaN,\n    'material_io_di0': +material.material_io_di0 ?? NaN,\n    'material_io_di1': +material.material_io_di1 ?? NaN,\n    'material_io_di2': +material.material_io_di2 ?? NaN,\n    'material_io_di3': +material.material_io_di3 ?? NaN,\n    'material_io_do0': +material.material_io_do0 ?? NaN,\n    'material_io_do1': +material.material_io_do1 ?? NaN,\n    'material_io_do2': +material.material_io_do2 ?? NaN,\n    'material_io_do3': +material.material_io_do3 ?? NaN,\n    'material_coriolis_mass_flow': material.material_coriolis_mass_flow?.toFixed(3) ?? NaN,\n    'material_coriolis_volume_flow': material.material_coriolis_volume_flow?.toFixed(3) ?? NaN,\n    'material_coriolis_density': material.material_coriolis_density?.toFixed(3) ?? NaN,\n    'material_coriolis_dynamic_visco': material.material_coriolis_dynamic_visco?.toFixed(1) ?? NaN,\n    'material_coriolis_temperature': material.material_coriolis_temperature?.toFixed(2) ?? NaN,\n    'material_coriolis_exciter_current_0': material.material_coriolis_exciter_current_0?.toFixed(6) ?? NaN,\n    'material_coriolis_oscillation_frequency_0': material.material_coriolis_oscillation_frequency_0?.toFixed(6) ?? NaN,\n    'material_coriolis_oscillation_amplitude_0': material.material_coriolis_oscillation_amplitude_0?.toFixed(6) ?? NaN,\n    'material_coriolis_oscillation_damping_0': material.material_coriolis_oscillation_damping_0?.toFixed(3) ?? NaN,\n    'material_coriolis_signal_asymmetry': material.material_coriolis_signal_asymmetry?.toFixed(9) ?? NaN,\n    'material_coriolis_exciter_current_1': material.material_coriolis_exciter_current_1?.toFixed(6) ?? NaN,\n    'material_coriolis_oscillation_frequency_1': material.material_coriolis_oscillation_frequency_1?.toFixed(6) ?? NaN,\n    'material_coriolis_oscillation_amplitude_1': material.material_coriolis_oscillation_amplitude_1?.toFixed(6) ?? NaN,\n    'material_coriolis_oscillation_damping_1': material.material_coriolis_oscillation_damping_1?.toFixed(3) ?? NaN,\n    'material_bronkhorst_read_alarm_info': material.material_bronkhorst_read_alarm_info?.toFixed(0) ?? NaN,\n    'material_bronkhorst_read_read_setpoint': material.material_bronkhorst_read_setpoint?.toFixed(2) ?? NaN,\n    'material_bronkhorst_read_measure': material.material_bronkhorst_read_measure?.toFixed(3) ?? NaN,\n    'material_bronkhorst_read_temperature': material.material_bronkhorst_read_temperature?.toFixed(1) ?? NaN,\n    'material_bronkhorst_read_density': material.material_bronkhorst_read_actual_density?.toFixed(1) ?? NaN,\n    'material_bronkhorst_read_analog_input': material.material_bronkhorst_read_analog_input?.toFixed(0) ?? NaN,\n    'material_bronkhorst_read_valve_output': material.material_bronkhorst_read_valve_output?.toFixed(0) ?? NaN,\n    'material_bronkhorst_read_setpoint_slope': material.material_bronkhorst_read_setpoint_slope?.toFixed(0) ?? NaN,\n    'material_peristaltic_pump_actual_velocity': material.material_peristaltic_pump_actual_velocity?.toFixed(3) ?? NaN,\n    'material_peristaltic_pump_actual_power': material.material_peristaltic_pump_actual_power?.toFixed(3) ?? NaN,\n    'material_peristaltic_pump_actual_current': material.material_peristaltic_pump_actual_current?.toFixed(3) ?? NaN,\n    'material_peristaltic_pump_actual_torque': material.material_peristaltic_pump_actual_torque?.toFixed(3) ?? NaN,\n    'material_r0': material.material_r0?.toFixed(6) ?? NaN,\n    'material_r1': material.material_r1?.toFixed(6) ?? NaN,\n    'material_r2': material.material_r2?.toFixed(6) ?? NaN,\n    'material_r3': material.material_r3?.toFixed(6) ?? NaN,\n    'material_r4': material.material_r4?.toFixed(6) ?? NaN,\n    'material_r5': material.material_r5?.toFixed(6) ?? NaN,\n    'material_r6': material.material_r6?.toFixed(6) ?? NaN,\n    'material_r7': material.material_r7?.toFixed(6) ?? NaN,\n    'material_r8': material.material_r8?.toFixed(6) ?? NaN,\n    'material_r9': material.material_r9?.toFixed(6) ?? NaN,\n\n    // Vertico\n    'vertico_source_time': vertico.vertico_source_time ?? NaN,\n    'vertico_is_remote': +vertico.vertico_is_remote ?? NaN,\n    'vertico_is_open_loop': +vertico.vertico_is_open_loop ?? NaN,\n    'vertico_actual_motor_velocity': vertico.vertico_motor_velocity_measured?.toFixed(0) ?? NaN,\n    'vertico_actual_flow_ml_min': vertico.vertico_flow_measured_ml_min?.toFixed(2) ?? NaN,\n    'vertico_actual_flow_ma': vertico.vertico_flow_measured_ma?.toFixed(6) ?? NaN,\n    'vertico_actual_pressure': vertico.vertico_pressure_measured?.toFixed(1) ?? NaN,\n    'vertico_local_setpoint_open_loop': vertico.vertico_local_setpoint_open_loop?.toFixed(0) ?? NaN,\n    'vertico_local_setpoint_closed_loop': vertico.vertico_local_setpoint_closed_loop?.toFixed(2) ?? NaN,\n    'vertico_remote_start_stop': +vertico.vertico_remote_start_stop ?? NaN,\n    'vertico_remote_setpoint_open_loop': vertico.vertico_remote_setpoint_open_loop?.toFixed(0) ?? NaN,\n    'vertico_remote_setpoint_closed_loop': vertico.vertico_remote_setpoint_closed_loop?.toFixed(2) ?? NaN,\n    'vertico_pid_p': vertico.vertico_pid_p?.toFixed(1) ?? NaN,\n    'vertico_pid_i': vertico.vertico_pid_i?.toFixed(1) ?? NaN,\n    'vertico_pid_d': vertico.vertico_pid_d?.toFixed(2) ?? NaN,\n    'vertico_ai3': vertico.vertico_ai3?.toFixed(6) ?? NaN,\n    'vertico_ao0': vertico.vertico_ao0?.toFixed(6) ?? NaN,\n    'vertico_do3': +vertico.vertico_do3 ?? NaN,\n\n    // Printhead\n    'printhead_source_time': printhead.printhead_source_time ?? NaN,\n    'printhead_power_on_left': +printhead.printhead_power_on_left ?? NaN,\n    'printhead_move_jog_backward_left': +printhead.printhead_move_jog_backward_left ?? NaN,\n    'printhead_move_jog_forward_left': +printhead.printhead_move_jog_forward_left ?? NaN,\n    'printhead_velocity_jog_left': printhead.printhead_velocity_jog_left?.toFixed(1) ?? NaN,\n    'printhead_actual_velocity_left': printhead.printhead_actual_velocity_left?.toFixed(1) ?? NaN,\n    'printhead_actual_power_left': printhead.printhead_actual_power_left?.toFixed(3) ?? NaN,\n    'printhead_actual_current_left': printhead.printhead_actual_current_left?.toFixed(3) ?? NaN,\n    'printhead_actual_torque_left': printhead.printhead_actual_torque_left?.toFixed(3) ?? NaN,\n    'printhead_power_on_right': +printhead.printhead_power_on_right ?? NaN,\n    'printhead_move_jog_backward_right': +printhead.printhead_move_jog_backward_right ?? NaN,\n    'printhead_move_jog_forward_right': +printhead.printhead_move_jog_forward_right ?? NaN,\n    'printhead_velocity_jog_right': printhead.printhead_velocity_jog_right?.toFixed(1) ?? NaN,\n    'printhead_actual_velocity_right': printhead.printhead_actual_velocity_right?.toFixed(1) ?? NaN,\n    'printhead_actual_power_right': printhead.printhead_actual_power_right?.toFixed(3) ?? NaN,\n    'printhead_actual_current_right': printhead.printhead_actual_current_right?.toFixed(3) ?? NaN,\n    'printhead_actual_torque_right': printhead.printhead_actual_torque_right?.toFixed(3) ?? NaN,\n    'printhead_pressure': printhead.printhead_pressure?.toFixed(2) ?? NaN,\n    'printhead_box1_ai0': printhead.printhead_box1_ai0?.toFixed(6) ?? NaN,\n    'printhead_box1_ai1': printhead.printhead_box1_ai1?.toFixed(6) ?? NaN,\n    'printhead_box1_ai2': printhead.printhead_box1_ai2?.toFixed(6) ?? NaN,\n    'printhead_box1_ai3': printhead.printhead_box1_ai3?.toFixed(6) ?? NaN,\n    'printhead_box1_ai4': printhead.printhead_box1_ai4?.toFixed(6) ?? NaN,\n    'printhead_box1_ai5': printhead.printhead_box1_ai5?.toFixed(6) ?? NaN,\n    'printhead_box1_ai6': printhead.printhead_box1_ai6?.toFixed(6) ?? NaN,\n    'printhead_box1_ai7': printhead.printhead_box1_ai7?.toFixed(6) ?? NaN,\n    'printhead_box2_ai0': printhead.printhead_box2_ai0?.toFixed(6) ?? NaN,\n    'printhead_box2_ai1': printhead.printhead_box2_ai1?.toFixed(6) ?? NaN,\n    'printhead_box2_ai2': printhead.printhead_box2_ai2?.toFixed(6) ?? NaN,\n    'printhead_box2_ai3': printhead.printhead_box2_ai3?.toFixed(6) ?? NaN\n};\n\n\nreturn msg;\n\n\n\n\n\n\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1380,
+        "x": 1410,
         "y": 940,
         "wires": [
             [
-                "986ce689bd931243"
+                "a005777e14d4ecb9"
             ]
         ]
     },
     {
-        "id": "986ce689bd931243",
+        "id": "a005777e14d4ecb9",
         "type": "csv",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "name": "",
         "sep": ",",
         "hdrin": false,
@@ -170,18 +161,18 @@
         "strings": true,
         "include_empty_strings": false,
         "include_null_values": false,
-        "x": 1570,
+        "x": 1670,
         "y": 940,
         "wires": [
             [
-                "cd5770379ae88a9b"
+                "6a49c692e922432f"
             ]
         ]
     },
     {
-        "id": "43b518d1c555af22",
+        "id": "61d3813523698c9a",
         "type": "ui_button",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "name": "",
         "group": "599d2b5615f3741e",
         "order": 4,
@@ -192,24 +183,26 @@
         "tooltip": "",
         "color": "",
         "bgcolor": "",
+        "className": "",
         "icon": "",
         "payload": "false",
         "payloadType": "bool",
         "topic": "trigger",
         "topicType": "str",
-        "x": 1390,
+        "x": 1430,
         "y": 740,
         "wires": [
             [
-                "6f2ec29e2632e7b0",
-                "cd5770379ae88a9b"
+                "7bf89ca2081ad8f2",
+                "6a49c692e922432f",
+                "8810511a3f9794d2"
             ]
         ]
     },
     {
-        "id": "678f5b8693235791",
+        "id": "88d8bdbf255a07ed",
         "type": "ui_button",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "name": "",
         "group": "599d2b5615f3741e",
         "order": 3,
@@ -220,24 +213,25 @@
         "tooltip": "",
         "color": "",
         "bgcolor": "",
+        "className": "",
         "icon": "",
         "payload": "true",
         "payloadType": "bool",
         "topic": "trigger",
         "topicType": "str",
-        "x": 1390,
+        "x": 1430,
         "y": 700,
         "wires": [
             [
-                "710a5bf5d199adf2",
-                "cd5770379ae88a9b"
+                "b9f968cfc25c8396",
+                "6a49c692e922432f"
             ]
         ]
     },
     {
-        "id": "dcd99783d736a377",
+        "id": "212ebad929bf850c",
         "type": "inject",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "name": "",
         "props": [
             {
@@ -259,59 +253,36 @@
         "y": 780,
         "wires": [
             [
-                "cd5770379ae88a9b"
+                "6a49c692e922432f"
             ]
         ]
     },
     {
-        "id": "28fcc134b8cbf007",
+        "id": "b826879bd0a5964a",
         "type": "function",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "name": "",
-        "func": "\nmsg.data = msg.payload\n\nmsg.file = global.get(\"name\") + \".csv\";\n\nmsg.filename=\"D:/Node Red/Files/\" + msg.file;\n\nreturn msg;",
+        "func": "msg.data = msg.payload\nmsg.file = global.get(\"name\") + \".csv\";\nmsg.filename=\"D:/Node Red/Files/\" + msg.file;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2180,
+        "x": 2260,
         "y": 820,
         "wires": [
             [
-                "f4c11f3f2423970e"
+                "09cc1ccdf68e8c95",
+                "c69efa8937b963b2"
             ]
         ]
     },
     {
-        "id": "8b1ac9ca21399565",
-        "type": "trigger",
-        "z": "b7e5f2b641339779",
-        "name": "",
-        "op1": "green",
-        "op2": "transparent",
-        "op1type": "str",
-        "op2type": "str",
-        "duration": "-1",
-        "extend": false,
-        "overrideDelay": false,
-        "units": "s",
-        "reset": "",
-        "bytopic": "all",
-        "topic": "topic",
-        "outputs": 1,
-        "x": 2200,
-        "y": 940,
-        "wires": [
-            [
-                "065fcc0296521cc6"
-            ]
-        ]
-    },
-    {
-        "id": "27d9f9b4e45e7cf0",
+        "id": "93ad8fb085e3c353",
         "type": "inject",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
+        "d": true,
         "name": "INTERRUPT",
         "props": [
             {
@@ -333,14 +304,14 @@
         "y": 740,
         "wires": [
             [
-                "43b518d1c555af22"
+                "61d3813523698c9a"
             ]
         ]
     },
     {
-        "id": "6f2ec29e2632e7b0",
+        "id": "7bf89ca2081ad8f2",
         "type": "ui_toast",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "position": "bottom right",
         "displayTime": "10",
         "highlight": "",
@@ -350,16 +321,17 @@
         "cancel": "",
         "raw": false,
         "className": "",
-        "topic": "Trace is stopped",
+        "topic": "Trace stopped",
         "name": "",
-        "x": 1610,
+        "x": 1710,
         "y": 740,
         "wires": []
     },
     {
-        "id": "a1f7f48484dca551",
+        "id": "17cb8f1a88ff6b84",
         "type": "inject",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
+        "d": true,
         "name": "ALLOW",
         "props": [
             {
@@ -381,14 +353,14 @@
         "y": 700,
         "wires": [
             [
-                "678f5b8693235791"
+                "88d8bdbf255a07ed"
             ]
         ]
     },
     {
-        "id": "710a5bf5d199adf2",
+        "id": "b9f968cfc25c8396",
         "type": "ui_toast",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "position": "bottom right",
         "displayTime": "10",
         "highlight": "",
@@ -398,36 +370,36 @@
         "cancel": "",
         "raw": false,
         "className": "",
-        "topic": "Trace is started",
+        "topic": "Trace started",
         "name": "",
-        "x": 1610,
+        "x": 1710,
         "y": 700,
         "wires": []
     },
     {
-        "id": "453b9280d5246906",
+        "id": "a01c995332a952b6",
         "type": "function",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "name": "Columns",
-        "func": " global.set(\"name\",msg.payload);\n var data =\"desktop_time,\"+\n \"mtec_water_temperature_c,\"+\n \"mtec_water_flow_l_min,\"+\n \"mtec_dry_mortar_temp_c,\"+\n \"mtec_pump_motor_speed_actual_rpm,\"+\n \"mtec_pump_motor_speed_setpoint_rpm,\"+\n \"mtec_solenoid_valve_bool,\"+\n \"mtec_water_pump_bool,\"+\n \"mtec_water_valve_turns,\"+\n \"mai_water_run_bool,\"+\n \"mai_water_temp_c,\"+\n \"mai_water_flow_set_lh,\"+\n \"mai_water_flow_actual_lh,\"+\n \"mai_waterpump_ref_freq_chz,\"+\n \"mai_waterpump_output_freq_chz,\"+\n \"mai_mixer_run_bool,\"+\n \"mai_pump_run_bool,\"+\n \"mai_pump_speed_chz,\"+\n \"mai_pump_ouput_current_da,\"+\n \"mai_pump_output_power_w,\"+\n \"mai_pump_vibration_mode_i,\"+\n \"mai_setting_water_pre_run_s,\"+\n \"mai_setting_mixer_post_run_s,\"+\n \"mai_setting_wetprobe_covered_delay_s,\"+\n \"mai_setting_wetprobe_uncovered_delay_s,\"+\n \"gantry_source_time,\"+\n \"gantry_pos_x_mm,\"+\n \"gantry_pos_y_mm,\"+\n \"gantry_pos_z_mm,\"+\n \"gantry_pos_c_deg,\"+\n \"gantry_vel_x_mm_min,\"+\n \"gantry_vel_y_mm_min,\"+\n \"gantry_vel_z_mm_min,\"+\n \"gantry_vel_c,\"+\n \"gantry_feedrate_x_mm_min,\"+\n \"gantry_feedrate_y_mm_min,\"+\n \"gantry_feedrate_z_mm_min,\"+\n \"gantry_feedrate_c,\"+\n \"gantry_feedrate_override_perc,\"+\n \"gantry_power_x_w,\"+\n \"gantry_power_y_w,\"+\n \"gantry_power_z_w,\"+\n \"gantry_power_c_w,\"+\n \"gantry_r100,\"+\n \"gantry_r101,\"+\n \"gantry_r102,\"+\n \"gantry_r103,\"+\n \"gantry_r104,\"+\n \"gantry_r105,\"+\n \"gantry_r106,\"+\n \"gantry_r107,\"+\n \"gantry_r108,\"+\n \"gantry_r109,\"+\n \"material_io_ai0_pressure_bar,\"+\n \"material_io_ai1_pressure_bar,\"+\n \"material_io_ai0_ma,\"+\n \"material_io_ai1_ma,\"+\n \"material_io_ai2_ma,\"+\n \"material_io_ai3_ma,\"+\n \"material_io_ai4_ma,\"+\n \"material_io_ai5_ma,\"+\n \"material_io_ai6_relative_humidity_perc,\"+\n \"material_io_ai7_ambient_temperature_c,\"+\n \"material_io_ao0_ma,\"+\n \"material_io_ao1_ma,\"+\n \"material_io_ao2_ma,\"+\n \"material_io_ao3_ma,\"+\n \"material_io_di0_bool,\"+\n \"material_io_di1_bool,\"+\n \"material_io_di2_bool,\"+\n \"material_io_di3_bool,\"+\n \"material_io_do0_bool,\"+\n \"material_io_do1_bool,\"+\n \"material_io_do2_bool,\"+\n \"material_io_do3_bool,\"+\n \"material_coriolis_mass_flow_kg_min,\"+\n \"material_coriolis_volume_flow_l_min,\"+\n \"material_coriolis_density_kg_m3,\"+\n \"material_coriolis_dynamic_viscocity_cp,\"+\n \"material_coriolis_temperature_c,\"+\n \"material_coriolis_exciter_current_0_ma,\"+\n \"material_coriolis_oscillation_frequency_0_hz,\"+\n \"material_coriolis_oscillation_amplitude_0_perc,\"+\n \"material_coriolis_oscillation_damping_0_m_a,\"+\n \"material_coriolis_signal_asymmetry_perc,\"+\n \"material_coriolis_exciter_current_1_ma,\"+\n \"material_coriolis_oscillation_frequency_1_hz,\"+\n \"material_coriolis_oscillation_amplitude_1_perc,\"+\n \"material_coriolis_oscillation_damping_1_m_a,\"+\n \"material_bronkhorst_alarm_info,\"+\n \"material_bronkhorst_setpoint_gmin,\"+\n \"material_bronkhorst_measure_gmin,\"+\n \"material_bronkhorst_temperature,\"+\n \"material_bronkhorst_density_kg_m3,\"+\n \"material_bronkhorst_analog_input,\"+\n \"material_bronkhorst_valve_output,\"+\n \"material_bronkhorst_setpoint_slope_s,\"+\n \"material_peristaltic_pump_velocity_rpm,\"+\n \"material_peristaltic_pump_power_kw,\"+\n \"material_peristaltic_pump_current_a,\"+\n \"material_peristaltic_pump_torque_nm,\"+\n \"material_r0,\"+\n \"material_r1,\"+\n \"material_r2,\"+\n \"material_r3,\"+\n \"material_r4,\"+\n \"material_r5,\"+\n \"material_r6,\"+\n \"material_r7,\"+\n \"material_r8,\"+\n \"material_r9,\"+\n \"vertico_is_remote_bool,\"+\n \"vertico_is_open_loop_bool,\"+\n \"vertico_actual_motor_velocity_rpm,\"+\n \"vertico_actual_flow_ml_min,\"+\n \"vertico_actual_flow_ma,\"+\n \"vertico_actual_pressure_bar,\"+\n \"vertico_local_setpoint_open_loop_rpm,\"+\n \"vertico_local_setpoint_closed_loop_mlmin,\"+\n \"vertico_remote_start_stop_bool,\"+\n \"vertico_remote_setpoint_open_loop_rpm,\"+\n \"vertico_remote_setpoint_closed_loop_mlmin,\"+\n \"vertico_pid_p,\"+\n \"vertico_pid_i,\"+\n \"vertico_pid_d,\"+\n \"vertico_ai3_ma,\"+\n \"vertico_ao0_ma,\"+\n \"vertico_do3_bool,\"+\n \"printhead_motor_1_motor_1_power_on_bool,\"+\n \"printhead_motor_1_move_jog_backward_bool,\"+\n \"printhead_motor_1_move_jog_forward_bool,\"+\n \"printhead_motor_1_velocity_jog_rpm,\"+\n \"printhead_motor_1_actual_velocity_rpm,\"+\n \"printhead_motor_1_actual_power_kw,\"+\n \"printhead_motor_1_actual_current_a,\"+\n \"printhead_motor_1_actual_torque_nm,\"+\n \"printhead_motor_2_power_on_bool,\"+\n \"printhead_motor_2_move_jog_backward_bool,\"+\n \"printhead_motor_2_move_jog_forward_bool,\"+\n \"printhead_motor_2_velocity_jog_rpm,\"+\n \"printhead_motor_2_actual_velocity_rpm,\"+\n \"printhead_motor_2_actual_power_kw,\"+\n \"printhead_motor_2_actual_current_a,\"+\n \"printhead_motor_2_actual_torque_nm,\"+\n \"printhead_box1_io_ai0_ma,\"+\n \"printhead_box1_io_ai1_ma,\"+\n \"printhead_box1_io_ai2_ma,\"+\n \"printhead_box1_io_ai3_ma,\"+\n \"printhead_box1_io_ai4_ma,\"+\n \"printhead_box1_io_ai5_ma,\"+\n \"printhead_box1_io_ai6_ma,\"+\n \"printhead_box1_io_ai7_ma,\"+\n \"printhead_box2_io_ai0_ma,\"+\n \"printhead_box2_io_ai1_ma,\"+\n \"printhead_box2_io_ai2_ma,\"+\n \"printhead_box2_io_ai3_ma\"+\t\n \n \"\\n\"\n\nmsg.payload=data\n \nreturn msg;",
+        "func": "global.set(\"name\",msg.payload);\nvar data =\"desktop_time,\"+\n\n    \"mtec_source_time,\"+\n    \"mtec_water_temperature_c,\"+\n    \"mtec_water_flow_l_min,\"+\n    \"mtec_dry_mortar_temp_c,\"+\n    \"mtec_pump_motor_speed_actual_rpm,\"+\n    \"mtec_pump_motor_speed_setpoint_rpm,\"+\n    \"mtec_solenoid_valve_bool,\"+\n    \"mtec_water_pump_bool,\"+\n    \"mtec_mixer_run_bool,\"+\n    \"mtec_water_valve_turns,\"+\n\n    \"mai_source_time,\"+\n    \"mai_water_run_bool,\"+\n    \"mai_water_temp_c,\"+\n    \"mai_water_flow_set_lh,\"+\n    \"mai_water_flow_actual_lh,\"+\n    \"mai_waterpump_ref_freq_chz,\"+\n    \"mai_waterpump_output_freq_chz,\"+\n    \"mai_mixer_run_bool,\"+\n    \"mai_pump_run_bool,\"+\n    \"mai_pump_speed_chz,\"+\n    \"mai_pump_ouput_current_da,\"+\n    \"mai_pump_output_power_w,\"+\n    \"mai_pump_vibration_mode_i,\"+\n    \"mai_setting_water_pre_run_s,\"+\n    \"mai_setting_mixer_post_run_s,\"+\n    \"mai_setting_wetprobe_covered_delay_s,\"+\n    \"mai_setting_wetprobe_uncovered_delay_s,\"+\n\n    \"gantry_source_time,\"+\n    \"gantry_pos_x_mm,\"+\n    \"gantry_pos_y_mm,\"+\n    \"gantry_pos_z_mm,\"+\n    \"gantry_pos_c_deg,\"+\n    \"gantry_vel_x_mm_min,\"+\n    \"gantry_vel_y_mm_min,\"+\n    \"gantry_vel_z_mm_min,\"+\n    \"gantry_vel_c,\"+\n    \"gantry_feedrate_x_mm_min,\"+\n    \"gantry_feedrate_y_mm_min,\"+\n    \"gantry_feedrate_z_mm_min,\"+\n    \"gantry_feedrate_c,\"+\n    \"gantry_feedrate_override_perc,\"+\n    \"gantry_r100,\"+\n    \"gantry_r101,\"+\n    \"gantry_r102,\"+\n    \"gantry_r103,\"+\n    \"gantry_r104,\"+\n    \"gantry_r105,\"+\n    \"gantry_r106,\"+\n    \"gantry_r107,\"+\n    \"gantry_r108,\"+\n    \"gantry_r109,\"+\n\n    \"material_source_time,\"+\n    \"material_io_ai0_pressure_bar,\"+\n    \"material_io_ai1_pressure_bar,\"+\n    \"material_io_ai0_ma,\"+\n    \"material_io_ai1_ma,\"+\n    \"material_io_ai2_ma,\"+\n    \"material_io_ai3_ma,\"+\n    \"material_io_ai4_ma,\"+\n    \"material_io_ai5_ma,\"+\n    \"material_io_ai6_relative_humidity_perc,\"+\n    \"material_io_ai7_ambient_temperature_c,\"+\n    \"material_io_ao0_ma,\"+\n    \"material_io_ao1_ma,\"+\n    \"material_io_ao2_ma,\"+\n    \"material_io_ao3_ma,\"+\n    \"material_io_di0_bool,\"+\n    \"material_io_di1_bool,\"+\n    \"material_io_di2_bool,\"+\n    \"material_io_di3_bool,\"+\n    \"material_io_do0_bool,\"+\n    \"material_io_do1_bool,\"+\n    \"material_io_do2_bool,\"+\n    \"material_io_do3_bool,\"+\n    \"material_coriolis_mass_flow_kg_min,\"+\n    \"material_coriolis_volume_flow_l_min,\"+\n    \"material_coriolis_density_kg_m3,\"+\n    \"material_coriolis_dynamic_viscocity_cp,\"+\n    \"material_coriolis_temperature_c,\"+\n    \"material_coriolis_exciter_current_0_ma,\"+\n    \"material_coriolis_oscillation_frequency_0_hz,\"+\n    \"material_coriolis_oscillation_amplitude_0_perc,\"+\n    \"material_coriolis_oscillation_damping_0_m_a,\"+\n    \"material_coriolis_signal_asymmetry_perc,\"+\n    \"material_coriolis_exciter_current_1_ma,\"+\n    \"material_coriolis_oscillation_frequency_1_hz,\"+\n    \"material_coriolis_oscillation_amplitude_1_perc,\"+\n    \"material_coriolis_oscillation_damping_1_m_a,\"+\n    \"material_bronkhorst_alarm_info,\"+\n    \"material_bronkhorst_setpoint_gmin,\"+\n    \"material_bronkhorst_measure_gmin,\"+\n    \"material_bronkhorst_temperature,\"+\n    \"material_bronkhorst_density_kg_m3,\"+\n    \"material_bronkhorst_analog_input,\"+\n    \"material_bronkhorst_valve_output,\"+\n    \"material_bronkhorst_setpoint_slope_s,\"+\n    \"material_peristaltic_pump_velocity_rpm,\"+\n    \"material_peristaltic_pump_power_kw,\"+\n    \"material_peristaltic_pump_current_a,\"+\n    \"material_peristaltic_pump_torque_nm,\"+\n    \"material_r0,\"+\n    \"material_r1,\"+\n    \"material_r2,\"+\n    \"material_r3,\"+\n    \"material_r4,\"+\n    \"material_r5,\"+\n    \"material_r6,\"+\n    \"material_r7,\"+\n    \"material_r8,\"+\n    \"material_r9,\"+\n\n    \"vertico_source_time,\"+\n    \"vertico_is_remote_bool,\"+\n    \"vertico_is_open_loop_bool,\"+\n    \"vertico_actual_motor_velocity_rpm,\"+\n    \"vertico_actual_flow_ml_min,\"+\n    \"vertico_actual_flow_ma,\"+\n    \"vertico_actual_pressure_bar,\"+\n    \"vertico_local_setpoint_open_loop_rpm,\"+\n    \"vertico_local_setpoint_closed_loop_mlmin,\"+\n    \"vertico_remote_start_stop_bool,\"+\n    \"vertico_remote_setpoint_open_loop_rpm,\"+\n    \"vertico_remote_setpoint_closed_loop_mlmin,\"+\n    \"vertico_pid_p,\"+\n    \"vertico_pid_i,\"+\n    \"vertico_pid_d,\"+\n    \"vertico_ai3_ma,\"+\n    \"vertico_ao0_ma,\"+\n    \"vertico_do3_bool,\"+\n    \n    \"printhead_source_time,\"+\n    \"printhead_motor_1_motor_1_power_on_bool,\"+\n    \"printhead_motor_1_move_jog_backward_bool,\"+\n    \"printhead_motor_1_move_jog_forward_bool,\"+\n    \"printhead_motor_1_velocity_jog_rpm,\"+\n    \"printhead_motor_1_actual_velocity_rpm,\"+\n    \"printhead_motor_1_actual_power_kw,\"+\n    \"printhead_motor_1_actual_current_a,\"+\n    \"printhead_motor_1_actual_torque_nm,\"+\n    \"printhead_motor_2_power_on_bool,\"+\n    \"printhead_motor_2_move_jog_backward_bool,\"+\n    \"printhead_motor_2_move_jog_forward_bool,\"+\n    \"printhead_motor_2_velocity_jog_rpm,\"+\n    \"printhead_motor_2_actual_velocity_rpm,\"+\n    \"printhead_motor_2_actual_power_kw,\"+\n    \"printhead_motor_2_actual_current_a,\"+\n    \"printhead_motor_2_actual_torque_nm,\"+\n    \"printhead_pressure_bar,\"+\n    \"printhead_box1_io_ai0_ma,\"+\n    \"printhead_box1_io_ai1_ma,\"+\n    \"printhead_box1_io_ai2_ma,\"+\n    \"printhead_box1_io_ai3_ma,\"+\n    \"printhead_box1_io_ai4_ma,\"+\n    \"printhead_box1_io_ai5_ma,\"+\n    \"printhead_box1_io_ai6_ma,\"+\n    \"printhead_box1_io_ai7_ma,\"+\n    \"printhead_box2_io_ai0_ma,\"+\n    \"printhead_box2_io_ai1_ma,\"+\n    \"printhead_box2_io_ai2_ma,\"+\n    \"printhead_box2_io_ai3_ma\"+\t\n    \n    \"\\n\"\n\nmsg.payload = data\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1860,
+        "x": 1960,
         "y": 820,
         "wires": [
             [
-                "28fcc134b8cbf007"
+                "b826879bd0a5964a"
             ]
         ]
     },
     {
-        "id": "f4c11f3f2423970e",
+        "id": "09cc1ccdf68e8c95",
         "type": "file",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "name": "File",
         "filename": "filename",
         "filenameType": "msg",
@@ -442,15 +414,15 @@
         ]
     },
     {
-        "id": "065fcc0296521cc6",
+        "id": "4f595627e790e1e3",
         "type": "ui_template",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "group": "599d2b5615f3741e",
         "name": "Stop/break",
-        "order": 5,
+        "order": 7,
         "width": 6,
-        "height": 4,
-        "format": "<svg>\n<circle cx=\"150\" cy=\"120\" r=\"20\" style=\"stroke: none; fill: {{msg.payload}};\"/>\n    \n</svg>\n\n",
+        "height": 5,
+        "format": "<svg>\n<circle cx=\"150\" cy=\"120\" r=\"30\" style=\"stroke: none; fill: {{msg.payload}};\"/>\n</svg>\n\n",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": false,
@@ -463,9 +435,9 @@
         ]
     },
     {
-        "id": "b33aa9fe62b7b1ba",
+        "id": "ab0ac023c018a2a3",
         "type": "ui_template",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "group": "599d2b5615f3741e",
         "name": "Filename",
         "order": 2,
@@ -477,43 +449,18 @@
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 1580,
+        "x": 1680,
         "y": 820,
         "wires": [
             [
-                "453b9280d5246906"
+                "a01c995332a952b6"
             ]
         ]
     },
     {
-        "id": "7d7c876f16d83a33",
+        "id": "49ce375b84fc15ca",
         "type": "inject",
-        "z": "b7e5f2b641339779",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "1",
-        "crontab": "",
-        "once": true,
-        "onceDelay": ".5",
-        "topic": "",
-        "payload": "transparent",
-        "payloadType": "str",
-        "x": 1170,
-        "y": 860,
-        "wires": [
-            [
-                "065fcc0296521cc6"
-            ]
-        ]
-    },
-    {
-        "id": "c6ea1619fcf30234",
-        "type": "inject",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "name": "Filename",
         "props": [
             {
@@ -535,98 +482,102 @@
         "y": 820,
         "wires": [
             [
-                "b33aa9fe62b7b1ba"
+                "ab0ac023c018a2a3"
             ]
         ]
     },
     {
-        "id": "6eaa03495700b23a",
+        "id": "d21f5b915ab9d47c",
         "type": "link in",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "name": "m-tec values in",
         "links": [
-            "3d367c4645c0c16c"
+            "579a2c32615d040a"
         ],
-        "x": 695,
-        "y": 1160,
-        "wires": [
-            [
-                "bbd36528211c5bbe"
-            ]
-        ]
-    },
-    {
-        "id": "c6d9dba04fb03bb9",
-        "type": "link in",
-        "z": "b7e5f2b641339779",
-        "name": "Printhead values in",
-        "links": [
-            "fd7dd966dc1de854"
-        ],
-        "x": 695,
-        "y": 1080,
-        "wires": [
-            [
-                "bbd36528211c5bbe"
-            ]
-        ]
-    },
-    {
-        "id": "ecd23e2819d0c96e",
-        "type": "link in",
-        "z": "b7e5f2b641339779",
-        "name": "Material delivery values in",
-        "links": [
-            "5140f8a9857180c3"
-        ],
-        "x": 695,
+        "x": 725,
         "y": 1120,
         "wires": [
             [
-                "bbd36528211c5bbe"
+                "30c5a4b3a4e0a417"
             ]
         ]
     },
     {
-        "id": "ac137530bff3e422",
+        "id": "a0688a5c7674197e",
         "type": "link in",
-        "z": "b7e5f2b641339779",
-        "name": "Gantry values in",
+        "z": "830497da8cdf302a",
+        "name": "Printhead values in",
         "links": [
-            "b618b2a5afcd6387"
+            "797b0ccd6074df32"
         ],
-        "x": 695,
+        "x": 725,
         "y": 1040,
         "wires": [
             [
-                "bbd36528211c5bbe"
+                "30c5a4b3a4e0a417"
             ]
         ]
     },
     {
-        "id": "22307808c33194d2",
+        "id": "37b06e5fd23a6f0f",
         "type": "link in",
-        "z": "b7e5f2b641339779",
-        "name": "MAI values in",
+        "z": "830497da8cdf302a",
+        "name": "Material delivery values in",
         "links": [
-            "642b3900b9b85c10"
+            "e91c0760589c18ca"
         ],
-        "x": 695,
-        "y": 1200,
+        "x": 725,
+        "y": 1080,
         "wires": [
             [
-                "bbd36528211c5bbe"
+                "30c5a4b3a4e0a417"
             ]
         ]
     },
     {
-        "id": "d4e842cc4b780c85",
+        "id": "e0fca171a7e70f43",
+        "type": "link in",
+        "z": "830497da8cdf302a",
+        "name": "Gantry values in",
+        "links": [
+            "53f4d54fd9b46f38"
+        ],
+        "x": 725,
+        "y": 1000,
+        "wires": [
+            [
+                "30c5a4b3a4e0a417"
+            ]
+        ]
+    },
+    {
+        "id": "2a9352879b1ae46f",
+        "type": "link in",
+        "z": "830497da8cdf302a",
+        "name": "MAI values in",
+        "links": [
+            "7739713b64d7d620"
+        ],
+        "x": 725,
+        "y": 1160,
+        "wires": [
+            [
+                "30c5a4b3a4e0a417"
+            ]
+        ]
+    },
+    {
+        "id": "58f887cc8de3c65e",
         "type": "inject",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "name": "Timer",
         "props": [
             {
                 "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
             },
             {
                 "p": "complete",
@@ -637,86 +588,184 @@
         "repeat": "0.1",
         "crontab": "",
         "once": true,
-        "onceDelay": "1",
-        "topic": "",
+        "onceDelay": "3",
+        "topic": "time",
         "payload": "",
         "payloadType": "date",
         "x": 270,
         "y": 940,
         "wires": [
             [
-                "b847af6089af00ad",
-                "f428d326fafc1fcd"
+                "f3c6f7ac361ff9c9",
+                "c73068d4eb07ae28"
             ]
         ]
     },
     {
-        "id": "b847af6089af00ad",
-        "type": "link out",
-        "z": "b7e5f2b641339779",
-        "name": "Timer out",
-        "mode": "link",
-        "links": [
-            "061af7db49517b68",
-            "77c717f37c64d525",
-            "82f6462f77a0b5d1",
-            "bbe3e5208daf1b84",
-            "47bda97acac85ce8",
-            "2d60c8988437581e",
-            "4681985dc925b8a5",
-            "0eca5e3ea008443a"
-        ],
-        "x": 425,
-        "y": 1040,
-        "wires": []
-    },
-    {
-        "id": "ecaaff316a21ce5a",
-        "type": "comment",
-        "z": "b7e5f2b641339779",
-        "name": "Interval time for logger!",
-        "info": "",
-        "x": 300,
-        "y": 900,
-        "wires": []
-    },
-    {
-        "id": "ef5d7562560cba3c",
+        "id": "4ef9f95a54d565bc",
         "type": "link in",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "name": "Vertico dosing values in",
         "links": [
-            "d2862f4e45a2b658"
+            "b1f50cb4688536dc"
         ],
-        "x": 695,
-        "y": 1240,
+        "x": 725,
+        "y": 1200,
         "wires": [
             [
-                "bbd36528211c5bbe"
+                "30c5a4b3a4e0a417"
             ]
         ]
     },
     {
-        "id": "cd5770379ae88a9b",
+        "id": "6a49c692e922432f",
         "type": "InterruptFlowUltimate",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "name": "Interrupt Flow",
         "triggertopic": "trigger",
         "payloadPropName": "payload",
         "translatorConfig": "",
-        "x": 1900,
+        "x": 1920,
         "y": 940,
         "wires": [
             [
-                "28fcc134b8cbf007",
-                "8b1ac9ca21399565"
+                "b826879bd0a5964a",
+                "39fe5be972b08d35"
             ]
         ]
     },
     {
-        "id": "bf37b1c267522971",
+        "id": "c73068d4eb07ae28",
+        "type": "function",
+        "z": "830497da8cdf302a",
+        "name": "readmuliple msg",
+        "func": "return { topic: \"readmultiple\", payload: \"\" };",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 880,
+        "wires": [
+            [
+                "398de18a215eb45c"
+            ]
+        ]
+    },
+    {
+        "id": "398de18a215eb45c",
+        "type": "link out",
+        "z": "830497da8cdf302a",
+        "name": "readmultiple out",
+        "mode": "link",
+        "links": [
+            "3798fb5d7c20808b",
+            "8db8e5f401f5c81d",
+            "98d496b12aaf1ee3",
+            "aee2f831799d1c0d",
+            "e2dc84019a9a29b3",
+            "fe35509bae6f9228"
+        ],
+        "x": 615,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "8810511a3f9794d2",
+        "type": "function",
+        "z": "830497da8cdf302a",
+        "name": "send transparent",
+        "func": "return { payload: 'transparent'}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2230,
+        "y": 900,
+        "wires": [
+            [
+                "4f595627e790e1e3"
+            ]
+        ]
+    },
+    {
+        "id": "39fe5be972b08d35",
+        "type": "function",
+        "z": "830497da8cdf302a",
+        "name": "send green",
+        "func": "return {payload: 'green'}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2250,
+        "y": 940,
+        "wires": [
+            [
+                "4f595627e790e1e3"
+            ]
+        ]
+    },
+    {
+        "id": "b4285cfe50708186",
+        "type": "inject",
+        "z": "830497da8cdf302a",
+        "name": "Send transparant",
+        "props": [],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "x": 1150,
+        "y": 860,
+        "wires": [
+            [
+                "8810511a3f9794d2"
+            ]
+        ]
+    },
+    {
+        "id": "c69efa8937b963b2",
+        "type": "ui_text",
+        "z": "830497da8cdf302a",
+        "group": "599d2b5615f3741e",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Set filename",
+        "format": "{{msg.file}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 2450,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "14e687bafbd9fef9",
         "type": "ui_spacer",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
+        "name": "spacer",
+        "group": "599d2b5615f3741e",
+        "order": 5,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "b3cbb58f256f7fde",
+        "type": "ui_spacer",
+        "z": "830497da8cdf302a",
         "name": "spacer",
         "group": "53d83661cfcefa23",
         "order": 3,
@@ -724,9 +773,9 @@
         "height": 1
     },
     {
-        "id": "74ef1d0bc1566746",
+        "id": "bf36600bb2373652",
         "type": "ui_spacer",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "name": "spacer",
         "group": "53d83661cfcefa23",
         "order": 4,
@@ -734,9 +783,9 @@
         "height": 1
     },
     {
-        "id": "99b8d3da67c0bc46",
+        "id": "a2a7445d5d333eb4",
         "type": "ui_spacer",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "name": "spacer",
         "group": "53d83661cfcefa23",
         "order": 7,
@@ -744,9 +793,9 @@
         "height": 1
     },
     {
-        "id": "c63c29e437aa4643",
+        "id": "f52fc10cef70b9a3",
         "type": "ui_spacer",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "name": "spacer",
         "group": "53d83661cfcefa23",
         "order": 8,
@@ -754,29 +803,9 @@
         "height": 1
     },
     {
-        "id": "68a915a43ba2b377",
+        "id": "06a580a92272f2aa",
         "type": "ui_spacer",
-        "z": "b7e5f2b641339779",
-        "name": "spacer",
-        "group": "53d83661cfcefa23",
-        "order": 11,
-        "width": 27,
-        "height": 1
-    },
-    {
-        "id": "930cd29e93c0d98a",
-        "type": "ui_spacer",
-        "z": "b7e5f2b641339779",
-        "name": "spacer",
-        "group": "53d83661cfcefa23",
-        "order": 12,
-        "width": 27,
-        "height": 1
-    },
-    {
-        "id": "ec57a44f5e280d7e",
-        "type": "ui_spacer",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "name": "spacer",
         "group": "d5be84c8a2a9dbe3",
         "order": 6,
@@ -784,83 +813,93 @@
         "height": 1
     },
     {
-        "id": "4eded73b03834063",
+        "id": "f8f66db3a1d7a6cc",
         "type": "ui_spacer",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "name": "spacer",
-        "group": "6cb02d1b18effc68",
-        "order": 2,
-        "width": 8,
+        "group": "6b810393774c59ed",
+        "order": 7,
+        "width": 6,
         "height": 1
     },
     {
-        "id": "963dadfc865f0141",
+        "id": "15ee029939a062a2",
         "type": "ui_spacer",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "name": "spacer",
-        "group": "6cb02d1b18effc68",
-        "order": 5,
-        "width": 8,
+        "group": "6b810393774c59ed",
+        "order": 12,
+        "width": 6,
         "height": 1
     },
     {
-        "id": "054a1e026a4d7e7e",
+        "id": "63d1f54df20e3be5",
         "type": "ui_spacer",
-        "z": "b7e5f2b641339779",
+        "z": "830497da8cdf302a",
         "name": "spacer",
-        "group": "6cb02d1b18effc68",
+        "group": "6b810393774c59ed",
+        "order": 17,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "2ae64477e338120c",
+        "type": "ui_spacer",
+        "z": "830497da8cdf302a",
+        "name": "spacer",
+        "group": "6b810393774c59ed",
+        "order": 23,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "1fd0159ff8a0cf52",
+        "type": "ui_spacer",
+        "z": "830497da8cdf302a",
+        "name": "spacer",
+        "group": "b9011e67f72d8da0",
+        "order": 7,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "38bcd2e4d790cf21",
+        "type": "ui_spacer",
+        "z": "830497da8cdf302a",
+        "name": "spacer",
+        "group": "b9011e67f72d8da0",
+        "order": 12,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "7ca62a5947d6bd9b",
+        "type": "ui_spacer",
+        "z": "830497da8cdf302a",
+        "name": "spacer",
+        "group": "b9011e67f72d8da0",
+        "order": 17,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "75daab3b0f4afb85",
+        "type": "ui_spacer",
+        "z": "830497da8cdf302a",
+        "name": "spacer",
+        "group": "b9011e67f72d8da0",
+        "order": 23,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "6dd68594b123c75e",
+        "type": "ui_spacer",
+        "z": "830497da8cdf302a",
+        "name": "spacer",
+        "group": "751807419a0c11a8",
         "order": 9,
-        "width": 8,
-        "height": 1
-    },
-    {
-        "id": "b09aeabd9dc53b14",
-        "type": "ui_spacer",
-        "z": "b7e5f2b641339779",
-        "name": "spacer",
-        "group": "29e604be7d0124bf",
-        "order": 3,
-        "width": 8,
-        "height": 1
-    },
-    {
-        "id": "78704775e1b273bc",
-        "type": "ui_spacer",
-        "z": "b7e5f2b641339779",
-        "name": "spacer",
-        "group": "29e604be7d0124bf",
-        "order": 8,
-        "width": 8,
-        "height": 1
-    },
-    {
-        "id": "22c9f7edc0852761",
-        "type": "ui_spacer",
-        "z": "b7e5f2b641339779",
-        "name": "spacer",
-        "group": "29e604be7d0124bf",
-        "order": 11,
-        "width": 8,
-        "height": 1
-    },
-    {
-        "id": "ec8f81da4fd946c3",
-        "type": "ui_spacer",
-        "z": "b7e5f2b641339779",
-        "name": "spacer",
-        "group": "29e604be7d0124bf",
-        "order": 15,
-        "width": 8,
-        "height": 1
-    },
-    {
-        "id": "0aeb242a677120e7",
-        "type": "ui_spacer",
-        "z": "b7e5f2b641339779",
-        "name": "spacer",
-        "group": "29e604be7d0124bf",
-        "order": 19,
-        "width": 8,
+        "width": 6,
         "height": 1
     },
     {
@@ -895,24 +934,35 @@
         "className": ""
     },
     {
-        "id": "6cb02d1b18effc68",
+        "id": "6b810393774c59ed",
         "type": "ui_group",
-        "name": "Write values",
-        "tab": "ab2d93c8cfc6d927",
+        "name": "Motor 1 (left)",
+        "tab": "6a728bddbd75b4dd",
         "order": 1,
         "disp": true,
-        "width": 8,
+        "width": "6",
         "collapse": false,
         "className": ""
     },
     {
-        "id": "29e604be7d0124bf",
+        "id": "b9011e67f72d8da0",
         "type": "ui_group",
-        "name": "Read values",
-        "tab": "ab2d93c8cfc6d927",
+        "name": "Motor 2 (right)",
+        "tab": "6a728bddbd75b4dd",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "751807419a0c11a8",
+        "type": "ui_group",
+        "name": "Wall box 1 (stationary)",
+        "tab": "6a728bddbd75b4dd",
         "order": 3,
         "disp": true,
-        "width": 8,
+        "width": "6",
         "collapse": false,
         "className": ""
     },
@@ -926,11 +976,11 @@
         "hidden": false
     },
     {
-        "id": "ab2d93c8cfc6d927",
+        "id": "6a728bddbd75b4dd",
         "type": "ui_tab",
-        "name": "Vertico dosing system",
+        "name": "Smart printhead PLC",
         "icon": "dashboard",
-        "order": 9,
+        "order": 4,
         "disabled": false,
         "hidden": false
     }

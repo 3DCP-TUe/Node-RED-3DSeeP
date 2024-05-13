@@ -1,6 +1,6 @@
 [
     {
-        "id": "1d75215f8e163a3d",
+        "id": "32777bc2119191bf",
         "type": "tab",
         "label": "Printhead: Write values",
         "disabled": false,
@@ -8,9 +8,100 @@
         "env": []
     },
     {
-        "id": "dfab6136b644ecd4",
+        "id": "4833004ead151d8c",
+        "type": "group",
+        "z": "32777bc2119191bf",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "7aa70da7db01f139",
+            "cae9f7857ced062e",
+            "6ed92f5027ea657b",
+            "d133c45415108357",
+            "ed656906308743e0",
+            "c755fd3e87314d58",
+            "12c8c288891bb626",
+            "be2d6059c413280b",
+            "0880c6d7fb58f8c3",
+            "499febfbfe371da1",
+            "53bff6e81e6b58e8",
+            "886c2439fe6755f5",
+            "659a75335d996d60",
+            "d7f8b98fc60ae0a6",
+            "c2cb620694271de9",
+            "9e599cd1c2328838",
+            "fb62ea588596bf32",
+            "a1e0a0a8507bd92c",
+            "107575f23d6d8d39",
+            "1411558e8ae78540",
+            "e8f774c3f98f2431",
+            "c5b7f9ab7f4fbbfc",
+            "eaf8935b329795eb",
+            "1eb100d1083b5b28",
+            "590c2024fda4301f"
+        ],
+        "x": 34,
+        "y": 959,
+        "w": 852,
+        "h": 702
+    },
+    {
+        "id": "94e4f57dd2a052c4",
+        "type": "group",
+        "z": "32777bc2119191bf",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "b1b523c5a52b0a49",
+            "391139f16ece4b2c",
+            "b04c3697ea385993",
+            "1a135478165d9d8f",
+            "3b9a1e01a75519cd",
+            "839201b14ef80feb",
+            "a694f5ec0e0ea7ce",
+            "28400920645f094a",
+            "eadab86518acdad6",
+            "97246b33f9a3fc41",
+            "1771b310f15c3bf1",
+            "647ed798dfbf4847",
+            "369cb8a7121e9842",
+            "2af8f9b62cd21271",
+            "9f97c55746316c54",
+            "313649f804a80dfb",
+            "bdc59bf881d842fa",
+            "6326373fffa8fa3d",
+            "fe1a8c1745acdf26",
+            "b23522cc3d9bb9c4",
+            "134c1313842b7938",
+            "73d6ba3b2c125735",
+            "6637992525d62079",
+            "4192c822c4c2a1f2",
+            "27ab2de8368ac009"
+        ],
+        "x": 54,
+        "y": 179,
+        "w": 832,
+        "h": 662
+    },
+    {
+        "id": "b1b523c5a52b0a49",
         "type": "OpcUa-Item",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "94e4f57dd2a052c4",
         "item": "ns=3;s=\"Power_On_left\"",
         "datatype": "Boolean",
         "value": "msg.topic",
@@ -19,14 +110,15 @@
         "y": 380,
         "wires": [
             [
-                "70b9132939690788"
+                "e6bcc6ce227acc6e"
             ]
         ]
     },
     {
-        "id": "678aa933c9279916",
+        "id": "391139f16ece4b2c",
         "type": "ui_switch",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "94e4f57dd2a052c4",
         "name": "",
         "label": "Power",
         "tooltip": "",
@@ -53,14 +145,14 @@
         "y": 380,
         "wires": [
             [
-                "dfab6136b644ecd4"
+                "b1b523c5a52b0a49"
             ]
         ]
     },
     {
-        "id": "70b9132939690788",
+        "id": "e6bcc6ce227acc6e",
         "type": "OpcUa-Client",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
         "endpoint": "3d6b24f6a6823956",
         "action": "write",
         "deadbandtype": "a",
@@ -73,17 +165,18 @@
         "securitymode": "None",
         "securitypolicy": "None",
         "name": "",
-        "x": 1380,
-        "y": 580,
+        "x": 1340,
+        "y": 880,
         "wires": [
             [],
             []
         ]
     },
     {
-        "id": "4bf069042b39af4c",
+        "id": "b04c3697ea385993",
         "type": "OpcUa-Item",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "94e4f57dd2a052c4",
         "item": "ns=3;s=\"Reset_S210_left\"",
         "datatype": "Boolean",
         "value": "msg.topic",
@@ -92,14 +185,15 @@
         "y": 340,
         "wires": [
             [
-                "70b9132939690788"
+                "e6bcc6ce227acc6e"
             ]
         ]
     },
     {
-        "id": "547e34acfa397183",
+        "id": "1a135478165d9d8f",
         "type": "OpcUa-Item",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "94e4f57dd2a052c4",
         "item": "ns=3;s=\"Move_Jog_Backward_left\"",
         "datatype": "Boolean",
         "value": "msg.topic",
@@ -108,14 +202,15 @@
         "y": 440,
         "wires": [
             [
-                "70b9132939690788"
+                "e6bcc6ce227acc6e"
             ]
         ]
     },
     {
-        "id": "f8682fe30fc2dc04",
+        "id": "3b9a1e01a75519cd",
         "type": "OpcUa-Item",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "94e4f57dd2a052c4",
         "item": "ns=3;s=\"Move_Jog_Forward_left\"",
         "datatype": "Boolean",
         "value": "msg.topic",
@@ -124,14 +219,15 @@
         "y": 480,
         "wires": [
             [
-                "70b9132939690788"
+                "e6bcc6ce227acc6e"
             ]
         ]
     },
     {
-        "id": "bfcfa1a90bb58af9",
+        "id": "839201b14ef80feb",
         "type": "ui_switch",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "94e4f57dd2a052c4",
         "name": "",
         "label": "Move backward",
         "tooltip": "",
@@ -158,14 +254,15 @@
         "y": 440,
         "wires": [
             [
-                "547e34acfa397183"
+                "1a135478165d9d8f"
             ]
         ]
     },
     {
-        "id": "67dfd0645c193507",
+        "id": "a694f5ec0e0ea7ce",
         "type": "ui_switch",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "94e4f57dd2a052c4",
         "name": "",
         "label": "Move forward",
         "tooltip": "",
@@ -192,14 +289,15 @@
         "y": 480,
         "wires": [
             [
-                "f8682fe30fc2dc04"
+                "3b9a1e01a75519cd"
             ]
         ]
     },
     {
-        "id": "27d41454baccc06f",
+        "id": "28400920645f094a",
         "type": "inject",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "94e4f57dd2a052c4",
         "name": "",
         "props": [
             {
@@ -221,17 +319,18 @@
         "y": 340,
         "wires": [
             [
-                "678aa933c9279916",
-                "bfcfa1a90bb58af9",
-                "67dfd0645c193507",
-                "0d16ce16859bb698"
+                "391139f16ece4b2c",
+                "839201b14ef80feb",
+                "a694f5ec0e0ea7ce",
+                "73d6ba3b2c125735"
             ]
         ]
     },
     {
-        "id": "ef8eafad5f19195e",
+        "id": "eadab86518acdad6",
         "type": "OpcUa-Item",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "94e4f57dd2a052c4",
         "item": "ns=3;s=\"Velocity_Jog_left\"",
         "datatype": "Double",
         "value": "msg.topic",
@@ -240,19 +339,20 @@
         "y": 540,
         "wires": [
             [
-                "70b9132939690788"
+                "e6bcc6ce227acc6e"
             ]
         ]
     },
     {
-        "id": "9292899a0ce7ab68",
+        "id": "97246b33f9a3fc41",
         "type": "ui_text_input",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "94e4f57dd2a052c4",
         "name": "",
         "label": "Velocity setpoint",
         "tooltip": "",
         "group": "6b810393774c59ed",
-        "order": 7,
+        "order": 8,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -266,16 +366,17 @@
         "y": 540,
         "wires": [
             [
-                "54f0b0f18ad0a207"
+                "647ed798dfbf4847"
             ]
         ]
     },
     {
-        "id": "f289df59f77b3bf1",
+        "id": "1771b310f15c3bf1",
         "type": "ui_text",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "94e4f57dd2a052c4",
         "group": "6b810393774c59ed",
-        "order": 8,
+        "order": 9,
         "width": 1,
         "height": 1,
         "name": "",
@@ -288,9 +389,10 @@
         "wires": []
     },
     {
-        "id": "54f0b0f18ad0a207",
+        "id": "647ed798dfbf4847",
         "type": "function",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "94e4f57dd2a052c4",
         "name": "",
         "func": "if( msg.payload<0){msg.payload=0}\nelse if(msg.payload>600){msg.payload=600}\nreturn msg",
         "outputs": 1,
@@ -303,14 +405,15 @@
         "y": 540,
         "wires": [
             [
-                "ef8eafad5f19195e"
+                "eadab86518acdad6"
             ]
         ]
     },
     {
-        "id": "bb63b787bb925bee",
+        "id": "369cb8a7121e9842",
         "type": "ui_text",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "94e4f57dd2a052c4",
         "group": "6b810393774c59ed",
         "order": 1,
         "width": 0,
@@ -325,9 +428,10 @@
         "wires": []
     },
     {
-        "id": "341abc12b054a624",
+        "id": "7aa70da7db01f139",
         "type": "OpcUa-Item",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "4833004ead151d8c",
         "item": "ns=3;s=\"Power_On_right\"",
         "datatype": "Boolean",
         "value": "msg.topic",
@@ -336,14 +440,15 @@
         "y": 1160,
         "wires": [
             [
-                "70b9132939690788"
+                "e6bcc6ce227acc6e"
             ]
         ]
     },
     {
-        "id": "251e32489f9d90d7",
+        "id": "cae9f7857ced062e",
         "type": "ui_switch",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "4833004ead151d8c",
         "name": "",
         "label": "Power",
         "tooltip": "",
@@ -370,14 +475,15 @@
         "y": 1160,
         "wires": [
             [
-                "341abc12b054a624"
+                "7aa70da7db01f139"
             ]
         ]
     },
     {
-        "id": "441429ec07f9639f",
+        "id": "6ed92f5027ea657b",
         "type": "OpcUa-Item",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "4833004ead151d8c",
         "item": "ns=3;s=\"Reset_S210_right\"",
         "datatype": "Boolean",
         "value": "msg.topic",
@@ -386,14 +492,15 @@
         "y": 1120,
         "wires": [
             [
-                "70b9132939690788"
+                "e6bcc6ce227acc6e"
             ]
         ]
     },
     {
-        "id": "91cc57a333d6e168",
+        "id": "d133c45415108357",
         "type": "OpcUa-Item",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "4833004ead151d8c",
         "item": "ns=3;s=\"Move_Jog_Backward_right\"",
         "datatype": "Boolean",
         "value": "msg.topic",
@@ -402,14 +509,15 @@
         "y": 1220,
         "wires": [
             [
-                "70b9132939690788"
+                "e6bcc6ce227acc6e"
             ]
         ]
     },
     {
-        "id": "006b678133a3aa5e",
+        "id": "ed656906308743e0",
         "type": "OpcUa-Item",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "4833004ead151d8c",
         "item": "ns=3;s=\"Move_Jog_Forward_right\"",
         "datatype": "Boolean",
         "value": "msg.topic",
@@ -418,14 +526,15 @@
         "y": 1260,
         "wires": [
             [
-                "70b9132939690788"
+                "e6bcc6ce227acc6e"
             ]
         ]
     },
     {
-        "id": "c510fefbd6da6597",
+        "id": "c755fd3e87314d58",
         "type": "ui_switch",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "4833004ead151d8c",
         "name": "",
         "label": "Move backward",
         "tooltip": "",
@@ -452,14 +561,15 @@
         "y": 1220,
         "wires": [
             [
-                "91cc57a333d6e168"
+                "d133c45415108357"
             ]
         ]
     },
     {
-        "id": "0d7323a6363ed875",
+        "id": "12c8c288891bb626",
         "type": "ui_switch",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "4833004ead151d8c",
         "name": "",
         "label": "Move forward",
         "tooltip": "",
@@ -486,14 +596,15 @@
         "y": 1260,
         "wires": [
             [
-                "006b678133a3aa5e"
+                "ed656906308743e0"
             ]
         ]
     },
     {
-        "id": "03382cf9007eddf8",
+        "id": "be2d6059c413280b",
         "type": "OpcUa-Item",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "4833004ead151d8c",
         "item": "ns=3;s=\"Velocity_Jog_right\"",
         "datatype": "Double",
         "value": "msg.topic",
@@ -502,19 +613,20 @@
         "y": 1320,
         "wires": [
             [
-                "70b9132939690788"
+                "e6bcc6ce227acc6e"
             ]
         ]
     },
     {
-        "id": "49642c507f63b373",
+        "id": "0880c6d7fb58f8c3",
         "type": "ui_text_input",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "4833004ead151d8c",
         "name": "",
         "label": "Velocity setpoint",
         "tooltip": "",
         "group": "b9011e67f72d8da0",
-        "order": 7,
+        "order": 8,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -528,16 +640,17 @@
         "y": 1320,
         "wires": [
             [
-                "339bd50da98efd49"
+                "53bff6e81e6b58e8"
             ]
         ]
     },
     {
-        "id": "82861a7bac8d88f0",
+        "id": "499febfbfe371da1",
         "type": "ui_text",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "4833004ead151d8c",
         "group": "b9011e67f72d8da0",
-        "order": 8,
+        "order": 9,
         "width": 1,
         "height": 1,
         "name": "",
@@ -550,9 +663,10 @@
         "wires": []
     },
     {
-        "id": "339bd50da98efd49",
+        "id": "53bff6e81e6b58e8",
         "type": "function",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "4833004ead151d8c",
         "name": "",
         "func": "if( msg.payload<0){msg.payload=0}\nelse if(msg.payload>600){msg.payload=600}\nreturn msg",
         "outputs": 1,
@@ -564,14 +678,15 @@
         "y": 1320,
         "wires": [
             [
-                "03382cf9007eddf8"
+                "be2d6059c413280b"
             ]
         ]
     },
     {
-        "id": "e1f9bab54d5c4902",
+        "id": "886c2439fe6755f5",
         "type": "ui_text",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "4833004ead151d8c",
         "group": "b9011e67f72d8da0",
         "order": 1,
         "width": 0,
@@ -590,9 +705,10 @@
         "wires": []
     },
     {
-        "id": "0d501c9584daa36f",
+        "id": "2af8f9b62cd21271",
         "type": "inject",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "94e4f57dd2a052c4",
         "name": "",
         "props": [
             {
@@ -614,14 +730,15 @@
         "y": 540,
         "wires": [
             [
-                "9292899a0ce7ab68"
+                "97246b33f9a3fc41"
             ]
         ]
     },
     {
-        "id": "0fbf586543068d6d",
+        "id": "659a75335d996d60",
         "type": "inject",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "4833004ead151d8c",
         "name": "",
         "props": [
             {
@@ -643,14 +760,15 @@
         "y": 1320,
         "wires": [
             [
-                "49642c507f63b373"
+                "0880c6d7fb58f8c3"
             ]
         ]
     },
     {
-        "id": "616f131bcef68bd2",
+        "id": "9f97c55746316c54",
         "type": "comment",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "94e4f57dd2a052c4",
         "name": "Motor 1 (left)",
         "info": "",
         "x": 160,
@@ -658,9 +776,10 @@
         "wires": []
     },
     {
-        "id": "2e475ca0e90cc92b",
+        "id": "d7f8b98fc60ae0a6",
         "type": "comment",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "4833004ead151d8c",
         "name": "Motor 2 (right)",
         "info": "",
         "x": 150,
@@ -668,9 +787,10 @@
         "wires": []
     },
     {
-        "id": "e0be01ace176294d",
+        "id": "c2cb620694271de9",
         "type": "inject",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "4833004ead151d8c",
         "name": "",
         "props": [
             {
@@ -692,17 +812,18 @@
         "y": 1120,
         "wires": [
             [
-                "251e32489f9d90d7",
-                "c510fefbd6da6597",
-                "0d7323a6363ed875",
-                "b03a9e76619efdcf"
+                "cae9f7857ced062e",
+                "c755fd3e87314d58",
+                "12c8c288891bb626",
+                "c5b7f9ab7f4fbbfc"
             ]
         ]
     },
     {
-        "id": "2459b12ed239386a",
+        "id": "313649f804a80dfb",
         "type": "OpcUa-Item",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "94e4f57dd2a052c4",
         "item": "ns=3;s=\"SpeedAxisLeft\".DynamicLimits.MaxAcceleration",
         "datatype": "Double",
         "value": "",
@@ -711,14 +832,15 @@
         "y": 680,
         "wires": [
             [
-                "70b9132939690788"
+                "e6bcc6ce227acc6e"
             ]
         ]
     },
     {
-        "id": "4bcbc8bd8e92ffdd",
+        "id": "bdc59bf881d842fa",
         "type": "OpcUa-Item",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "94e4f57dd2a052c4",
         "item": "ns=3;s=\"SpeedAxisLeft\".DynamicLimits.MaxDeceleration",
         "datatype": "Double",
         "value": "",
@@ -727,14 +849,15 @@
         "y": 720,
         "wires": [
             [
-                "70b9132939690788"
+                "e6bcc6ce227acc6e"
             ]
         ]
     },
     {
-        "id": "419111aea0307fe3",
+        "id": "9e599cd1c2328838",
         "type": "OpcUa-Item",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "4833004ead151d8c",
         "item": "ns=3;s=\"SpeedAxisRight\".DynamicLimits.MaxAcceleration",
         "datatype": "Double",
         "value": "",
@@ -743,14 +866,15 @@
         "y": 1480,
         "wires": [
             [
-                "70b9132939690788"
+                "e6bcc6ce227acc6e"
             ]
         ]
     },
     {
-        "id": "b704976f0d04f2da",
+        "id": "fb62ea588596bf32",
         "type": "OpcUa-Item",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "4833004ead151d8c",
         "item": "ns=3;s=\"SpeedAxisRight\".DynamicLimits.MaxDeceleration",
         "datatype": "Double",
         "value": "",
@@ -759,19 +883,20 @@
         "y": 1520,
         "wires": [
             [
-                "70b9132939690788"
+                "e6bcc6ce227acc6e"
             ]
         ]
     },
     {
-        "id": "dbf9008f75deecfb",
+        "id": "a1e0a0a8507bd92c",
         "type": "ui_text_input",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "4833004ead151d8c",
         "name": "",
         "label": "Set max. acceleration",
         "tooltip": "",
         "group": "b9011e67f72d8da0",
-        "order": 9,
+        "order": 10,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -785,16 +910,17 @@
         "y": 1480,
         "wires": [
             [
-                "b2904fc0f5ddc2a1"
+                "e8f774c3f98f2431"
             ]
         ]
     },
     {
-        "id": "68ae6e83ec431485",
+        "id": "107575f23d6d8d39",
         "type": "ui_text",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "4833004ead151d8c",
         "group": "b9011e67f72d8da0",
-        "order": 10,
+        "order": 11,
         "width": 1,
         "height": 1,
         "name": "",
@@ -811,9 +937,10 @@
         "wires": []
     },
     {
-        "id": "16304740236ca347",
+        "id": "1411558e8ae78540",
         "type": "inject",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "4833004ead151d8c",
         "name": "",
         "props": [
             {
@@ -835,19 +962,20 @@
         "y": 1480,
         "wires": [
             [
-                "dbf9008f75deecfb"
+                "a1e0a0a8507bd92c"
             ]
         ]
     },
     {
-        "id": "77396499b092b1f5",
+        "id": "6326373fffa8fa3d",
         "type": "ui_text_input",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "94e4f57dd2a052c4",
         "name": "",
         "label": "Set max. acceleration",
         "tooltip": "",
         "group": "6b810393774c59ed",
-        "order": 9,
+        "order": 10,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -861,16 +989,17 @@
         "y": 680,
         "wires": [
             [
-                "c9a40b2a64d7a4a8"
+                "134c1313842b7938"
             ]
         ]
     },
     {
-        "id": "4b8535a8e4b41649",
+        "id": "fe1a8c1745acdf26",
         "type": "ui_text",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "94e4f57dd2a052c4",
         "group": "6b810393774c59ed",
-        "order": 10,
+        "order": 11,
         "width": 1,
         "height": 1,
         "name": "",
@@ -887,9 +1016,10 @@
         "wires": []
     },
     {
-        "id": "6504daf59f1a18ca",
+        "id": "b23522cc3d9bb9c4",
         "type": "inject",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "94e4f57dd2a052c4",
         "name": "",
         "props": [
             {
@@ -911,14 +1041,15 @@
         "y": 680,
         "wires": [
             [
-                "77396499b092b1f5"
+                "6326373fffa8fa3d"
             ]
         ]
     },
     {
-        "id": "c9a40b2a64d7a4a8",
+        "id": "134c1313842b7938",
         "type": "function",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "94e4f57dd2a052c4",
         "name": "",
         "func": "if( msg.payload<1){msg.payload=1}\nelse if(msg.payload>1000){msg.payload=1000}\nreturn msg",
         "outputs": 1,
@@ -931,15 +1062,16 @@
         "y": 680,
         "wires": [
             [
-                "4bcbc8bd8e92ffdd",
-                "2459b12ed239386a"
+                "bdc59bf881d842fa",
+                "313649f804a80dfb"
             ]
         ]
     },
     {
-        "id": "b2904fc0f5ddc2a1",
+        "id": "e8f774c3f98f2431",
         "type": "function",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "4833004ead151d8c",
         "name": "",
         "func": "if( msg.payload<1){msg.payload=1}\nelse if(msg.payload>1000){msg.payload=1000}\nreturn msg",
         "outputs": 1,
@@ -952,15 +1084,15 @@
         "y": 1480,
         "wires": [
             [
-                "419111aea0307fe3",
-                "b704976f0d04f2da"
+                "9e599cd1c2328838",
+                "fb62ea588596bf32"
             ]
         ]
     },
     {
-        "id": "408c33cf4ee11878",
+        "id": "aa132436e4087339",
         "type": "trigger",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
         "name": "",
         "op1": "true",
         "op2": "false",
@@ -970,7 +1102,7 @@
         "extend": false,
         "overrideDelay": false,
         "units": "s",
-        "reset": "ns=3;s=\"Heartbeat\".\"Heartbeat\"",
+        "reset": "",
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
@@ -978,14 +1110,14 @@
         "y": 100,
         "wires": [
             [
-                "cbd565aa62ba695a"
+                "f33741f8f167a250"
             ]
         ]
     },
     {
-        "id": "cbd565aa62ba695a",
+        "id": "f33741f8f167a250",
         "type": "OpcUa-Item",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
         "item": "ns=3;s=\"Heartbeat\".\"Heartbeat\"",
         "datatype": "Boolean",
         "value": "",
@@ -994,14 +1126,14 @@
         "y": 100,
         "wires": [
             [
-                "70b9132939690788"
+                "e6bcc6ce227acc6e"
             ]
         ]
     },
     {
-        "id": "56c3c83ea06b6c82",
+        "id": "6aca6751b7a7067d",
         "type": "inject",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
         "name": "Heartbeat",
         "props": [
             {
@@ -1018,14 +1150,15 @@
         "y": 100,
         "wires": [
             [
-                "408c33cf4ee11878"
+                "aa132436e4087339"
             ]
         ]
     },
     {
-        "id": "0d16ce16859bb698",
+        "id": "73d6ba3b2c125735",
         "type": "ui_switch",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "94e4f57dd2a052c4",
         "name": "",
         "label": "Reset",
         "tooltip": "",
@@ -1052,14 +1185,15 @@
         "y": 340,
         "wires": [
             [
-                "4bf069042b39af4c"
+                "b04c3697ea385993"
             ]
         ]
     },
     {
-        "id": "b03a9e76619efdcf",
+        "id": "c5b7f9ab7f4fbbfc",
         "type": "ui_switch",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "4833004ead151d8c",
         "name": "",
         "label": "Reset",
         "tooltip": "",
@@ -1086,14 +1220,15 @@
         "y": 1120,
         "wires": [
             [
-                "441429ec07f9639f"
+                "6ed92f5027ea657b"
             ]
         ]
     },
     {
-        "id": "5280c0cebe8ee2ca",
+        "id": "eaf8935b329795eb",
         "type": "OpcUa-Item",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "4833004ead151d8c",
         "item": "ns=3;s=\"Drive_para_left_right\".\"Drive_right_ON_OFF\"",
         "datatype": "Boolean",
         "value": "msg.topic",
@@ -1102,14 +1237,15 @@
         "y": 1620,
         "wires": [
             [
-                "70b9132939690788"
+                "e6bcc6ce227acc6e"
             ]
         ]
     },
     {
-        "id": "9e5c245cedf9c451",
+        "id": "1eb100d1083b5b28",
         "type": "ui_switch",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "4833004ead151d8c",
         "name": "",
         "label": "Motor is connected?",
         "tooltip": "",
@@ -1136,14 +1272,15 @@
         "y": 1620,
         "wires": [
             [
-                "5280c0cebe8ee2ca"
+                "eaf8935b329795eb"
             ]
         ]
     },
     {
-        "id": "fa16da1c6a40a762",
+        "id": "590c2024fda4301f",
         "type": "inject",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "4833004ead151d8c",
         "name": "",
         "props": [
             {
@@ -1165,14 +1302,15 @@
         "y": 1620,
         "wires": [
             [
-                "9e5c245cedf9c451"
+                "1eb100d1083b5b28"
             ]
         ]
     },
     {
-        "id": "a752657e586e20f8",
+        "id": "6637992525d62079",
         "type": "OpcUa-Item",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "94e4f57dd2a052c4",
         "item": "ns=3;s=\"Drive_para_left_right\".\"Drive_left_ON_OFF\"",
         "datatype": "Boolean",
         "value": "msg.topic",
@@ -1181,14 +1319,15 @@
         "y": 800,
         "wires": [
             [
-                "70b9132939690788"
+                "e6bcc6ce227acc6e"
             ]
         ]
     },
     {
-        "id": "b50626bc1636bb30",
+        "id": "4192c822c4c2a1f2",
         "type": "ui_switch",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "94e4f57dd2a052c4",
         "name": "",
         "label": "Motor is connected?",
         "tooltip": "",
@@ -1215,14 +1354,15 @@
         "y": 800,
         "wires": [
             [
-                "a752657e586e20f8"
+                "6637992525d62079"
             ]
         ]
     },
     {
-        "id": "34b37e9b9abc28ac",
+        "id": "27ab2de8368ac009",
         "type": "inject",
-        "z": "1d75215f8e163a3d",
+        "z": "32777bc2119191bf",
+        "g": "94e4f57dd2a052c4",
         "name": "",
         "props": [
             {
@@ -1244,59 +1384,9 @@
         "y": 800,
         "wires": [
             [
-                "b50626bc1636bb30"
+                "4192c822c4c2a1f2"
             ]
         ]
-    },
-    {
-        "id": "fc9e96d2dd44cb36",
-        "type": "ui_spacer",
-        "z": "1d75215f8e163a3d",
-        "name": "spacer",
-        "group": "2766a474835c38ac",
-        "order": 12,
-        "width": 6,
-        "height": 1
-    },
-    {
-        "id": "a1383c88acf1a3e8",
-        "type": "ui_spacer",
-        "z": "1d75215f8e163a3d",
-        "name": "spacer",
-        "group": "e6b1019bb3a082ac",
-        "order": 5,
-        "width": 6,
-        "height": 1
-    },
-    {
-        "id": "c84e724bb0800d6a",
-        "type": "ui_spacer",
-        "z": "1d75215f8e163a3d",
-        "name": "spacer",
-        "group": "e6b1019bb3a082ac",
-        "order": 6,
-        "width": 6,
-        "height": 1
-    },
-    {
-        "id": "cd313611d7c93a5a",
-        "type": "ui_spacer",
-        "z": "1d75215f8e163a3d",
-        "name": "spacer",
-        "group": "e6b1019bb3a082ac",
-        "order": 13,
-        "width": 6,
-        "height": 1
-    },
-    {
-        "id": "19ea0fe57ac5b519",
-        "type": "ui_spacer",
-        "z": "1d75215f8e163a3d",
-        "name": "spacer",
-        "group": "8a339496ca145acd",
-        "order": 6,
-        "width": 6,
-        "height": 1
     },
     {
         "id": "6b810393774c59ed",
@@ -1333,53 +1423,11 @@
         "className": ""
     },
     {
-        "id": "2766a474835c38ac",
-        "type": "ui_group",
-        "name": "Write values",
-        "tab": "afc4f775962a26f4",
-        "order": 1,
-        "disp": true,
-        "width": "6",
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "e6b1019bb3a082ac",
-        "type": "ui_group",
-        "name": "Read values part 1",
-        "tab": "afc4f775962a26f4",
-        "order": 2,
-        "disp": true,
-        "width": 6,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "8a339496ca145acd",
-        "type": "ui_group",
-        "name": "Read values part 2",
-        "tab": "afc4f775962a26f4",
-        "order": 3,
-        "disp": true,
-        "width": "6",
-        "collapse": false,
-        "className": ""
-    },
-    {
         "id": "6a728bddbd75b4dd",
         "type": "ui_tab",
         "name": "Smart printhead PLC",
         "icon": "dashboard",
         "order": 4,
-        "disabled": false,
-        "hidden": false
-    },
-    {
-        "id": "afc4f775962a26f4",
-        "type": "ui_tab",
-        "name": "MAI MULTIMIX",
-        "icon": "dashboard",
-        "order": 6,
         "disabled": false,
         "hidden": false
     }
