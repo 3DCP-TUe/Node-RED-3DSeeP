@@ -67,6 +67,7 @@
         "x": 1180,
         "y": 440,
         "wires": [
+            [],
             []
         ]
     },
@@ -305,7 +306,7 @@
         "type": "ui_tab",
         "name": "M-tec duomix",
         "icon": "dashboard",
-        "order": 8,
+        "order": 7,
         "disabled": false,
         "hidden": false
     }

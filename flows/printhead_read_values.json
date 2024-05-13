@@ -55,7 +55,7 @@
         "joinerType": "str",
         "accumulate": false,
         "timeout": "",
-        "count": "29",
+        "count": "33",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
@@ -519,6 +519,7 @@
         "name": "printhead_box2_ai2",
         "func": "if (msg.payload < 0)\n{\n    msg.printhead_box2_ai2 = 0.0\n}\nelse\n{\n    msg.printhead_box2_ai2=msg.payload.toString()/27468*16.0+4.0\n}\n\nreturn msg\n",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -565,14 +566,14 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1900,
-        "y": 160,
+        "x": 2100,
+        "y": 100,
         "wires": [
             [
                 "6ded33e24cd71ebb",
-                "cb80276a38b8da55",
                 "e7ddfa57610559e5",
-                "e399fc2ca7151998"
+                "e399fc2ca7151998",
+                "1b451795e393249a"
             ]
         ]
     },
@@ -1293,8 +1294,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2140,
-        "y": 160,
+        "x": 2740,
+        "y": 100,
         "wires": [
             [
                 "eaf3da67f1f10ab6"
@@ -1314,8 +1315,8 @@
         "format": "{{msg.printhead_pressure.toFixed(2)}}",
         "layout": "row-spread",
         "className": "",
-        "x": 2380,
-        "y": 120,
+        "x": 2960,
+        "y": 140,
         "wires": []
     },
     {
@@ -1333,13 +1334,19 @@
         "localkeyfile": "",
         "securitymode": "None",
         "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": "",
+        "maxMessageSize": "",
+        "receiveBufferSize": "",
+        "sendBufferSize": "",
         "name": "",
         "x": 1240,
         "y": 1020,
         "wires": [
             [
                 "749fca2ea2f32072"
-            ]
+            ],
+            []
         ]
     },
     {
@@ -1361,7 +1368,7 @@
         "ymin": "0",
         "ymax": "2",
         "removeOlder": "5",
-        "removeOlderPoints": "500",
+        "removeOlderPoints": "300",
         "removeOlderUnit": "60",
         "cutout": 0,
         "useOneColor": false,
@@ -1380,8 +1387,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 2380,
-        "y": 160,
+        "x": 2960,
+        "y": 100,
         "wires": [
             []
         ]
@@ -1406,8 +1413,8 @@
         "payloadType": "json",
         "topic": "topic",
         "topicType": "msg",
-        "x": 2130,
-        "y": 120,
+        "x": 2730,
+        "y": 60,
         "wires": [
             [
                 "eaf3da67f1f10ab6"
@@ -1440,8 +1447,8 @@
         "format": "{{msg.printhead_pressure.toFixed(2)}}",
         "layout": "row-spread",
         "className": "",
-        "x": 2360,
-        "y": 280,
+        "x": 2960,
+        "y": 240,
         "wires": []
     },
     {
@@ -1457,33 +1464,9 @@
         "format": "",
         "layout": "row-spread",
         "className": "",
-        "x": 2320,
-        "y": 240,
+        "x": 2920,
+        "y": 200,
         "wires": []
-    },
-    {
-        "id": "b933f2d17a1236e8",
-        "type": "inject",
-        "z": "990f0f01b5df7bf5",
-        "d": true,
-        "name": "Timer",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "0.1",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "1",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 270,
-        "y": 400,
-        "wires": [
-            []
-        ]
     },
     {
         "id": "33da58d8fcf52813",
@@ -1866,53 +1849,6 @@
         "wires": [
             [
                 "aaa3834747257b9c"
-            ]
-        ]
-    },
-    {
-        "id": "77c717f37c64d525",
-        "type": "link in",
-        "z": "990f0f01b5df7bf5",
-        "name": "Timer in",
-        "links": [
-            "b847af6089af00ad"
-        ],
-        "x": 305,
-        "y": 440,
-        "wires": [
-            [
-                "33da58d8fcf52813",
-                "a1d4293c564d21f6",
-                "4e4b24d1656c41fb",
-                "0c407008232e4c41",
-                "71505804b11387ca",
-                "e2a311236442b670",
-                "2a8899b11cbae4aa",
-                "c0102b878b0f63db",
-                "bcea79dc9f301bbf",
-                "fdeb7a0e36c792ff",
-                "eb81ebf01c7b260a",
-                "2c796754bdb4146b",
-                "3aa5e0cfb35accc2",
-                "07f3d65c96753683",
-                "ef087cbc6bc95964",
-                "e810775ab9950f55",
-                "9a3746eafb3ea4c7",
-                "bd78e42da2d46f69",
-                "bf74b39f5d961e5a",
-                "e4312689e36d37f0",
-                "441575a0f2eb15e4",
-                "73893f4b7c4e88b1",
-                "a9947ac5f8f5b29c",
-                "b3829f71f61b9436",
-                "6ba7fc4d2b903176",
-                "35df17c01fd5f3f8",
-                "256e36b040090cb6",
-                "84766dc5af6257a0",
-                "da99307dfbea2bc5",
-                "0809d4e3c6ef9889",
-                "539826b60bd7a297",
-                "8f75dbf8bb2a0370"
             ]
         ]
     },
@@ -2377,6 +2313,152 @@
         "wires": []
     },
     {
+        "id": "1b451795e393249a",
+        "type": "throttle",
+        "z": "990f0f01b5df7bf5",
+        "name": "Pass every second",
+        "throttleType": "time",
+        "timeLimit": "1",
+        "timeLimitType": "seconds",
+        "countLimit": 0,
+        "blockSize": 0,
+        "locked": false,
+        "x": 2530,
+        "y": 100,
+        "wires": [
+            [
+                "cb80276a38b8da55"
+            ]
+        ]
+    },
+    {
+        "id": "79edf95a84448eb8",
+        "type": "inject",
+        "z": "990f0f01b5df7bf5",
+        "d": true,
+        "name": "Clear items",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "clearitems",
+        "payload": "",
+        "payloadType": "str",
+        "x": 650,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fac47657dd581985",
+        "type": "inject",
+        "z": "990f0f01b5df7bf5",
+        "d": true,
+        "name": "Read items",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "0.1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "3",
+        "topic": "readmultiple",
+        "payload": "",
+        "payloadType": "str",
+        "x": 650,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5723f1253b6cbe25",
+        "type": "inject",
+        "z": "990f0f01b5df7bf5",
+        "d": true,
+        "name": "Set items",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 640,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4681985dc925b8a5",
+        "type": "link in",
+        "z": "990f0f01b5df7bf5",
+        "name": "Timer in",
+        "links": [
+            "b847af6089af00ad"
+        ],
+        "x": 355,
+        "y": 440,
+        "wires": [
+            [
+                "33da58d8fcf52813",
+                "a1d4293c564d21f6",
+                "4e4b24d1656c41fb",
+                "0c407008232e4c41",
+                "71505804b11387ca",
+                "e2a311236442b670",
+                "2a8899b11cbae4aa",
+                "c0102b878b0f63db",
+                "bcea79dc9f301bbf",
+                "fdeb7a0e36c792ff",
+                "eb81ebf01c7b260a",
+                "2c796754bdb4146b",
+                "3aa5e0cfb35accc2",
+                "07f3d65c96753683",
+                "ef087cbc6bc95964",
+                "e810775ab9950f55",
+                "9a3746eafb3ea4c7",
+                "bd78e42da2d46f69",
+                "bf74b39f5d961e5a",
+                "e4312689e36d37f0",
+                "441575a0f2eb15e4",
+                "73893f4b7c4e88b1",
+                "a9947ac5f8f5b29c",
+                "b3829f71f61b9436",
+                "6ba7fc4d2b903176",
+                "35df17c01fd5f3f8",
+                "256e36b040090cb6",
+                "84766dc5af6257a0",
+                "da99307dfbea2bc5",
+                "0809d4e3c6ef9889",
+                "539826b60bd7a297",
+                "8f75dbf8bb2a0370"
+            ]
+        ]
+    },
+    {
         "id": "b3ef233767c959fb",
         "type": "ui_spacer",
         "z": "990f0f01b5df7bf5",
@@ -2516,7 +2598,11 @@
         "endpoint": "opc.tcp://10.129.4.20:4840",
         "secpol": "None",
         "secmode": "None",
-        "login": false
+        "none": false,
+        "login": false,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": ""
     },
     {
         "id": "53d83661cfcefa23",
@@ -2555,7 +2641,7 @@
         "type": "ui_tab",
         "name": "Smart printhead PLC",
         "icon": "dashboard",
-        "order": 5,
+        "order": 4,
         "disabled": false,
         "hidden": false
     },
@@ -2564,7 +2650,7 @@
         "type": "ui_tab",
         "name": "Data overview",
         "icon": "dashboard",
-        "order": 2,
+        "order": 1,
         "disabled": false,
         "hidden": false
     },
@@ -2573,7 +2659,7 @@
         "type": "ui_tab",
         "name": "Gantry robot",
         "icon": "dashboard",
-        "order": 4,
+        "order": 3,
         "disabled": false,
         "hidden": false
     }

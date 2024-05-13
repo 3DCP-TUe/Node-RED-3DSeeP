@@ -28,7 +28,8 @@
         "wires": [
             [
                 "1ee0c5275f125b9e"
-            ]
+            ],
+            []
         ]
     },
     {
@@ -1073,30 +1074,6 @@
         "wires": []
     },
     {
-        "id": "bb0fa678ef79abf7",
-        "type": "inject",
-        "z": "44daa70687b7ded2",
-        "d": true,
-        "name": "Timer",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "0.1",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "1",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 890,
-        "y": 560,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "bbe3e5208daf1b84",
         "type": "link in",
         "z": "44daa70687b7ded2",
@@ -1448,6 +1425,86 @@
         "wires": []
     },
     {
+        "id": "e29d817315a242fa",
+        "type": "inject",
+        "z": "44daa70687b7ded2",
+        "d": true,
+        "name": "Clear items",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "clearitems",
+        "payload": "",
+        "payloadType": "str",
+        "x": 1170,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a10fac8edeee8925",
+        "type": "inject",
+        "z": "44daa70687b7ded2",
+        "d": true,
+        "name": "Read items",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "0.1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "3",
+        "topic": "readmultiple",
+        "payload": "",
+        "payloadType": "str",
+        "x": 1170,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "00755a345ca365ec",
+        "type": "inject",
+        "z": "44daa70687b7ded2",
+        "d": true,
+        "name": "Set items",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1160,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "b6399b95df174ec3",
         "type": "OpcUa-Endpoint",
         "endpoint": "opc.tcp://10.129.4.80:48010",
@@ -1482,7 +1539,7 @@
         "type": "ui_tab",
         "name": "MAI MULTIMIX",
         "icon": "dashboard",
-        "order": 7,
+        "order": 6,
         "disabled": false,
         "hidden": false
     }

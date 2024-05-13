@@ -26,6 +26,7 @@
         "x": 1340,
         "y": 340,
         "wires": [
+            [],
             []
         ]
     },
@@ -649,7 +650,7 @@
         "type": "ui_tab",
         "name": "Vertico dosing system",
         "icon": "dashboard",
-        "order": 10,
+        "order": 9,
         "disabled": false,
         "hidden": false
     }

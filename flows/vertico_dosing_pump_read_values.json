@@ -28,7 +28,8 @@
         "wires": [
             [
                 "01e555711760fced"
-            ]
+            ],
+            []
         ]
     },
     {
@@ -1244,6 +1245,86 @@
         "wires": []
     },
     {
+        "id": "499845fe474d0823",
+        "type": "inject",
+        "z": "b2e975bbdb91c64e",
+        "d": true,
+        "name": "Clear items",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "clearitems",
+        "payload": "",
+        "payloadType": "str",
+        "x": 570,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "179321be3a043ab5",
+        "type": "inject",
+        "z": "b2e975bbdb91c64e",
+        "d": true,
+        "name": "Read items",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "0.1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "3",
+        "topic": "readmultiple",
+        "payload": "",
+        "payloadType": "str",
+        "x": 570,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ad65a8f5a52757a8",
+        "type": "inject",
+        "z": "b2e975bbdb91c64e",
+        "d": true,
+        "name": "Set items",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 560,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "df0e8d096d8a204d",
         "type": "OpcUa-Endpoint",
         "endpoint": "opc.tcp://10.129.4.40:4840",
@@ -1267,7 +1348,7 @@
         "type": "ui_tab",
         "name": "Vertico dosing system",
         "icon": "dashboard",
-        "order": 10,
+        "order": 9,
         "disabled": false,
         "hidden": false
     }

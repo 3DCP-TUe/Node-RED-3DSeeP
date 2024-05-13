@@ -76,6 +76,7 @@
         "x": 1060,
         "y": 500,
         "wires": [
+            [],
             []
         ]
     },
@@ -1336,7 +1337,7 @@
         "type": "ui_tab",
         "name": "Material delivery PLC",
         "icon": "dashboard",
-        "order": 6,
+        "order": 5,
         "disabled": false,
         "hidden": false
     },
@@ -1345,17 +1346,17 @@
         "type": "ui_tab",
         "name": "Bronkhorst dosing pump",
         "icon": "dashboard",
-        "order": 9,
+        "order": 8,
         "disabled": false,
         "hidden": false
     },
     {
         "id": "29764b84.e49f2c",
         "type": "ui_tab",
-        "name": "PLC1515T",
+        "name": "FRED",
         "icon": "dashboard",
-        "order": 1,
+        "order": 11,
         "disabled": false,
-        "hidden": true
+        "hidden": false
     }
 ]

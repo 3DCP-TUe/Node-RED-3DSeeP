@@ -58,6 +58,7 @@
         "x": 1460,
         "y": 300,
         "wires": [
+            [],
             []
         ]
     },
@@ -191,7 +192,7 @@
         "type": "function",
         "z": "dd125b8f591531ed",
         "name": "",
-        "func": "valve = msg.payload;\nisEnabled = false;\n\n// Global value\nif (global.get(\"isEnabled\")!==undefined)\n{\n    isEnabled = global.get(\"isEnabled\");\n}\n\n// Check valve\nif (valve == true)\n{\n    msg.payload = true\n}\nelse\n{\n    msg.payload = false\n}\n\n// Is enabled?\nif (isEnabled == true & valve == false)\n{\n    msg.payload = false\n}\n\nreturn msg",
+        "func": "valve = msg.payload;\nisEnabled = false;\n\n// Global value\nif (global.get(\"isEnabled\")!==undefined)\n{\n    isEnabled = global.get(\"isEnabled\");\n}\n\n// Check valve\nif (valve == true)\n{\n    msg.payload = true\n}\nelse\n{\n    msg.payload = false\n}\n\n// Is enabled?\nif (isEnabled == false)\n{\n    msg.payload = false\n}\n\nreturn msg",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -267,6 +268,7 @@
         "x": 1460,
         "y": 640,
         "wires": [
+            [],
             []
         ]
     },
@@ -365,7 +367,7 @@
         "type": "function",
         "z": "dd125b8f591531ed",
         "name": "",
-        "func": "valve = msg.payload;\nisEnabled = false;\n\n// Global value\nif (global.get(\"isEnabled2\")!==undefined)\n{\n    isEnabled = global.get(\"isEnabled2\");\n}\n\n// Check valve\nif (valve == true)\n{\n    msg.payload = true\n}\nelse\n{\n    msg.payload = false\n}\n\n// Is enabled?\nif (isEnabled == true & valve == false)\n{\n    msg.payload = false\n}\n\nreturn msg",
+        "func": "valve = msg.payload;\nisEnabled = false;\n\n// Global value\nif (global.get(\"isEnabled2\")!==undefined)\n{\n    isEnabled = global.get(\"isEnabled2\");\n}\n\n// Check valve\nif (valve == true)\n{\n    msg.payload = true\n}\nelse\n{\n    msg.payload = false\n}\n\n// Is enabled?\nif (isEnabled == false)\n{\n    msg.payload = false\n}\n\nreturn msg",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -475,7 +477,7 @@
         "type": "ui_tab",
         "name": "Project Frankestein",
         "icon": "dashboard",
-        "order": 11,
+        "order": 10,
         "disabled": false,
         "hidden": false
     }

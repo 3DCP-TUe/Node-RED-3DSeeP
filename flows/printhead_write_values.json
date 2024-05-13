@@ -76,6 +76,7 @@
         "x": 1380,
         "y": 580,
         "wires": [
+            [],
             []
         ]
     },
@@ -216,7 +217,7 @@
         "topic": "",
         "payload": "false",
         "payloadType": "bool",
-        "x": 330,
+        "x": 310,
         "y": 340,
         "wires": [
             [
@@ -1314,7 +1315,11 @@
         "endpoint": "opc.tcp://10.129.4.20:4840",
         "secpol": "None",
         "secmode": "None",
-        "login": false
+        "none": false,
+        "login": false,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": ""
     },
     {
         "id": "b9011e67f72d8da0",
@@ -1365,7 +1370,7 @@
         "type": "ui_tab",
         "name": "Smart printhead PLC",
         "icon": "dashboard",
-        "order": 5,
+        "order": 4,
         "disabled": false,
         "hidden": false
     },
@@ -1374,7 +1379,7 @@
         "type": "ui_tab",
         "name": "MAI MULTIMIX",
         "icon": "dashboard",
-        "order": 7,
+        "order": 6,
         "disabled": false,
         "hidden": false
     }

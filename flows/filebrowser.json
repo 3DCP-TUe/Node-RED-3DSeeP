@@ -907,7 +907,7 @@
         "type": "ui_tab",
         "name": "Files",
         "icon": "dashboard",
-        "order": 3,
+        "order": 2,
         "disabled": false,
         "hidden": false
     }
