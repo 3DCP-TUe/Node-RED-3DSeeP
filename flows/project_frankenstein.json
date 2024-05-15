@@ -373,7 +373,7 @@
         "z": "ee47eb5696c14296",
         "g": "d2eb16ee9ae04a13",
         "name": "",
-        "func": "global.set(\"frankenstein_sync_verticp\", msg.payload);",
+        "func": "global.set(\"frankenstein_sync_vertico\", msg.payload);",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
