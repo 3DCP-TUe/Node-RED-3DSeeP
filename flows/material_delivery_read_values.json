@@ -21,7 +21,7 @@
         "layout": "row-spread",
         "className": "",
         "x": 3770,
-        "y": 2360,
+        "y": 2420,
         "wires": []
     },
     {
@@ -38,7 +38,7 @@
         "layout": "row-spread",
         "className": "",
         "x": 3780,
-        "y": 2100,
+        "y": 2160,
         "wires": []
     },
     {
@@ -605,7 +605,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3780,
-        "y": 2140,
+        "y": 2200,
         "wires": []
     },
     {
@@ -626,7 +626,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3800,
-        "y": 2180,
+        "y": 2240,
         "wires": []
     },
     {
@@ -647,7 +647,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3800,
-        "y": 2220,
+        "y": 2280,
         "wires": []
     },
     {
@@ -668,7 +668,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3800,
-        "y": 2260,
+        "y": 2320,
         "wires": []
     },
     {
@@ -689,7 +689,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3780,
-        "y": 2300,
+        "y": 2360,
         "wires": []
     },
     {
@@ -710,7 +710,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3730,
-        "y": 2580,
+        "y": 2640,
         "wires": []
     },
     {
@@ -731,7 +731,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3730,
-        "y": 2620,
+        "y": 2680,
         "wires": []
     },
     {
@@ -752,7 +752,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3730,
-        "y": 2660,
+        "y": 2720,
         "wires": []
     },
     {
@@ -773,7 +773,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3730,
-        "y": 2700,
+        "y": 2760,
         "wires": []
     },
     {
@@ -794,7 +794,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3730,
-        "y": 2740,
+        "y": 2800,
         "wires": []
     },
     {
@@ -815,7 +815,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3730,
-        "y": 2780,
+        "y": 2840,
         "wires": []
     },
     {
@@ -836,7 +836,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3730,
-        "y": 2820,
+        "y": 2880,
         "wires": []
     },
     {
@@ -857,7 +857,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3730,
-        "y": 2860,
+        "y": 2920,
         "wires": []
     },
     {
@@ -878,7 +878,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3730,
-        "y": 2940,
+        "y": 3000,
         "wires": []
     },
     {
@@ -899,7 +899,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3730,
-        "y": 2900,
+        "y": 2960,
         "wires": []
     },
     {
@@ -920,7 +920,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3780,
-        "y": 2400,
+        "y": 2460,
         "wires": []
     },
     {
@@ -941,7 +941,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3800,
-        "y": 2440,
+        "y": 2500,
         "wires": []
     },
     {
@@ -962,7 +962,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3800,
-        "y": 2480,
+        "y": 2540,
         "wires": []
     },
     {
@@ -983,7 +983,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3800,
-        "y": 2520,
+        "y": 2580,
         "wires": []
     },
     {
@@ -1264,7 +1264,7 @@
         "type": "ui_text",
         "z": "5497c1fcd3b57568",
         "group": "d5be84c8a2a9dbe3",
-        "order": 5,
+        "order": 6,
         "width": 6,
         "height": 1,
         "name": "",
@@ -2215,7 +2215,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3770,
-        "y": 3420,
+        "y": 3480,
         "wires": []
     },
     {
@@ -2236,7 +2236,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3770,
-        "y": 3380,
+        "y": 3440,
         "wires": []
     },
     {
@@ -2257,7 +2257,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3770,
-        "y": 3460,
+        "y": 3520,
         "wires": []
     },
     {
@@ -2278,7 +2278,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3780,
-        "y": 3340,
+        "y": 3400,
         "wires": []
     },
     {
@@ -2299,7 +2299,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3760,
-        "y": 3000,
+        "y": 3060,
         "wires": []
     },
     {
@@ -2320,7 +2320,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3780,
-        "y": 3040,
+        "y": 3100,
         "wires": []
     },
     {
@@ -2341,7 +2341,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3760,
-        "y": 3080,
+        "y": 3140,
         "wires": []
     },
     {
@@ -2362,7 +2362,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3760,
-        "y": 3120,
+        "y": 3180,
         "wires": []
     },
     {
@@ -2383,7 +2383,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3760,
-        "y": 3160,
+        "y": 3220,
         "wires": []
     },
     {
@@ -2404,7 +2404,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3770,
-        "y": 3200,
+        "y": 3260,
         "wires": []
     },
     {
@@ -2425,7 +2425,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3760,
-        "y": 3240,
+        "y": 3300,
         "wires": []
     },
     {
@@ -2446,7 +2446,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3760,
-        "y": 3280,
+        "y": 3340,
         "wires": []
     },
     {
@@ -2716,7 +2716,8 @@
                 "c40c8b115d618403",
                 "80d2cb2d5aeb4913",
                 "d944b008636f1496",
-                "797b0ccd6074df32"
+                "797b0ccd6074df32",
+                "4df2a0afa4237e3d"
             ]
         ]
     },
@@ -2888,6 +2889,87 @@
         ]
     },
     {
+        "id": "4df2a0afa4237e3d",
+        "type": "ui_text",
+        "z": "5497c1fcd3b57568",
+        "group": "d5be84c8a2a9dbe3",
+        "order": 5,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Density [kg/m3]",
+        "format": "{{msg.payload.material_coriolis_density.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3800,
+        "y": 2080,
+        "wires": []
+    },
+    {
+        "id": "76c1b33fac70eddd",
+        "type": "ui_spacer",
+        "z": "5497c1fcd3b57568",
+        "name": "spacer",
+        "group": "599d2b5615f3741e",
+        "order": 5,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "9e00061d7759c8ea",
+        "type": "ui_spacer",
+        "z": "5497c1fcd3b57568",
+        "name": "spacer",
+        "group": "53d83661cfcefa23",
+        "order": 3,
+        "width": 27,
+        "height": 1
+    },
+    {
+        "id": "3e4c3e608fb1e49b",
+        "type": "ui_spacer",
+        "z": "5497c1fcd3b57568",
+        "name": "spacer",
+        "group": "53d83661cfcefa23",
+        "order": 4,
+        "width": 27,
+        "height": 1
+    },
+    {
+        "id": "5c39c7bbc443d71b",
+        "type": "ui_spacer",
+        "z": "5497c1fcd3b57568",
+        "name": "spacer",
+        "group": "53d83661cfcefa23",
+        "order": 7,
+        "width": 27,
+        "height": 1
+    },
+    {
+        "id": "06420c1312cf6aaa",
+        "type": "ui_spacer",
+        "z": "5497c1fcd3b57568",
+        "name": "spacer",
+        "group": "53d83661cfcefa23",
+        "order": 8,
+        "width": 27,
+        "height": 1
+    },
+    {
+        "id": "1395de16db2f248d",
+        "type": "ui_spacer",
+        "z": "5497c1fcd3b57568",
+        "name": "spacer",
+        "group": "d5be84c8a2a9dbe3",
+        "order": 7,
+        "width": 6,
+        "height": 1
+    },
+    {
         "id": "85f900f2581b92bc",
         "type": "ui_group",
         "name": "Coriolis sensor",
@@ -3003,6 +3085,16 @@
         "width": "6",
         "collapse": false,
         "className": ""
+    },
+    {
+        "id": "599d2b5615f3741e",
+        "type": "ui_group",
+        "name": "Save data",
+        "tab": "53571d4d81ebd061",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false
     },
     {
         "id": "4596e568da630a4f",
