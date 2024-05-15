@@ -18,6 +18,19 @@ Nodes:
 - [node-red-contrib-throttle](https://flows.nodered.org/node/node-red-contrib-throttle) v0.1.7
 - [node-red-contrib-dashboard](https://flows.nodered.org/node/node-red-dashboard) v3.6.5
 
+## Credits
+
+Authors: 
+- [Arjen Deetman](https://research.tue.nl/en/persons/arjen-deetman)
+- [Derk Bos](https://research.tue.nl/en/persons/derk-h-bos) 
+
+This software could be developed and maintained with the financial support of the following projects:
+- The project _"Parametric mortar design and control of system parameters"_ funded by Saint-Gobain Weber Beamix.
+- The project _"Additive manufacturing of functional construction materials on-demand"_ (with project number 17895) of the research program _"Materialen NL: Challenges 2018"_ which is financed by the Dutch Research Council (NWO).
+
+Technical support:
+- Siemens Digital Industries
+
 ## License
 
 Copyright (c) 2020-2024 [3D Concrete Printing Research Group at Eindhoven University of Technology](https://www.tue.nl/en/research/research-groups/structural-engineering-and-design/3d-concrete-printing)
