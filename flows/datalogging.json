@@ -11,18 +11,18 @@
         "type": "ui_template",
         "z": "830497da8cdf302a",
         "group": "",
-        "name": "Clock Toolbar",
+        "name": "Clock Toolbar + version number",
         "order": 2,
         "width": 0,
         "height": 0,
-        "format": "<script id=\"titleScript\" type=\"text/javascript\">\n\n$(function() {\n    if($('.md-toolbar-tools').length != 0){\n        loadClock();\n    }else setTimeout(loadClock, 500)\n});\n\nfunction loadClock(){\n    $('#clock').remove();\n    var toolbar = $('.md-toolbar-tools');\n    \n    var div = $('<div/>');\n    var p = $('<p/ id=\"clock\">');\n    \n    div.append(p);\n    div[0].style.margin = '5px 5px 5px auto';\n    toolbar.append(div);\n\n    function displayTitle(lh) {\n        p.text(lh); \n    }\n    \n    function upTime() {\n        var d = new Date();\n        p.text(d.toLocaleString());\n    }\n\n    if(document.clockInterval){ \n            clearInterval(document.clockInterval);\n            document.clockInterval = null;\n    }\n        \n    document.clockInterval = setInterval(upTime,1000);\n}\n\n</script>",
+        "format": "<script id=\"titleScript\" type=\"text/javascript\">\n$(function() {\n    if ($('.md-toolbar-tools').length != 0) {\n        loadToolbarItems();\n    } else {\n        setTimeout(loadToolbarItems, 500);\n    }\n});\n\nfunction loadToolbarItems() {\n    $('#clock, #version').remove();\n    var toolbar = $('.md-toolbar-tools');\n    \n    var div = $('<div/>').css({\n        'display': 'flex',\n        'align-items': 'center',\n        'margin-left': 'auto',\n        'margin-right': '5px'\n    });\n    var clockP = $('<p id=\"clock\" style=\"margin: 0 10px 0 0;\"/>');\n    var versionP = $('<p id=\"version\" style=\"margin: 0;\"/>');\n    \n    div.append(clockP);\n    div.append(versionP);\n    toolbar.append(div);\n\n    // Add the version number\n    var versionNumber = \"v0.1.2\";\n    versionP.text(versionNumber);\n\n    function upTime() {\n        var d = new Date();\n        clockP.text(d.toLocaleString());\n    }\n\n    if (document.clockInterval) {\n        clearInterval(document.clockInterval);\n        document.clockInterval = null;\n    }\n\n    document.clockInterval = setInterval(upTime, 1000);\n}\n</script>",
         "storeOutMessages": false,
         "fwdInMessages": false,
         "resendOnRefresh": false,
         "templateScope": "global",
         "className": "",
-        "x": 1160,
-        "y": 660,
+        "x": 1110,
+        "y": 620,
         "wires": [
             []
         ]
@@ -740,7 +740,7 @@
         "width": 0,
         "height": 0,
         "name": "",
-        "label": "Set filename",
+        "label": "Filename",
         "format": "{{msg.file}}",
         "layout": "row-spread",
         "className": "",
@@ -748,69 +748,9 @@
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 2450,
+        "x": 2440,
         "y": 780,
         "wires": []
-    },
-    {
-        "id": "14e687bafbd9fef9",
-        "type": "ui_spacer",
-        "z": "830497da8cdf302a",
-        "name": "spacer",
-        "group": "599d2b5615f3741e",
-        "order": 5,
-        "width": 6,
-        "height": 1
-    },
-    {
-        "id": "b3cbb58f256f7fde",
-        "type": "ui_spacer",
-        "z": "830497da8cdf302a",
-        "name": "spacer",
-        "group": "53d83661cfcefa23",
-        "order": 3,
-        "width": 27,
-        "height": 1
-    },
-    {
-        "id": "bf36600bb2373652",
-        "type": "ui_spacer",
-        "z": "830497da8cdf302a",
-        "name": "spacer",
-        "group": "53d83661cfcefa23",
-        "order": 4,
-        "width": 27,
-        "height": 1
-    },
-    {
-        "id": "a2a7445d5d333eb4",
-        "type": "ui_spacer",
-        "z": "830497da8cdf302a",
-        "name": "spacer",
-        "group": "53d83661cfcefa23",
-        "order": 7,
-        "width": 27,
-        "height": 1
-    },
-    {
-        "id": "f52fc10cef70b9a3",
-        "type": "ui_spacer",
-        "z": "830497da8cdf302a",
-        "name": "spacer",
-        "group": "53d83661cfcefa23",
-        "order": 8,
-        "width": 27,
-        "height": 1
-    },
-    {
-        "id": "06a580a92272f2aa",
-        "type": "ui_spacer",
-        "z": "830497da8cdf302a",
-        "name": "spacer",
-        "group": "d5be84c8a2a9dbe3",
-        "order": 6,
-        "width": 6,
-        "height": 1
     },
     {
         "id": "f8f66db3a1d7a6cc",
@@ -911,27 +851,6 @@
         "disp": true,
         "width": 6,
         "collapse": false
-    },
-    {
-        "id": "53d83661cfcefa23",
-        "type": "ui_group",
-        "name": "Data Graphs",
-        "tab": "53571d4d81ebd061",
-        "order": 2,
-        "disp": true,
-        "width": 27,
-        "collapse": false
-    },
-    {
-        "id": "d5be84c8a2a9dbe3",
-        "type": "ui_group",
-        "name": "Summary",
-        "tab": "53571d4d81ebd061",
-        "order": 3,
-        "disp": true,
-        "width": "6",
-        "collapse": false,
-        "className": ""
     },
     {
         "id": "6b810393774c59ed",
