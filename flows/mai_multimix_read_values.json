@@ -867,7 +867,8 @@
         "name": "MAI water run out",
         "mode": "link",
         "links": [
-            "64c1d263736002a8"
+            "64c1d263736002a8",
+            "1127d91bf6d47d3e"
         ],
         "x": 3105,
         "y": 260,
@@ -892,36 +893,6 @@
         "once": true,
         "onceDelay": "1",
         "topic": "clearitems",
-        "payload": "",
-        "payloadType": "str",
-        "x": 570,
-        "y": 240,
-        "wires": [
-            [
-                "66d909b768b75bf9"
-            ]
-        ]
-    },
-    {
-        "id": "d27b9f49279714c6",
-        "type": "inject",
-        "z": "a666a495869d02dc",
-        "d": true,
-        "name": "Read items",
-        "props": [
-            {
-                "p": "topic",
-                "vt": "str"
-            },
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "0.1",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "3",
-        "topic": "readmultiple",
         "payload": "",
         "payloadType": "str",
         "x": 570,
@@ -1144,30 +1115,6 @@
             [
                 "66d909b768b75bf9"
             ]
-        ]
-    },
-    {
-        "id": "7d03ccd5c320c9a9",
-        "type": "delay",
-        "z": "a666a495869d02dc",
-        "d": true,
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "40",
-        "timeoutUnits": "milliseconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 570,
-        "y": 200,
-        "wires": [
-            []
         ]
     },
     {

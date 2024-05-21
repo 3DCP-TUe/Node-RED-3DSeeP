@@ -703,36 +703,6 @@
         "payload": "",
         "payloadType": "str",
         "x": 570,
-        "y": 160,
-        "wires": [
-            [
-                "0c9dda99c1d1bcad"
-            ]
-        ]
-    },
-    {
-        "id": "a4d2bc6b19a5ecf4",
-        "type": "inject",
-        "z": "4f5ca443e5d9546b",
-        "d": true,
-        "name": "Read items",
-        "props": [
-            {
-                "p": "topic",
-                "vt": "str"
-            },
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "0.1",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "3",
-        "topic": "readmultiple",
-        "payload": "",
-        "payloadType": "str",
-        "x": 570,
         "y": 200,
         "wires": [
             [
@@ -921,36 +891,12 @@
             "862c74438627d0e4",
             "398de18a215eb45c"
         ],
-        "x": 495,
+        "x": 515,
         "y": 240,
         "wires": [
             [
                 "0c9dda99c1d1bcad"
             ]
-        ]
-    },
-    {
-        "id": "79f46b7c832ab9e7",
-        "type": "delay",
-        "z": "4f5ca443e5d9546b",
-        "d": true,
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "60",
-        "timeoutUnits": "milliseconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 570,
-        "y": 120,
-        "wires": [
-            []
         ]
     },
     {

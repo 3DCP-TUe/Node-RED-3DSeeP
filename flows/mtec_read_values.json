@@ -14,7 +14,6 @@
         "name": "mtec mixer on/off out",
         "mode": "link",
         "links": [
-            "a59025419d08aec8",
             "3f1241c96c7c2565"
         ],
         "x": 3125,
@@ -125,7 +124,6 @@
         "name": "m-tec values out",
         "mode": "link",
         "links": [
-            "516b5aa31a3937bc",
             "37b06e5fd23a6f0f"
         ],
         "x": 2745,
@@ -396,36 +394,6 @@
         "once": true,
         "onceDelay": "1",
         "topic": "clearitems",
-        "payload": "",
-        "payloadType": "str",
-        "x": 550,
-        "y": 240,
-        "wires": [
-            [
-                "a106ea0c2e4dda58"
-            ]
-        ]
-    },
-    {
-        "id": "aa509b49aeea724f",
-        "type": "inject",
-        "z": "dbcff3a91e8577ef",
-        "d": true,
-        "name": "Read items",
-        "props": [
-            {
-                "p": "topic",
-                "vt": "str"
-            },
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "0.1",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "3",
-        "topic": "readmultiple",
         "payload": "",
         "payloadType": "str",
         "x": 550,
@@ -778,30 +746,6 @@
                 "a106ea0c2e4dda58",
                 "64661937edd40398"
             ]
-        ]
-    },
-    {
-        "id": "979ad89079549691",
-        "type": "delay",
-        "z": "dbcff3a91e8577ef",
-        "d": true,
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "50",
-        "timeoutUnits": "milliseconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 550,
-        "y": 200,
-        "wires": [
-            []
         ]
     },
     {
