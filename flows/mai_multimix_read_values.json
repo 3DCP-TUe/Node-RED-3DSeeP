@@ -870,8 +870,8 @@
             "64c1d263736002a8",
             "1127d91bf6d47d3e"
         ],
-        "x": 3105,
-        "y": 260,
+        "x": 3375,
+        "y": 320,
         "wires": []
     },
     {
@@ -1084,7 +1084,7 @@
         "id": "ec091ddeabb74d0f",
         "type": "function",
         "z": "a666a495869d02dc",
-        "name": "Pass data",
+        "name": "Pass data mixer run",
         "func": "return { topic: \"mai_mixer_run\", payload: msg.payload.mai_mixer_run};",
         "outputs": 1,
         "timeout": "",
@@ -1092,11 +1092,12 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2920,
-        "y": 260,
+        "x": 3180,
+        "y": 300,
         "wires": [
             [
-                "6cfd87fecacd594f"
+                "6cfd87fecacd594f",
+                "4319d41a1a67ad63"
             ]
         ]
     },
@@ -1118,7 +1119,92 @@
         ]
     },
     {
-        "id": "2f0c0dbfa9e0e403",
+        "id": "4319d41a1a67ad63",
+        "type": "function",
+        "z": "a666a495869d02dc",
+        "name": "batch and interval time",
+        "func": "if (msg.payload !== context.get('prev_mixer_run')) {\n   \n    context.set('prev_mixer_run', msg.payload);\n\t\n\ttime = new Date().getTime() / 1000;\n\tprev_start = context.get('prev_mixer_start')\n\tprev_stop = context.get('prev_mixer_stop')\n\tprev_batch_time = context.get('batch_time');\n\tprev_interval_time = context.get('interval_time');\n\t\n\tif (msg.payload == false)\n\t{\n\t    batch_time = time - prev_start;\n\t\tmsg.batch_time = batch_time;\n\t\tmsg.interval_time = prev_interval_time;\n\t\tmsg.prediction = batch_time / prev_interval_time * 33.0\n\t\tcontext.set('prev_mixer_stop', time);\n\t\tcontext.set('batch_time', batch_time);\n\t\treturn msg;\n\t}\n\telse\n\t{\n\t\tinterval_time = time - prev_start;\n\t\tcontext.set('interval_time', interval_time);\n\t\tcontext.set('prev_mixer_start', time);\n\t}\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\n\ncontext.set('prev_mai_mixer_run', false);\ncontext.set('prev_mai_mixer_stop', new Date().getTime() / 1000);\ncontext.set('prev_mai_mixer_start', new Date().getTime() / 1000);\ncontext.set('mai_batch_time', 0.0);\ncontext.set('mai_interval_time', 0.0);",
+        "finalize": "",
+        "libs": [],
+        "x": 3460,
+        "y": 280,
+        "wires": [
+            [
+                "0997b159162f0f7f",
+                "82cc9bec6be9e471",
+                "8e5e4c81dcfc602f"
+            ]
+        ]
+    },
+    {
+        "id": "0997b159162f0f7f",
+        "type": "ui_text",
+        "z": "a666a495869d02dc",
+        "group": "4cd24b522de8febf",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Last batch duration [s]",
+        "format": "{{msg.batch_time.toFixed(1)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3760,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "82cc9bec6be9e471",
+        "type": "ui_text",
+        "z": "a666a495869d02dc",
+        "group": "4cd24b522de8febf",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Last interval time [s]",
+        "format": "{{msg.interval_time.toFixed(1)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3760,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "8e5e4c81dcfc602f",
+        "type": "ui_text",
+        "z": "a666a495869d02dc",
+        "group": "4cd24b522de8febf",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Mass flow prediction [kg/min]",
+        "format": "{{msg.prediction.toFixed(1)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3780,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "9879a3df32bd388d",
         "type": "ui_spacer",
         "z": "a666a495869d02dc",
         "name": "spacer",
@@ -1128,7 +1214,7 @@
         "height": 1
     },
     {
-        "id": "c4fdbeb4a992b7a8",
+        "id": "0ffd03dd062782e8",
         "type": "ui_spacer",
         "z": "a666a495869d02dc",
         "name": "spacer",
@@ -1138,7 +1224,7 @@
         "height": 1
     },
     {
-        "id": "c92622947e30064f",
+        "id": "51434f527353f8a7",
         "type": "ui_spacer",
         "z": "a666a495869d02dc",
         "name": "spacer",
@@ -1148,7 +1234,7 @@
         "height": 1
     },
     {
-        "id": "6b3396bf9ca2c30e",
+        "id": "843636d606bf8be5",
         "type": "ui_spacer",
         "z": "a666a495869d02dc",
         "name": "spacer",
@@ -1158,7 +1244,7 @@
         "height": 1
     },
     {
-        "id": "90a3555e5b7d983e",
+        "id": "1b86223db5de2631",
         "type": "ui_spacer",
         "z": "a666a495869d02dc",
         "name": "spacer",
@@ -1168,7 +1254,7 @@
         "height": 1
     },
     {
-        "id": "70a504db66cb6aaf",
+        "id": "4bdce82fe43d7dcb",
         "type": "ui_spacer",
         "z": "a666a495869d02dc",
         "name": "spacer",
@@ -1204,6 +1290,17 @@
         "order": 2,
         "disp": true,
         "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "4cd24b522de8febf",
+        "type": "ui_group",
+        "name": "Analysis",
+        "tab": "afc4f775962a26f4",
+        "order": 4,
+        "disp": true,
+        "width": "6",
         "collapse": false,
         "className": ""
     },
