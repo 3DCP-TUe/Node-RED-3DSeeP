@@ -8,6 +8,40 @@
         "env": []
     },
     {
+        "id": "4eab8620562f9ee0",
+        "type": "group",
+        "z": "a666a495869d02dc",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "4319d41a1a67ad63",
+            "0997b159162f0f7f",
+            "82cc9bec6be9e471",
+            "8e5e4c81dcfc602f",
+            "ca8c0cdbee4b1d6f",
+            "7af4fd1a77dd7e9d",
+            "c67ed4e4a6a615c9",
+            "df5349d8f279daec",
+            "b62d9be9758416dc",
+            "b35e1ce244bc406a",
+            "f786fdff43a57302",
+            "5c0e67fd6839e92a",
+            "1cd2ced26058a244",
+            "bc4ee76add8323ac"
+        ],
+        "x": 3554,
+        "y": 99,
+        "w": 812,
+        "h": 522
+    },
+    {
         "id": "66d909b768b75bf9",
         "type": "OpcUa-Client",
         "z": "a666a495869d02dc",
@@ -870,8 +904,8 @@
             "64c1d263736002a8",
             "1127d91bf6d47d3e"
         ],
-        "x": 3375,
-        "y": 320,
+        "x": 3355,
+        "y": 340,
         "wires": []
     },
     {
@@ -1122,21 +1156,25 @@
         "id": "4319d41a1a67ad63",
         "type": "function",
         "z": "a666a495869d02dc",
+        "g": "4eab8620562f9ee0",
         "name": "batch and interval time",
-        "func": "if (msg.payload !== context.get('prev_mixer_run')) {\n   \n    context.set('prev_mixer_run', msg.payload);\n\t\n\ttime = new Date().getTime() / 1000;\n\tprev_start = context.get('prev_mixer_start')\n\tprev_stop = context.get('prev_mixer_stop')\n\tprev_batch_time = context.get('batch_time');\n\tprev_interval_time = context.get('interval_time');\n\t\n\tif (msg.payload == false)\n\t{\n\t    batch_time = time - prev_start;\n\t\tmsg.batch_time = batch_time;\n\t\tmsg.interval_time = prev_interval_time;\n\t\tmsg.prediction = batch_time / prev_interval_time * 33.0\n\t\tcontext.set('prev_mixer_stop', time);\n\t\tcontext.set('batch_time', batch_time);\n\t\treturn msg;\n\t}\n\telse\n\t{\n\t\tinterval_time = time - prev_start;\n\t\tcontext.set('interval_time', interval_time);\n\t\tcontext.set('prev_mixer_start', time);\n\t}\n}",
+        "func": "if (msg.payload !== context.get('prev_mixer_run')) {\n   \n    context.set('prev_mixer_run', msg.payload);\n\t\n\ttime = new Date().getTime() / 1000;\n\tprev_start = context.get('prev_mixer_start')\n\tprev_stop = context.get('prev_mixer_stop')\n\tprev_batch_time = context.get('batch_time');\n\tprev_interval_time = context.get('interval_time');\n\t\n\tif (msg.payload == false)\n\t{\n\t    batch_time = time - prev_start;\n\t\tcontext.set('prev_mixer_stop', time);\n\t\tcontext.set('batch_time', batch_time);\n\t}\n\telse\n\t{\n\t\tinterval_time = time - prev_start;\n\t    msg.batch_time = prev_batch_time;\n\t\tmsg.interval_time = interval_time;\n\t\tmsg.prediction = prev_batch_time / interval_time * 33.0;\n\t\tcontext.set('interval_time', interval_time);\n\t\tcontext.set('prev_mixer_start', time);\n\t\treturn msg;\n\t}\n}",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
-        "initialize": "// Code added here will be run once\n// whenever the node is started.\n\ncontext.set('prev_mai_mixer_run', false);\ncontext.set('prev_mai_mixer_stop', new Date().getTime() / 1000);\ncontext.set('prev_mai_mixer_start', new Date().getTime() / 1000);\ncontext.set('mai_batch_time', 0.0);\ncontext.set('mai_interval_time', 0.0);",
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\n\ncontext.set('prev_mixer_run', false);\ncontext.set('prev_mixer_stop', new Date().getTime() / 1000);\ncontext.set('prev_mixer_start', new Date().getTime() / 1000);\ncontext.set('batch_time', 0.0);\ncontext.set('interval_time', 0.0);",
         "finalize": "",
         "libs": [],
-        "x": 3460,
-        "y": 280,
+        "x": 3680,
+        "y": 300,
         "wires": [
             [
                 "0997b159162f0f7f",
                 "82cc9bec6be9e471",
-                "8e5e4c81dcfc602f"
+                "8e5e4c81dcfc602f",
+                "b35e1ce244bc406a",
+                "c67ed4e4a6a615c9",
+                "1cd2ced26058a244"
             ]
         ]
     },
@@ -1144,6 +1182,7 @@
         "id": "0997b159162f0f7f",
         "type": "ui_text",
         "z": "a666a495869d02dc",
+        "g": "4eab8620562f9ee0",
         "group": "4cd24b522de8febf",
         "order": 1,
         "width": 6,
@@ -1157,14 +1196,15 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 3760,
-        "y": 280,
+        "x": 4200,
+        "y": 140,
         "wires": []
     },
     {
         "id": "82cc9bec6be9e471",
         "type": "ui_text",
         "z": "a666a495869d02dc",
+        "g": "4eab8620562f9ee0",
         "group": "4cd24b522de8febf",
         "order": 2,
         "width": 6,
@@ -1178,14 +1218,15 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 3760,
-        "y": 320,
+        "x": 4200,
+        "y": 180,
         "wires": []
     },
     {
         "id": "8e5e4c81dcfc602f",
         "type": "ui_text",
         "z": "a666a495869d02dc",
+        "g": "4eab8620562f9ee0",
         "group": "4cd24b522de8febf",
         "order": 2,
         "width": 6,
@@ -1199,8 +1240,304 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 3780,
-        "y": 360,
+        "x": 4220,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "ca8c0cdbee4b1d6f",
+        "type": "ui_chart",
+        "z": "a666a495869d02dc",
+        "g": "4eab8620562f9ee0",
+        "name": "",
+        "group": "66c90c1b5490c19b",
+        "order": 2,
+        "width": 27,
+        "height": 6,
+        "label": "Interval tme [s]",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "120",
+        "removeOlder": "30",
+        "removeOlderPoints": "100",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#0011ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 4180,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7af4fd1a77dd7e9d",
+        "type": "ui_button",
+        "z": "a666a495869d02dc",
+        "g": "4eab8620562f9ee0",
+        "name": "Clear chart",
+        "group": "66c90c1b5490c19b",
+        "order": 1,
+        "width": 27,
+        "height": 1,
+        "passthru": false,
+        "label": "Clear interval time chart",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 3950,
+        "y": 440,
+        "wires": [
+            [
+                "ca8c0cdbee4b1d6f"
+            ]
+        ]
+    },
+    {
+        "id": "c67ed4e4a6a615c9",
+        "type": "function",
+        "z": "a666a495869d02dc",
+        "g": "4eab8620562f9ee0",
+        "name": "Get graph data",
+        "func": "return { topic: \"Interval time\", payload: msg.interval_time };",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3960,
+        "y": 480,
+        "wires": [
+            [
+                "ca8c0cdbee4b1d6f"
+            ]
+        ]
+    },
+    {
+        "id": "df5349d8f279daec",
+        "type": "ui_chart",
+        "z": "a666a495869d02dc",
+        "g": "4eab8620562f9ee0",
+        "name": "",
+        "group": "66c90c1b5490c19b",
+        "order": 5,
+        "width": 27,
+        "height": 6,
+        "label": "Batch time [s]",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "30",
+        "removeOlder": "30",
+        "removeOlderPoints": "100",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#0011ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 4180,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b62d9be9758416dc",
+        "type": "ui_button",
+        "z": "a666a495869d02dc",
+        "g": "4eab8620562f9ee0",
+        "name": "Clear chart",
+        "group": "66c90c1b5490c19b",
+        "order": 4,
+        "width": 27,
+        "height": 1,
+        "passthru": false,
+        "label": "Clear batch time chart",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 3950,
+        "y": 340,
+        "wires": [
+            [
+                "df5349d8f279daec"
+            ]
+        ]
+    },
+    {
+        "id": "b35e1ce244bc406a",
+        "type": "function",
+        "z": "a666a495869d02dc",
+        "g": "4eab8620562f9ee0",
+        "name": "Get graph data",
+        "func": "return { topic: \"Batch time\", payload: msg.batch_time };",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3960,
+        "y": 380,
+        "wires": [
+            [
+                "df5349d8f279daec"
+            ]
+        ]
+    },
+    {
+        "id": "f786fdff43a57302",
+        "type": "ui_chart",
+        "z": "a666a495869d02dc",
+        "g": "4eab8620562f9ee0",
+        "name": "",
+        "group": "66c90c1b5490c19b",
+        "order": 8,
+        "width": 27,
+        "height": 6,
+        "label": "Mass flow prediction [kg/min]",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "12",
+        "removeOlder": "30",
+        "removeOlderPoints": "100",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#0011ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 4220,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5c0e67fd6839e92a",
+        "type": "ui_button",
+        "z": "a666a495869d02dc",
+        "g": "4eab8620562f9ee0",
+        "name": "Clear chart",
+        "group": "66c90c1b5490c19b",
+        "order": 7,
+        "width": 27,
+        "height": 1,
+        "passthru": false,
+        "label": "Clear mass flow prediction chart",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 3950,
+        "y": 540,
+        "wires": [
+            [
+                "f786fdff43a57302"
+            ]
+        ]
+    },
+    {
+        "id": "1cd2ced26058a244",
+        "type": "function",
+        "z": "a666a495869d02dc",
+        "g": "4eab8620562f9ee0",
+        "name": "Get graph data",
+        "func": "return { topic: \"Mass flow prediction\", payload: msg.prediction };",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3960,
+        "y": 580,
+        "wires": [
+            [
+                "f786fdff43a57302"
+            ]
+        ]
+    },
+    {
+        "id": "bc4ee76add8323ac",
+        "type": "comment",
+        "z": "a666a495869d02dc",
+        "g": "4eab8620562f9ee0",
+        "name": "Analysis of batch and interval time",
+        "info": "",
+        "x": 3720,
+        "y": 140,
         "wires": []
     },
     {
@@ -1264,6 +1601,26 @@
         "height": 1
     },
     {
+        "id": "79e648ecbceeae72",
+        "type": "ui_spacer",
+        "z": "a666a495869d02dc",
+        "name": "spacer",
+        "group": "66c90c1b5490c19b",
+        "order": 3,
+        "width": 27,
+        "height": 1
+    },
+    {
+        "id": "4272d370576c3398",
+        "type": "ui_spacer",
+        "z": "a666a495869d02dc",
+        "name": "spacer",
+        "group": "66c90c1b5490c19b",
+        "order": 6,
+        "width": 27,
+        "height": 1
+    },
+    {
         "id": "b6399b95df174ec3",
         "type": "OpcUa-Endpoint",
         "endpoint": "opc.tcp://10.129.4.80:48010",
@@ -1305,6 +1662,17 @@
         "className": ""
     },
     {
+        "id": "66c90c1b5490c19b",
+        "type": "ui_group",
+        "name": "Charts",
+        "tab": "a10aa1ec6d705579",
+        "order": 1,
+        "disp": true,
+        "width": "27",
+        "collapse": false,
+        "className": ""
+    },
+    {
         "id": "2766a474835c38ac",
         "type": "ui_group",
         "name": "Write values",
@@ -1321,6 +1689,15 @@
         "name": "MAI MULTIMIX",
         "icon": "dashboard",
         "order": 6,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "a10aa1ec6d705579",
+        "type": "ui_tab",
+        "name": "MAI MULTIMIX Charts",
+        "icon": "dashboard",
+        "order": 7,
         "disabled": false,
         "hidden": false
     }

@@ -2823,7 +2823,6 @@
         "z": "5497c1fcd3b57568",
         "name": "readmultiple in",
         "links": [
-            "862c74438627d0e4",
             "398de18a215eb45c"
         ],
         "x": 615,
@@ -3065,7 +3064,7 @@
         "type": "ui_tab",
         "name": "Bronkhorst dosing pump",
         "icon": "dashboard",
-        "order": 8,
+        "order": 9,
         "disabled": false,
         "hidden": false
     }

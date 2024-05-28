@@ -2975,7 +2975,7 @@
         "type": "ui_tab",
         "name": "FRED",
         "icon": "dashboard",
-        "order": 11,
+        "order": 12,
         "disabled": false,
         "hidden": false
     }

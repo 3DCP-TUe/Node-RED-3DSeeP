@@ -311,7 +311,7 @@
         "type": "ui_tab",
         "name": "M-tec duomix",
         "icon": "dashboard",
-        "order": 7,
+        "order": 8,
         "disabled": false,
         "hidden": false
     }
