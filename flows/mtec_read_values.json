@@ -8,6 +8,29 @@
         "env": []
     },
     {
+        "id": "b1b0fd273f6291ec",
+        "type": "group",
+        "z": "dbcff3a91e8577ef",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "27c0a078d32b4020",
+            "05878a847fda9dcc",
+            "33e34773cd4f118c"
+        ],
+        "x": 3254,
+        "y": 199,
+        "w": 532,
+        "h": 122
+    },
+    {
         "id": "769cbc7c61ddfd9b",
         "type": "link out",
         "z": "dbcff3a91e8577ef",
@@ -17,7 +40,7 @@
             "3f1241c96c7c2565"
         ],
         "x": 3125,
-        "y": 260,
+        "y": 280,
         "wires": []
     },
     {
@@ -576,7 +599,8 @@
         "y": 260,
         "wires": [
             [
-                "769cbc7c61ddfd9b"
+                "769cbc7c61ddfd9b",
+                "33e34773cd4f118c"
             ]
         ]
     },
@@ -749,6 +773,72 @@
         ]
     },
     {
+        "id": "27c0a078d32b4020",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "g": "b1b0fd273f6291ec",
+        "group": "c78a245d5457d92a",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Last interval time [s]",
+        "format": "{{msg.interval_time.toFixed(1)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3660,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "05878a847fda9dcc",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "g": "b1b0fd273f6291ec",
+        "group": "c78a245d5457d92a",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Last batch duration [s]",
+        "format": "{{msg.batch_time.toFixed(1)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3660,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "33e34773cd4f118c",
+        "type": "function",
+        "z": "dbcff3a91e8577ef",
+        "g": "b1b0fd273f6291ec",
+        "name": "batch and interval time",
+        "func": "if (msg.payload !== context.get('prev_mixer_run')) {\n   \n    context.set('prev_mixer_run', msg.payload);\n\t\n\ttime = new Date().getTime() / 1000;\n\tprev_start = context.get('prev_mixer_start')\n\tprev_stop = context.get('prev_mixer_stop')\n\tprev_batch_time = context.get('batch_time');\n\tprev_interval_time = context.get('interval_time');\n\t\n\tif (msg.payload == false)\n\t{\n\t    batch_time = time - prev_start;\n\t\tcontext.set('prev_mixer_stop', time);\n\t\tcontext.set('batch_time', batch_time);\n\t}\n\telse\n\t{\n\t\tinterval_time = time - prev_start;\n\t    msg.batch_time = prev_batch_time;\n\t\tmsg.interval_time = interval_time;\n\t\tmsg.prediction = prev_batch_time / interval_time * 1.0;\n\t\tcontext.set('interval_time', interval_time);\n\t\tcontext.set('prev_mixer_start', time);\n\t\treturn msg;\n\t}\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\n\ncontext.set('prev_mixer_run', false);\ncontext.set('prev_mixer_stop', new Date().getTime() / 1000);\ncontext.set('prev_mixer_start', new Date().getTime() / 1000);\ncontext.set('batch_time', 0.0);\ncontext.set('interval_time', 0.0);",
+        "finalize": "",
+        "libs": [],
+        "x": 3380,
+        "y": 260,
+        "wires": [
+            [
+                "05878a847fda9dcc",
+                "27c0a078d32b4020"
+            ]
+        ]
+    },
+    {
         "id": "abe95d84123fcf6c",
         "type": "ui_spacer",
         "z": "dbcff3a91e8577ef",
@@ -799,11 +889,22 @@
         "className": ""
     },
     {
+        "id": "c78a245d5457d92a",
+        "type": "ui_group",
+        "name": "Analysis",
+        "tab": "4809d57f0b02fac6",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
         "id": "4809d57f0b02fac6",
         "type": "ui_tab",
         "name": "M-tec duomix",
         "icon": "dashboard",
-        "order": 7,
+        "order": 8,
         "disabled": false,
         "hidden": false
     }
