@@ -241,7 +241,7 @@
         "once": true,
         "onceDelay": "1",
         "topic": "",
-        "payload": "230",
+        "payload": "210",
         "payloadType": "num",
         "x": 190,
         "y": 1300,
@@ -483,8 +483,8 @@
         "item": "ns=2;s=Tags.GECO/MPRX_DI_Pump_Vib_Mode_I",
         "datatype": "Int16",
         "value": "msg.topic",
-        "name": "Mixer disabled",
-        "x": 900,
+        "name": "Pump vibration block",
+        "x": 920,
         "y": 460,
         "wires": [
             [
@@ -987,7 +987,7 @@
         "z": "f858fffa6ac7f49d",
         "g": "2a2e14230045e5f9",
         "name": "Throw value",
-        "func": "if (flow.get(\"last\") === undefined) \n{\n    flow.set(\"last\", 230)\n}\n\nif (flow.get(\"mai_water_set_value\") === undefined) \n{\n    flow.set(\"mai_water_set_value\", 230)\n}\n\n\nif (msg.payload == true) \n{\n    msg.payload = flow.get(\"mai_water_set_value\")\n    flow.set(\"last\", flow.get(\"mai_water_set_value\"))\n}\nelse \n{\n    msg.payload = flow.get(\"last\")\n\n}\n\nreturn msg",
+        "func": "if (flow.get(\"last\") === undefined) \n{\n    flow.set(\"last\", 210)\n}\n\nif (flow.get(\"mai_water_set_value\") === undefined) \n{\n    flow.set(\"mai_water_set_value\", 210)\n}\n\n\nif (msg.payload == true) \n{\n    msg.payload = flow.get(\"mai_water_set_value\")\n    flow.set(\"last\", flow.get(\"mai_water_set_value\"))\n}\nelse \n{\n    msg.payload = flow.get(\"last\")\n\n}\n\nreturn msg",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
