@@ -131,3 +131,7 @@ dist
 
 # MATLAB
 *.asv
+
+# Don't upload log files and plots
+analysis/*.pdf
+analysis/*.csv
