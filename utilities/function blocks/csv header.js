@@ -22,7 +22,7 @@ var data ="desktop_time,"+
     "mai_mixer_run_bool,"+
     "mai_pump_run_bool,"+
     "mai_pump_speed_chz,"+
-    "mai_pump_ouput_current_da,"+
+    "mai_pump_output_current_da,"+
     "mai_pump_output_power_w,"+
     "mai_pump_vibration_mode_i,"+
     "mai_setting_water_pre_run_s,"+
