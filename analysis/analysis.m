@@ -18,19 +18,30 @@ cd(filepath);
 nodeRed = readtable('20240507_Example.csv');
 
 %% Get time in minutes and seconds
-nodeRed.('Seconds') = seconds(nodeRed.('desktop_time')) - seconds(nodeRed.('desktop_time')(1));
-nodeRed.('Minutes') = minutes(nodeRed.('desktop_time')) - minutes(nodeRed.('desktop_time')(1));
+nodeRed.('seconds') = seconds(nodeRed.('desktop_time')) - seconds(nodeRed.('desktop_time')(1));
+nodeRed.('minutes') = minutes(nodeRed.('desktop_time')) - minutes(nodeRed.('desktop_time')(1));
+
+%% Calculations
+% Differential pressure
+k = 60; % ~6 seconds, 10 samples per second
+filterd1 = movmean(nodeRed.('material_io_ai0_pressure_bar'), k, 'omitnan');
+filterd2 = movmean(nodeRed.('material_io_ai1_pressure_bar'), k, 'omitnan');
+nodeRed.('material_differential_pressure_bar') = filterd1 - filterd2;
+% Printhead pressure
+if ~any(strcmp(nodeRed.Properties.VariableNames, 'printhead_pressure_bar'))
+    nodeRed.('printhead_pressure_bar') = (nodeRed.('printhead_box1_io_ai0_ma') - 4) / 16 * 10;
+end
 
 %% Plot pressure
 fig = figure;
 fig.Units = 'centimeters';
-fig.Position = [1 14 30 10];
+fig.Position = [1 14 24 8];
 hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.('Minutes'), nodeRed.('material_io_ai0_pressure_bar'),  '.k', 'MarkerSize', 2)
-plot(nodeRed.('Minutes'), nodeRed.('material_io_ai1_pressure_bar'),  '.b', 'MarkerSize', 2)
+plot(nodeRed.('minutes'), nodeRed.('material_io_ai0_pressure_bar'),  '.k', 'MarkerSize', 2)
+plot(nodeRed.('minutes'), nodeRed.('material_io_ai1_pressure_bar'),  '.b', 'MarkerSize', 2)
 % Limits
 ylim([0 25])
 xlim([0 240])
@@ -40,24 +51,63 @@ ylabel('Pressure [bar]')
 % Legend
 legend('Pressure sensor 1', 'Pressure sensor 2', 'Location', 'NorthEast')
 % Layout
-set(gca,'XTick',(0:10:480))
+set(gca,'XTick',(0:15:1000))
 % Write figure
 fig.Units = 'inches';
 width = fig.Position(3);
 height =  fig.Position(4);
 set(gcf, 'PaperPosition', [0 0 width height]);
 set(gcf, 'PaperSize', [width height]); 
-saveas(fig, 'mortar_pressure', 'pdf')
+saveas(fig, 'pressure', 'pdf')
 
-%% Plot viscocity
+%% Plot differential pressure
 fig = figure;
 fig.Units = 'centimeters';
-fig.Position = [1 14 30 10];
+fig.Position = [1 14 24 8];
 hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.('Minutes'), nodeRed.('material_coriolis_dynamic_viscocity_cp'),  '.k', 'MarkerSize', 2)
+plot(nodeRed.('minutes'), nodeRed.('material_differential_pressure_bar'),  '.k', 'MarkerSize', 2)
+yyaxis right
+plot(nodeRed.('minutes'), nodeRed.('printhead_pressure_bar'),  '.b', 'MarkerSize', 2)
+% Limits
+yyaxis left
+ylim([0 1.2])
+yyaxis right
+ylim([0 1.2])
+xlim([0 240])
+% Labels
+xlabel('Time [Minutes]')
+yyaxis left
+ylabel('Differential pressure [bar]')
+yyaxis right
+ylabel('Differential pressure [bar]')
+% Legend
+legend('Differential pressure coriolis', 'Differential pressure printhead', 'Location', 'NorthEast')
+% Layout
+set(gca,'XTick',(0:15:1000))
+yyaxis left
+set(gca, 'YColor','k')
+yyaxis right
+set(gca, 'YColor','k')
+% Write figure
+fig.Units = 'inches';
+width = fig.Position(3);
+height =  fig.Position(4);
+set(gcf, 'PaperPosition', [0 0 width height]);
+set(gcf, 'PaperSize', [width height]); 
+saveas(fig, 'differential_pressure', 'pdf')
+
+%% Plot viscocity
+fig = figure;
+fig.Units = 'centimeters';
+fig.Position = [1 14 24 8];
+hold on
+grid on
+box on
+% Plot data
+plot(nodeRed.('minutes'), nodeRed.('material_coriolis_dynamic_viscocity_cp'),  '.k', 'MarkerSize', 2)
 % Limits
 ylim([0 6000])
 xlim([0 240])
@@ -65,7 +115,7 @@ xlim([0 240])
 xlabel('Time [Minutes]')
 ylabel('Apparent dynamic viscocity [cP]')
 % Layout
-set(gca,'XTick',(0:10:480))
+set(gca,'XTick',(0:15:1000))
 % Write figure
 fig.Units = 'inches';
 width = fig.Position(3);
@@ -77,12 +127,12 @@ saveas(fig, 'viscocity', 'pdf')
 %% Plot exciter current
 fig = figure;
 fig.Units = 'centimeters';
-fig.Position = [1 14 30 10];
+fig.Position = [1 14 24 8];
 hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.('Minutes'), nodeRed.('material_coriolis_exciter_current_1_ma'),  '.k', 'MarkerSize', 2)
+plot(nodeRed.('minutes'), nodeRed.('material_coriolis_exciter_current_1_ma'),  '.k', 'MarkerSize', 2)
 % Limits
 ylim([0 10])
 xlim([0 240])
@@ -90,7 +140,7 @@ xlim([0 240])
 xlabel('Time [Minutes]')
 ylabel('Exciter current 1 [mA]')
 % Layout
-set(gca,'XTick',(0:10:480))
+set(gca,'XTick',(0:15:1000))
 % Write figure
 fig.Units = 'inches';
 width = fig.Position(3);
@@ -102,12 +152,12 @@ saveas(fig, 'exciter_current_1', 'pdf')
 %% Plot temperature
 fig = figure;
 fig.Units = 'centimeters';
-fig.Position = [1 14 30 10];
+fig.Position = [1 14 24 8];
 hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.('Minutes'), nodeRed.('material_coriolis_temperature_c'),  '.k', 'MarkerSize', 2)
+plot(nodeRed.('minutes'), nodeRed.('material_coriolis_temperature_c'),  '.k', 'MarkerSize', 2)
 % Limits
 ylim([28 36])
 xlim([0 240])
@@ -115,7 +165,7 @@ xlim([0 240])
 xlabel('Time [Minutes]')
 ylabel('Mortar temperature [C]')
 % Layout
-set(gca,'XTick',(0:10:480))
+set(gca,'XTick',(0:15:1000))
 % Write figure
 fig.Units = 'inches';
 width = fig.Position(3);
@@ -124,23 +174,98 @@ set(gcf, 'PaperPosition', [0 0 width height]);
 set(gcf, 'PaperSize', [width height]); 
 saveas(fig, 'mortar_temperature', 'pdf')
 
-%% Plot water temperature
+%% Plot density
 fig = figure;
 fig.Units = 'centimeters';
-fig.Position = [1 14 30 10];
+fig.Position = [1 14 24 8];
 hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.('Minutes'), nodeRed.('mai_water_temp_c'),  '.k', 'MarkerSize', 2)
+plot(nodeRed.('minutes'), nodeRed.('material_coriolis_density_kg_m3'),  '.k', 'MarkerSize', 2)
 % Limits
-ylim([15 23])
+ylim([2320 2400])
+xlim([0 240])
+% Labels
+xlabel('Time [Minutes]')
+ylabel('Density [kg/m^{3}]')
+% Layout
+set(gca,'XTick',(0:15:1000))
+% Write figure
+fig.Units = 'inches';
+width = fig.Position(3);
+height =  fig.Position(4);
+set(gcf, 'PaperPosition', [0 0 width height]);
+set(gcf, 'PaperSize', [width height]); 
+saveas(fig, 'density', 'pdf')
+
+%% Plot pump frequency
+fig = figure;
+fig.Units = 'centimeters';
+fig.Position = [1 14 24 8];
+hold on
+grid on
+box on
+% Plot data
+plot(nodeRed.('minutes'), nodeRed.('mai_pump_speed_chz')./100,  '.k', 'MarkerSize', 2)
+% Limits
+ylim([0 50])
+xlim([0 240])
+% Labels
+xlabel('Time [Minutes]')
+ylabel('Pump frequency [Hz]')
+% Layout
+set(gca,'XTick',(0:15:1000))
+% Write figure
+fig.Units = 'inches';
+width = fig.Position(3);
+height =  fig.Position(4);
+set(gcf, 'PaperPosition', [0 0 width height]);
+set(gcf, 'PaperSize', [width height]); 
+saveas(fig, 'mortar_pump_frequency', 'pdf')
+
+%% Plot pump output power
+fig = figure;
+fig.Units = 'centimeters';
+fig.Position = [1 14 24 8];
+hold on
+grid on
+box on
+% Plot data
+plot(nodeRed.('minutes'), nodeRed.('mai_pump_output_power_w'),  '.k', 'MarkerSize', 2)
+% Limits
+ylim([0 800])
+xlim([0 240])
+% Labels
+xlabel('Time [Minutes]')
+ylabel('Pump output power [W]')
+% Layout
+set(gca,'XTick',(0:15:1000))
+% Write figure
+fig.Units = 'inches';
+width = fig.Position(3);
+height =  fig.Position(4);
+set(gcf, 'PaperPosition', [0 0 width height]);
+set(gcf, 'PaperSize', [width height]); 
+saveas(fig, 'mortar_pump_output_power', 'pdf')
+
+%% Plot water temperature
+fig = figure;
+fig.Units = 'centimeters';
+fig.Position = [1 14 24 8];
+hold on
+grid on
+box on
+% Plot data
+plot(nodeRed.('minutes'), nodeRed.('mai_water_temp_c'),  '.k', 'MarkerSize', 2)
+% Limits
+ylim([15 21])
 xlim([0 240])
 % Labels
 xlabel('Time [Minutes]')
 ylabel('Water temperature [C]')
 % Layout
-set(gca,'XTick',(0:10:480))
+set(gca,'XTick',(0:15:1000))
 % Write figure
 fig.Units = 'inches';
 width = fig.Position(3);
@@ -148,6 +273,62 @@ height =  fig.Position(4);
 set(gcf, 'PaperPosition', [0 0 width height]);
 set(gcf, 'PaperSize', [width height]); 
 saveas(fig, 'water_temperature', 'pdf')
+
+%% Plot water flow
+fig = figure;
+fig.Units = 'centimeters';
+fig.Position = [1 14 24 8];
+hold on
+grid on
+box on
+% Plot data
+plot(nodeRed.('minutes'), nodeRed.('mai_water_flow_actual_lh'),  '.k', 'MarkerSize', 2)
+plot(nodeRed.('minutes'), nodeRed.('mai_water_flow_set_lh'),  '.b', 'MarkerSize', 2)
+% Limits
+ylim([160 220])
+xlim([0 240])
+% Labels
+xlabel('Time [Minutes]')
+ylabel('Water flow [L/h]')
+% Legend
+legend('Actual', 'Setpoint', 'Location', 'NorthEast')
+% Layout
+set(gca,'XTick',(0:15:1000))
+% Write figure
+fig.Units = 'inches';
+width = fig.Position(3);
+height =  fig.Position(4);
+set(gcf, 'PaperPosition', [0 0 width height]);
+set(gcf, 'PaperSize', [width height]); 
+saveas(fig, 'water_flow', 'pdf')
+
+%% Plot water pump frequency
+fig = figure;
+fig.Units = 'centimeters';
+fig.Position = [1 14 24 8];
+hold on
+grid on
+box on
+% Plot data
+plot(nodeRed.('minutes'), nodeRed.('mai_waterpump_output_freq_chz')./100,  '.k', 'MarkerSize', 2)
+plot(nodeRed.('minutes'), nodeRed.('mai_waterpump_ref_freq_chz')./100,  '.b', 'MarkerSize', 2)
+% Limits
+ylim([0 30])
+xlim([0 240])
+% Labels
+xlabel('Time [Minutes]')
+ylabel('Water pump freq. [Hz]')
+% Legend
+legend('Actual', 'Reference', 'Location', 'NorthEast')
+% Layout
+set(gca,'XTick',(0:15:1000))
+% Write figure
+fig.Units = 'inches';
+width = fig.Position(3);
+height =  fig.Position(4);
+set(gcf, 'PaperPosition', [0 0 width height]);
+set(gcf, 'PaperSize', [width height]); 
+saveas(fig, 'water_pump_frequency', 'pdf')
 
 %% End
 disp('End of script')
