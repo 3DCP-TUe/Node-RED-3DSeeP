@@ -27,6 +27,8 @@ k = 60; % ~6 seconds, 10 samples per second
 filterd1 = movmean(nodeRed.('material_io_ai0_pressure_bar'), k, 'omitnan');
 filterd2 = movmean(nodeRed.('material_io_ai1_pressure_bar'), k, 'omitnan');
 nodeRed.('material_differential_pressure_bar') = filterd1 - filterd2;
+% Mixer timing
+[times, intervalTimes, runTimes] = mixerTimes(nodeRed.('minutes'), nodeRed.('mai_mixer_run_bool'));
 % Printhead pressure
 if ~any(strcmp(nodeRed.Properties.VariableNames, 'printhead_pressure_bar'))
     nodeRed.('printhead_pressure_bar') = (nodeRed.('printhead_box1_io_ai0_ma') - 4) / 16 * 10;
@@ -113,7 +115,7 @@ ylim([0 6000])
 xlim([0 240])
 % Labels
 xlabel('Time [Minutes]')
-ylabel('Apparent dynamic viscocity [cP]')
+ylabel('A dynamic viscocity [cP]')
 % Layout
 set(gca,'XTick',(0:15:1000))
 % Write figure
@@ -330,5 +332,76 @@ set(gcf, 'PaperPosition', [0 0 width height]);
 set(gcf, 'PaperSize', [width height]); 
 saveas(fig, 'water_pump_frequency', 'pdf')
 
+%% Mixer times (flow prediction)
+fig = figure;
+fig.Units = 'centimeters';
+fig.Position = [1 14 24 8];
+hold on
+grid on
+box on
+% Plot data
+k = 4;
+plot(times, runTimes./intervalTimes,  '.k', 'MarkerSize', 2, 'LineWidth', 1.5)
+plot(times, movmean(runTimes./intervalTimes, [k 0]),  '-k', 'MarkerSize', 2, 'LineWidth', 1.5)
+% Limits
+ylim([0 0.4])
+xlim([0 240])
+% Labels
+xlabel('Time [Minutes]')
+ylabel('Run time / interval time')
+% Legend
+legend('Single run', sprintf('Moving mean k=%d', k), 'Location', 'NorthEast')
+% Layout
+set(gca,'XTick',(0:15:1000))
+% Write figure
+fig.Units = 'inches';
+width = fig.Position(3);
+height =  fig.Position(4);
+set(gcf, 'PaperPosition', [0 0 width height]);
+set(gcf, 'PaperSize', [width height]); 
+saveas(fig, 'mixerTimes', 'pdf')
+
 %% End
 disp('End of script')
+
+%% Functions
+% Mixer run and interval times
+function [times, intervalTimes, runTimes] = mixerTimes(time, bools) 
+    % Remove NaN values
+    validIndices = ~isnan(bools);
+    boolsFiltered = bools(validIndices);
+    timeFiltered = time(validIndices);
+    % Force first and last element to be mixer off
+    boolsFiltered(1) = 0;
+    boolsFiltered(end) = 0;
+    % Preallocate output arrays
+    max_transitions = sum(diff(boolsFiltered) ~= 0);
+    times = zeros(1, max_transitions);
+    intervalTimes = zeros(1, max_transitions);
+    runTimes = zeros(1, max_transitions);
+    % Initialze variables
+    startTime = nan;
+    intervalIndex = 0;
+    runIndex = 0;
+    % Calculate interval and run times
+    for i = 2:length(boolsFiltered)
+        % Start of mixer run
+        if (boolsFiltered(i-1) == 0 && boolsFiltered(i) == 1)
+            if ~isnan(startTime)
+                intervalIndex = intervalIndex + 1;
+                intervalTimes(intervalIndex) = timeFiltered(i) - startTime;
+            end
+            startTime = timeFiltered(i);
+        % End of mixer run
+        elseif (boolsFiltered(i-1) == 1 && boolsFiltered(i) == 0)
+            runIndex = runIndex + 1;
+            endTime = timeFiltered(i);
+            runTimes(runIndex) = endTime - startTime;
+            times(runIndex) = startTime;
+        end
+    end
+    % Remove unused preallocated elements
+    times = times(1:runIndex);
+    intervalTimes = intervalTimes(1:runIndex);
+    runTimes = runTimes(1:runIndex);    
+end
