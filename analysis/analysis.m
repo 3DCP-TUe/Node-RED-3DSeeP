@@ -359,7 +359,7 @@ width = fig.Position(3);
 height =  fig.Position(4);
 set(gcf, 'PaperPosition', [0 0 width height]);
 set(gcf, 'PaperSize', [width height]); 
-saveas(fig, 'mixerTimes', 'pdf')
+saveas(fig, 'mixer_times', 'pdf')
 
 %% End
 disp('End of script')
@@ -379,7 +379,7 @@ function [times, intervalTimes, runTimes] = mixerTimes(time, bools)
     times = zeros(1, max_transitions);
     intervalTimes = zeros(1, max_transitions);
     runTimes = zeros(1, max_transitions);
-    % Initialze variables
+    % Initialize variables
     startTime = nan;
     intervalIndex = 0;
     runIndex = 0;
