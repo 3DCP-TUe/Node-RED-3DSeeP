@@ -34,7 +34,7 @@
             "d91fa1df083d06d7"
         ],
         "x": 94,
-        "y": 1139,
+        "y": 1239,
         "w": 1132,
         "h": 242
     },
@@ -170,7 +170,7 @@
         "value": "msg.payload",
         "name": "Set water flow",
         "x": 1120,
-        "y": 1240,
+        "y": 1340,
         "wires": [
             [
                 "be0d44dfca8ec0b4"
@@ -186,7 +186,7 @@
         "label": "Water flow",
         "tooltip": "",
         "group": "2766a474835c38ac",
-        "order": 7,
+        "order": 8,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -197,7 +197,7 @@
         "className": "",
         "topicType": "msg",
         "x": 350,
-        "y": 1300,
+        "y": 1400,
         "wires": [
             [
                 "86bc458168320c72"
@@ -218,7 +218,7 @@
         "finalize": "",
         "libs": [],
         "x": 640,
-        "y": 1300,
+        "y": 1400,
         "wires": [
             [
                 "d152c0ba40133166"
@@ -244,7 +244,7 @@
         "payload": "210",
         "payloadType": "num",
         "x": 190,
-        "y": 1300,
+        "y": 1400,
         "wires": [
             [
                 "8bbc2474e3a9e099"
@@ -359,7 +359,7 @@
         "label": "Pump speed",
         "tooltip": "",
         "group": "2766a474835c38ac",
-        "order": 11,
+        "order": 10,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -370,7 +370,7 @@
         "className": "",
         "topicType": "msg",
         "x": 370,
-        "y": 640,
+        "y": 740,
         "wires": [
             [
                 "ec99de5165855795"
@@ -399,7 +399,7 @@
         "payload": "2100",
         "payloadType": "num",
         "x": 190,
-        "y": 640,
+        "y": 740,
         "wires": [
             [
                 "1d399ea4b4e7dc89"
@@ -415,7 +415,7 @@
         "value": "msg.payload",
         "name": "Set pump speed",
         "x": 900,
-        "y": 640,
+        "y": 740,
         "wires": [
             [
                 "be0d44dfca8ec0b4"
@@ -435,7 +435,7 @@
         "finalize": "",
         "libs": [],
         "x": 720,
-        "y": 640,
+        "y": 740,
         "wires": [
             [
                 "cb735cfbbd91b5b1"
@@ -517,7 +517,7 @@
         "type": "ui_text",
         "z": "f858fffa6ac7f49d",
         "group": "2766a474835c38ac",
-        "order": 12,
+        "order": 11,
         "width": 1,
         "height": 1,
         "name": "",
@@ -530,7 +530,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 1090,
-        "y": 640,
+        "y": 740,
         "wires": []
     },
     {
@@ -555,7 +555,7 @@
         "payload": "2",
         "payloadType": "num",
         "x": 190,
-        "y": 860,
+        "y": 960,
         "wires": [
             [
                 "d97f08b9569b68d3"
@@ -584,7 +584,7 @@
         "payload": "2",
         "payloadType": "num",
         "x": 190,
-        "y": 900,
+        "y": 1000,
         "wires": [
             [
                 "4b6613454008cb06"
@@ -599,7 +599,7 @@
         "label": "Wetprobe covered delay",
         "tooltip": "",
         "group": "2766a474835c38ac",
-        "order": 18,
+        "order": 19,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -610,7 +610,7 @@
         "className": "",
         "topicType": "msg",
         "x": 410,
-        "y": 860,
+        "y": 960,
         "wires": [
             [
                 "e774e368e954bff0"
@@ -625,7 +625,7 @@
         "label": "Wetprobe uncovered delay",
         "tooltip": "",
         "group": "2766a474835c38ac",
-        "order": 20,
+        "order": 21,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -636,7 +636,7 @@
         "className": "",
         "topicType": "msg",
         "x": 420,
-        "y": 900,
+        "y": 1000,
         "wires": [
             [
                 "871d7cafdea7c8fe"
@@ -656,7 +656,7 @@
         "finalize": "",
         "libs": [],
         "x": 720,
-        "y": 860,
+        "y": 960,
         "wires": [
             [
                 "c1507aa966157f97"
@@ -676,7 +676,7 @@
         "finalize": "",
         "libs": [],
         "x": 720,
-        "y": 900,
+        "y": 1000,
         "wires": [
             [
                 "0af23cb1d7ba1468"
@@ -692,7 +692,7 @@
         "value": "msg.payload",
         "name": "Covered delay",
         "x": 900,
-        "y": 860,
+        "y": 960,
         "wires": [
             [
                 "be0d44dfca8ec0b4"
@@ -708,7 +708,7 @@
         "value": "msg.payload",
         "name": "Uncovered delay",
         "x": 910,
-        "y": 900,
+        "y": 1000,
         "wires": [
             [
                 "be0d44dfca8ec0b4"
@@ -720,7 +720,7 @@
         "type": "ui_text",
         "z": "f858fffa6ac7f49d",
         "group": "2766a474835c38ac",
-        "order": 15,
+        "order": 16,
         "width": 1,
         "height": 1,
         "name": "",
@@ -733,7 +733,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 1090,
-        "y": 860,
+        "y": 960,
         "wires": []
     },
     {
@@ -741,7 +741,7 @@
         "type": "ui_text",
         "z": "f858fffa6ac7f49d",
         "group": "2766a474835c38ac",
-        "order": 17,
+        "order": 18,
         "width": 1,
         "height": 1,
         "name": "",
@@ -754,7 +754,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 1090,
-        "y": 900,
+        "y": 1000,
         "wires": []
     },
     {
@@ -765,7 +765,7 @@
         "label": "Water pre-run",
         "tooltip": "",
         "group": "2766a474835c38ac",
-        "order": 14,
+        "order": 15,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -776,7 +776,7 @@
         "className": "",
         "topicType": "msg",
         "x": 380,
-        "y": 780,
+        "y": 880,
         "wires": [
             [
                 "56b4523e62818768"
@@ -791,7 +791,7 @@
         "label": "Mixer post-run",
         "tooltip": "",
         "group": "2766a474835c38ac",
-        "order": 16,
+        "order": 17,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -802,7 +802,7 @@
         "className": "",
         "topicType": "msg",
         "x": 380,
-        "y": 820,
+        "y": 920,
         "wires": [
             [
                 "08e8d46c6af76785"
@@ -831,7 +831,7 @@
         "payload": "0.2",
         "payloadType": "num",
         "x": 190,
-        "y": 780,
+        "y": 880,
         "wires": [
             [
                 "24bab3221f00c3fd"
@@ -860,7 +860,7 @@
         "payload": "0.1",
         "payloadType": "num",
         "x": 190,
-        "y": 820,
+        "y": 920,
         "wires": [
             [
                 "bc3de36ca287de84"
@@ -880,7 +880,7 @@
         "finalize": "",
         "libs": [],
         "x": 720,
-        "y": 780,
+        "y": 880,
         "wires": [
             [
                 "08ce9b7a0878f1d4"
@@ -900,7 +900,7 @@
         "finalize": "",
         "libs": [],
         "x": 720,
-        "y": 820,
+        "y": 920,
         "wires": [
             [
                 "7208d1d98ccfa8af"
@@ -912,7 +912,7 @@
         "type": "ui_text",
         "z": "f858fffa6ac7f49d",
         "group": "2766a474835c38ac",
-        "order": 19,
+        "order": 20,
         "width": 1,
         "height": 1,
         "name": "",
@@ -925,7 +925,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 1090,
-        "y": 780,
+        "y": 880,
         "wires": []
     },
     {
@@ -933,7 +933,7 @@
         "type": "ui_text",
         "z": "f858fffa6ac7f49d",
         "group": "2766a474835c38ac",
-        "order": 21,
+        "order": 22,
         "width": 1,
         "height": 1,
         "name": "",
@@ -946,7 +946,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 1090,
-        "y": 820,
+        "y": 920,
         "wires": []
     },
     {
@@ -958,7 +958,7 @@
         "value": "msg.payload",
         "name": "Water pre-run",
         "x": 900,
-        "y": 780,
+        "y": 880,
         "wires": [
             [
                 "be0d44dfca8ec0b4"
@@ -974,7 +974,7 @@
         "value": "msg.payload",
         "name": "Mixer post-run",
         "x": 900,
-        "y": 820,
+        "y": 920,
         "wires": [
             [
                 "be0d44dfca8ec0b4"
@@ -995,7 +995,7 @@
         "finalize": "",
         "libs": [],
         "x": 650,
-        "y": 1240,
+        "y": 1340,
         "wires": [
             [
                 "ca966d78f595dc3c"
@@ -1016,7 +1016,7 @@
         "finalize": "",
         "libs": [],
         "x": 900,
-        "y": 1300,
+        "y": 1400,
         "wires": [
             []
         ]
@@ -1040,7 +1040,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 860,
-        "y": 1240,
+        "y": 1340,
         "wires": [
             [
                 "f15fa9b2cd469c78"
@@ -1055,7 +1055,7 @@
         "name": "Water input: only adjust at water pump run with delay of 2s",
         "info": "",
         "x": 350,
-        "y": 1180,
+        "y": 1280,
         "wires": []
     },
     {
@@ -1068,7 +1068,7 @@
             "6cfd87fecacd594f"
         ],
         "x": 155,
-        "y": 1240,
+        "y": 1340,
         "wires": [
             [
                 "d91fa1df083d06d7"
@@ -1081,7 +1081,7 @@
         "z": "f858fffa6ac7f49d",
         "g": "2a2e14230045e5f9",
         "group": "2766a474835c38ac",
-        "order": 10,
+        "order": 9,
         "width": 1,
         "height": 1,
         "name": "",
@@ -1094,7 +1094,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 330,
-        "y": 1340,
+        "y": 1440,
         "wires": []
     },
     {
@@ -1111,7 +1111,7 @@
         "finalize": "",
         "libs": [],
         "x": 410,
-        "y": 1240,
+        "y": 1340,
         "wires": [
             [
                 "076d54139244fcfb"
@@ -1218,6 +1218,257 @@
         ]
     },
     {
+        "id": "0519b0c20874e935",
+        "type": "OpcUa-Item",
+        "z": "f858fffa6ac7f49d",
+        "item": "ns=2;s=Tags.GECO/MPRX_DI_Pump_Auto_Reverse_Run_Active",
+        "datatype": "Boolean",
+        "value": "msg.topic",
+        "name": "Reverse run after stop",
+        "x": 920,
+        "y": 500,
+        "wires": [
+            [
+                "be0d44dfca8ec0b4"
+            ]
+        ]
+    },
+    {
+        "id": "ccddab0a83f0dc7b",
+        "type": "ui_switch",
+        "z": "f858fffa6ac7f49d",
+        "name": "",
+        "label": "Reverse run after stop",
+        "tooltip": "",
+        "group": "2766a474835c38ac",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 400,
+        "y": 500,
+        "wires": [
+            [
+                "0519b0c20874e935"
+            ]
+        ]
+    },
+    {
+        "id": "b2a39a12d9f8ad12",
+        "type": "inject",
+        "z": "f858fffa6ac7f49d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 190,
+        "y": 500,
+        "wires": [
+            [
+                "ccddab0a83f0dc7b"
+            ]
+        ]
+    },
+    {
+        "id": "b72f887ab24aadb6",
+        "type": "OpcUa-Item",
+        "z": "f858fffa6ac7f49d",
+        "item": "ns=2;s=Tags.GECO/MPRX_DI_Pump_Auto_Reverse_Run_Time_s_I",
+        "datatype": "Int16",
+        "value": "msg.topic",
+        "name": "Reverse run time",
+        "x": 910,
+        "y": 540,
+        "wires": [
+            [
+                "be0d44dfca8ec0b4"
+            ]
+        ]
+    },
+    {
+        "id": "3e407067df7606b9",
+        "type": "ui_text_input",
+        "z": "f858fffa6ac7f49d",
+        "name": "",
+        "label": "Reverse run time",
+        "tooltip": "",
+        "group": "2766a474835c38ac",
+        "order": 12,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 390,
+        "y": 540,
+        "wires": [
+            [
+                "45061f7e3c590ff8"
+            ]
+        ]
+    },
+    {
+        "id": "d5c024cb9f79b4fa",
+        "type": "inject",
+        "z": "f858fffa6ac7f49d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "10",
+        "payloadType": "num",
+        "x": 190,
+        "y": 540,
+        "wires": [
+            [
+                "3e407067df7606b9"
+            ]
+        ]
+    },
+    {
+        "id": "45061f7e3c590ff8",
+        "type": "function",
+        "z": "f858fffa6ac7f49d",
+        "name": "",
+        "func": "if( msg.payload<0){msg.payload=0}\nelse if(msg.payload>10){msg.payload=10}\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 540,
+        "wires": [
+            [
+                "b72f887ab24aadb6"
+            ]
+        ]
+    },
+    {
+        "id": "eda7b29df91a2569",
+        "type": "ui_text",
+        "z": "f858fffa6ac7f49d",
+        "group": "2766a474835c38ac",
+        "order": 13,
+        "width": 1,
+        "height": 1,
+        "name": "",
+        "label": "s",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 350,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "22c91d67884ee80b",
+        "type": "ui_spacer",
+        "z": "f858fffa6ac7f49d",
+        "name": "spacer",
+        "group": "2766a474835c38ac",
+        "order": 7,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "1285f9aa4c6cd823",
+        "type": "ui_spacer",
+        "z": "f858fffa6ac7f49d",
+        "name": "spacer",
+        "group": "2766a474835c38ac",
+        "order": 14,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "5c36d3f2f5c6405a",
+        "type": "ui_spacer",
+        "z": "f858fffa6ac7f49d",
+        "name": "spacer",
+        "group": "e6b1019bb3a082ac",
+        "order": 5,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "6cc2c6a238cea2f0",
+        "type": "ui_spacer",
+        "z": "f858fffa6ac7f49d",
+        "name": "spacer",
+        "group": "e6b1019bb3a082ac",
+        "order": 6,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "a6506c13230baf60",
+        "type": "ui_spacer",
+        "z": "f858fffa6ac7f49d",
+        "name": "spacer",
+        "group": "e6b1019bb3a082ac",
+        "order": 13,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "a23231751098d0d7",
+        "type": "ui_spacer",
+        "z": "f858fffa6ac7f49d",
+        "name": "spacer",
+        "group": "8a339496ca145acd",
+        "order": 6,
+        "width": 6,
+        "height": 1
+    },
+    {
         "id": "b6399b95df174ec3",
         "type": "OpcUa-Endpoint",
         "endpoint": "opc.tcp://10.129.4.80:48010",
@@ -1231,6 +1482,28 @@
         "name": "Write values",
         "tab": "afc4f775962a26f4",
         "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e6b1019bb3a082ac",
+        "type": "ui_group",
+        "name": "Read values part 1",
+        "tab": "afc4f775962a26f4",
+        "order": 2,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "8a339496ca145acd",
+        "type": "ui_group",
+        "name": "Read values part 2",
+        "tab": "afc4f775962a26f4",
+        "order": 3,
         "disp": true,
         "width": "6",
         "collapse": false,

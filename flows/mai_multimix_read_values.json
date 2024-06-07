@@ -251,7 +251,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3150,
-        "y": 1320,
+        "y": 1420,
         "wires": []
     },
     {
@@ -314,7 +314,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3190,
-        "y": 1160,
+        "y": 1200,
         "wires": []
     },
     {
@@ -335,7 +335,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3190,
-        "y": 1200,
+        "y": 1240,
         "wires": []
     },
     {
@@ -356,7 +356,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3190,
-        "y": 1240,
+        "y": 1280,
         "wires": []
     },
     {
@@ -377,7 +377,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3190,
-        "y": 1440,
+        "y": 1540,
         "wires": []
     },
     {
@@ -398,7 +398,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3190,
-        "y": 1480,
+        "y": 1580,
         "wires": []
     },
     {
@@ -545,7 +545,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3170,
-        "y": 1360,
+        "y": 1460,
         "wires": []
     },
     {
@@ -566,7 +566,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3170,
-        "y": 1400,
+        "y": 1500,
         "wires": []
     },
     {
@@ -587,7 +587,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3170,
-        "y": 1120,
+        "y": 1160,
         "wires": []
     },
     {
@@ -662,7 +662,7 @@
         "datatype": "Float",
         "value": "",
         "name": "mai_water_temp",
-        "x": 590,
+        "x": 580,
         "y": 640,
         "wires": [
             [
@@ -743,7 +743,7 @@
         "value": "",
         "name": "mai_mixer_run",
         "x": 580,
-        "y": 860,
+        "y": 880,
         "wires": [
             [
                 "66d909b768b75bf9"
@@ -759,7 +759,7 @@
         "value": "",
         "name": "mai_pump_run",
         "x": 580,
-        "y": 940,
+        "y": 960,
         "wires": [
             [
                 "66d909b768b75bf9"
@@ -775,7 +775,7 @@
         "value": "",
         "name": "mai_pump_speed",
         "x": 590,
-        "y": 980,
+        "y": 1000,
         "wires": [
             [
                 "66d909b768b75bf9"
@@ -791,7 +791,7 @@
         "value": "",
         "name": "mai_pump_output_current",
         "x": 610,
-        "y": 1020,
+        "y": 1040,
         "wires": [
             [
                 "66d909b768b75bf9"
@@ -807,7 +807,7 @@
         "value": "",
         "name": "mai_pump_output_power",
         "x": 610,
-        "y": 1060,
+        "y": 1080,
         "wires": [
             [
                 "66d909b768b75bf9"
@@ -823,7 +823,7 @@
         "value": "",
         "name": "mai_pump_vibration_mode",
         "x": 620,
-        "y": 1100,
+        "y": 1120,
         "wires": [
             [
                 "66d909b768b75bf9"
@@ -839,7 +839,7 @@
         "value": "",
         "name": "mai_setting_water_pre_run",
         "x": 620,
-        "y": 1160,
+        "y": 1300,
         "wires": [
             [
                 "66d909b768b75bf9"
@@ -855,7 +855,7 @@
         "value": "",
         "name": "mai_setting_mixer_post_run",
         "x": 620,
-        "y": 1200,
+        "y": 1340,
         "wires": [
             [
                 "66d909b768b75bf9"
@@ -871,7 +871,7 @@
         "value": "",
         "name": "mai_setting_wetprobe_covered_delay",
         "x": 650,
-        "y": 1240,
+        "y": 1380,
         "wires": [
             [
                 "66d909b768b75bf9"
@@ -887,7 +887,7 @@
         "value": "",
         "name": "mai_setting_wetprobe_uncovered_delay",
         "x": 660,
-        "y": 1280,
+        "y": 1420,
         "wires": [
             [
                 "66d909b768b75bf9"
@@ -976,7 +976,9 @@
                 "6d5a6f100cdc5c09",
                 "a6ec3968bc39b853",
                 "3072d6f4198eb3c9",
-                "c43462b24d427311"
+                "c43462b24d427311",
+                "b29dcf854aec6d6b",
+                "b695905e2bf1ac24"
             ]
         ]
     },
@@ -1015,7 +1017,7 @@
         "joinerType": "str",
         "accumulate": false,
         "timeout": "",
-        "count": "20",
+        "count": "22",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
@@ -1065,7 +1067,9 @@
                 "b4e15bbde3c866e0",
                 "ba1801e80eedb056",
                 "ec091ddeabb74d0f",
-                "53f4d54fd9b46f38"
+                "53f4d54fd9b46f38",
+                "fdcc416f6ebfc11a",
+                "2ed794dacb1abebd"
             ]
         ]
     },
@@ -1228,7 +1232,7 @@
         "z": "a666a495869d02dc",
         "g": "4eab8620562f9ee0",
         "group": "4cd24b522de8febf",
-        "order": 2,
+        "order": 3,
         "width": 6,
         "height": 1,
         "name": "",
@@ -1550,64 +1554,78 @@
         "wires": []
     },
     {
-        "id": "9879a3df32bd388d",
-        "type": "ui_spacer",
+        "id": "b29dcf854aec6d6b",
+        "type": "OpcUa-Item",
         "z": "a666a495869d02dc",
-        "name": "spacer",
-        "group": "2766a474835c38ac",
-        "order": 6,
-        "width": 6,
-        "height": 1
+        "item": "ns=2;s=Tags.GECO/MPRX_DI_Pump_Auto_Reverse_Run_Active",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "mai_auto_reverse_run_active",
+        "x": 630,
+        "y": 1160,
+        "wires": [
+            [
+                "66d909b768b75bf9"
+            ]
+        ]
     },
     {
-        "id": "0ffd03dd062782e8",
-        "type": "ui_spacer",
+        "id": "b695905e2bf1ac24",
+        "type": "OpcUa-Item",
         "z": "a666a495869d02dc",
-        "name": "spacer",
-        "group": "2766a474835c38ac",
-        "order": 13,
-        "width": 6,
-        "height": 1
+        "item": "ns=2;s=Tags.GECO/MPRX_DI_Pump_Auto_Reverse_Run_Time_s_I",
+        "datatype": "Int16",
+        "value": "",
+        "name": "mai_auto_reverse_run_time",
+        "x": 620,
+        "y": 1200,
+        "wires": [
+            [
+                "66d909b768b75bf9"
+            ]
+        ]
     },
     {
-        "id": "51434f527353f8a7",
-        "type": "ui_spacer",
+        "id": "fdcc416f6ebfc11a",
+        "type": "ui_text",
         "z": "a666a495869d02dc",
-        "name": "spacer",
         "group": "e6b1019bb3a082ac",
-        "order": 5,
+        "order": 8,
         "width": 6,
-        "height": 1
+        "height": 1,
+        "name": "",
+        "label": "Auto reverse run active [bool]",
+        "format": "{{msg.payload.mai_auto_reverse_run_active.toString()}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3200,
+        "y": 1120,
+        "wires": []
     },
     {
-        "id": "843636d606bf8be5",
-        "type": "ui_spacer",
+        "id": "2ed794dacb1abebd",
+        "type": "ui_text",
         "z": "a666a495869d02dc",
-        "name": "spacer",
         "group": "e6b1019bb3a082ac",
-        "order": 6,
+        "order": 12,
         "width": 6,
-        "height": 1
-    },
-    {
-        "id": "1b86223db5de2631",
-        "type": "ui_spacer",
-        "z": "a666a495869d02dc",
-        "name": "spacer",
-        "group": "e6b1019bb3a082ac",
-        "order": 13,
-        "width": 6,
-        "height": 1
-    },
-    {
-        "id": "4bdce82fe43d7dcb",
-        "type": "ui_spacer",
-        "z": "a666a495869d02dc",
-        "name": "spacer",
-        "group": "8a339496ca145acd",
-        "order": 6,
-        "width": 6,
-        "height": 1
+        "height": 1,
+        "name": "",
+        "label": "Auto reverse run time [int]",
+        "format": "{{msg.payload.mai_auto_reverse_run_time}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3190,
+        "y": 1320,
+        "wires": []
     },
     {
         "id": "79e648ecbceeae72",
@@ -1682,17 +1700,6 @@
         "className": ""
     },
     {
-        "id": "2766a474835c38ac",
-        "type": "ui_group",
-        "name": "Write values",
-        "tab": "afc4f775962a26f4",
-        "order": 1,
-        "disp": true,
-        "width": "6",
-        "collapse": false,
-        "className": ""
-    },
-    {
         "id": "afc4f775962a26f4",
         "type": "ui_tab",
         "name": "MAI MULTIMIX",
@@ -1707,7 +1714,7 @@
         "name": "MAI MULTIMIX Charts",
         "icon": "dashboard",
         "order": 7,
-        "disabled": false,
-        "hidden": false
+        "disabled": true,
+        "hidden": true
     }
 ]
