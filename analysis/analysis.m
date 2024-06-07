@@ -15,7 +15,7 @@ path = mfilename('fullpath');
 cd(filepath);
 
 %% Import data from node red
-nodeRed = readtable('20240507_Example.csv');
+nodeRed = readtable('20240607_AlexIdil.csv');
 
 %% Get time in minutes and seconds
 nodeRed.('seconds') = seconds(nodeRed.('desktop_time')) - seconds(nodeRed.('desktop_time')(1));
@@ -115,7 +115,7 @@ ylim([0 6000])
 xlim([0 240])
 % Labels
 xlabel('Time [Minutes]')
-ylabel('A dynamic viscocity [cP]')
+ylabel('Apparent dynamic viscocity [cP]')
 % Layout
 set(gca,'XTick',(0:15:1000))
 % Write figure
