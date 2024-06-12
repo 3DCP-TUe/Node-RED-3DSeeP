@@ -332,6 +332,45 @@ set(gcf, 'PaperPosition', [0 0 width height]);
 set(gcf, 'PaperSize', [width height]); 
 saveas(fig, 'water_pump_frequency', 'pdf')
 
+%% Ambient temperature and relative humidity
+fig = figure;
+fig.Units = 'centimeters';
+fig.Position = [1 14 24 8];
+hold on
+grid on
+box on
+% Plot data
+plot(nodeRed.('minutes'), nodeRed.('material_io_ai7_ambient_temperature_c'),  '.k', 'MarkerSize', 2)
+yyaxis right
+plot(nodeRed.('minutes'), nodeRed.('material_io_ai6_relative_humidity_perc'),  '.b', 'MarkerSize', 2)
+% Limits
+yyaxis left
+ylim([0 40])
+yyaxis right
+ylim([0 100])
+xlim([0 180])
+% Labels
+xlabel('Time [Minutes]')
+yyaxis left
+ylabel('Ambient temperature [C]')
+yyaxis right
+ylabel('Relative humidity [%]')
+% Legend
+legend('Ambient temperature', 'Relative humidity', 'Location', 'NorthEast')
+% Layout
+set(gca,'XTick',(0:15:1000))
+yyaxis left
+set(gca, 'YColor','k')
+yyaxis right
+set(gca, 'YColor','k')
+% Write figure
+fig.Units = 'inches';
+width = fig.Position(3);
+height =  fig.Position(4);
+set(gcf, 'PaperPosition', [0 0 width height]);
+set(gcf, 'PaperSize', [width height]); 
+saveas(fig, 'ambient_temperature', 'pdf')
+
 %% Mixer times (flow prediction)
 fig = figure;
 fig.Units = 'centimeters';
