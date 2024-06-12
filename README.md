@@ -24,12 +24,14 @@ Authors:
 - [Arjen Deetman](https://research.tue.nl/en/persons/arjen-deetman)
 - [Derk Bos](https://research.tue.nl/en/persons/derk-h-bos) 
 
+Technical support:
+- Siemens Digital Industries
+
+## Funding
+
 This software could be developed and maintained with the financial support of the following projects:
 - The project _"Parametric mortar design and control of system parameters"_ funded by Saint-Gobain Weber Beamix.
 - The project _"Additive manufacturing of functional construction materials on-demand"_ (with project number 17895) of the research program _"Materialen NL: Challenges 2018"_ which is financed by the Dutch Research Council (NWO).
-
-Technical support:
-- Siemens Digital Industries
 
 ## License
 
