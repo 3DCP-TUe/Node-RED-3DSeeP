@@ -371,7 +371,7 @@ set(gcf, 'PaperPosition', [0 0 width height]);
 set(gcf, 'PaperSize', [width height]); 
 saveas(fig, 'ambient_temperature', 'pdf')
 
-%% Mixer times (flow prediction)
+%% Mixer times ratio (flow prediction)
 fig = figure;
 fig.Units = 'centimeters';
 fig.Position = [1 14 24 8];
@@ -379,7 +379,7 @@ hold on
 grid on
 box on
 % Plot data
-k = 4;
+k = 8;
 plot(times, runTimes./intervalTimes,  '.k', 'MarkerSize', 2, 'LineWidth', 1.5)
 plot(times, movmean(runTimes./intervalTimes, [k 0]),  '-k', 'MarkerSize', 2, 'LineWidth', 1.5)
 % Limits
@@ -390,6 +390,37 @@ xlabel('Time [Minutes]')
 ylabel('Run time / interval time')
 % Legend
 legend('Single run', sprintf('Moving mean k=%d', k), 'Location', 'NorthEast')
+% Layout
+set(gca,'XTick',(0:15:1000))
+% Write figure
+fig.Units = 'inches';
+width = fig.Position(3);
+height =  fig.Position(4);
+set(gcf, 'PaperPosition', [0 0 width height]);
+set(gcf, 'PaperSize', [width height]); 
+saveas(fig, 'mixer_times_ratio', 'pdf')
+
+%% Mixer times (flow prediction)
+fig = figure;
+fig.Units = 'centimeters';
+fig.Position = [1 14 24 8];
+hold on
+grid on
+box on
+% Plot data
+k = 8;
+plot(times, intervalTimes*60,  '.k', 'MarkerSize', 2)
+plot(times, movmean(intervalTimes*60, [k 0]),  '-k', 'MarkerSize', 2, 'LineWidth', 1.5)
+plot(times, runTimes*60,  '.b', 'MarkerSize', 2)
+plot(times, movmean(runTimes*60, [k 0]),  '-b', 'MarkerSize', 2, 'LineWidth', 1.5)
+% Limits
+ylim([0 120])
+xlim([0 240])
+% Labels
+xlabel('Time [Minutes]')
+ylabel('Mixer times [Seconds]')
+% Legend
+legend('Interval time', sprintf('Interval time mov. mean k=%d', k), 'Run time', sprintf('Run time mov. mean k=%d', k), 'Location', 'NorthEast')
 % Layout
 set(gca,'XTick',(0:15:1000))
 % Write figure
