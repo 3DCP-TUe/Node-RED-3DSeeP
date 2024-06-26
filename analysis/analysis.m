@@ -5,22 +5,46 @@ information and the LICENSE file, see <https://github.com/3DCP-TUe/Node-RED-3DSe
 %}
 
 %% Clear and close
-close all;
-clear;
-clc;
+close all; clear; clc;
+
+%% Settings
+%Specify directory where the node-red files can be found. If left empty,
+%files are searched in the folder where the Matlab script runs.
+nodeRedFilePath = "D:\OneDrive - TU Eindhoven\VENI - Digital Fabrication with Concrete\04_Experiments\20240618_RILEM_DAY2\Data Node-Red";
 
 %% Get file path
-path = mfilename('fullpath');
-[filepath, name, ext] = fileparts(path);
-cd(filepath);
+filepath=pwd;
 
 %% Import data from node red
-% One file
-%nodeRed = readtable('20240614_IdilAlex.csv');
-% For combining multiple files
-nodeRed1 = readtable('20240617_RILEM_DAY1_1.csv');
-nodeRed2 = readtable('20240617_RILEM_DAY1_2.csv');
-nodeRed = [nodeRed1; nodeRed2];
+% All csv files in the current folder are assumed to be node-red logs. If
+% multiple files are present, they are appended. If no files are present in the Matlab directory,
+% the given filepath is used and all csv files are read from there. 
+
+if nodeRedFilePath ==""
+    curDirCSV=dir('*.csv');
+    if isempty(curDirCSV)==1
+        disp("ERROR: No .csv files found Matlab folder")
+    end
+else
+    cd(nodeRedFilePath)
+    curDirCSV=dir('*.csv');
+    if isempty(curDirCSV)==1
+        disp("ERROR: No .csv files found in specified folder")
+    end
+end
+
+%Read files and append if multiple
+nodeRed=[];
+for i=1:length(curDirCSV)
+    nodeRed=[nodeRed; readtable(curDirCSV(i).name)];
+end
+
+% Create and navigate to save folder
+saveFolderName="Results_"+curDirCSV(1).name(1:end-3);
+if ~exist(saveFolderName,'dir')
+    mkdir(saveFolderName)
+end
+cd("Results_"+curDirCSV(1).name(end-3:end))
 
 %% Get time in minutes and seconds
 nodeRed.('seconds') = seconds(nodeRed.('desktop_time')) - seconds(nodeRed.('desktop_time')(1));
@@ -64,6 +88,7 @@ ylabel('Pressure [bar]')
 legend('Pressure sensor 1', 'Pressure sensor 2', 'Location', 'NorthEast')
 % Layout
 set(gca,'XTick',(0:30:900))
+ax1=gca;
 % Write figure
 saveFigure(fig, 'pressure')
 
@@ -172,8 +197,8 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.('minutes'), nodeRed.('material_coriolis_temperature_c'), '.k', 'MarkerSize', 2)
-plot(nodeRed.('minutes'), nodeRed.('mai_temperature_pumping_chamber_c'), '.b', 'MarkerSize', 2)
+corrieT=plot(nodeRed.('minutes'), nodeRed.material_coriolis_temperature_c, '-k', 'LineWidth',1.5);
+mixT=plot(nodeRed.('minutes'), nodeRed.mai_temperature_pumping_chamber_c, '-b', 'LineWidth',1.5);
 % Limits
 ylim([26 36])
 xlim([0 360])
@@ -181,7 +206,7 @@ xlim([0 360])
 xlabel('Time [Minutes]')
 ylabel('Mortar temperature [C]')
 % Legend
-legend('Coriolis sensor', 'Pumping chamber', 'Location', 'NorthEast')
+legend([corrieT,mixT],["Coriolis sensor: " + round(mean(nodeRed.material_coriolis_temperature_c,'omitnan')*100)/100 + " $\pm$ " + round(std(nodeRed.material_coriolis_temperature_c,'omitnan')*100)/100, "Pumping chamber: " + round(mean(nodeRed.mai_temperature_pumping_chamber_c,'omitnan')*100)/100 + " $\pm$ " + round(std(nodeRed.mai_temperature_pumping_chamber_c,'omitnan')*100)/100], 'Location', 'NorthEast','FontSize',12,'Interpreter','latex')
 % Layout
 set(gca,'XTick',(0:30:900))
 % Write figure
@@ -258,13 +283,13 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.('minutes'), nodeRed.('mai_water_temp_c'), '.k', 'MarkerSize', 2)
+plot(nodeRed.minutes, nodeRed.mai_water_temp_c, '-k', 'LineWidth', 1.5);
 % Limits
-ylim([15 21])
-xlim([0 360])
+ylim([0.8*min(nodeRed.mai_water_temp_c),1.2*max(nodeRed.mai_water_temp_c)])
+xlim([0 max(nodeRed.minutes)])
 % Labels
 xlabel('Time [Minutes]')
-ylabel('Water temperature [C]')
+ylabel('Temperature [C]')
 % Layout
 set(gca,'XTick',(0:30:900))
 % Write figure
@@ -324,15 +349,15 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.('minutes'), nodeRed.('material_io_ai7_ambient_temperature_c'), '.k', 'MarkerSize', 2)
+plot(nodeRed.minutes, nodeRed.material_io_ai7_ambient_temperature_c, '-k', 'LineWidth', 1.5)
 yyaxis right
-plot(nodeRed.('minutes'), nodeRed.('material_io_ai6_relative_humidity_perc'), '.b', 'MarkerSize', 2)
+plot(nodeRed.minutes, nodeRed.material_io_ai6_relative_humidity_perc, '-b', 'LineWidth', 1.5)
 % Limits
 yyaxis left
-ylim([0 40])
+ylim([0.8*min(nodeRed.material_io_ai7_ambient_temperature_c), 1.2*max(nodeRed.material_io_ai7_ambient_temperature_c)])
 yyaxis right
-ylim([0 100])
-xlim([0 360])
+ylim([0.8*min(nodeRed.material_io_ai6_relative_humidity_perc), 1.2*max(nodeRed.material_io_ai6_relative_humidity_perc)])
+xlim([0 max(nodeRed.minutes)])
 % Labels
 xlabel('Time [Minutes]')
 yyaxis left
@@ -340,7 +365,7 @@ ylabel('Ambient temperature [C]')
 yyaxis right
 ylabel('Relative humidity [%]')
 % Legend
-legend('Ambient temperature', 'Relative humidity', 'Location', 'NorthEast')
+legend("Ambient temperature: " + round(mean(nodeRed.material_io_ai7_ambient_temperature_c,'omitnan')*100)/100+" $\pm$ " + round(std(nodeRed.material_io_ai7_ambient_temperature_c,'omitnan')*100)/100 + "C", "Relative humidity: " + round(mean(nodeRed.material_io_ai6_relative_humidity_perc,'omitnan')*100)/100+" $\pm$ " + round(std(nodeRed.material_io_ai6_relative_humidity_perc,'omitnan')*100)/100 + "\%", 'Location', 'NorthEast','FontSize',12,'Interpreter','latex')
 % Layout
 set(gca,'XTick',(0:30:900))
 yyaxis left
@@ -422,6 +447,7 @@ xlabel('Mortar temperature [C]')
 ylabel('Differential pressure [bar]')
 % Write figure
 saveFigure(fig, 'correlation_temp_dp')
+
 
 %% End
 disp('End of script')
