@@ -135,3 +135,4 @@ dist
 # Don't upload log files and plots
 analysis/*.pdf
 analysis/*.csv
+analysis/*.zip
