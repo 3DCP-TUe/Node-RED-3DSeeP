@@ -423,8 +423,8 @@ windowEnd = 270; % Minutes
 % Plot data
 plot(nodeRed.('material_coriolis_temperature_c')(index1:index2), nodeRed.('material_differential_pressure_bar')(index1:index2), '.k', 'MarkerSize', 2)
 % Limits
-ylim([0 1.4])
-xlim([30 36])
+ylim([floor(min(nodeRed.('material_differential_pressure_bar')(index1:index2))*10-1)/10, ceil(max(nodeRed.('material_differential_pressure_bar')(index1:index2))*10+1)/10])
+xlim([floor(min(nodeRed.('material_coriolis_temperature_c')(index1:index2))-1), ceil(max(nodeRed.('material_coriolis_temperature_c')(index1:index2))+1)])
 % Labels
 xlabel('Mortar temperature [C]')
 ylabel('Differential pressure [bar]')
