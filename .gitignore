@@ -136,4 +136,4 @@ dist
 analysis/*.pdf
 analysis/*.csv
 analysis/*.zip
-analysis/test
+analysis/test/
