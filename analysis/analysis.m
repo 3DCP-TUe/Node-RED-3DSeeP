@@ -266,7 +266,7 @@ box on
 % Plot data
 plot(nodeRed.minutes, nodeRed.mai_water_temp_c, '-k', 'LineWidth', 1.5);
 % Limits
-ylim([0.8*min(nodeRed.mai_water_temp_c), 1.2*max(nodeRed.mai_water_temp_c)])
+ylim([floor(min(nodeRed.mai_water_temp_c)-1), ceil(max(nodeRed.mai_water_temp_c)+1)])
 xlim(xLimits)
 % Labels
 xlabel('Time [Minutes]')
