@@ -176,8 +176,8 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.('minutes'), nodeRed.material_coriolis_temperature_c, '-k', 'LineWidth',1.5);
-plot(nodeRed.('minutes'), nodeRed.mai_temperature_pumping_chamber_c, '-b', 'LineWidth',1.5);
+plot(nodeRed.('minutes'), nodeRed.material_coriolis_temperature_c, '.k', 'MarkerSize', 2, 'LineWidth', 1.5);
+plot(nodeRed.('minutes'), nodeRed.mai_temperature_pumping_chamber_c, '.b', 'MarkerSize', 2, 'LineWidth', 1.5);
 % Limits
 ylim([26 36])
 xlim(xLimits)
@@ -264,7 +264,7 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.minutes, nodeRed.mai_water_temp_c, '-k', 'LineWidth', 1.5);
+plot(nodeRed.minutes, nodeRed.mai_water_temp_c, '.k', 'MarkerSize', 2, 'LineWidth', 1.5);
 % Limits
 ylim([floor(min(nodeRed.mai_water_temp_c)-1), ceil(max(nodeRed.mai_water_temp_c)+1)])
 xlim(xLimits)
@@ -330,9 +330,9 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.minutes, nodeRed.material_io_ai7_ambient_temperature_c, '-k', 'LineWidth', 1.5)
+plot(nodeRed.minutes, nodeRed.material_io_ai7_ambient_temperature_c, '.k', 'MarkerSize', 2, 'LineWidth', 1.5)
 yyaxis right
-plot(nodeRed.minutes, nodeRed.material_io_ai6_relative_humidity_perc, '-b', 'LineWidth', 1.5)
+plot(nodeRed.minutes, nodeRed.material_io_ai6_relative_humidity_perc, '.b', 'MarkerSize', 2, 'LineWidth', 1.5)
 % Limits
 yyaxis left
 ylim([floor(min(nodeRed.material_io_ai7_ambient_temperature_c)-2), ceil(max(nodeRed.material_io_ai7_ambient_temperature_c)+2)])
