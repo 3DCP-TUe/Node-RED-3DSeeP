@@ -16,36 +16,87 @@ cd(filepath);
 
 %% Read file and set directory
 % Option 1: Read single file
-%nodeRed = readtable('20240618_RILEM_DAY2_1.csv');
+%nodeRed = readtable('20240507_Tracer.csv');
 % Option 2: Read multiple files from custom directory
 directory = "D:\GitHub\Node-RED-3DSeeP\analysis\test";
 nodeRed = readData(directory);
 
 %% Get time in minutes and seconds
-nodeRed.('seconds') = seconds(nodeRed.('desktop_time')) - seconds(nodeRed.('desktop_time')(1));
-nodeRed.('minutes') = minutes(nodeRed.('desktop_time')) - minutes(nodeRed.('desktop_time')(1));
+nodeRed.seconds = seconds(nodeRed.desktop_time) - seconds(nodeRed.desktop_time(1));
+nodeRed.minutes = minutes(nodeRed.desktop_time) - minutes(nodeRed.desktop_time(1));
 
 %% Settings for layout
+% X-axis
 xLimits = [0 360];   % Limits of x-axis in minutes
-xTick = 30;          % Interval of thicks on x-axis in minutes
+xTick = 30;          % Interval of ticks on x-axis in minutes
+% Set default marker size and line width
+set(0, 'DefaultLineMarkerSize', 2);
+set(0, 'DefaultLineLineWidth', 1.5);
 
-%% Calculations
+%% Settings for analysis
+% Window for correlations, mean, std, etc. 
+windowStart = 60;   % Minutes 
+windowEnd = 270;    % Minutes
+
+%% Calculations: Convert sensor data
 % Differential pressure
 k = 60; % ~6 seconds, 10 samples per second
-filtered1 = movmean(nodeRed.('material_io_ai0_pressure_bar'), k, 'omitnan');
-filtered2 = movmean(nodeRed.('material_io_ai1_pressure_bar'), k, 'omitnan');
-nodeRed.('material_differential_pressure_bar') = filtered1 - filtered2;
+filtered1 = movmean(nodeRed.material_io_ai0_pressure_bar, k, 'omitnan');
+filtered2 = movmean(nodeRed.material_io_ai1_pressure_bar, k, 'omitnan');
+nodeRed.material_differential_pressure_bar = filtered1 - filtered2;
 % Filtered values from coriolis io
-nodeRed.('material_coriolis_mass_flow_filtered_90s_kg_min') = (nodeRed.('material_io_ai4_ma') - 4) / 16 * 16;
-nodeRed.('material_coriolis_density_filtered_90s_kg_m3') = (nodeRed.('material_io_ai5_ma') - 4) / 16 * 400 + 2000;
+nodeRed.material_coriolis_mass_flow_filtered_90s_kg_min = (nodeRed.material_io_ai4_ma - 4) / 16 * 16;
+nodeRed.material_coriolis_density_filtered_90s_kg_m3 = (nodeRed.material_io_ai5_ma - 4) / 16 * 400 + 2000;
 % Mixer timing
-[times, intervalTimes, runTimes] = mixerTimes(nodeRed.('minutes'), nodeRed.('mai_mixer_run_bool'));
+[times, intervalTimes, runTimes] = mixerTimes(nodeRed.minutes, nodeRed.mai_mixer_run_bool);
+intervalTimes = intervalTimes * 60; % Convert to seconds
+runTimes = runTimes * 60;           % Convert to seconds
 % Printhead pressure
 if ~any(strcmp(nodeRed.Properties.VariableNames, 'printhead_pressure_bar'))
-  nodeRed.('printhead_pressure_bar') = (nodeRed.('printhead_box1_io_ai0_ma') - 4) / 16 * 10;
+  nodeRed.printhead_pressure_bar = (nodeRed.printhead_box1_io_ai0_ma - 4) / 16 * 10;
 end
 % Temperature pumping chamber MAI MULTIMIX
-nodeRed.('mai_temperature_pumping_chamber_c') = (nodeRed.('material_io_ai2_ma') - 4) / 16 * 100;
+nodeRed.mai_temperature_pumping_chamber_c = (nodeRed.material_io_ai2_ma - 4) / 16 * 100;
+
+%% Calculate properties
+% Index of window
+[~, index1] = min(abs(nodeRed.minutes - windowStart));
+[~, index2] = min(abs(nodeRed.minutes - windowEnd));
+% Calculate mean, std, min and max
+meanValues = varfun(@(x) mean(x, 'omitnan'), nodeRed(index1:index2, :));
+stdValues = varfun(@(x) std(x, 'omitnan'), nodeRed(index1:index2, :));
+minValues = varfun(@(x) min(x, [], 'omitnan'), nodeRed(index1:index2, :));
+maxValues = varfun(@(x) max(x, [], 'omitnan'), nodeRed(index1:index2, :));
+% Remove '_Fun' from column names
+meanValues.Properties.VariableNames = strrep(minValues.Properties.VariableNames, 'Fun_', '');
+stdValues.Properties.VariableNames = strrep(maxValues.Properties.VariableNames, 'Fun_', '');
+minValues.Properties.VariableNames = strrep(minValues.Properties.VariableNames, 'Fun_', '');
+maxValues.Properties.VariableNames = strrep(maxValues.Properties.VariableNames, 'Fun_', '');
+
+%% Mixer time properties
+% Calculate indices
+[~, index3] = min(abs(times - windowStart));
+[~, index4] = min(abs(times - windowEnd));
+% Extract data within the window
+runTimes_window = runTimes(index3:index4);
+intervalTimes_window = intervalTimes(index3:index4);
+% Calculate mean, std, min, max for mixer_run_time
+meanValues.mixer_run_time = mean(runTimes_window);
+stdValues.mixer_run_time = std(runTimes_window);
+minValues.mixer_run_time = min(runTimes_window);
+maxValues.mixer_run_time = max(runTimes_window);
+% Calculate mean, std, min, max for mixer_interval_time
+meanValues.mixer_interval_time = mean(intervalTimes_window);
+stdValues.mixer_interval_time = std(intervalTimes_window);
+minValues.mixer_interval_time = min(intervalTimes_window);
+maxValues.mixer_interval_time = max(intervalTimes_window);
+% Calculate mean, std, min, max for mixer_ratio
+ratioValues = runTimes_window ./ intervalTimes_window;
+ratioValues = ratioValues(isfinite(ratioValues));
+meanValues.mixer_ratio = mean(ratioValues);
+stdValues.mixer_ratio = std(ratioValues);
+minValues.mixer_ratio = min(ratioValues);
+maxValues.mixer_ratio = max(ratioValues);
 
 %% Plot pressure
 fig = figure;
@@ -55,8 +106,8 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.('minutes'), nodeRed.('material_io_ai0_pressure_bar'), '.k', 'MarkerSize', 2)
-plot(nodeRed.('minutes'), nodeRed.('material_io_ai1_pressure_bar'), '.b', 'MarkerSize', 2)
+plot(nodeRed.minutes, nodeRed.material_io_ai0_pressure_bar, '.k')
+plot(nodeRed.minutes, nodeRed.material_io_ai1_pressure_bar, '.b')
 % Limits
 ylim([0 25])
 xlim(xLimits)
@@ -79,9 +130,9 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.('minutes'), nodeRed.('material_differential_pressure_bar'), '.k', 'MarkerSize', 2)
+plot(nodeRed.minutes, nodeRed.material_differential_pressure_bar, '.k')
 yyaxis right
-plot(nodeRed.('minutes'), nodeRed.('printhead_pressure_bar'), '.b', 'MarkerSize', 2)
+plot(nodeRed.minutes, nodeRed.printhead_pressure_bar, '.b')
 % Limits
 yyaxis left
 ylim([0 1.4])
@@ -113,7 +164,7 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.('minutes'), nodeRed.('material_coriolis_dynamic_viscocity_cp'), '.k', 'MarkerSize', 2)
+plot(nodeRed.minutes, nodeRed.material_coriolis_dynamic_viscocity_cp, '.k')
 % Limits
 ylim([0 6000])
 xlim(xLimits)
@@ -133,7 +184,7 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.('minutes'), nodeRed.('material_coriolis_exciter_current_1_ma'), '.k', 'MarkerSize', 2)
+plot(nodeRed.minutes, nodeRed.material_coriolis_exciter_current_1_ma, '.k')
 % Limits
 ylim([0 10])
 xlim(xLimits)
@@ -153,8 +204,8 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.('minutes'), nodeRed.('material_coriolis_mass_flow_kg_min'), '.k', 'MarkerSize', 2)
-plot(nodeRed.('minutes'), nodeRed.('material_coriolis_mass_flow_filtered_90s_kg_min'), '.b', 'MarkerSize', 2)
+plot(nodeRed.minutes, nodeRed.material_coriolis_mass_flow_kg_min, '.k')
+plot(nodeRed.minutes, nodeRed.material_coriolis_mass_flow_filtered_90s_kg_min, '.b')
 % Limits
 ylim([0 12])
 xlim(xLimits)
@@ -176,8 +227,8 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.('minutes'), nodeRed.material_coriolis_temperature_c, '.k', 'MarkerSize', 2, 'LineWidth', 1.5);
-plot(nodeRed.('minutes'), nodeRed.mai_temperature_pumping_chamber_c, '.b', 'MarkerSize', 2, 'LineWidth', 1.5);
+plot(nodeRed.minutes, nodeRed.material_coriolis_temperature_c, '.k')
+plot(nodeRed.minutes, nodeRed.mai_temperature_pumping_chamber_c, '.b')
 % Limits
 ylim([26 36])
 xlim(xLimits)
@@ -185,8 +236,8 @@ xlim(xLimits)
 xlabel('Time [Minutes]')
 ylabel('Mortar temperature [C]')
 % Legend
-text1 = "Coriolis sensor: " + round(mean(nodeRed.material_coriolis_temperature_c, 'omitnan')*100)/100 + sprintf(' %s ', char(177)) + round(std(nodeRed.material_coriolis_temperature_c, 'omitnan')*100)/100;
-text2 = "Pumping chamber: " + round(mean(nodeRed.mai_temperature_pumping_chamber_c, 'omitnan')*100)/100 + sprintf(' %s ', char(177)) + round(std(nodeRed.mai_temperature_pumping_chamber_c, 'omitnan')*100)/100;
+text1 = "Coriolis sensor: " + round(meanValues.material_coriolis_temperature_c*100)/100 + sprintf(' %s ', char(177)) + round(stdValues.material_coriolis_temperature_c*100)/100;
+text2 = "Pumping chamber: " + round(meanValues.mai_temperature_pumping_chamber_c*100)/100 + sprintf(' %s ', char(177)) + round(stdValues.mai_temperature_pumping_chamber_c*100)/100;
 legend(text1, text2, 'Location', 'NorthEast')
 % Layout
 set(gca, 'XTick', (0:xTick:900))
@@ -201,8 +252,8 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.('minutes'), nodeRed.('material_coriolis_density_kg_m3'), '.k', 'MarkerSize', 2)
-plot(nodeRed.('minutes'), nodeRed.('material_coriolis_density_filtered_90s_kg_m3'), '.b', 'MarkerSize', 2)
+plot(nodeRed.minutes, nodeRed.material_coriolis_density_kg_m3, '.k')
+plot(nodeRed.minutes, nodeRed.material_coriolis_density_filtered_90s_kg_m3, '.b')
 % Limits
 ylim([2320 2400])
 xlim(xLimits)
@@ -224,7 +275,7 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.('minutes'), nodeRed.('mai_pump_speed_chz')./100, '.k', 'MarkerSize', 2)
+plot(nodeRed.minutes, nodeRed.mai_pump_speed_chz./100, '.k')
 % Limits
 ylim([0 50])
 xlim(xLimits)
@@ -244,7 +295,7 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.('minutes'), nodeRed.('mai_pump_output_power_w'), '.k', 'MarkerSize', 2)
+plot(nodeRed.minutes, nodeRed.mai_pump_output_power_w, '.k')
 % Limits
 ylim([0 800])
 xlim(xLimits)
@@ -264,7 +315,7 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.minutes, nodeRed.mai_water_temp_c, '.k', 'MarkerSize', 2, 'LineWidth', 1.5);
+plot(nodeRed.minutes, nodeRed.mai_water_temp_c, '.k')
 % Limits
 ylim([floor(min(nodeRed.mai_water_temp_c)-1), ceil(max(nodeRed.mai_water_temp_c)+1)])
 xlim(xLimits)
@@ -284,8 +335,8 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.('minutes'), nodeRed.('mai_water_flow_actual_lh'), '.k', 'MarkerSize', 2)
-plot(nodeRed.('minutes'), nodeRed.('mai_water_flow_set_lh'), '.b', 'MarkerSize', 2)
+plot(nodeRed.minutes, nodeRed.mai_water_flow_actual_lh, '.k')
+plot(nodeRed.minutes, nodeRed.mai_water_flow_set_lh, '.b')
 % Limits
 ylim([160 220])
 xlim(xLimits)
@@ -307,8 +358,8 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.('minutes'), nodeRed.('mai_waterpump_output_freq_chz')./100, '.k', 'MarkerSize', 2)
-plot(nodeRed.('minutes'), nodeRed.('mai_waterpump_ref_freq_chz')./100, '.b', 'MarkerSize', 2)
+plot(nodeRed.minutes, nodeRed.mai_waterpump_output_freq_chz./100, '.k')
+plot(nodeRed.minutes, nodeRed.mai_waterpump_ref_freq_chz./100, '.b')
 % Limits
 ylim([0 30])
 xlim(xLimits)
@@ -330,9 +381,9 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.minutes, nodeRed.material_io_ai7_ambient_temperature_c, '.k', 'MarkerSize', 2, 'LineWidth', 1.5)
+plot(nodeRed.minutes, nodeRed.material_io_ai7_ambient_temperature_c, '.k')
 yyaxis right
-plot(nodeRed.minutes, nodeRed.material_io_ai6_relative_humidity_perc, '.b', 'MarkerSize', 2, 'LineWidth', 1.5)
+plot(nodeRed.minutes, nodeRed.material_io_ai6_relative_humidity_perc, '.b')
 % Limits
 yyaxis left
 ylim([floor(min(nodeRed.material_io_ai7_ambient_temperature_c)-2), ceil(max(nodeRed.material_io_ai7_ambient_temperature_c)+2)])
@@ -346,8 +397,8 @@ ylabel('Ambient temperature [C]')
 yyaxis right
 ylabel('Relative humidity [%]')
 % Legend
-text1 = "Ambient temperature: " + round(mean(nodeRed.material_io_ai7_ambient_temperature_c, 'omitnan')*100)/100 + sprintf(' %s ', char(177)) + round(std(nodeRed.material_io_ai7_ambient_temperature_c,'omitnan')*100)/100 + " C";
-text2 = "Relative humidity: " + round(mean(nodeRed.material_io_ai6_relative_humidity_perc, 'omitnan')*100)/100 + sprintf(' %s ', char(177)) + round(std(nodeRed.material_io_ai6_relative_humidity_perc,'omitnan')*100)/100 + " %";
+text1 = "Ambient temperature: " + round(meanValues.material_io_ai7_ambient_temperature_c*100)/100 + sprintf(' %s ', char(177)) + round(stdValues.material_io_ai7_ambient_temperature_c*100)/100 + " C";
+text2 = "Relative humidity: " + round(meanValues.material_io_ai6_relative_humidity_perc*100)/100 + sprintf(' %s ', char(177)) + round(stdValues.material_io_ai6_relative_humidity_perc*100)/100 + " %";
 legend(text1, text2, 'Location', 'NorthEast')
 % Layout
 set(gca, 'XTick', (0:xTick:900))
@@ -367,8 +418,8 @@ grid on
 box on
 % Plot data
 k = 8;
-plot(times, runTimes./intervalTimes, '.k', 'MarkerSize', 2, 'LineWidth', 1.5)
-plot(times, movmean(runTimes./intervalTimes, [k 0]), '-k', 'MarkerSize', 2, 'LineWidth', 1.5)
+plot(times, runTimes./intervalTimes, '.k')
+plot(times, movmean(runTimes./intervalTimes, [k 0]), '-k')
 % Limits
 ylim([0 0.4])
 xlim(xLimits)
@@ -391,10 +442,10 @@ grid on
 box on
 % Plot data
 k = 8;
-plot(times, intervalTimes*60, '.k', 'MarkerSize', 2)
-plot(times, movmean(intervalTimes*60, [k 0]), '-k', 'MarkerSize', 2, 'LineWidth', 1.5)
-plot(times, runTimes*60, '.b', 'MarkerSize', 2)
-plot(times, movmean(runTimes*60, [k 0]), '-b', 'MarkerSize', 2, 'LineWidth', 1.5)
+plot(times, intervalTimes, '.k')
+plot(times, movmean(intervalTimes, [k 0]), '-k')
+plot(times, runTimes, '.b')
+plot(times, movmean(runTimes, [k 0]), '-b')
 % Limits
 ylim([0 120])
 xlim(xLimits)
@@ -415,16 +466,11 @@ fig.Position = [1 14 11 8];
 hold on
 grid on
 box on
-% Window
-windowStart = 60; % Minutes 
-windowEnd = 270; % Minutes
-[~, index1] = min(abs(nodeRed.('minutes')-windowStart));
-[~, index2] = min(abs(nodeRed.('minutes')-windowEnd));
 % Plot data
-plot(nodeRed.('material_coriolis_temperature_c')(index1:index2), nodeRed.('material_differential_pressure_bar')(index1:index2), '.k', 'MarkerSize', 2)
+plot(nodeRed.material_coriolis_temperature_c(index1:index2), nodeRed.material_differential_pressure_bar(index1:index2), '.k')
 % Limits
-ylim([floor(min(nodeRed.('material_differential_pressure_bar')(index1:index2))*10-1)/10, ceil(max(nodeRed.('material_differential_pressure_bar')(index1:index2))*10+1)/10])
-xlim([floor(min(nodeRed.('material_coriolis_temperature_c')(index1:index2))-1), ceil(max(nodeRed.('material_coriolis_temperature_c')(index1:index2))+1)])
+ylim([floor(min(nodeRed.material_differential_pressure_bar(index1:index2))*10-1)/10, ceil(max(nodeRed.material_differential_pressure_bar(index1:index2))*10+1)/10])
+xlim([floor(min(nodeRed.material_coriolis_temperature_c(index1:index2))-1), ceil(max(nodeRed.material_coriolis_temperature_c(index1:index2))+1)])
 % Labels
 xlabel('Mortar temperature [C]')
 ylabel('Differential pressure [bar]')
