@@ -477,6 +477,25 @@ ylabel('Differential pressure [bar]')
 % Write figure
 saveFigure(fig, 'correlation_temp_dp')
 
+%% Correlation between viscocity and differential pressure
+fig = figure;
+fig.Units = 'centimeters';
+fig.Position = [1 14 11 8];
+hold on
+grid on
+box on
+% Plot data
+plot(nodeRed.material_coriolis_dynamic_viscocity_cp(index1:index2), nodeRed.material_differential_pressure_bar(index1:index2), '.k')
+% Limits
+ylim([floor(min(nodeRed.material_differential_pressure_bar(index1:index2))*10-1)/10, ceil(max(nodeRed.material_differential_pressure_bar(index1:index2))*10+1)/10])
+xlim([floor(min(nodeRed.material_coriolis_dynamic_viscocity_cp(index1:index2))/500)*500, ceil(max(nodeRed.material_coriolis_dynamic_viscocity_cp(index1:index2))/500)*500])
+% Labels
+xlabel('Apparent dynamic viscocity [cP]')
+ylabel('Differential pressure [bar]')
+% Write figure
+saveFigure(fig, 'correlation_viscocity_dp')
+
+
 %% End
 disp('End of script')
 
