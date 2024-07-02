@@ -15,10 +15,8 @@ path = mfilename('fullpath');
 cd(filepath);
 
 %% Read file and set directory
-% Option 1: Read single file
-%nodeRed = readtable('20240507_Tracer.csv');
-% Option 2: Read multiple files from custom directory
-directory = "D:\GitHub\Node-RED-3DSeeP\analysis\test";
+% Read multiple files from custom directory
+directory = "D:\GitHub\Node-RED-3DSeeP\analysis\logs\20240701_Alberto\";
 nodeRed = readData(directory);
 
 %% Get time in minutes and seconds
@@ -35,8 +33,8 @@ set(0, 'DefaultLineLineWidth', 1.5);
 
 %% Settings for analysis
 % Window for correlations, mean, std, etc. 
-windowStart = 60;   % Minutes 
-windowEnd = 270;    % Minutes
+windowStart = 120;   % Minutes 
+windowEnd = 300;    % Minutes
 
 %% Calculations: Convert sensor data
 % Differential pressure
@@ -565,10 +563,10 @@ function [data] = readData(directory)
     %Read files and append if multiple
     data = [];
     for i = 1:length(files)
-        data = [data; readtable(files(i).name)];
+        data = [data; readtable(fullfile(directory, files(i).name))];
     end
     % Create and navigate to save folder
-    saveFolderName = fullfile(directory, "Results_" + extractBefore(files(1).name, '.'));
+    saveFolderName = fullfile(directory, "Results");
     if ~exist(saveFolderName, 'dir' )
         mkdir(saveFolderName)
     end
