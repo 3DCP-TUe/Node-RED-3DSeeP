@@ -23,12 +23,13 @@
         "nodes": [
             "27c0a078d32b4020",
             "05878a847fda9dcc",
-            "33e34773cd4f118c"
+            "33e34773cd4f118c",
+            "6110be169bf9c231"
         ],
         "x": 3254,
         "y": 199,
         "w": 532,
-        "h": 122
+        "h": 162
     },
     {
         "id": "769cbc7c61ddfd9b",
@@ -834,9 +835,32 @@
         "wires": [
             [
                 "05878a847fda9dcc",
-                "27c0a078d32b4020"
+                "27c0a078d32b4020",
+                "6110be169bf9c231"
             ]
         ]
+    },
+    {
+        "id": "6110be169bf9c231",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "g": "b1b0fd273f6291ec",
+        "group": "c78a245d5457d92a",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Mixer ratio [-]",
+        "format": "{{msg.prediction.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3630,
+        "y": 320,
+        "wires": []
     },
     {
         "id": "abe95d84123fcf6c",
