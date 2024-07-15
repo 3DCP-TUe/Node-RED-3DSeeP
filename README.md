@@ -1,6 +1,6 @@
 # Node-RED 3DSeeP
 
-General dashboard and logger for the 3D concrete printer in the Structures Lab at Eindhoven University of Technology. 
+General dashboard and logger for the 3D concrete printer in the [Structures Laboratory](https://www.tue.nl/en/research/research-labs/structures-laboratory) at [Eindhoven University of Technology](https://www.tue.nl/en/). 
 
 ## Dependencies
 
@@ -30,8 +30,8 @@ Technical support:
 ## Funding
 
 This software could be developed and maintained with the financial support of the following projects:
-- The project _"Parametric mortar design and control of system parameters"_ funded by Saint-Gobain Weber Beamix.
-- The project _"Additive manufacturing of functional construction materials on-demand"_ (with project number 17895) of the research program _"Materialen NL: Challenges 2018"_ which is financed by the Dutch Research Council (NWO).
+- The project _"Parametric mortar design and control of system parameters"_ funded by [Saint-Gobain Weber Beamix](https://www.nl.weber/).
+- The project _"Additive manufacturing of functional construction materials on-demand"_ (with project number 17895) of the research program _"Materialen NL: Challenges 2018"_ which is financed by the [Dutch Research Council](https://www.nwo.nl/en) (NWO).
 
 ## License
 
