@@ -19,15 +19,16 @@ msg.payload = {
 
     // mtec
     'mtec_source_time': mtec.mtec_source_time ?? NaN,
+	'mtec_water_pump_run': +mtec.mtec_water_pump_run ?? NaN,
+	'mtec_water_solenoid_valve': +mtec.mtec_water_solenoid_valve ?? NaN,
+	'mtec_water_water_valve': mtec.mtec_water_valve_actual ?? NaN,
     'mtec_water_temp': mtec.mtec_water_temp?.toFixed(2) ?? NaN,
-    'mtec_water_flow': mtec.mtec_water_flow?.toFixed(2) ?? NaN,
-    'mtec_dry_mortar_temp': mtec.mtec_dry_mortar_temp?.toFixed(2) ?? NaN,
-    'mtec_pump_velocity': mtec.mtec_pump_velocity?.toFixed(2) ?? NaN,
-    'mtec_set_value_pump_speed': mtec.mtec_set_value_pump_speed?.toFixed(2) ?? NaN,
-    'mtec_solenoid_valve': +mtec.mtec_solenoid_valve ?? NaN,
-    'mtec_water_pump_run': +mtec.mtec_water_pump_run ?? NaN,
+    'mtec_water_flow_set': mtec.mtec_water_flow_set ?? NaN,
+    'mtec_water_flow_actual': mtec.mtec_water_flow_actual?.toFixed(2) ?? NaN,
     'mtec_mixer_run': +mtec.mtec_mixer_run ?? NaN,
-    'mtec_water_dosing_turns': mtec.mtec_water_dosing_turns?.toFixed(1) ?? NaN,
+	'mtec_state_wet_material_probe': +mtec.mtec_state_wet_material_probe ?? NaN,
+	'mtec_pump_speed_set': mtec.mtec_pump_speed_set ?? NaN,
+    'mtec_pump_speed_actual': mtec.mtec_pump_speed_actual ?? NaN,
 
     // MAI
     'mai_source_time': mai.mai_source_time ?? NaN,

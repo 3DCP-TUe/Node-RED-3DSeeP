@@ -36,11 +36,11 @@
         "id": "0b08100827d5f1c3",
         "type": "OpcUa-Item",
         "z": "09f74a936e34ed02",
-        "item": "ns=4;s=|var|ECC2100 0.8S 1131.Application.GVL_OPC.Livebit2DuoMix.Value.Value;datatype=Boolean",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.Livebit2extern",
         "datatype": "Boolean",
         "value": "",
         "name": "Livebit2extern",
-        "x": 860,
+        "x": 880,
         "y": 360,
         "wires": [
             [
@@ -69,8 +69,8 @@
         "receiveBufferSize": "",
         "sendBufferSize": "",
         "name": "",
-        "x": 1180,
-        "y": 440,
+        "x": 1340,
+        "y": 520,
         "wires": [
             [],
             []
@@ -80,7 +80,7 @@
         "id": "52bed2e245433535",
         "type": "inject",
         "z": "09f74a936e34ed02",
-        "name": "Berghof communication status",
+        "name": "Communication status",
         "props": [
             {
                 "p": "topic",
@@ -92,7 +92,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "ns=4;s=|var|ECC2100 0.8S 1131.Application.GVL_OPC.Livebit2DuoMix;datatype=Boolean",
-        "x": 390,
+        "x": 370,
         "y": 360,
         "wires": [
             [
@@ -108,7 +108,7 @@
         "label": "Pump velocity",
         "tooltip": "",
         "group": "2159e8a83bb50b67",
-        "order": 2,
+        "order": 3,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -119,7 +119,7 @@
         "className": "",
         "topicType": "msg",
         "x": 480,
-        "y": 440,
+        "y": 620,
         "wires": [
             [
                 "6ddb910815ccf34d"
@@ -130,12 +130,12 @@
         "id": "b62c4f4064b75c9c",
         "type": "OpcUa-Item",
         "z": "09f74a936e34ed02",
-        "item": "ns=4;s=|var|ECC2100 0.8S 1131.Application.GVL_OPC.set_value_mixingpump.Value.Value;datatype=Uint16",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.set_value_mixingpump",
         "datatype": "UInt16",
         "value": "",
-        "name": "Write speed to Berghof",
-        "x": 880,
-        "y": 440,
+        "name": "Write pump velocity",
+        "x": 890,
+        "y": 620,
         "wires": [
             [
                 "28934a46c30d4da5"
@@ -146,12 +146,12 @@
         "id": "eb1bd0f2fca4d807",
         "type": "OpcUa-Item",
         "z": "09f74a936e34ed02",
-        "item": "ns=4;s=|var|ECC2100 0.8S 1131.Application.GVL_OPC.Remote_start.Value.Value;datatype=Uint16",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.Remote_start",
         "datatype": "Boolean",
         "value": "",
         "name": "Remote start",
-        "x": 850,
-        "y": 540,
+        "x": 870,
+        "y": 400,
         "wires": [
             [
                 "28934a46c30d4da5"
@@ -185,7 +185,7 @@
         "animate": false,
         "className": "",
         "x": 660,
-        "y": 540,
+        "y": 400,
         "wires": [
             [
                 "eb1bd0f2fca4d807"
@@ -197,7 +197,7 @@
         "type": "ui_text",
         "z": "09f74a936e34ed02",
         "group": "2159e8a83bb50b67",
-        "order": 3,
+        "order": 4,
         "width": 1,
         "height": 1,
         "name": "",
@@ -205,8 +205,12 @@
         "format": "{{msg.payload}}",
         "layout": "row-spread",
         "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
         "x": 450,
-        "y": 480,
+        "y": 660,
         "wires": []
     },
     {
@@ -214,15 +218,15 @@
         "type": "function",
         "z": "09f74a936e34ed02",
         "name": "",
-        "func": "if( msg.payload<170){msg.payload=170}\nelse if(msg.payload>420){msg.payload=420}\nmsg.payload=(msg.payload-169.2)*65000/(420-169.2)\nreturn msg",
+        "func": "if (msg.payload<80) { msg.payload = 80 }\nelse if (msg.payload > 190) { msg.payload = 190 }\nmsg.payload = msg.payload * 65000 / 192.1\nreturn msg",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 640,
-        "y": 440,
+        "x": 680,
+        "y": 620,
         "wires": [
             [
                 "b62c4f4064b75c9c"
@@ -250,8 +254,8 @@
         "topic": "",
         "payload": "false",
         "payloadType": "bool",
-        "x": 470,
-        "y": 540,
+        "x": 310,
+        "y": 400,
         "wires": [
             [
                 "531f6c94260ac779"
@@ -277,15 +281,107 @@
         "once": true,
         "onceDelay": "1",
         "topic": "",
-        "payload": "170",
+        "payload": "100",
         "payloadType": "num",
         "x": 310,
-        "y": 440,
+        "y": 620,
         "wires": [
             [
                 "b8805f6fab92b756"
             ]
         ]
+    },
+    {
+        "id": "a4318766a8d6469e",
+        "type": "OpcUa-Item",
+        "z": "09f74a936e34ed02",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.set_value_water_flow",
+        "datatype": "Float",
+        "value": "",
+        "name": "Water flow set",
+        "x": 880,
+        "y": 720,
+        "wires": [
+            [
+                "28934a46c30d4da5"
+            ]
+        ]
+    },
+    {
+        "id": "a27d53afc9220b7e",
+        "type": "ui_text_input",
+        "z": "09f74a936e34ed02",
+        "name": "",
+        "label": "Water flow set",
+        "tooltip": "",
+        "group": "2159e8a83bb50b67",
+        "order": 5,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 480,
+        "y": 720,
+        "wires": [
+            [
+                "a4318766a8d6469e"
+            ]
+        ]
+    },
+    {
+        "id": "7b7b5ee57c8e8f36",
+        "type": "inject",
+        "z": "09f74a936e34ed02",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "300",
+        "payloadType": "num",
+        "x": 310,
+        "y": 720,
+        "wires": [
+            [
+                "a27d53afc9220b7e"
+            ]
+        ]
+    },
+    {
+        "id": "0f011a4158962d7b",
+        "type": "ui_text",
+        "z": "09f74a936e34ed02",
+        "group": "2159e8a83bb50b67",
+        "order": 6,
+        "width": 1,
+        "height": 1,
+        "name": "",
+        "label": "L/h",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 450,
+        "y": 760,
+        "wires": []
     },
     {
         "id": "b02adcf7.368dd",
