@@ -74,7 +74,7 @@
         "id": "3f1241c96c7c2565",
         "type": "link in",
         "z": "ee47eb5696c14296",
-        "name": "Mai mixer on.off in",
+        "name": "mtec mixer on/off in",
         "links": [
             "769cbc7c61ddfd9b"
         ],
