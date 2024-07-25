@@ -16,7 +16,7 @@ cd(filepath);
 
 %% Read file and set directory
 % Read multiple files from custom directory
-directory = "D:\GitHub\Node-RED-3DSeeP\analysis\logs\20240701_Alberto\";
+directory = "D:\GitHub\Node-RED-3DSeeP\analysis\logs\20240722_Arjen\";
 nodeRed = readData(directory);
 
 %% Get time in minutes and seconds
@@ -25,16 +25,17 @@ nodeRed.minutes = minutes(nodeRed.desktop_time) - minutes(nodeRed.desktop_time(1
 
 %% Settings for layout
 % X-axis
-xLimits = [0 360];   % Limits of x-axis in minutes
-xTick = 30;          % Interval of ticks on x-axis in minutes
+xTick = 60; % Interval of ticks on x-axis in minutes
+xLimits = [floorToNearest(nodeRed.desktop_time(1), xTick) ceilToNearest(nodeRed.desktop_time(end), xTick)];
+xticks = xLimits(1):minutes(xTick):xLimits(2);
 % Set default marker size and line width
 set(0, 'DefaultLineMarkerSize', 2);
 set(0, 'DefaultLineLineWidth', 1.5);
 
 %% Settings for analysis
 % Window for correlations, mean, std, etc. 
-windowStart = 120;   % Minutes 
-windowEnd = 300;    % Minutes
+windowStart = duration(10, 30, 0); 
+windowEnd = duration(14, 0, 0);
 
 %% Calculations: Convert sensor data
 % Differential pressure
@@ -46,9 +47,7 @@ nodeRed.material_differential_pressure_bar = filtered1 - filtered2;
 nodeRed.material_coriolis_mass_flow_filtered_90s_kg_min = (nodeRed.material_io_ai4_ma - 4) / 16 * 16;
 nodeRed.material_coriolis_density_filtered_90s_kg_m3 = (nodeRed.material_io_ai5_ma - 4) / 16 * 400 + 2000;
 % Mixer timing
-[times, intervalTimes, runTimes] = mixerTimes(nodeRed.minutes, nodeRed.mai_mixer_run_bool);
-intervalTimes = intervalTimes * 60; % Convert to seconds
-runTimes = runTimes * 60;           % Convert to seconds
+[times, intervalTimes, runTimes] = mixerTimes(nodeRed.desktop_time, nodeRed.mai_mixer_run_bool);
 % Printhead pressure
 if ~any(strcmp(nodeRed.Properties.VariableNames, 'printhead_pressure_bar'))
   nodeRed.printhead_pressure_bar = (nodeRed.printhead_box1_io_ai0_ma - 4) / 16 * 10;
@@ -58,8 +57,8 @@ nodeRed.mai_temperature_pumping_chamber_c = (nodeRed.material_io_ai2_ma - 4) / 1
 
 %% Calculate properties
 % Index of window
-[~, index1] = min(abs(nodeRed.minutes - windowStart));
-[~, index2] = min(abs(nodeRed.minutes - windowEnd));
+[~, index1] = min(abs(nodeRed.desktop_time - windowStart));
+[~, index2] = min(abs(nodeRed.desktop_time - windowEnd));
 % Calculate mean, std, min and max
 meanValues = varfun(@(x) mean(x, 'omitnan'), nodeRed(index1:index2, :));
 stdValues = varfun(@(x) std(x, 'omitnan'), nodeRed(index1:index2, :));
@@ -104,19 +103,19 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.minutes, nodeRed.material_io_ai0_pressure_bar, '.k')
-plot(nodeRed.minutes, nodeRed.material_io_ai1_pressure_bar, '.b')
+plot(nodeRed.desktop_time, nodeRed.material_io_ai0_pressure_bar, '.k')
+plot(nodeRed.desktop_time, nodeRed.material_io_ai1_pressure_bar, '.b')
 % Limits
 ylim([0 25])
 xlim(xLimits)
 % Labels
-xlabel('Time [Minutes]')
+xlabel('Time')
 ylabel('Pressure [bar]')
 % Legend
 legend('Pressure sensor 1', 'Pressure sensor 2', 'Location', 'NorthEast')
 % Layout
-set(gca, 'XTick', (0:xTick:900))
-ax1=gca;
+ax1 = gca;
+set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
 saveFigure(fig, 'pressure')
 
@@ -128,9 +127,9 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.minutes, nodeRed.material_differential_pressure_bar, '.k')
+plot(nodeRed.desktop_time, nodeRed.material_differential_pressure_bar, '.k')
 yyaxis right
-plot(nodeRed.minutes, nodeRed.printhead_pressure_bar, '.b')
+plot(nodeRed.desktop_time, nodeRed.printhead_pressure_bar, '.b')
 % Limits
 yyaxis left
 ylim([0 1.4])
@@ -138,7 +137,7 @@ yyaxis right
 ylim([0 1.4])
 xlim(xLimits)
 % Labels
-xlabel('Time [Minutes]')
+xlabel('Time')
 yyaxis left
 ylabel('Differential pressure [bar]')
 yyaxis right
@@ -146,7 +145,8 @@ ylabel('Differential pressure [bar]')
 % Legend
 legend('Differential pressure coriolis', 'Differential pressure printhead', 'Location', 'NorthEast')
 % Layout
-set(gca, 'XTick', (0:xTick:900))
+ax1 = gca;
+set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 yyaxis left
 set(gca, 'YColor','k')
 yyaxis right
@@ -162,15 +162,16 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.minutes, nodeRed.material_coriolis_dynamic_viscocity_cp, '.k')
+plot(nodeRed.desktop_time, nodeRed.material_coriolis_dynamic_viscocity_cp, '.k')
 % Limits
 ylim([0 6000])
 xlim(xLimits)
 % Labels
-xlabel('Time [Minutes]')
+xlabel('Time')
 ylabel('Apparent dynamic viscocity [cP]')
 % Layout
-set(gca, 'XTick', (0:xTick:900))
+ax1 = gca;
+set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
 saveFigure(fig, 'viscocity')
 
@@ -182,15 +183,16 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.minutes, nodeRed.material_coriolis_exciter_current_1_ma, '.k')
+plot(nodeRed.desktop_time, nodeRed.material_coriolis_exciter_current_1_ma, '.k')
 % Limits
 ylim([0 10])
 xlim(xLimits)
 % Labels
-xlabel('Time [Minutes]')
+xlabel('Time')
 ylabel('Exciter current 1 [mA]')
 % Layout
-set(gca, 'XTick', (0:xTick:900))
+ax1 = gca;
+set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
 saveFigure(fig, 'exciter_current_1')
 
@@ -202,18 +204,19 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.minutes, nodeRed.material_coriolis_mass_flow_kg_min, '.k')
-plot(nodeRed.minutes, nodeRed.material_coriolis_mass_flow_filtered_90s_kg_min, '.b')
+plot(nodeRed.desktop_time, nodeRed.material_coriolis_mass_flow_kg_min, '.k')
+plot(nodeRed.desktop_time, nodeRed.material_coriolis_mass_flow_filtered_90s_kg_min, '.b')
 % Limits
 ylim([0 12])
 xlim(xLimits)
 % Labels
-xlabel('Time [Minutes]')
+xlabel('Time')
 ylabel('Mass flow rate [kg/min]')
 % Legend
 legend('Unfiltered', 'Filter E+H 90s', 'Location', 'NorthEast')
 % Layout
-set(gca, 'XTick', (0:xTick:900))
+ax1 = gca;
+set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
 saveFigure(fig, 'mass_flow')
 
@@ -225,20 +228,21 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.minutes, nodeRed.material_coriolis_temperature_c, '.k')
-plot(nodeRed.minutes, nodeRed.mai_temperature_pumping_chamber_c, '.b')
+plot(nodeRed.desktop_time, nodeRed.material_coriolis_temperature_c, '.k')
+plot(nodeRed.desktop_time, nodeRed.mai_temperature_pumping_chamber_c, '.b')
 % Limits
 ylim([26 36])
 xlim(xLimits)
 % Labels
-xlabel('Time [Minutes]')
+xlabel('Time')
 ylabel('Mortar temperature [C]')
 % Legend
 text1 = "Coriolis sensor: " + round(meanValues.material_coriolis_temperature_c*100)/100 + sprintf(' %s ', char(177)) + round(stdValues.material_coriolis_temperature_c*100)/100;
 text2 = "Pumping chamber: " + round(meanValues.mai_temperature_pumping_chamber_c*100)/100 + sprintf(' %s ', char(177)) + round(stdValues.mai_temperature_pumping_chamber_c*100)/100;
 legend(text1, text2, 'Location', 'NorthEast')
 % Layout
-set(gca, 'XTick', (0:xTick:900))
+ax1 = gca;
+set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
 saveFigure(fig, 'mortar_temperature')
 
@@ -250,18 +254,19 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.minutes, nodeRed.material_coriolis_density_kg_m3, '.k')
-plot(nodeRed.minutes, nodeRed.material_coriolis_density_filtered_90s_kg_m3, '.b')
+plot(nodeRed.desktop_time, nodeRed.material_coriolis_density_kg_m3, '.k')
+plot(nodeRed.desktop_time, nodeRed.material_coriolis_density_filtered_90s_kg_m3, '.b')
 % Limits
 ylim([2320 2400])
 xlim(xLimits)
 % Labels
-xlabel('Time [Minutes]')
+xlabel('Time')
 ylabel('Density [kg/m^{3}]')
 % Legend
 legend('Unfiltered', 'Filter E+H 90s', 'Location', 'NorthEast')
 % Layout
-set(gca, 'XTick', (0:xTick:900))
+ax1 = gca;
+set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
 saveFigure(fig, 'density')
 
@@ -273,15 +278,16 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.minutes, nodeRed.mai_pump_speed_chz./100, '.k')
+plot(nodeRed.desktop_time, nodeRed.mai_pump_speed_chz./100, '.k')
 % Limits
 ylim([0 50])
 xlim(xLimits)
 % Labels
-xlabel('Time [Minutes]')
+xlabel('Time')
 ylabel('Pump frequency [Hz]')
 % Layout
-set(gca, 'XTick', (0:xTick:900))
+ax1 = gca;
+set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
 saveFigure(fig, 'mortar_pump_frequency')
 
@@ -293,15 +299,16 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.minutes, nodeRed.mai_pump_output_power_w, '.k')
+plot(nodeRed.desktop_time, nodeRed.mai_pump_output_power_w, '.k')
 % Limits
 ylim([0 800])
 xlim(xLimits)
 % Labels
-xlabel('Time [Minutes]')
+xlabel('Time')
 ylabel('Pump output power [W]')
 % Layout
-set(gca, 'XTick', (0:xTick:900))
+ax1 = gca;
+set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
 saveFigure(fig, 'mortar_pump_output_power')
 
@@ -313,15 +320,16 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.minutes, nodeRed.mai_water_temp_c, '.k')
+plot(nodeRed.desktop_time, nodeRed.mai_water_temp_c, '.k')
 % Limits
 ylim([floor(min(nodeRed.mai_water_temp_c)-1), ceil(max(nodeRed.mai_water_temp_c)+1)])
 xlim(xLimits)
 % Labels
-xlabel('Time [Minutes]')
+xlabel('Time')
 ylabel('Temperature [C]')
 % Layout
-set(gca, 'XTick', (0:xTick:900))
+ax1 = gca;
+set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
 saveFigure(fig, 'water_temperature')
 
@@ -333,18 +341,19 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.minutes, nodeRed.mai_water_flow_actual_lh, '.k')
-plot(nodeRed.minutes, nodeRed.mai_water_flow_set_lh, '.b')
+plot(nodeRed.desktop_time, nodeRed.mai_water_flow_actual_lh, '.k')
+plot(nodeRed.desktop_time, nodeRed.mai_water_flow_set_lh, '.b')
 % Limits
 ylim([160 220])
 xlim(xLimits)
 % Labels
-xlabel('Time [Minutes]')
+xlabel('Time')
 ylabel('Water flow [L/h]')
 % Legend
 legend('Actual', 'Setpoint', 'Location', 'NorthEast')
 % Layout
-set(gca, 'XTick', (0:xTick:900))
+ax1 = gca;
+set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
 saveFigure(fig, 'water_flow')
 
@@ -356,18 +365,19 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.minutes, nodeRed.mai_waterpump_output_freq_chz./100, '.k')
-plot(nodeRed.minutes, nodeRed.mai_waterpump_ref_freq_chz./100, '.b')
+plot(nodeRed.desktop_time, nodeRed.mai_waterpump_output_freq_chz./100, '.k')
+plot(nodeRed.desktop_time, nodeRed.mai_waterpump_ref_freq_chz./100, '.b')
 % Limits
 ylim([0 30])
 xlim(xLimits)
 % Labels
-xlabel('Time [Minutes]')
+xlabel('Time')
 ylabel('Water pump freq. [Hz]')
 % Legend
 legend('Actual', 'Reference', 'Location', 'NorthEast')
 % Layout
-set(gca, 'XTick', (0:xTick:900))
+ax1 = gca;
+set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
 saveFigure(fig, 'water_pump_frequency')
 
@@ -379,9 +389,9 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.minutes, nodeRed.material_io_ai7_ambient_temperature_c, '.k')
+plot(nodeRed.desktop_time, nodeRed.material_io_ai7_ambient_temperature_c, '.k')
 yyaxis right
-plot(nodeRed.minutes, nodeRed.material_io_ai6_relative_humidity_perc, '.b')
+plot(nodeRed.desktop_time, nodeRed.material_io_ai6_relative_humidity_perc, '.b')
 % Limits
 yyaxis left
 ylim([floor(min(nodeRed.material_io_ai7_ambient_temperature_c)-2), ceil(max(nodeRed.material_io_ai7_ambient_temperature_c)+2)])
@@ -389,7 +399,7 @@ yyaxis right
 ylim([floor(min(nodeRed.material_io_ai6_relative_humidity_perc)-2), ceil(max(nodeRed.material_io_ai6_relative_humidity_perc)+2)])
 xlim(xLimits)
 % Labels
-xlabel('Time [Minutes]')
+xlabel('Time')
 yyaxis left
 ylabel('Ambient temperature [C]')
 yyaxis right
@@ -399,7 +409,8 @@ text1 = "Ambient temperature: " + round(meanValues.material_io_ai7_ambient_tempe
 text2 = "Relative humidity: " + round(meanValues.material_io_ai6_relative_humidity_perc*100)/100 + sprintf(' %s ', char(177)) + round(stdValues.material_io_ai6_relative_humidity_perc*100)/100 + " %";
 legend(text1, text2, 'Location', 'NorthEast')
 % Layout
-set(gca, 'XTick', (0:xTick:900))
+ax1 = gca;
+set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 yyaxis left
 set(gca, 'YColor','k')
 yyaxis right
@@ -419,15 +430,16 @@ k = 8;
 plot(times, runTimes./intervalTimes, '.k')
 plot(times, movmean(runTimes./intervalTimes, [k 0]), '-k')
 % Limits
-ylim([0 0.4])
 xlim(xLimits)
+ylim([0 0.4])
 % Labels
-xlabel('Time [Minutes]')
+xlabel('Time')
 ylabel('Run time / interval time')
 % Legend
 legend('Single run', sprintf('Moving mean k=%d', k), 'Location', 'NorthEast')
 % Layout
-set(gca, 'XTick', (0:xTick:900))
+ax1 = gca;
+set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
 saveFigure(fig, 'mixer_times_ratio')
 
@@ -445,15 +457,16 @@ plot(times, movmean(intervalTimes, [k 0]), '-k')
 plot(times, runTimes, '.b')
 plot(times, movmean(runTimes, [k 0]), '-b')
 % Limits
-ylim([0 120])
 xlim(xLimits)
+ylim([0 120])
 % Labels
-xlabel('Time [Minutes]')
+xlabel('Time')
 ylabel('Mixer times [Seconds]')
 % Legend
 legend('Interval time', sprintf('Interval time mov. mean k=%d', k), 'Run time', sprintf('Run time mov. mean k=%d', k), 'Location', 'NorthEast')
 % Layout
-set(gca, 'XTick', (0:xTick:900))
+ax1 = gca;
+set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
 saveFigure(fig, 'mixer_times')
 
@@ -584,7 +597,7 @@ function [times, intervalTimes, runTimes] = mixerTimes(time, bools)
     boolsFiltered(end) = 0;
     % Preallocate output arrays
     max_transitions = sum(diff(boolsFiltered) ~= 0);
-    times = zeros(1, max_transitions);
+    times = duration.empty(max_transitions, 0);
     intervalTimes = zeros(1, max_transitions);
     runTimes = zeros(1, max_transitions);
     % Initialize variables
@@ -597,14 +610,14 @@ function [times, intervalTimes, runTimes] = mixerTimes(time, bools)
         if (boolsFiltered(i-1) == 0 && boolsFiltered(i) == 1)
             if ~isnan(startTime)
                 intervalIndex = intervalIndex + 1;
-                intervalTimes(intervalIndex) = timeFiltered(i) - startTime;
+                intervalTimes(intervalIndex) = seconds(timeFiltered(i) - startTime);
             end
         startTime = timeFiltered(i);
         % End of mixer run
         elseif (boolsFiltered(i-1) == 1 && boolsFiltered(i) == 0)
             runIndex = runIndex + 1;
             endTime = timeFiltered(i);
-            runTimes(runIndex) = endTime - startTime;
+            runTimes(runIndex) = seconds(endTime - startTime);
             times(runIndex) = startTime;
         end
     end
@@ -622,4 +635,34 @@ function [] = saveFigure(fig, name)
     set(gcf, 'PaperPosition', [0 0 width height]);
     set(gcf, 'PaperSize', [width height]); 
     saveas(fig, name, 'pdf')
+end
+
+% Floor duration
+function flooredDuration = floorToNearest(d, m)
+    % Convert the duration to total minutes
+    totalMinutes = minutes(d);
+    % Determine the nearest floor in minutes
+    flooredMinutes = floor(totalMinutes / m) * m;
+    % Convert minutes back to duration
+    flooredHours = floor(flooredMinutes / 60);
+    flooredMinutes = mod(flooredMinutes, 60);
+    flooredDuration = duration(flooredHours, flooredMinutes, 0);
+end
+
+% Ceil duration
+function ceiledDuration = ceilToNearest(d, m)   
+    % Convert the duration to total minutes
+    totalMinutes = minutes(d);
+    % Determine the nearest ceil in minutes
+    if mod(totalMinutes, m) == 0
+        % If already at an exact multiple of m
+        ceiledMinutes = totalMinutes;
+    else
+        % Round up to the next multiple of m
+        ceiledMinutes = ceil(totalMinutes / m) * m;
+    end
+    % Convert minutes back to duration
+    ceiledHours = floor(ceiledMinutes / 60);
+    ceiledMinutes = mod(ceiledMinutes, 60);
+    ceiledDuration = duration(ceiledHours, ceiledMinutes, 0);
 end
