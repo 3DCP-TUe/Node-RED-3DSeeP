@@ -18,6 +18,15 @@ Nodes:
 - [node-red-contrib-throttle](https://flows.nodered.org/node/node-red-contrib-throttle) v0.1.7
 - [node-red-contrib-dashboard](https://flows.nodered.org/node/node-red-dashboard) v3.6.5
 
+## Version numbering
+Node-RED-3DSeeP uses the following versioning scheme: 
+
+```
+0.x.x ---> MAJOR version: incompatible changes; for example, columns of the CSV are removed or renamed. 
+x.0.x ---> MINOR version: functionality added in a backward compatible manner; for example, columns are added to the CSV file. 
+x.x.0 ---> PATCH version: small backward compatible changes; for example, the layout or controls on the dashboard were changed. 
+```
+
 ## Credits
 
 Authors: 
