@@ -22,10 +22,12 @@ Nodes:
 Node-RED-3DSeeP uses the following versioning scheme: 
 
 ```
-0.x.x ---> MAJOR version: incompatible changes; for example, columns of the CSV are removed or renamed. 
+0.x.x ---> MAJOR version: incompatible changes; for example, columns of the CSV file are removed or renamed. 
 x.0.x ---> MINOR version: functionality added in a backward compatible manner; for example, columns are added to the CSV file. 
 x.x.0 ---> PATCH version: small backward compatible changes; for example, the layout or controls on the dashboard were changed. 
 ```
+
+Changes that change the data logger's CSV file result in at least a new minor release. 
 
 ## Credits
 
