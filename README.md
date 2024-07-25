@@ -19,6 +19,7 @@ Nodes:
 - [node-red-contrib-dashboard](https://flows.nodered.org/node/node-red-dashboard) v3.6.5
 
 ## Version numbering
+
 Node-RED-3DSeeP uses the following versioning scheme: 
 
 ```
