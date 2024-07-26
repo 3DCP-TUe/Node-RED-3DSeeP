@@ -25,7 +25,7 @@ nodeRed.minutes = minutes(nodeRed.desktop_time) - minutes(nodeRed.desktop_time(1
 
 %% Settings for layout
 % X-axis
-xTick = 60; % Interval of ticks on x-axis in minutes
+xTick = 30; % Interval of ticks on x-axis in minutes
 xLimits = [floorToNearest(nodeRed.desktop_time(1), xTick) ceilToNearest(nodeRed.desktop_time(end), xTick)];
 xticks = xLimits(1):minutes(xTick):xLimits(2);
 % Set default marker size and line width
@@ -34,8 +34,8 @@ set(0, 'DefaultLineLineWidth', 1.5);
 
 %% Settings for analysis
 % Window for correlations, mean, std, etc. 
-windowStart = duration(10, 30, 0); 
-windowEnd = duration(14, 0, 0);
+windowStart = duration(10, 17, 0); 
+windowEnd = duration(12, 8, 0);
 
 %% Calculations: Convert sensor data
 % Differential pressure
