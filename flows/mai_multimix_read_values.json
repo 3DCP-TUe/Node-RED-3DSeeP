@@ -662,7 +662,7 @@
         "datatype": "Float",
         "value": "",
         "name": "mai_water_temp",
-        "x": 580,
+        "x": 590,
         "y": 640,
         "wires": [
             [
@@ -1192,7 +1192,7 @@
         "width": 6,
         "height": 1,
         "name": "",
-        "label": "Last batch duration [s]",
+        "label": "Last run time [s]",
         "format": "{{msg.batch_time.toFixed(1)}}",
         "layout": "row-spread",
         "className": "",
@@ -1200,7 +1200,7 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 4200,
+        "x": 4180,
         "y": 140,
         "wires": []
     },
@@ -1236,7 +1236,7 @@
         "width": 6,
         "height": 1,
         "name": "",
-        "label": "Mixer ratio [-]",
+        "label": "Mixer time ratio [-]",
         "format": "{{msg.prediction.toFixed(3)}}",
         "layout": "row-spread",
         "className": "",
@@ -1244,7 +1244,7 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 4170,
+        "x": 4190,
         "y": 220,
         "wires": []
     },
