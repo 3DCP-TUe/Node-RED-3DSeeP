@@ -2,14 +2,20 @@ global.set("name",msg.payload);
 var data ="desktop_time,"+
 
     "mtec_source_time,"+
+    "mtec_remote_start_bool,"+
+    "mtec_water_control_active_bool,"+ 
+    "mtec_water_start_control_s,"+ 
     "mtec_water_pump_run_bool,"+
     "mtec_water_solenoid_valve_bool,"+
-    "mtec_water_water_valve_actual,"+
+    "mtec_water_water_valve_actual_perc,"+
     "mtec_water_temp_c,"+
     "mtec_water_flow_set_l_min,"+
     "mtec_water_flow_actual_l_min,"+
     "mtec_mixer_run_bool,"+
     "mtec_state_wet_material_probe_bool,"+
+    "mtec_state_delay_time_wet_probe_bool,"+
+    "mtec_delay_time_wet_probe_dynamically_s,"+
+    "mtec_delay_time_wet_probe_statically_s,"+
     "mtec_pump_speed_set_rpm,"+
     "mtec_pump_speed_actual_rpm,"+
 

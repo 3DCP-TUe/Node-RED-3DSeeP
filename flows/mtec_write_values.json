@@ -24,7 +24,7 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 640,
+        "x": 520,
         "y": 360,
         "wires": [
             [
@@ -40,7 +40,7 @@
         "datatype": "Boolean",
         "value": "",
         "name": "Livebit2extern",
-        "x": 880,
+        "x": 960,
         "y": 360,
         "wires": [
             [
@@ -92,7 +92,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "ns=4;s=|var|ECC2100 0.8S 1131.Application.GVL_OPC.Livebit2DuoMix;datatype=Boolean",
-        "x": 370,
+        "x": 310,
         "y": 360,
         "wires": [
             [
@@ -105,10 +105,10 @@
         "type": "ui_text_input",
         "z": "09f74a936e34ed02",
         "name": "",
-        "label": "Pump velocity",
+        "label": "Pump speed",
         "tooltip": "",
         "group": "2159e8a83bb50b67",
-        "order": 3,
+        "order": 4,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -118,7 +118,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 480,
+        "x": 530,
         "y": 620,
         "wires": [
             [
@@ -134,7 +134,7 @@
         "datatype": "UInt16",
         "value": "",
         "name": "Write pump velocity",
-        "x": 890,
+        "x": 970,
         "y": 620,
         "wires": [
             [
@@ -150,7 +150,7 @@
         "datatype": "Boolean",
         "value": "",
         "name": "Remote start",
-        "x": 870,
+        "x": 950,
         "y": 400,
         "wires": [
             [
@@ -184,7 +184,7 @@
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 660,
+        "x": 540,
         "y": 400,
         "wires": [
             [
@@ -197,7 +197,7 @@
         "type": "ui_text",
         "z": "09f74a936e34ed02",
         "group": "2159e8a83bb50b67",
-        "order": 4,
+        "order": 5,
         "width": 1,
         "height": 1,
         "name": "",
@@ -209,7 +209,7 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 450,
+        "x": 510,
         "y": 660,
         "wires": []
     },
@@ -225,7 +225,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 680,
+        "x": 780,
         "y": 620,
         "wires": [
             [
@@ -254,7 +254,7 @@
         "topic": "",
         "payload": "false",
         "payloadType": "bool",
-        "x": 310,
+        "x": 250,
         "y": 400,
         "wires": [
             [
@@ -283,7 +283,7 @@
         "topic": "",
         "payload": "100",
         "payloadType": "num",
-        "x": 310,
+        "x": 250,
         "y": 620,
         "wires": [
             [
@@ -299,7 +299,7 @@
         "datatype": "Float",
         "value": "",
         "name": "Water flow set",
-        "x": 880,
+        "x": 960,
         "y": 720,
         "wires": [
             [
@@ -315,7 +315,7 @@
         "label": "Water flow set",
         "tooltip": "",
         "group": "2159e8a83bb50b67",
-        "order": 5,
+        "order": 6,
         "width": 5,
         "height": 1,
         "passthru": true,
@@ -325,7 +325,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 480,
+        "x": 540,
         "y": 720,
         "wires": [
             [
@@ -354,7 +354,7 @@
         "topic": "",
         "payload": "300",
         "payloadType": "num",
-        "x": 310,
+        "x": 250,
         "y": 720,
         "wires": [
             [
@@ -367,7 +367,7 @@
         "type": "ui_text",
         "z": "09f74a936e34ed02",
         "group": "2159e8a83bb50b67",
-        "order": 6,
+        "order": 7,
         "width": 1,
         "height": 1,
         "name": "",
@@ -379,9 +379,220 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 450,
+        "x": 510,
         "y": 760,
         "wires": []
+    },
+    {
+        "id": "5dbb6adf96ab84e8",
+        "type": "OpcUa-Item",
+        "z": "09f74a936e34ed02",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.water_control_disable",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "Water control active",
+        "x": 970,
+        "y": 440,
+        "wires": [
+            [
+                "28934a46c30d4da5"
+            ]
+        ]
+    },
+    {
+        "id": "61e6ecf23cf438a6",
+        "type": "OpcUa-Item",
+        "z": "09f74a936e34ed02",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.actual_value_water_valve",
+        "datatype": "Float",
+        "value": "",
+        "name": "Water valve",
+        "x": 950,
+        "y": 820,
+        "wires": [
+            [
+                "28934a46c30d4da5"
+            ]
+        ]
+    },
+    {
+        "id": "5c2843c731ddb6a4",
+        "type": "inject",
+        "z": "09f74a936e34ed02",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 250,
+        "y": 440,
+        "wires": [
+            [
+                "c39d029ea544857d"
+            ]
+        ]
+    },
+    {
+        "id": "c39d029ea544857d",
+        "type": "ui_switch",
+        "z": "09f74a936e34ed02",
+        "name": "",
+        "label": "Water control active",
+        "tooltip": "",
+        "group": "2159e8a83bb50b67",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 550,
+        "y": 440,
+        "wires": [
+            [
+                "b5f967a8e21743b3"
+            ]
+        ]
+    },
+    {
+        "id": "b5f967a8e21743b3",
+        "type": "function",
+        "z": "09f74a936e34ed02",
+        "name": "",
+        "func": "msg.payload = msg.payload == true ? false: true\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 440,
+        "wires": [
+            [
+                "5dbb6adf96ab84e8"
+            ]
+        ]
+    },
+    {
+        "id": "41b7df3f379c8e04",
+        "type": "ui_text_input",
+        "z": "09f74a936e34ed02",
+        "name": "",
+        "label": "Water valve set",
+        "tooltip": "",
+        "group": "2159e8a83bb50b67",
+        "order": 8,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 540,
+        "y": 820,
+        "wires": [
+            [
+                "9d722eb74dd2ace7"
+            ]
+        ]
+    },
+    {
+        "id": "148d9b617ac23dd5",
+        "type": "inject",
+        "z": "09f74a936e34ed02",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "50",
+        "payloadType": "num",
+        "x": 250,
+        "y": 820,
+        "wires": [
+            [
+                "41b7df3f379c8e04"
+            ]
+        ]
+    },
+    {
+        "id": "728126fb1fa44d3a",
+        "type": "ui_text",
+        "z": "09f74a936e34ed02",
+        "group": "2159e8a83bb50b67",
+        "order": 9,
+        "width": 1,
+        "height": 1,
+        "name": "",
+        "label": "%",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 510,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "9d722eb74dd2ace7",
+        "type": "function",
+        "z": "09f74a936e34ed02",
+        "name": "",
+        "func": "if (msg.payload<0) { msg.payload = 0 }\nelse if (msg.payload > 100) { msg.payload = 100 }\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 820,
+        "wires": [
+            [
+                "61e6ecf23cf438a6"
+            ]
+        ]
     },
     {
         "id": "b02adcf7.368dd",

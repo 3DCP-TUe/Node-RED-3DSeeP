@@ -16,19 +16,25 @@ msg.payload = {
 
     // Desktop time
     'Time': msg.payload.time,
-
+    
     // mtec
     'mtec_source_time': mtec.mtec_source_time ?? NaN,
+    'mtec_remote_start': +mtec.mtec_remote_start ?? NaN,
+    'mtec_water_control_active': +mtec.mtec_water_control_active ?? NaN,
+    'mtec_water_start_control': mtec.mtec_water_start_control ?? NaN,
 	'mtec_water_pump_run': +mtec.mtec_water_pump_run ?? NaN,
 	'mtec_water_solenoid_valve': +mtec.mtec_water_solenoid_valve ?? NaN,
 	'mtec_water_water_valve': mtec.mtec_water_valve_actual ?? NaN,
     'mtec_water_temp': mtec.mtec_water_temp?.toFixed(2) ?? NaN,
-    'mtec_water_flow_set': mtec.mtec_water_flow_set ?? NaN,
-    'mtec_water_flow_actual': mtec.mtec_water_flow_actual?.toFixed(2) ?? NaN,
+    'mtec_water_flow_set': mtec.mtec_water_flow_set?.toFixed(1) ?? NaN,
+    'mtec_water_flow_actual': mtec.mtec_water_flow_actual?.toFixed(1) ?? NaN,
     'mtec_mixer_run': +mtec.mtec_mixer_run ?? NaN,
 	'mtec_state_wet_material_probe': +mtec.mtec_state_wet_material_probe ?? NaN,
-	'mtec_pump_speed_set': mtec.mtec_pump_speed_set ?? NaN,
-    'mtec_pump_speed_actual': mtec.mtec_pump_speed_actual ?? NaN,
+	'mtec_state_delay_time_wet_probe': mtec.mtec_state_delay_time_wet_probe ?? NaN,
+	'mtec_delay_time_wet_material_probe_dynamically': mtec.mtec_delay_time_wet_material_probe_dynamically ?? NaN,
+	'mtec_delay_time_wet_material_probe_statically': mtec.mtec_delay_time_wet_material_probe_statically ?? NaN,
+    'mtec_pump_speed_set': mtec.mtec_pump_speed_set?.toFixed(2) ?? NaN,
+    'mtec_pump_speed_actual': mtec.mtec_pump_speed_actual?.toFixed(2) ?? NaN,
 
     // MAI
     'mai_source_time': mai.mai_source_time ?? NaN,

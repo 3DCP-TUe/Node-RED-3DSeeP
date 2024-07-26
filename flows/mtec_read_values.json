@@ -49,7 +49,7 @@
         "type": "ui_text",
         "z": "dbcff3a91e8577ef",
         "group": "e8c93459e3f9c364",
-        "order": 9,
+        "order": 12,
         "width": 6,
         "height": 1,
         "name": "",
@@ -62,7 +62,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3390,
-        "y": 780,
+        "y": 820,
         "wires": []
     },
     {
@@ -81,7 +81,7 @@
         "type": "ui_text",
         "z": "dbcff3a91e8577ef",
         "group": "e8c93459e3f9c364",
-        "order": 10,
+        "order": 13,
         "width": 6,
         "height": 1,
         "name": "",
@@ -94,7 +94,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3390,
-        "y": 820,
+        "y": 860,
         "wires": []
     },
     {
@@ -102,11 +102,11 @@
         "type": "ui_text",
         "z": "dbcff3a91e8577ef",
         "group": "ef446e96828d062e",
-        "order": 12,
+        "order": 16,
         "width": 6,
         "height": 1,
         "name": "",
-        "label": "Water flow set [L/min]",
+        "label": "Water flow set [L/h]",
         "format": "{{msg.payload.mtec_water_flow_set.toFixed(1)}}",
         "layout": "row-spread",
         "className": "",
@@ -114,8 +114,8 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 3380,
-        "y": 1060,
+        "x": 3370,
+        "y": 1140,
         "wires": []
     },
     {
@@ -136,7 +136,7 @@
         "type": "ui_text",
         "z": "dbcff3a91e8577ef",
         "group": "ef446e96828d062e",
-        "order": 13,
+        "order": 17,
         "width": 6,
         "height": 1,
         "name": "",
@@ -149,7 +149,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3380,
-        "y": 1100,
+        "y": 1180,
         "wires": []
     },
     {
@@ -161,7 +161,7 @@
         "value": "",
         "name": "mtec_water_temp",
         "x": 570,
-        "y": 980,
+        "y": 1020,
         "wires": [
             [
                 "a106ea0c2e4dda58"
@@ -177,7 +177,7 @@
         "value": "",
         "name": "mtec_water_flow_actual",
         "x": 590,
-        "y": 940,
+        "y": 980,
         "wires": [
             [
                 "a106ea0c2e4dda58"
@@ -193,7 +193,7 @@
         "value": "",
         "name": "mtec_pump_speed_actual",
         "x": 600,
-        "y": 700,
+        "y": 740,
         "wires": [
             [
                 "a106ea0c2e4dda58"
@@ -209,7 +209,7 @@
         "value": "",
         "name": "mtec_water_pump_run",
         "x": 580,
-        "y": 860,
+        "y": 900,
         "wires": [
             [
                 "a106ea0c2e4dda58"
@@ -225,7 +225,7 @@
         "value": "",
         "name": "mtec_pump_speed_set",
         "x": 590,
-        "y": 740,
+        "y": 780,
         "wires": [
             [
                 "a106ea0c2e4dda58"
@@ -241,7 +241,7 @@
         "value": "",
         "name": "mtec_mixer_run",
         "x": 560,
-        "y": 1140,
+        "y": 1220,
         "wires": [
             [
                 "a106ea0c2e4dda58"
@@ -344,9 +344,16 @@
                 "6f9b29814d16c944",
                 "bdd1dc54ac323468",
                 "1d33125576d23474",
-                "a09f2f20192d46fd",
                 "49facd224eafe7fa",
-                "a6114c54b9f07989"
+                "a6114c54b9f07989",
+                "2f0e600e9b632c60",
+                "b25de9b71f0b1941",
+                "5340c143ddfba59a",
+                "ff6fa77f5c595b4c",
+                "2054311018c779d4",
+                "8b71337df31a5ad4",
+                "a6d1c80277ff4465",
+                "b482ca2ed1c6906a"
             ]
         ]
     },
@@ -385,7 +392,7 @@
         "joinerType": "str",
         "accumulate": false,
         "timeout": "",
-        "count": "20",
+        "count": "27",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
@@ -404,14 +411,14 @@
         "type": "function",
         "z": "dbcff3a91e8577ef",
         "name": "Convert and add values",
-        "func": "// Set message topic\nmsg.topic = \"mtec\"\n\n// Convert values\nmsg.payload.mtec_pump_speed_set = msg.payload.mtec_pump_speed_set * 192.1 / 65000\nmsg.payload.mtec_pump_speed_actual = msg.payload.mtec_pump_speed_actual * 192.1 / 65000\n\nreturn msg",
+        "func": "// Set message topic\nmsg.topic = \"mtec\"\n\n// Convert values\nmsg.payload.mtec_pump_speed_set = msg.payload.mtec_pump_speed_set * 192.1 / 65000\nmsg.payload.mtec_pump_speed_actual = msg.payload.mtec_pump_speed_actual * 192.1 / 65000\nmsg.payload.mtec_reverse_running_active = msg.payload.mtec_reverse_running_active == 0 ? true : false\nmsg.payload.mtec_water_control_active = msg.payload.mtec_water_control_active == false ? true : false\nmsg.payload.mtec_state_remote = msg.payload.mtec_state_remote == true ? false : true\nreturn msg",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2610,
+        "x": 2590,
         "y": 480,
         "wires": [
             [
@@ -433,7 +440,17 @@
                 "0d040c79084a3216",
                 "faa80eae45e851b4",
                 "53a87be80ccc5783",
-                "3cfdd58e63c59fe0"
+                "3cfdd58e63c59fe0",
+                "4182f345843db061",
+                "588dc036d6738e2c",
+                "a3934b18a9312094",
+                "ba3efd194421c7c4",
+                "c55dcd9bf725df6a",
+                "84cc4f2d4849a3f6",
+                "4c6cd971faef1520",
+                "7ac3059a4b20dcdc",
+                "678a75060a340313",
+                "e146e11dfde57d6a"
             ]
         ]
     },
@@ -528,7 +545,7 @@
         "type": "ui_text",
         "z": "dbcff3a91e8577ef",
         "group": "e8c93459e3f9c364",
-        "order": 13,
+        "order": 16,
         "width": 6,
         "height": 1,
         "name": "",
@@ -541,7 +558,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3360,
-        "y": 1300,
+        "y": 1380,
         "wires": []
     },
     {
@@ -549,7 +566,7 @@
         "type": "ui_text",
         "z": "dbcff3a91e8577ef",
         "group": "ef446e96828d062e",
-        "order": 10,
+        "order": 13,
         "width": 6,
         "height": 1,
         "name": "",
@@ -562,7 +579,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3400,
-        "y": 980,
+        "y": 1020,
         "wires": []
     },
     {
@@ -613,7 +630,7 @@
         "width": 6,
         "height": 1,
         "name": "",
-        "label": "Last batch duration [s]",
+        "label": "Las run time [s]",
         "format": "{{msg.batch_time.toFixed(1)}}",
         "layout": "row-spread",
         "className": "",
@@ -621,7 +638,7 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 3660,
+        "x": 3640,
         "y": 240,
         "wires": []
     },
@@ -658,7 +675,7 @@
         "width": 6,
         "height": 1,
         "name": "",
-        "label": "Mixer ratio [-]",
+        "label": "Mixer time ratio [-]",
         "format": "{{msg.prediction.toFixed(3)}}",
         "layout": "row-spread",
         "className": "",
@@ -666,7 +683,7 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 3630,
+        "x": 3650,
         "y": 320,
         "wires": []
     },
@@ -690,10 +707,10 @@
         "id": "80e68bdda4f25658",
         "type": "OpcUa-Item",
         "z": "dbcff3a91e8577ef",
-        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.Remote_connected",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.state_machine_on",
         "datatype": "Boolean",
         "value": "",
-        "name": "mtec_remote_connected",
+        "name": "mtec_state_machine_on",
         "x": 590,
         "y": 500,
         "wires": [
@@ -711,7 +728,7 @@
         "value": "",
         "name": "mtec_remote_start",
         "x": 570,
-        "y": 540,
+        "y": 580,
         "wires": [
             [
                 "a106ea0c2e4dda58"
@@ -727,7 +744,7 @@
         "value": "",
         "name": "mtec_water_valve_actual",
         "x": 590,
-        "y": 900,
+        "y": 940,
         "wires": [
             [
                 "a106ea0c2e4dda58"
@@ -743,7 +760,7 @@
         "value": "",
         "name": "mtec_error",
         "x": 550,
-        "y": 580,
+        "y": 620,
         "wires": [
             [
                 "a106ea0c2e4dda58"
@@ -759,7 +776,7 @@
         "value": "",
         "name": "mtec_error_number",
         "x": 570,
-        "y": 620,
+        "y": 660,
         "wires": [
             [
                 "a106ea0c2e4dda58"
@@ -775,7 +792,7 @@
         "value": "",
         "name": "mtec_water_flow_set",
         "x": 580,
-        "y": 1020,
+        "y": 1060,
         "wires": [
             [
                 "a106ea0c2e4dda58"
@@ -791,23 +808,7 @@
         "value": "",
         "name": "mtec_state_wet_material_probe",
         "x": 610,
-        "y": 1180,
-        "wires": [
-            [
-                "a106ea0c2e4dda58"
-            ]
-        ]
-    },
-    {
-        "id": "a09f2f20192d46fd",
-        "type": "OpcUa-Item",
-        "z": "dbcff3a91e8577ef",
-        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.water_control_disable",
-        "datatype": "Boolean",
-        "value": "",
-        "name": "mtec_water_control_disable",
-        "x": 600,
-        "y": 1300,
+        "y": 1260,
         "wires": [
             [
                 "a106ea0c2e4dda58"
@@ -821,9 +822,9 @@
         "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.delay_time_wet_material_probe_dynamically",
         "datatype": "UInt16",
         "value": "",
-        "name": "mtec_time_wet_material_probe_dynamically",
-        "x": 650,
-        "y": 1340,
+        "name": "mtec_delay_time_wet_material_probe_dynamically",
+        "x": 670,
+        "y": 1580,
         "wires": [
             [
                 "a106ea0c2e4dda58"
@@ -837,9 +838,9 @@
         "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.delay_time_wet_material_probe_statically",
         "datatype": "UInt16",
         "value": "",
-        "name": "mtec_time_wet_material_probe_statically",
-        "x": 640,
-        "y": 1380,
+        "name": "mtec_delay_time_wet_material_probe_statically",
+        "x": 660,
+        "y": 1620,
         "wires": [
             [
                 "a106ea0c2e4dda58"
@@ -855,7 +856,7 @@
         "value": "",
         "name": "mtec_water_pressure_ok",
         "x": 590,
-        "y": 1060,
+        "y": 1100,
         "wires": [
             [
                 "a106ea0c2e4dda58"
@@ -871,7 +872,7 @@
         "value": "",
         "name": "mtec_water_solenoid_valve",
         "x": 600,
-        "y": 820,
+        "y": 860,
         "wires": [
             [
                 "a106ea0c2e4dda58"
@@ -908,8 +909,8 @@
         "width": 6,
         "height": 1,
         "name": "",
-        "label": "Remote connected [bool]",
-        "format": "{{msg.payload.mtec_remote_connected.toString()}}",
+        "label": "State machine on [bool]",
+        "format": "{{msg.payload.mtec_state_machine_on.toString()}}",
         "layout": "row-spread",
         "className": "",
         "style": false,
@@ -925,7 +926,7 @@
         "type": "ui_text",
         "z": "dbcff3a91e8577ef",
         "group": "e8c93459e3f9c364",
-        "order": 4,
+        "order": 5,
         "width": 6,
         "height": 1,
         "name": "",
@@ -938,7 +939,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3370,
-        "y": 580,
+        "y": 620,
         "wires": []
     },
     {
@@ -946,7 +947,7 @@
         "type": "ui_text",
         "z": "dbcff3a91e8577ef",
         "group": "e8c93459e3f9c364",
-        "order": 5,
+        "order": 6,
         "width": 6,
         "height": 1,
         "name": "",
@@ -959,7 +960,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3350,
-        "y": 620,
+        "y": 660,
         "wires": []
     },
     {
@@ -967,7 +968,7 @@
         "type": "ui_text",
         "z": "dbcff3a91e8577ef",
         "group": "e8c93459e3f9c364",
-        "order": 6,
+        "order": 7,
         "width": 6,
         "height": 1,
         "name": "",
@@ -980,7 +981,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3350,
-        "y": 660,
+        "y": 700,
         "wires": []
     },
     {
@@ -988,7 +989,7 @@
         "type": "ui_text",
         "z": "dbcff3a91e8577ef",
         "group": "ef446e96828d062e",
-        "order": 15,
+        "order": 19,
         "width": 6,
         "height": 1,
         "name": "",
@@ -1001,7 +1002,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3360,
-        "y": 1180,
+        "y": 1260,
         "wires": []
     },
     {
@@ -1009,12 +1010,12 @@
         "type": "ui_text",
         "z": "dbcff3a91e8577ef",
         "group": "ef446e96828d062e",
-        "order": 14,
+        "order": 18,
         "width": 6,
         "height": 1,
         "name": "",
-        "label": "Water valve actual [-]",
-        "format": "{{msg.payload.mtec_water_valve_actual.toFixed(2)}}",
+        "label": "Water valve actual [%]",
+        "format": "{{msg.payload.mtec_water_valve_actual.toFixed(1)}}",
         "layout": "row-spread",
         "className": "",
         "style": false,
@@ -1022,7 +1023,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3380,
-        "y": 1140,
+        "y": 1220,
         "wires": []
     },
     {
@@ -1030,7 +1031,7 @@
         "type": "ui_text",
         "z": "dbcff3a91e8577ef",
         "group": "ef446e96828d062e",
-        "order": 9,
+        "order": 12,
         "width": 6,
         "height": 1,
         "name": "",
@@ -1043,7 +1044,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3380,
-        "y": 940,
+        "y": 980,
         "wires": []
     },
     {
@@ -1051,7 +1052,7 @@
         "type": "ui_text",
         "z": "dbcff3a91e8577ef",
         "group": "ef446e96828d062e",
-        "order": 11,
+        "order": 14,
         "width": 6,
         "height": 1,
         "name": "",
@@ -1064,7 +1065,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3390,
-        "y": 1020,
+        "y": 1060,
         "wires": []
     },
     {
@@ -1072,7 +1073,7 @@
         "type": "ui_text",
         "z": "dbcff3a91e8577ef",
         "group": "e8c93459e3f9c364",
-        "order": 14,
+        "order": 17,
         "width": 6,
         "height": 1,
         "name": "",
@@ -1085,7 +1086,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3380,
-        "y": 1340,
+        "y": 1420,
         "wires": []
     },
     {
@@ -1114,7 +1115,7 @@
         "type": "ui_text",
         "z": "dbcff3a91e8577ef",
         "group": "e8c93459e3f9c364",
-        "order": 8,
+        "order": 11,
         "width": 6,
         "height": 1,
         "name": "",
@@ -1127,7 +1128,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3350,
-        "y": 740,
+        "y": 780,
         "wires": []
     },
     {
@@ -1135,7 +1136,7 @@
         "type": "ui_text",
         "z": "dbcff3a91e8577ef",
         "group": "ef446e96828d062e",
-        "order": 8,
+        "order": 11,
         "width": 6,
         "height": 1,
         "name": "",
@@ -1148,7 +1149,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3370,
-        "y": 900,
+        "y": 940,
         "wires": []
     },
     {
@@ -1156,7 +1157,7 @@
         "type": "ui_text",
         "z": "dbcff3a91e8577ef",
         "group": "e8c93459e3f9c364",
-        "order": 12,
+        "order": 15,
         "width": 6,
         "height": 1,
         "name": "",
@@ -1169,7 +1170,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3340,
-        "y": 1260,
+        "y": 1340,
         "wires": []
     },
     {
@@ -1181,7 +1182,7 @@
         "width": 6,
         "height": 1,
         "name": "",
-        "label": "<b>Settings:",
+        "label": "<b>Settings (on-site):",
         "format": "{{msg.payload.mtec_mixer_run.toString()}}",
         "layout": "row-spread",
         "className": "",
@@ -1189,97 +1190,405 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 3350,
-        "y": 1400,
+        "x": 3380,
+        "y": 1500,
         "wires": []
     },
     {
-        "id": "929e8ff0ded763d5",
+        "id": "ff6fa77f5c595b4c",
+        "type": "OpcUa-Item",
+        "z": "dbcff3a91e8577ef",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.water_start_control",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "mtec_water_start_control",
+        "x": 590,
+        "y": 1380,
+        "wires": [
+            [
+                "a106ea0c2e4dda58"
+            ]
+        ]
+    },
+    {
+        "id": "5340c143ddfba59a",
+        "type": "OpcUa-Item",
+        "z": "dbcff3a91e8577ef",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.dry_run_protection",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "mtec_dry_run_protection",
+        "x": 590,
+        "y": 1340,
+        "wires": [
+            [
+                "a106ea0c2e4dda58"
+            ]
+        ]
+    },
+    {
+        "id": "2054311018c779d4",
+        "type": "OpcUa-Item",
+        "z": "dbcff3a91e8577ef",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.delay_dry_material_probe",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "mtec_dry_material_probe_delay",
+        "x": 610,
+        "y": 1420,
+        "wires": [
+            [
+                "a106ea0c2e4dda58"
+            ]
+        ]
+    },
+    {
+        "id": "a6d1c80277ff4465",
+        "type": "OpcUa-Item",
+        "z": "dbcff3a91e8577ef",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.running_time_reverse",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "mtec_running_time_reverse",
+        "x": 600,
+        "y": 1500,
+        "wires": [
+            [
+                "a106ea0c2e4dda58"
+            ]
+        ]
+    },
+    {
+        "id": "2f0e600e9b632c60",
+        "type": "OpcUa-Item",
+        "z": "dbcff3a91e8577ef",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.state_loc_remote",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "mtec_state_remote",
+        "x": 570,
+        "y": 540,
+        "wires": [
+            [
+                "a106ea0c2e4dda58"
+            ]
+        ]
+    },
+    {
+        "id": "8b71337df31a5ad4",
+        "type": "OpcUa-Item",
+        "z": "dbcff3a91e8577ef",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.state_reverse_running",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "mtec_reverse_running_active",
+        "x": 610,
+        "y": 1460,
+        "wires": [
+            [
+                "a106ea0c2e4dda58"
+            ]
+        ]
+    },
+    {
+        "id": "b25de9b71f0b1941",
+        "type": "OpcUa-Item",
+        "z": "dbcff3a91e8577ef",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.water_control_disable",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "mtec_water_control_active",
+        "x": 600,
+        "y": 1140,
+        "wires": [
+            [
+                "a106ea0c2e4dda58"
+            ]
+        ]
+    },
+    {
+        "id": "4182f345843db061",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "group": "ef446e96828d062e",
+        "order": 15,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Water control active [bool]",
+        "format": "{{msg.payload.mtec_water_control_active.toString()}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3390,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "c55dcd9bf725df6a",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "group": "ef446e96828d062e",
+        "order": 5,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Reverse running active [bool]",
+        "format": "{{msg.payload.mtec_reverse_running_active.toString()}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3400,
+        "y": 1660,
+        "wires": []
+    },
+    {
+        "id": "588dc036d6738e2c",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "group": "ef446e96828d062e",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Dry run protection [s]",
+        "format": "{{msg.payload.mtec_dry_run_protection.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3380,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "a3934b18a9312094",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "group": "ef446e96828d062e",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Water start control [s]",
+        "format": "{{msg.payload.mtec_water_start_control.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3380,
+        "y": 1580,
+        "wires": []
+    },
+    {
+        "id": "ba3efd194421c7c4",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "group": "ef446e96828d062e",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Dry material probe delay [s]",
+        "format": "{{msg.payload.mtec_dry_material_probe_delay.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3400,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "84cc4f2d4849a3f6",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "group": "ef446e96828d062e",
+        "order": 8,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Delay time wet probe dynamically [s]",
+        "format": "{{msg.payload.mtec_delay_time_wet_material_probe_dynamically.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3430,
+        "y": 1780,
+        "wires": []
+    },
+    {
+        "id": "4c6cd971faef1520",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "group": "ef446e96828d062e",
+        "order": 9,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Delay time wet probe statically [s]",
+        "format": "{{msg.payload.mtec_delay_time_wet_material_probe_statically.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3420,
+        "y": 1820,
+        "wires": []
+    },
+    {
+        "id": "7ac3059a4b20dcdc",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "group": "ef446e96828d062e",
+        "order": 6,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Running time reverse [s]",
+        "format": "{{msg.payload.mtec_running_time_reverse.toFixed(0)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3390,
+        "y": 1700,
+        "wires": []
+    },
+    {
+        "id": "678a75060a340313",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "group": "e8c93459e3f9c364",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "State remote [bool]",
+        "format": "{{msg.payload.mtec_state_remote.toString()}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3370,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "b482ca2ed1c6906a",
+        "type": "OpcUa-Item",
+        "z": "dbcff3a91e8577ef",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.state_delay_time_wet_material_probe",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "mtec_state_delay_time_wet_probe",
+        "x": 620,
+        "y": 1540,
+        "wires": [
+            [
+                "a106ea0c2e4dda58"
+            ]
+        ]
+    },
+    {
+        "id": "e146e11dfde57d6a",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "group": "ef446e96828d062e",
+        "order": 7,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "State delay time wet probe",
+        "format": "{{msg.payload.mtec_state_delay_time_wet_probe.toString()}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3400,
+        "y": 1740,
+        "wires": []
+    },
+    {
+        "id": "25a6a1495c6bcba6",
         "type": "ui_spacer",
         "z": "dbcff3a91e8577ef",
         "name": "spacer",
         "group": "2159e8a83bb50b67",
-        "order": 2,
-        "width": 6,
-        "height": 1
-    },
-    {
-        "id": "ea01daf392632919",
-        "type": "ui_spacer",
-        "z": "dbcff3a91e8577ef",
-        "name": "spacer",
-        "group": "e8c93459e3f9c364",
-        "order": 7,
-        "width": 6,
-        "height": 1
-    },
-    {
-        "id": "54862a26300606bc",
-        "type": "ui_spacer",
-        "z": "dbcff3a91e8577ef",
-        "name": "spacer",
-        "group": "e8c93459e3f9c364",
-        "order": 11,
-        "width": 6,
-        "height": 1
-    },
-    {
-        "id": "4f7a6b2f98fb885d",
-        "type": "ui_spacer",
-        "z": "dbcff3a91e8577ef",
-        "name": "spacer",
-        "group": "ef446e96828d062e",
-        "order": 2,
-        "width": 6,
-        "height": 1
-    },
-    {
-        "id": "075b2c2b8710fc7f",
-        "type": "ui_spacer",
-        "z": "dbcff3a91e8577ef",
-        "name": "spacer",
-        "group": "ef446e96828d062e",
         "order": 3,
         "width": 6,
         "height": 1
     },
     {
-        "id": "69a4df079123c216",
+        "id": "3552c0849937d36e",
         "type": "ui_spacer",
         "z": "dbcff3a91e8577ef",
         "name": "spacer",
-        "group": "ef446e96828d062e",
-        "order": 4,
+        "group": "e8c93459e3f9c364",
+        "order": 8,
         "width": 6,
         "height": 1
     },
     {
-        "id": "f9a33c4318c913c5",
+        "id": "979be4bc18cf2ad8",
         "type": "ui_spacer",
         "z": "dbcff3a91e8577ef",
         "name": "spacer",
-        "group": "ef446e96828d062e",
-        "order": 5,
+        "group": "e8c93459e3f9c364",
+        "order": 9,
         "width": 6,
         "height": 1
     },
     {
-        "id": "a95220d1f14e0c6e",
+        "id": "1cbb78774bf18e69",
         "type": "ui_spacer",
         "z": "dbcff3a91e8577ef",
         "name": "spacer",
-        "group": "ef446e96828d062e",
-        "order": 6,
+        "group": "e8c93459e3f9c364",
+        "order": 10,
         "width": 6,
         "height": 1
     },
     {
-        "id": "5c3c4d927fc72918",
+        "id": "fc562f8854446456",
+        "type": "ui_spacer",
+        "z": "dbcff3a91e8577ef",
+        "name": "spacer",
+        "group": "e8c93459e3f9c364",
+        "order": 14,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "90621a3e1c1bc872",
         "type": "ui_spacer",
         "z": "dbcff3a91e8577ef",
         "name": "spacer",
         "group": "ef446e96828d062e",
-        "order": 7,
+        "order": 10,
         "width": 6,
         "height": 1
     },
