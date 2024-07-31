@@ -167,7 +167,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3170,
-        "y": 720,
+        "y": 760,
         "wires": []
     },
     {
@@ -188,7 +188,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3180,
-        "y": 760,
+        "y": 800,
         "wires": []
     },
     {
@@ -209,7 +209,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3140,
-        "y": 920,
+        "y": 960,
         "wires": []
     },
     {
@@ -230,7 +230,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3150,
-        "y": 1040,
+        "y": 1080,
         "wires": []
     },
     {
@@ -251,7 +251,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3150,
-        "y": 1420,
+        "y": 1460,
         "wires": []
     },
     {
@@ -272,7 +272,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3160,
-        "y": 960,
+        "y": 1000,
         "wires": []
     },
     {
@@ -293,7 +293,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3160,
-        "y": 1080,
+        "y": 1120,
         "wires": []
     },
     {
@@ -314,7 +314,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3190,
-        "y": 1200,
+        "y": 1240,
         "wires": []
     },
     {
@@ -335,7 +335,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3190,
-        "y": 1240,
+        "y": 1280,
         "wires": []
     },
     {
@@ -356,7 +356,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3190,
-        "y": 1280,
+        "y": 1320,
         "wires": []
     },
     {
@@ -377,7 +377,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3190,
-        "y": 1540,
+        "y": 1580,
         "wires": []
     },
     {
@@ -398,7 +398,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3190,
-        "y": 1580,
+        "y": 1620,
         "wires": []
     },
     {
@@ -482,7 +482,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3210,
-        "y": 800,
+        "y": 840,
         "wires": []
     },
     {
@@ -503,7 +503,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3200,
-        "y": 840,
+        "y": 880,
         "wires": []
     },
     {
@@ -545,7 +545,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3170,
-        "y": 1460,
+        "y": 1500,
         "wires": []
     },
     {
@@ -566,7 +566,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3170,
-        "y": 1500,
+        "y": 1540,
         "wires": []
     },
     {
@@ -587,7 +587,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3170,
-        "y": 1160,
+        "y": 1200,
         "wires": []
     },
     {
@@ -662,7 +662,7 @@
         "datatype": "Float",
         "value": "",
         "name": "mai_water_temp",
-        "x": 590,
+        "x": 580,
         "y": 640,
         "wires": [
             [
@@ -679,7 +679,7 @@
         "value": "",
         "name": "mai_water_flow_set",
         "x": 600,
-        "y": 680,
+        "y": 720,
         "wires": [
             [
                 "66d909b768b75bf9"
@@ -695,7 +695,7 @@
         "value": "",
         "name": "mai_water_flow_actual",
         "x": 600,
-        "y": 720,
+        "y": 760,
         "wires": [
             [
                 "66d909b768b75bf9"
@@ -711,7 +711,7 @@
         "value": "",
         "name": "mai_waterpump_ref_freq",
         "x": 610,
-        "y": 760,
+        "y": 800,
         "wires": [
             [
                 "66d909b768b75bf9"
@@ -727,7 +727,7 @@
         "value": "",
         "name": "mai_waterpump_output_freq",
         "x": 620,
-        "y": 800,
+        "y": 840,
         "wires": [
             [
                 "66d909b768b75bf9"
@@ -743,7 +743,7 @@
         "value": "",
         "name": "mai_mixer_run",
         "x": 580,
-        "y": 880,
+        "y": 920,
         "wires": [
             [
                 "66d909b768b75bf9"
@@ -759,7 +759,7 @@
         "value": "",
         "name": "mai_pump_run",
         "x": 580,
-        "y": 960,
+        "y": 1000,
         "wires": [
             [
                 "66d909b768b75bf9"
@@ -775,7 +775,7 @@
         "value": "",
         "name": "mai_pump_speed",
         "x": 590,
-        "y": 1000,
+        "y": 1040,
         "wires": [
             [
                 "66d909b768b75bf9"
@@ -791,7 +791,7 @@
         "value": "",
         "name": "mai_pump_output_current",
         "x": 610,
-        "y": 1040,
+        "y": 1080,
         "wires": [
             [
                 "66d909b768b75bf9"
@@ -807,7 +807,7 @@
         "value": "",
         "name": "mai_pump_output_power",
         "x": 610,
-        "y": 1080,
+        "y": 1120,
         "wires": [
             [
                 "66d909b768b75bf9"
@@ -823,7 +823,7 @@
         "value": "",
         "name": "mai_pump_vibration_mode",
         "x": 620,
-        "y": 1120,
+        "y": 1160,
         "wires": [
             [
                 "66d909b768b75bf9"
@@ -839,7 +839,7 @@
         "value": "",
         "name": "mai_setting_water_pre_run",
         "x": 620,
-        "y": 1300,
+        "y": 1340,
         "wires": [
             [
                 "66d909b768b75bf9"
@@ -855,7 +855,7 @@
         "value": "",
         "name": "mai_setting_mixer_post_run",
         "x": 620,
-        "y": 1340,
+        "y": 1380,
         "wires": [
             [
                 "66d909b768b75bf9"
@@ -871,7 +871,7 @@
         "value": "",
         "name": "mai_setting_wetprobe_covered_delay",
         "x": 650,
-        "y": 1380,
+        "y": 1420,
         "wires": [
             [
                 "66d909b768b75bf9"
@@ -887,7 +887,7 @@
         "value": "",
         "name": "mai_setting_wetprobe_uncovered_delay",
         "x": 660,
-        "y": 1420,
+        "y": 1460,
         "wires": [
             [
                 "66d909b768b75bf9"
@@ -978,7 +978,8 @@
                 "3072d6f4198eb3c9",
                 "c43462b24d427311",
                 "b29dcf854aec6d6b",
-                "b695905e2bf1ac24"
+                "b695905e2bf1ac24",
+                "289bf8e135a1b4ba"
             ]
         ]
     },
@@ -1017,7 +1018,7 @@
         "joinerType": "str",
         "accumulate": false,
         "timeout": "",
-        "count": "22",
+        "count": "23",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
@@ -1069,7 +1070,8 @@
                 "ec091ddeabb74d0f",
                 "53f4d54fd9b46f38",
                 "fdcc416f6ebfc11a",
-                "2ed794dacb1abebd"
+                "2ed794dacb1abebd",
+                "04bd0349df5ea577"
             ]
         ]
     },
@@ -1562,7 +1564,7 @@
         "value": "",
         "name": "mai_auto_reverse_run_active",
         "x": 630,
-        "y": 1160,
+        "y": 1200,
         "wires": [
             [
                 "66d909b768b75bf9"
@@ -1578,7 +1580,7 @@
         "value": "",
         "name": "mai_auto_reverse_run_time",
         "x": 620,
-        "y": 1200,
+        "y": 1240,
         "wires": [
             [
                 "66d909b768b75bf9"
@@ -1603,7 +1605,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3200,
-        "y": 1120,
+        "y": 1160,
         "wires": []
     },
     {
@@ -1624,7 +1626,44 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3190,
-        "y": 1320,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "289bf8e135a1b4ba",
+        "type": "OpcUa-Item",
+        "z": "a666a495869d02dc",
+        "item": "ns=2;s=Tags.GECO/MPTX_DI_Mortar_Temperature_C_R",
+        "datatype": "Float",
+        "value": "",
+        "name": "mai_water_temp_mixer_inlet",
+        "x": 620,
+        "y": 680,
+        "wires": [
+            [
+                "66d909b768b75bf9"
+            ]
+        ]
+    },
+    {
+        "id": "04bd0349df5ea577",
+        "type": "ui_text",
+        "z": "a666a495869d02dc",
+        "group": "8a339496ca145acd",
+        "order": 13,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Water temp at mixer inlet [C]",
+        "format": "{{msg.payload.mai_water_temp_mixer_inlet.toFixed(1)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3200,
+        "y": 720,
         "wires": []
     },
     {
@@ -1704,7 +1743,7 @@
         "type": "ui_tab",
         "name": "MAI MULTIMIX",
         "icon": "dashboard",
-        "order": 6,
+        "order": 7,
         "disabled": false,
         "hidden": false
     },
@@ -1713,7 +1752,7 @@
         "type": "ui_tab",
         "name": "MAI MULTIMIX Charts",
         "icon": "dashboard",
-        "order": 7,
+        "order": 8,
         "disabled": true,
         "hidden": true
     }

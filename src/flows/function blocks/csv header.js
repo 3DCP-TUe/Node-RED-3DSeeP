@@ -22,6 +22,7 @@ var data ="desktop_time,"+
     "mai_source_time,"+
     "mai_water_run_bool,"+
     "mai_water_temp_c,"+
+    "mai_water_temp_mixer_inlet_c,"+
     "mai_water_flow_set_lh,"+
     "mai_water_flow_actual_lh,"+
     "mai_waterpump_ref_freq_chz,"+

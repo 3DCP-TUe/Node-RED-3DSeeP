@@ -40,6 +40,7 @@ msg.payload = {
     'mai_source_time': mai.mai_source_time ?? NaN,
     'mai_water_run': +mai.mai_water_run ?? NaN,
     'mai_water_temp': mai.mai_water_temp?.toFixed(2) ?? NaN,
+    'mai_water_temp2': mai.mai_water_temp_mixer_inlet?.toFixed(2) ?? NaN,
     'mai_water_flow_set': mai.mai_water_flow_set ?? NaN,
     'mai_water_flow_actual': mai.mai_water_flow_actual?.toFixed(2) ?? NaN,
     'mai_waterpump_ref_freq': mai.mai_waterpump_ref_freq ?? NaN,
