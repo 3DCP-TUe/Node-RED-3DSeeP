@@ -630,7 +630,7 @@
         "width": 6,
         "height": 1,
         "name": "",
-        "label": "Las run time [s]",
+        "label": "Last run time [s]",
         "format": "{{msg.batch_time.toFixed(1)}}",
         "layout": "row-spread",
         "className": "",
@@ -1649,7 +1649,7 @@
         "type": "ui_tab",
         "name": "M-tec duomix",
         "icon": "dashboard",
-        "order": 8,
+        "order": 9,
         "disabled": false,
         "hidden": false
     }
