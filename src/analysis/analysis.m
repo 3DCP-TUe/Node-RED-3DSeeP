@@ -16,12 +16,8 @@ cd(filepath);
 
 %% Read file and set directory
 % Read multiple files from custom directory
-directory = "D:\GitHub\Node-RED-3DSeeP\analysis\logs\20240722_Arjen\";
+directory = "D:\GitHub\Node-RED-3DSeeP\src\analysis\logs\20240722_Arjen\";
 nodeRed = readData(directory);
-
-%% Get time in minutes and seconds
-nodeRed.seconds = seconds(nodeRed.desktop_time) - seconds(nodeRed.desktop_time(1));
-nodeRed.minutes = minutes(nodeRed.desktop_time) - minutes(nodeRed.desktop_time(1));
 
 %% Settings for layout
 % X-axis
@@ -37,23 +33,33 @@ set(0, 'DefaultLineLineWidth', 1.5);
 windowStart = duration(10, 17, 0); 
 windowEnd = duration(12, 8, 0);
 
+%% Add columns missing in older versions of the data logger
+% Printhead: pressure
+if ~any(strcmp(nodeRed.Properties.VariableNames, 'printhead_pressure_bar'))
+  nodeRed.printhead_pressure_bar = (nodeRed.printhead_box1_io_ai0_ma - 4) / 16 * 10;
+end
+% MAI MULTIMIX: Water temperature mixer inlet
+if ~any(strcmp(nodeRed.Properties.VariableNames, 'mai_water_temp_mixer_inlet_c'))
+  nodeRed.mai_water_temp_mixer_inlet_c = zeros(height(nodeRed), 1);
+end
+
 %% Calculations: Convert sensor data
 % Differential pressure
 k = 60; % ~6 seconds, 10 samples per second
 filtered1 = movmean(nodeRed.material_io_ai0_pressure_bar, k, 'omitnan');
 filtered2 = movmean(nodeRed.material_io_ai1_pressure_bar, k, 'omitnan');
 nodeRed.material_differential_pressure_bar = filtered1 - filtered2;
-% Filtered values from coriolis io
+% Filtered values from coriolis io (if connected)
 nodeRed.material_coriolis_mass_flow_filtered_90s_kg_min = (nodeRed.material_io_ai4_ma - 4) / 16 * 16;
 nodeRed.material_coriolis_density_filtered_90s_kg_m3 = (nodeRed.material_io_ai5_ma - 4) / 16 * 400 + 2000;
 % Mixer timing
 [times, intervalTimes, runTimes] = mixerTimes(nodeRed.desktop_time, nodeRed.mai_mixer_run_bool);
-% Printhead pressure
-if ~any(strcmp(nodeRed.Properties.VariableNames, 'printhead_pressure_bar'))
-  nodeRed.printhead_pressure_bar = (nodeRed.printhead_box1_io_ai0_ma - 4) / 16 * 10;
-end
 % Temperature pumping chamber MAI MULTIMIX
 nodeRed.mai_temperature_pumping_chamber_c = (nodeRed.material_io_ai2_ma - 4) / 16 * 100;
+
+%% Get time in minutes and seconds
+nodeRed.seconds = seconds(nodeRed.desktop_time) - seconds(nodeRed.desktop_time(1));
+nodeRed.minutes = minutes(nodeRed.desktop_time) - minutes(nodeRed.desktop_time(1));
 
 %% Calculate properties
 % Index of window
@@ -321,12 +327,15 @@ grid on
 box on
 % Plot data
 plot(nodeRed.desktop_time, nodeRed.mai_water_temp_c, '.k')
+plot(nodeRed.desktop_time, nodeRed.mai_water_temp_mixer_inlet_c, '.b')
 % Limits
 ylim([floor(min(nodeRed.mai_water_temp_c)-1), ceil(max(nodeRed.mai_water_temp_c)+1)])
 xlim(xLimits)
 % Labels
 xlabel('Time')
-ylabel('Temperature [C]')
+ylabel('Water temperature [C]')
+% Legend
+legend('Sensor 1: Original', 'Sensor 2: Mixer inlet', 'Location', 'NorthEast')
 % Layout
 ax1 = gca;
 set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
@@ -515,6 +524,7 @@ T = table('Size', [0, 5], 'VariableTypes', varTypes, 'VariableNames', columnName
 columns = {'mai_pump_speed_chz',...
     'mai_pump_output_power_w',...
     'mai_water_temp_c',...
+    'mai_water_temp_mixer_inlet_c',...
     'mai_water_flow_set_lh',...
     'material_io_ai0_pressure_bar',...
     'material_io_ai1_pressure_bar',...
@@ -528,7 +538,7 @@ columns = {'mai_pump_speed_chz',...
     'mixer_interval_time',...
     'mixer_run_time',...
     'mixer_ratio'};
-decimals = [0, 0, 2, 0, 2, 2, 3, 0, 2, 0, 2, 2, 3, 1, 1, 3];
+decimals = [0, 0, 2, 2, 0, 2, 2, 3, 0, 2, 0, 2, 2, 3, 1, 1, 3];
 for i = 1:length(columns)
    % Define the new row data
     newRow = {columns{i},...
