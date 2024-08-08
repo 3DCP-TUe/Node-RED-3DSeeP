@@ -805,7 +805,7 @@
         "type": "function",
         "z": "4f5ca443e5d9546b",
         "name": "Convert and add values",
-        "func": "// Set message topic\nmsg.topic = \"vertico\"\n\n// Convert values\nmsg.payload.vertico_ai3 = (msg.payload.vertico_ai3 < 0) ? 0.0 : (msg.payload.vertico_ai3 / 27468 * 16.0 + 4.0);\n\nreturn msg",
+        "func": "// Set message topic\nmsg.topic = \"vertico\"\n\n// Convert values\nmsg.payload.vertico_ai3 = (msg.payload.vertico_ai3 < 0) ? 0.0 : (msg.payload.vertico_ai3 / 27648 * 16.0 + 4.0);\n\nreturn msg",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -923,7 +923,7 @@
         "type": "ui_tab",
         "name": "Vertico dosing system",
         "icon": "dashboard",
-        "order": 10,
+        "order": 11,
         "disabled": false,
         "hidden": false
     }
