@@ -7,6 +7,43 @@
         "info": ""
     },
     {
+        "id": "6747f1d415cb8972",
+        "type": "group",
+        "z": "830497da8cdf302a",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "ed887a05d5b81535",
+            "157ecea731e148d6",
+            "d6420ba3a1cf462b",
+            "ba0211763bc00da1",
+            "473b8474c415a6bb",
+            "f666229848971d7a",
+            "1df12a0dd96f8853",
+            "303cb120a67fbc63",
+            "2d49380dd9ab0cb5",
+            "6158fcc5f4cbcc54",
+            "8dec28a38a24e9d1",
+            "29f9c657622f28bb",
+            "4149cdff93c5a2b4",
+            "dd20a936fee53ba5",
+            "05098fbedab4c803",
+            "e89556cfc620a086",
+            "dac5248ff2689d12"
+        ],
+        "x": 1074,
+        "y": 1199,
+        "w": 1192,
+        "h": 442
+    },
+    {
         "id": "1deaa966069ed1b9",
         "type": "ui_template",
         "z": "830497da8cdf302a",
@@ -757,16 +794,17 @@
         "id": "ed887a05d5b81535",
         "type": "function",
         "z": "830497da8cdf302a",
+        "g": "6747f1d415cb8972",
         "name": "",
-        "func": "msg.data = msg.payload\nmsg.file = global.get(\"name\") + \"_MetaData\" + \".txt\";\nmsg.filename=\"D:/Node Red/Files/\" + msg.file;\nmsg.payload = \"Meta data corresponding to file: \" + global.get(\"name\")+ \".csv\" +\n\"\\nThe corresponding csv file is created using Node-RED 3DSeeP v0.3.0\" + \n\"\\nAvailable through https://github.com/3DCP-TUe/Node-RED-3DSeeP\"+\n\"\\n \\n ---------- \\n \\n\"+\n\"Log of manual comments:\";\nreturn msg;",
+        "func": "msg.data = msg.payload\nmsg.file = global.get(\"name\") + \"_EventComments\" + \".txt\";\nmsg.filename=\"D:/Node Red/Files/\" + msg.file;\nmsg.payload = \"Event comments corresponding to file: \" + global.get(\"name\")+ \".csv\" +\n\"\\nThe corresponding csv file is created using Node-RED 3DSeeP v0.3.0\" + \n\"\\nAvailable through https://github.com/3DCP-TUe/Node-RED-3DSeeP\"+\n\"\\n \\n----------\\n \\n\"+\n\"Log of manual comments:\";\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2000,
-        "y": 1400,
+        "x": 1900,
+        "y": 1560,
         "wires": [
             [
                 "157ecea731e148d6"
@@ -777,6 +815,7 @@
         "id": "157ecea731e148d6",
         "type": "file",
         "z": "830497da8cdf302a",
+        "g": "6747f1d415cb8972",
         "name": "File",
         "filename": "filename",
         "filenameType": "msg",
@@ -784,8 +823,8 @@
         "createDir": true,
         "overwriteFile": "false",
         "encoding": "none",
-        "x": 2190,
-        "y": 1400,
+        "x": 2090,
+        "y": 1560,
         "wires": [
             []
         ]
@@ -794,9 +833,10 @@
         "id": "d6420ba3a1cf462b",
         "type": "ui_template",
         "z": "830497da8cdf302a",
+        "g": "6747f1d415cb8972",
         "group": "846c63c79a255bbd",
         "name": "Custom comment",
-        "order": 6,
+        "order": 8,
         "width": 6,
         "height": 2,
         "format": "<md-input-container  style=\"overflow:hidden;\">\n    <span> \n    <input ng-model=\"user.input\" style=\"width350px\" placeholder={{msg.topic}}><button class=\"bluebutton\" ng-click=\"msg.payload = user.input; send(msg)\" ng-keypress=\"($event.charCode==13)?msg.payload = user.input; send(msg)\" ngstyle=\"{background-color: #008CBA;}\" style=\"\n    color: #fff;\n    background-color: #5bc0de;\n    border-color: #46b8da;\">Append comment to metadata</button></span>\n</md-input-container>\n    ",
@@ -805,8 +845,8 @@
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 1290,
-        "y": 1440,
+        "x": 1190,
+        "y": 1600,
         "wires": [
             [
                 "1df12a0dd96f8853"
@@ -817,12 +857,13 @@
         "id": "ba0211763bc00da1",
         "type": "ui_text",
         "z": "830497da8cdf302a",
+        "g": "6747f1d415cb8972",
         "group": "846c63c79a255bbd",
         "order": 1,
         "width": 6,
         "height": 2,
         "name": "",
-        "label": "A metadata (.txt) file is automatically generated with the same filename as the main data. Comments of any event that is not automatically logged can be added below.",
+        "label": "A event comments (.txt) file is automatically generated with the same filename as the main data. Comments of any event that is not automatically logged can be added below.",
         "format": "{{msg.payload}}",
         "layout": "col-center",
         "className": "",
@@ -830,14 +871,15 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 1750,
-        "y": 1200,
+        "x": 1670,
+        "y": 1240,
         "wires": []
     },
     {
         "id": "473b8474c415a6bb",
         "type": "trigger",
         "z": "830497da8cdf302a",
+        "g": "6747f1d415cb8972",
         "name": "",
         "op1": "",
         "op2": "",
@@ -851,8 +893,8 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 2,
-        "x": 1640,
-        "y": 1440,
+        "x": 1540,
+        "y": 1600,
         "wires": [
             [
                 "f666229848971d7a"
@@ -864,6 +906,7 @@
         "id": "f666229848971d7a",
         "type": "moment",
         "z": "830497da8cdf302a",
+        "g": "6747f1d415cb8972",
         "name": "Desktop time",
         "topic": "time",
         "input": "payload",
@@ -877,8 +920,8 @@
         "output": "time",
         "outputType": "msg",
         "outTz": "Europe/Amsterdam",
-        "x": 1830,
-        "y": 1440,
+        "x": 1730,
+        "y": 1600,
         "wires": [
             [
                 "303cb120a67fbc63"
@@ -889,6 +932,7 @@
         "id": "1df12a0dd96f8853",
         "type": "function",
         "z": "830497da8cdf302a",
+        "g": "6747f1d415cb8972",
         "name": "function 1",
         "func": "msg.comment = msg.payload\nreturn msg;",
         "outputs": 1,
@@ -897,8 +941,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1480,
-        "y": 1440,
+        "x": 1380,
+        "y": 1600,
         "wires": [
             [
                 "473b8474c415a6bb"
@@ -909,16 +953,17 @@
         "id": "303cb120a67fbc63",
         "type": "function",
         "z": "830497da8cdf302a",
+        "g": "6747f1d415cb8972",
         "name": "function 2",
-        "func": "msg.payload = msg.time.toString() + \", \" + msg.comment.toString();\nmsg.file = global.get(\"name\") + \"_MetaData.txt\";\nmsg.filename=\"D:/Node Red/Files/\" + msg.file;\nreturn msg;",
+        "func": "msg.payload = msg.time.toString() + \", \" + msg.comment.toString();\nmsg.file = global.get(\"name\") + \"_EventComments.txt\";\nmsg.filename=\"D:/Node Red/Files/\" + msg.file;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2000,
-        "y": 1440,
+        "x": 1900,
+        "y": 1600,
         "wires": [
             [
                 "157ecea731e148d6"
@@ -929,8 +974,9 @@
         "id": "2d49380dd9ab0cb5",
         "type": "ui_text",
         "z": "830497da8cdf302a",
+        "g": "6747f1d415cb8972",
         "group": "846c63c79a255bbd",
-        "order": 5,
+        "order": 7,
         "width": 6,
         "height": 1,
         "name": "",
@@ -942,14 +988,15 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 1300,
-        "y": 1380,
+        "x": 1200,
+        "y": 1540,
         "wires": []
     },
     {
         "id": "6158fcc5f4cbcc54",
         "type": "ui_text",
         "z": "830497da8cdf302a",
+        "g": "6747f1d415cb8972",
         "group": "846c63c79a255bbd",
         "order": 2,
         "width": 6,
@@ -963,14 +1010,15 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 1310,
-        "y": 1260,
+        "x": 1210,
+        "y": 1300,
         "wires": []
     },
     {
         "id": "8dec28a38a24e9d1",
         "type": "ui_dropdown",
         "z": "830497da8cdf302a",
+        "g": "6747f1d415cb8972",
         "name": "",
         "label": "",
         "tooltip": "",
@@ -1003,13 +1051,18 @@
                 "type": "str"
             },
             {
-                "label": "Start cleaning",
-                "value": "Start cleaning",
+                "label": "Start cleaning procedure",
+                "value": "Start cleaning procedure",
                 "type": "str"
             },
             {
                 "label": "Start experiment",
                 "value": "Start experiment",
+                "type": "str"
+            },
+            {
+                "label": "End experiment",
+                "value": "End experiment",
                 "type": "str"
             }
         ],
@@ -1017,8 +1070,8 @@
         "topic": "topic",
         "topicType": "msg",
         "className": "",
-        "x": 1260,
-        "y": 1300,
+        "x": 1160,
+        "y": 1340,
         "wires": [
             [
                 "1df12a0dd96f8853"
@@ -1029,6 +1082,7 @@
         "id": "29f9c657622f28bb",
         "type": "ui_date_picker",
         "z": "830497da8cdf302a",
+        "g": "6747f1d415cb8972",
         "name": "",
         "label": "Production date of the added big bag",
         "group": "846c63c79a255bbd",
@@ -1039,8 +1093,8 @@
         "topic": "topic",
         "topicType": "msg",
         "className": "",
-        "x": 1350,
-        "y": 1340,
+        "x": 1250,
+        "y": 1380,
         "wires": [
             [
                 "4149cdff93c5a2b4"
@@ -1051,6 +1105,7 @@
         "id": "4149cdff93c5a2b4",
         "type": "moment",
         "z": "830497da8cdf302a",
+        "g": "6747f1d415cb8972",
         "name": "Desktop time",
         "topic": "time2",
         "input": "payload",
@@ -1064,8 +1119,8 @@
         "output": "payload",
         "outputType": "msg",
         "outTz": "Europe/Amsterdam",
-        "x": 1610,
-        "y": 1340,
+        "x": 1510,
+        "y": 1380,
         "wires": [
             [
                 "dd20a936fee53ba5"
@@ -1076,6 +1131,7 @@
         "id": "dd20a936fee53ba5",
         "type": "function",
         "z": "830497da8cdf302a",
+        "g": "6747f1d415cb8972",
         "name": "function 3",
         "func": "msg.payload = \"Production date big bag: \" + msg.payload\nreturn msg;",
         "outputs": 1,
@@ -1084,13 +1140,80 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1800,
-        "y": 1340,
+        "x": 1700,
+        "y": 1380,
         "wires": [
             [
                 "1df12a0dd96f8853"
             ]
         ]
+    },
+    {
+        "id": "05098fbedab4c803",
+        "type": "function",
+        "z": "830497da8cdf302a",
+        "g": "6747f1d415cb8972",
+        "name": "function 4",
+        "func": "if (msg.payload !== undefined) {\n    msg.payload = \"Manual mass flow measurement: \" + msg.payload + \" kg/min\";\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1700,
+        "y": 1480,
+        "wires": [
+            [
+                "1df12a0dd96f8853"
+            ]
+        ]
+    },
+    {
+        "id": "e89556cfc620a086",
+        "type": "ui_template",
+        "z": "830497da8cdf302a",
+        "g": "6747f1d415cb8972",
+        "group": "846c63c79a255bbd",
+        "name": "Manual mass flow measurement",
+        "order": 6,
+        "width": 6,
+        "height": "2",
+        "format": "<md-input-container style=\"overflow:hidden;\">\n    <span>\n        <input \n            ng-model=\"user.input\" \n            style=\"width:350px\" \n            placeholder=\"{{msg.topic}}\" \n            ng-pattern=\"/^\\d+(\\.\\d+)?$/\"\n            ng-change=\"validateFloat()\"\n        >\n        <button \n            class=\"bluebutton\" \n            ng-click=\"msg.payload = user.input; send(msg)\" \n            ng-keypress=\"($event.charCode==13)? (msg.payload = user.input; send(msg)) : null\" \n            ng-style=\"{backgroundColor: '#5bc0de'}\" \n            style=\"color: #fff; background-color: #5bc0de; border-color: #46b8da;\"\n        >\n            Append manual mass flow [kg/min]\n        </button>\n    </span>\n</md-input-container>\n<script>\n    angular.module('myApp', [])\n    .controller('myCtrl', function($scope) {\n        $scope.validateFloat = function() {\n            // Optional: Additional validation logic can be added here\n            if (!/^\\d+(\\.\\d+)?$/.test($scope.user.input)) {\n                alert(\"Please enter a valid float value.\");\n                $scope.user.input = '';\n            }\n        };\n    });\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 1230,
+        "y": 1480,
+        "wires": [
+            [
+                "05098fbedab4c803"
+            ]
+        ]
+    },
+    {
+        "id": "dac5248ff2689d12",
+        "type": "ui_text",
+        "z": "830497da8cdf302a",
+        "g": "6747f1d415cb8972",
+        "group": "846c63c79a255bbd",
+        "order": 5,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "<b>Manual mass flow measurement",
+        "format": "",
+        "layout": "row-left",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1250,
+        "y": 1440,
+        "wires": []
     },
     {
         "id": "f8f66db3a1d7a6cc",
@@ -1183,7 +1306,7 @@
         "height": 1
     },
     {
-        "id": "46472ac664ae40f4",
+        "id": "019500b17be5de46",
         "type": "ui_spacer",
         "z": "830497da8cdf302a",
         "name": "spacer",
@@ -1193,7 +1316,7 @@
         "height": 1
     },
     {
-        "id": "6b241864559c5352",
+        "id": "cc664f48d4ca29a8",
         "type": "ui_spacer",
         "z": "830497da8cdf302a",
         "name": "spacer",
@@ -1203,7 +1326,7 @@
         "height": 1
     },
     {
-        "id": "0f1168b2e943eafa",
+        "id": "6c84f26e531775f5",
         "type": "ui_spacer",
         "z": "830497da8cdf302a",
         "name": "spacer",
@@ -1213,7 +1336,7 @@
         "height": 1
     },
     {
-        "id": "e57ab23830b5efa0",
+        "id": "376b4fcd069cd7d0",
         "type": "ui_spacer",
         "z": "830497da8cdf302a",
         "name": "spacer",
@@ -1235,7 +1358,7 @@
     {
         "id": "846c63c79a255bbd",
         "type": "ui_group",
-        "name": "Metadata",
+        "name": "Event comments",
         "tab": "53571d4d81ebd061",
         "order": 3,
         "disp": true,
