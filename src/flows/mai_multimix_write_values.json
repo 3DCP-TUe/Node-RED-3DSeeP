@@ -1085,7 +1085,7 @@
         "width": 1,
         "height": 1,
         "name": "",
-        "label": "l/h",
+        "label": "L/h",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
         "className": "",
@@ -1514,7 +1514,7 @@
         "type": "ui_tab",
         "name": "MAI MULTIMIX",
         "icon": "dashboard",
-        "order": 6,
+        "order": 7,
         "disabled": false,
         "hidden": false
     }
