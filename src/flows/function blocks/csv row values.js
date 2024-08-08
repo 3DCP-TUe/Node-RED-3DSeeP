@@ -84,8 +84,8 @@ msg.payload = {
 
     // Material
     'material_source_time': material.material_source_time ?? NaN,
-    'material_pressure_ai0': material.material_pressure_ai0?.toFixed(2) ?? NaN,
-    'material_pressure_ai1': material.material_pressure_ai1?.toFixed(2) ?? NaN,
+    'material_pressure_ai0': material.material_pressure_ai0?.toFixed(3) ?? NaN,
+    'material_pressure_ai1': material.material_pressure_ai1?.toFixed(3) ?? NaN,
     'material_io_ai0': material.material_io_ai0?.toFixed(6) ?? NaN,
     'material_io_ai1': material.material_io_ai1?.toFixed(6) ?? NaN,
     'material_io_ai2': material.material_io_ai2?.toFixed(6) ?? NaN,
@@ -181,7 +181,7 @@ msg.payload = {
     'printhead_actual_power_right': printhead.printhead_actual_power_right?.toFixed(3) ?? NaN,
     'printhead_actual_current_right': printhead.printhead_actual_current_right?.toFixed(3) ?? NaN,
     'printhead_actual_torque_right': printhead.printhead_actual_torque_right?.toFixed(3) ?? NaN,
-    'printhead_pressure': printhead.printhead_pressure?.toFixed(2) ?? NaN,
+    'printhead_pressure': printhead.printhead_pressure?.toFixed(3) ?? NaN,
     'printhead_box1_ai0': printhead.printhead_box1_ai0?.toFixed(6) ?? NaN,
     'printhead_box1_ai1': printhead.printhead_box1_ai1?.toFixed(6) ?? NaN,
     'printhead_box1_ai2': printhead.printhead_box1_ai2?.toFixed(6) ?? NaN,
