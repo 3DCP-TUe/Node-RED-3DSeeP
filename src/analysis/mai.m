@@ -17,12 +17,12 @@ cd(filepath);
 %% Read file and set directory
 % Read multiple files from custom directory
 directory = "D:\GitHub\Node-RED-3DSeeP\src\analysis\logs\20240722_Arjen\";
-nodeRed = readData(directory);
+nodeRed = lib.readData(directory);
 
 %% Settings for layout
 % X-axis
 xTick = 30; % Interval of ticks on x-axis in minutes
-xLimits = [floorToNearest(nodeRed.desktop_time(1), xTick) ceilToNearest(nodeRed.desktop_time(end), xTick)];
+xLimits = [lib.floorToNearest(nodeRed.desktop_time(1), xTick) lib.ceilToNearest(nodeRed.desktop_time(end), xTick)];
 xticks = xLimits(1):minutes(xTick):xLimits(2);
 % Set default marker size and line width
 set(0, 'DefaultLineMarkerSize', 2);
@@ -53,7 +53,7 @@ nodeRed.material_differential_pressure_bar = filtered1 - filtered2;
 nodeRed.material_coriolis_mass_flow_filtered_90s_kg_min = (nodeRed.material_io_ai4_ma - 4) / 16 * 16;
 nodeRed.material_coriolis_density_filtered_90s_kg_m3 = (nodeRed.material_io_ai5_ma - 4) / 16 * 400 + 2000;
 % Mixer timing
-[times, intervalTimes, runTimes] = mixerTimes(nodeRed.desktop_time, nodeRed.mai_mixer_run_bool);
+[times, intervalTimes, runTimes] = lib.mixerTimes(nodeRed.desktop_time, nodeRed.mai_mixer_run_bool);
 % Temperature pumping chamber MAI MULTIMIX
 nodeRed.mai_temperature_pumping_chamber_c = (nodeRed.material_io_ai2_ma - 4) / 16 * 100;
 
@@ -123,7 +123,7 @@ legend('Pressure sensor 1', 'Pressure sensor 2', 'Location', 'NorthEast')
 ax1 = gca;
 set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
-saveFigure(fig, 'pressure')
+lib.saveFigure(fig, 'pressure')
 
 %% Plot differential pressure
 fig = figure;
@@ -158,7 +158,7 @@ set(gca, 'YColor','k')
 yyaxis right
 set(gca, 'YColor','k')
 % Write figure
-saveFigure(fig, 'differential_pressure')
+lib.saveFigure(fig, 'differential_pressure')
 
 %% Plot viscocity
 fig = figure;
@@ -179,7 +179,7 @@ ylabel('Apparent dynamic viscocity [cP]')
 ax1 = gca;
 set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
-saveFigure(fig, 'viscocity')
+lib.saveFigure(fig, 'viscocity')
 
 %% Plot exciter current
 fig = figure;
@@ -200,7 +200,7 @@ ylabel('Exciter current 1 [mA]')
 ax1 = gca;
 set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
-saveFigure(fig, 'exciter_current_1')
+lib.saveFigure(fig, 'exciter_current_1')
 
 %% Plot mass flow rate
 fig = figure;
@@ -224,7 +224,7 @@ legend('Unfiltered', 'Filter E+H 90s', 'Location', 'NorthEast')
 ax1 = gca;
 set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
-saveFigure(fig, 'mass_flow')
+lib.saveFigure(fig, 'mass_flow')
 
 %% Plot temperature
 fig = figure;
@@ -250,7 +250,7 @@ legend(text1, text2, 'Location', 'NorthEast')
 ax1 = gca;
 set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
-saveFigure(fig, 'mortar_temperature')
+lib.saveFigure(fig, 'mortar_temperature')
 
 %% Plot density
 fig = figure;
@@ -274,7 +274,7 @@ legend('Unfiltered', 'Filter E+H 90s', 'Location', 'NorthEast')
 ax1 = gca;
 set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
-saveFigure(fig, 'density')
+lib.saveFigure(fig, 'density')
 
 %% Plot pump frequency
 fig = figure;
@@ -295,7 +295,7 @@ ylabel('Pump frequency [Hz]')
 ax1 = gca;
 set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
-saveFigure(fig, 'mortar_pump_frequency')
+lib.saveFigure(fig, 'mortar_pump_frequency')
 
 %% Plot pump output power
 fig = figure;
@@ -316,7 +316,7 @@ ylabel('Pump output power [W]')
 ax1 = gca;
 set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
-saveFigure(fig, 'mortar_pump_output_power')
+lib.saveFigure(fig, 'mortar_pump_output_power')
 
 %% Plot water temperature
 fig = figure;
@@ -340,7 +340,7 @@ legend('Sensor 1: Original', 'Sensor 2: Mixer inlet', 'Location', 'NorthEast')
 ax1 = gca;
 set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
-saveFigure(fig, 'water_temperature')
+lib.saveFigure(fig, 'water_temperature')
 
 %% Plot water flow
 fig = figure;
@@ -364,7 +364,7 @@ legend('Actual', 'Setpoint', 'Location', 'NorthEast')
 ax1 = gca;
 set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
-saveFigure(fig, 'water_flow')
+lib.saveFigure(fig, 'water_flow')
 
 %% Plot water pump frequency
 fig = figure;
@@ -388,7 +388,7 @@ legend('Actual', 'Reference', 'Location', 'NorthEast')
 ax1 = gca;
 set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
-saveFigure(fig, 'water_pump_frequency')
+lib.saveFigure(fig, 'water_pump_frequency')
 
 %% Ambient temperature and relative humidity
 fig = figure;
@@ -425,7 +425,7 @@ set(gca, 'YColor','k')
 yyaxis right
 set(gca, 'YColor','k')
 % Write figure
-saveFigure(fig, 'ambient_temperature')
+lib.saveFigure(fig, 'ambient_temperature')
 
 %% Mixer times ratio (flow prediction)
 fig = figure;
@@ -450,7 +450,7 @@ legend('Single run', sprintf('Moving mean k=%d', k), 'Location', 'NorthEast')
 ax1 = gca;
 set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
-saveFigure(fig, 'mixer_times_ratio')
+lib.saveFigure(fig, 'mixer_times_ratio')
 
 %% Mixer times (flow prediction)
 fig = figure;
@@ -477,7 +477,7 @@ legend('Interval time', sprintf('Interval time mov. mean k=%d', k), 'Run time', 
 ax1 = gca;
 set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
-saveFigure(fig, 'mixer_times')
+lib.saveFigure(fig, 'mixer_times')
 
 %% Correlation between temperature and differential pressure
 fig = figure;
@@ -495,7 +495,7 @@ xlim([floor(min(nodeRed.material_coriolis_temperature_c(index1:index2))-1), ceil
 xlabel('Mortar temperature [C]')
 ylabel('Differential pressure [bar]')
 % Write figure
-saveFigure(fig, 'correlation_temp_dp')
+lib.saveFigure(fig, 'correlation_temp_dp')
 
 %% Correlation between viscocity and differential pressure
 fig = figure;
@@ -513,7 +513,7 @@ xlim([floor(min(nodeRed.material_coriolis_dynamic_viscocity_cp(index1:index2))/5
 xlabel('Apparent dynamic viscocity [cP]')
 ylabel('Differential pressure [bar]')
 % Write figure
-saveFigure(fig, 'correlation_viscocity_dp')
+lib.saveFigure(fig, 'correlation_viscocity_dp')
 
 %% Report generator
 % Create empty table
@@ -570,110 +570,3 @@ rptview(report);
 
 %% End
 disp('End of script')
-
-%% Functions
-
-% Reads and combines all CSV files from a given directory
-function [data] = readData(directory)
-    % Check if the directory exists
-    if ~isfolder(directory)
-        error('ERROR: The specified directory does not exist.');
-    end
-    % Get the list of CSV files in the directory
-    files = dir(fullfile(directory, '*.csv'));
-    if isempty(files)
-        error('ERROR: No .csv files found in the specified folder.');
-    end
-    %Read files and append if multiple
-    data = [];
-    for i = 1:length(files)
-        data = [data; readtable(fullfile(directory, files(i).name))];
-    end
-    % Create and navigate to save folder
-    saveFolderName = fullfile(directory, "Results");
-    if ~exist(saveFolderName, 'dir' )
-        mkdir(saveFolderName)
-    end
-    cd(saveFolderName)
-end
-
-% Mixer run and interval times
-function [times, intervalTimes, runTimes] = mixerTimes(time, bools) 
-    % Remove NaN values
-    validIndices = ~isnan(bools);
-    boolsFiltered = bools(validIndices);
-    timeFiltered = time(validIndices);
-    % Force first and last element to be mixer off
-    boolsFiltered(1) = 0;
-    boolsFiltered(end) = 0;
-    % Preallocate output arrays
-    max_transitions = sum(diff(boolsFiltered) ~= 0);
-    times = duration.empty(max_transitions, 0);
-    intervalTimes = zeros(1, max_transitions);
-    runTimes = zeros(1, max_transitions);
-    % Initialize variables
-    startTime = nan;
-    intervalIndex = 0;
-    runIndex = 0;
-    % Calculate interval and run times
-    for i = 2:length(boolsFiltered)
-        % Start of mixer run
-        if (boolsFiltered(i-1) == 0 && boolsFiltered(i) == 1)
-            if ~isnan(startTime)
-                intervalIndex = intervalIndex + 1;
-                intervalTimes(intervalIndex) = seconds(timeFiltered(i) - startTime);
-            end
-        startTime = timeFiltered(i);
-        % End of mixer run
-        elseif (boolsFiltered(i-1) == 1 && boolsFiltered(i) == 0)
-            runIndex = runIndex + 1;
-            endTime = timeFiltered(i);
-            runTimes(runIndex) = seconds(endTime - startTime);
-            times(runIndex) = startTime;
-        end
-    end
-    % Remove unused preallocated elements
-    times = times(1:runIndex);
-    intervalTimes = intervalTimes(1:runIndex);
-    runTimes = runTimes(1:runIndex);  
-end
-
-% Write figure
-function [] = saveFigure(fig, name) 
-    fig.Units = 'inches';
-    width = fig.Position(3);
-    height = fig.Position(4);
-    set(gcf, 'PaperPosition', [0 0 width height]);
-    set(gcf, 'PaperSize', [width height]); 
-    saveas(fig, name, 'pdf')
-end
-
-% Floor duration
-function flooredDuration = floorToNearest(d, m)
-    % Convert the duration to total minutes
-    totalMinutes = minutes(d);
-    % Determine the nearest floor in minutes
-    flooredMinutes = floor(totalMinutes / m) * m;
-    % Convert minutes back to duration
-    flooredHours = floor(flooredMinutes / 60);
-    flooredMinutes = mod(flooredMinutes, 60);
-    flooredDuration = duration(flooredHours, flooredMinutes, 0);
-end
-
-% Ceil duration
-function ceiledDuration = ceilToNearest(d, m)   
-    % Convert the duration to total minutes
-    totalMinutes = minutes(d);
-    % Determine the nearest ceil in minutes
-    if mod(totalMinutes, m) == 0
-        % If already at an exact multiple of m
-        ceiledMinutes = totalMinutes;
-    else
-        % Round up to the next multiple of m
-        ceiledMinutes = ceil(totalMinutes / m) * m;
-    end
-    % Convert minutes back to duration
-    ceiledHours = floor(ceiledMinutes / 60);
-    ceiledMinutes = mod(ceiledMinutes, 60);
-    ceiledDuration = duration(ceiledHours, ceiledMinutes, 0);
-end
