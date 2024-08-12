@@ -74,7 +74,6 @@ classdef lib
         
         % Write figure
         function [] = saveFigure(fig, name) 
-            fig.Units = 'inches';
             width = fig.Position(3);
             height = fig.Position(4);
             set(gcf, 'PaperPosition', [0 0 width height]);
