@@ -26,7 +26,6 @@
             "ba0211763bc00da1",
             "473b8474c415a6bb",
             "f666229848971d7a",
-            "1df12a0dd96f8853",
             "303cb120a67fbc63",
             "2d49380dd9ab0cb5",
             "6158fcc5f4cbcc54",
@@ -36,11 +35,12 @@
             "dd20a936fee53ba5",
             "05098fbedab4c803",
             "e89556cfc620a086",
-            "dac5248ff2689d12"
+            "dac5248ff2689d12",
+            "cfa7475c52ec0440"
         ],
-        "x": 1074,
+        "x": 1094,
         "y": 1199,
-        "w": 1192,
+        "w": 1632,
         "h": 442
     },
     {
@@ -796,14 +796,14 @@
         "z": "830497da8cdf302a",
         "g": "6747f1d415cb8972",
         "name": "",
-        "func": "msg.data = msg.payload\nmsg.file = global.get(\"name\") + \"_EventComments\" + \".txt\";\nmsg.filename=\"D:/Node Red/Files/\" + msg.file;\nmsg.payload = \"Event comments corresponding to file: \" + global.get(\"name\")+ \".csv\" +\n\"\\nThe corresponding csv file is created using Node-RED 3DSeeP v0.3.0\" + \n\"\\nAvailable through https://github.com/3DCP-TUe/Node-RED-3DSeeP\"+\n\"\\n \\n----------\\n \\n\"+\n\"Log of manual comments:\";\nreturn msg;",
+        "func": "msg.data = msg.payload\nmsg.file = global.get(\"name\") + \"_EventComments\" + \".csv\";\nmsg.filename=\"D:/Node Red/Files/\" + msg.file;\nmsg.payload = \"Event comments corresponding to file: \" + global.get(\"name\")+ \".csv\" +\n\"\\nThe corresponding csv file is created using Node-RED 3DSeeP v0.3.0\" + \n\"\\nAvailable through https://github.com/3DCP-TUe/Node-RED-3DSeeP\"+\n\"\\n \\n----------\\n \\n\"+\n\"Log of manual comments:\"+\n\"\\nTime,Comment,Value,Unit\";\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1900,
+        "x": 2460,
         "y": 1560,
         "wires": [
             [
@@ -823,7 +823,7 @@
         "createDir": true,
         "overwriteFile": "false",
         "encoding": "none",
-        "x": 2090,
+        "x": 2650,
         "y": 1560,
         "wires": [
             []
@@ -845,11 +845,11 @@
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 1190,
+        "x": 1210,
         "y": 1600,
         "wires": [
             [
-                "1df12a0dd96f8853"
+                "cfa7475c52ec0440"
             ]
         ]
     },
@@ -871,7 +871,7 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 1670,
+        "x": 1690,
         "y": 1240,
         "wires": []
     },
@@ -893,7 +893,7 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 2,
-        "x": 1540,
+        "x": 2100,
         "y": 1600,
         "wires": [
             [
@@ -920,32 +920,11 @@
         "output": "time",
         "outputType": "msg",
         "outTz": "Europe/Amsterdam",
-        "x": 1730,
+        "x": 2290,
         "y": 1600,
         "wires": [
             [
                 "303cb120a67fbc63"
-            ]
-        ]
-    },
-    {
-        "id": "1df12a0dd96f8853",
-        "type": "function",
-        "z": "830497da8cdf302a",
-        "g": "6747f1d415cb8972",
-        "name": "function 1",
-        "func": "msg.comment = msg.payload\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1380,
-        "y": 1600,
-        "wires": [
-            [
-                "473b8474c415a6bb"
             ]
         ]
     },
@@ -955,14 +934,14 @@
         "z": "830497da8cdf302a",
         "g": "6747f1d415cb8972",
         "name": "function 2",
-        "func": "msg.payload = msg.time.toString() + \", \" + msg.comment.toString();\nmsg.file = global.get(\"name\") + \"_EventComments.txt\";\nmsg.filename=\"D:/Node Red/Files/\" + msg.file;\nreturn msg;",
+        "func": "msg.payload = msg.time.toString() + \",\" + msg.comment.toString() + \",\" + msg.value.toString() + \",\" + msg.unit.toString();\nmsg.file = global.get(\"name\") + \"_EventComments.csv\";\nmsg.filename=\"D:/Node Red/Files/\" + msg.file;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1900,
+        "x": 2460,
         "y": 1600,
         "wires": [
             [
@@ -988,7 +967,7 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 1200,
+        "x": 1220,
         "y": 1540,
         "wires": []
     },
@@ -1010,7 +989,7 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 1210,
+        "x": 1230,
         "y": 1300,
         "wires": []
     },
@@ -1070,11 +1049,11 @@
         "topic": "topic",
         "topicType": "msg",
         "className": "",
-        "x": 1160,
+        "x": 1180,
         "y": 1340,
         "wires": [
             [
-                "1df12a0dd96f8853"
+                "cfa7475c52ec0440"
             ]
         ]
     },
@@ -1093,7 +1072,7 @@
         "topic": "topic",
         "topicType": "msg",
         "className": "",
-        "x": 1250,
+        "x": 1270,
         "y": 1380,
         "wires": [
             [
@@ -1119,7 +1098,7 @@
         "output": "payload",
         "outputType": "msg",
         "outTz": "Europe/Amsterdam",
-        "x": 1510,
+        "x": 1530,
         "y": 1380,
         "wires": [
             [
@@ -1133,18 +1112,18 @@
         "z": "830497da8cdf302a",
         "g": "6747f1d415cb8972",
         "name": "function 3",
-        "func": "msg.payload = \"Production date big bag: \" + msg.payload\nreturn msg;",
+        "func": "msg.comment = \"Production date big bag\" + msg.payload;\nmsg.value=msg.payload;\nmsg,unit=\"\";\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1700,
+        "x": 1720,
         "y": 1380,
         "wires": [
             [
-                "1df12a0dd96f8853"
+                "473b8474c415a6bb"
             ]
         ]
     },
@@ -1154,18 +1133,18 @@
         "z": "830497da8cdf302a",
         "g": "6747f1d415cb8972",
         "name": "function 4",
-        "func": "if (msg.payload !== undefined) {\n    msg.payload = \"Manual mass flow measurement: \" + msg.payload + \" kg/min\";\n    return msg;\n}",
+        "func": "if (msg.payload !== undefined) {\n    msg.comment = \"Manual mass flow measurement\";\n    msg.value=msg.payload;\n    msg.unit=\"kg/min\"\n    return msg;\n}",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1700,
+        "x": 1720,
         "y": 1480,
         "wires": [
             [
-                "1df12a0dd96f8853"
+                "473b8474c415a6bb"
             ]
         ]
     },
@@ -1185,7 +1164,7 @@
         "resendOnRefresh": false,
         "templateScope": "local",
         "className": "",
-        "x": 1230,
+        "x": 1250,
         "y": 1480,
         "wires": [
             [
@@ -1211,9 +1190,30 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 1250,
+        "x": 1270,
         "y": 1440,
         "wires": []
+    },
+    {
+        "id": "cfa7475c52ec0440",
+        "type": "function",
+        "z": "830497da8cdf302a",
+        "g": "6747f1d415cb8972",
+        "name": "function 5",
+        "func": "msg.comment=msg.payload;\nmsg.value=\"\";\nmsg.unit=\"\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1720,
+        "y": 1600,
+        "wires": [
+            [
+                "473b8474c415a6bb"
+            ]
+        ]
     },
     {
         "id": "f8f66db3a1d7a6cc",
