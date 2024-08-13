@@ -24,12 +24,14 @@
             "27c0a078d32b4020",
             "05878a847fda9dcc",
             "33e34773cd4f118c",
-            "6110be169bf9c231"
+            "6110be169bf9c231",
+            "bfcadbcafdb5c441",
+            "40e82c2e711e92ca"
         ],
         "x": 3254,
-        "y": 199,
-        "w": 532,
-        "h": 162
+        "y": 159,
+        "w": 572,
+        "h": 242
     },
     {
         "id": "769cbc7c61ddfd9b",
@@ -604,7 +606,7 @@
         "z": "dbcff3a91e8577ef",
         "g": "b1b0fd273f6291ec",
         "group": "c78a245d5457d92a",
-        "order": 2,
+        "order": 3,
         "width": 6,
         "height": 1,
         "name": "",
@@ -626,7 +628,7 @@
         "z": "dbcff3a91e8577ef",
         "g": "b1b0fd273f6291ec",
         "group": "c78a245d5457d92a",
-        "order": 1,
+        "order": 2,
         "width": 6,
         "height": 1,
         "name": "",
@@ -648,11 +650,11 @@
         "z": "dbcff3a91e8577ef",
         "g": "b1b0fd273f6291ec",
         "name": "batch and interval time",
-        "func": "if (msg.payload !== context.get('prev_mixer_run')) {\n   \n    context.set('prev_mixer_run', msg.payload);\n\t\n\ttime = new Date().getTime() / 1000;\n\tprev_start = context.get('prev_mixer_start')\n\tprev_stop = context.get('prev_mixer_stop')\n\tprev_batch_time = context.get('batch_time');\n\tprev_interval_time = context.get('interval_time');\n\t\n\tif (msg.payload == false)\n\t{\n\t    batch_time = time - prev_start;\n\t\tcontext.set('prev_mixer_stop', time);\n\t\tcontext.set('batch_time', batch_time);\n\t}\n\telse\n\t{\n\t\tinterval_time = time - prev_start;\n\t    msg.batch_time = prev_batch_time;\n\t\tmsg.interval_time = interval_time;\n\t\tmsg.prediction = prev_batch_time / interval_time * 1.0;\n\t\tcontext.set('interval_time', interval_time);\n\t\tcontext.set('prev_mixer_start', time);\n\t\treturn msg;\n\t}\n}",
+        "func": "if (msg.payload !== context.get('prev_mixer_run')) {\n   \n    context.set('prev_mixer_run', msg.payload);\n\t\n\ttime = new Date().getTime() / 1000;\n\tprev_start = context.get('prev_mixer_start')\n\tprev_stop = context.get('prev_mixer_stop')\n\tprev_batch_time = context.get('batch_time');\n\tprev_interval_time = context.get('interval_time');\n\t\n\tif (msg.payload == false)\n\t{\n\t    batch_time = time - prev_start;\n\t\tcontext.set('prev_mixer_stop', time);\n\t\tcontext.set('batch_time', batch_time);\n\t}\n\telse\n\t{\n\t\tinterval_time = time - prev_start;\n\t    msg.batch_time = prev_batch_time;\n\t\tmsg.interval_time = interval_time;\n\t\tmsg.prediction = prev_batch_time / interval_time * 1.0;\n\t\t\n\t\tqueue = context.get('queue');\n\t\tqueue.push(msg.prediction);\n\t\tif(queue.length > 10)\n\t\t{\n\t\t    queue.shift();\n\t\t}\n\t\t\n\t\tlet sum = queue.reduce((acc, curr) => acc + curr, 0);\n\t\tmsg.mean = sum / queue.length;\n\t\t\n\t\tcontext.set('queue', queue);\n\t\tcontext.set('interval_time', interval_time);\n\t\tcontext.set('prev_mixer_start', time);\n\t\treturn msg;\n\t}\n}",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
-        "initialize": "// Code added here will be run once\n// whenever the node is started.\n\ncontext.set('prev_mixer_run', false);\ncontext.set('prev_mixer_stop', new Date().getTime() / 1000);\ncontext.set('prev_mixer_start', new Date().getTime() / 1000);\ncontext.set('batch_time', 0.0);\ncontext.set('interval_time', 0.0);",
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\n\ncontext.set('prev_mixer_run', false);\ncontext.set('prev_mixer_stop', new Date().getTime() / 1000);\ncontext.set('prev_mixer_start', new Date().getTime() / 1000);\ncontext.set('batch_time', 0.0);\ncontext.set('interval_time', 0.0);\ncontext.set('queue', []);",
         "finalize": "",
         "libs": [],
         "x": 3380,
@@ -661,7 +663,8 @@
             [
                 "05878a847fda9dcc",
                 "27c0a078d32b4020",
-                "6110be169bf9c231"
+                "6110be169bf9c231",
+                "bfcadbcafdb5c441"
             ]
         ]
     },
@@ -671,11 +674,11 @@
         "z": "dbcff3a91e8577ef",
         "g": "b1b0fd273f6291ec",
         "group": "c78a245d5457d92a",
-        "order": 3,
+        "order": 4,
         "width": 6,
         "height": 1,
         "name": "",
-        "label": "Mixer time ratio [-]",
+        "label": "Last ratio [-]",
         "format": "{{msg.prediction.toFixed(3)}}",
         "layout": "row-spread",
         "className": "",
@@ -683,7 +686,7 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 3650,
+        "x": 3630,
         "y": 320,
         "wires": []
     },
@@ -1533,7 +1536,51 @@
         "wires": []
     },
     {
-        "id": "25a6a1495c6bcba6",
+        "id": "bfcadbcafdb5c441",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "g": "b1b0fd273f6291ec",
+        "group": "c78a245d5457d92a",
+        "order": 5,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Mean ratio last 10 cycles [-]",
+        "format": "{{msg.mean.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3680,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "40e82c2e711e92ca",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "g": "b1b0fd273f6291ec",
+        "group": "c78a245d5457d92a",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "<b>Mixer:",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3620,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "af52a92aedbb0fe6",
         "type": "ui_spacer",
         "z": "dbcff3a91e8577ef",
         "name": "spacer",
@@ -1543,7 +1590,7 @@
         "height": 1
     },
     {
-        "id": "3552c0849937d36e",
+        "id": "b7301a4797a16a50",
         "type": "ui_spacer",
         "z": "dbcff3a91e8577ef",
         "name": "spacer",
@@ -1553,7 +1600,7 @@
         "height": 1
     },
     {
-        "id": "979be4bc18cf2ad8",
+        "id": "5f813389c38b4b79",
         "type": "ui_spacer",
         "z": "dbcff3a91e8577ef",
         "name": "spacer",
@@ -1563,7 +1610,7 @@
         "height": 1
     },
     {
-        "id": "1cbb78774bf18e69",
+        "id": "e9321028a0e790b5",
         "type": "ui_spacer",
         "z": "dbcff3a91e8577ef",
         "name": "spacer",
@@ -1573,7 +1620,7 @@
         "height": 1
     },
     {
-        "id": "fc562f8854446456",
+        "id": "8814368aa0a596d1",
         "type": "ui_spacer",
         "z": "dbcff3a91e8577ef",
         "name": "spacer",
@@ -1583,7 +1630,7 @@
         "height": 1
     },
     {
-        "id": "90621a3e1c1bc872",
+        "id": "19cd3b34389e84b7",
         "type": "ui_spacer",
         "z": "dbcff3a91e8577ef",
         "name": "spacer",
