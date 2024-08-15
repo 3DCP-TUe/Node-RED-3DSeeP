@@ -182,6 +182,7 @@ msg.payload = {
     'printhead_actual_current_right': printhead.printhead_actual_current_right?.toFixed(3) ?? NaN,
     'printhead_actual_torque_right': printhead.printhead_actual_torque_right?.toFixed(3) ?? NaN,
     'printhead_pressure': printhead.printhead_pressure?.toFixed(3) ?? NaN,
+    'printhead_mortar_temperature': printhead.printhead_mortar_temperature?.toFixed(2) ?? NaN,
     'printhead_box1_ai0': printhead.printhead_box1_ai0?.toFixed(6) ?? NaN,
     'printhead_box1_ai1': printhead.printhead_box1_ai1?.toFixed(6) ?? NaN,
     'printhead_box1_ai2': printhead.printhead_box1_ai2?.toFixed(6) ?? NaN,
@@ -198,9 +199,3 @@ msg.payload = {
 
 
 return msg;
-
-
-
-
-
-

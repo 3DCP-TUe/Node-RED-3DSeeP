@@ -160,6 +160,7 @@ var data ="desktop_time,"+
     "printhead_motor_2_actual_current_a,"+
     "printhead_motor_2_actual_torque_nm,"+
     "printhead_pressure_bar,"+
+    "printhead_mortar_temperature_c,"+
     "printhead_box1_io_ai0_ma,"+
     "printhead_box1_io_ai1_ma,"+
     "printhead_box1_io_ai2_ma,"+

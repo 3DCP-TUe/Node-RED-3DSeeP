@@ -21,7 +21,7 @@
         "layout": "row-spread",
         "className": "",
         "x": 3550,
-        "y": 1200,
+        "y": 1380,
         "wires": []
     },
     {
@@ -38,7 +38,7 @@
         "layout": "row-spread",
         "className": "",
         "x": 3550,
-        "y": 1680,
+        "y": 1860,
         "wires": []
     },
     {
@@ -59,7 +59,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3560,
-        "y": 1280,
+        "y": 1460,
         "wires": []
     },
     {
@@ -80,7 +80,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3550,
-        "y": 1320,
+        "y": 1500,
         "wires": []
     },
     {
@@ -101,7 +101,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3570,
-        "y": 1360,
+        "y": 1540,
         "wires": []
     },
     {
@@ -122,7 +122,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3550,
-        "y": 1520,
+        "y": 1700,
         "wires": []
     },
     {
@@ -143,7 +143,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3560,
-        "y": 1400,
+        "y": 1580,
         "wires": []
     },
     {
@@ -164,7 +164,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3540,
-        "y": 1240,
+        "y": 1420,
         "wires": []
     },
     {
@@ -185,7 +185,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3560,
-        "y": 1760,
+        "y": 1940,
         "wires": []
     },
     {
@@ -206,7 +206,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3550,
-        "y": 1800,
+        "y": 1980,
         "wires": []
     },
     {
@@ -227,7 +227,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3570,
-        "y": 1840,
+        "y": 2020,
         "wires": []
     },
     {
@@ -248,7 +248,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3550,
-        "y": 2000,
+        "y": 2180,
         "wires": []
     },
     {
@@ -269,7 +269,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3560,
-        "y": 1880,
+        "y": 2060,
         "wires": []
     },
     {
@@ -290,7 +290,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3540,
-        "y": 1720,
+        "y": 1900,
         "wires": []
     },
     {
@@ -479,7 +479,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3520,
-        "y": 1000,
+        "y": 1100,
         "wires": []
     },
     {
@@ -500,7 +500,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3520,
-        "y": 1040,
+        "y": 1140,
         "wires": []
     },
     {
@@ -521,7 +521,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3520,
-        "y": 1080,
+        "y": 1180,
         "wires": []
     },
     {
@@ -542,7 +542,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3520,
-        "y": 1120,
+        "y": 1220,
         "wires": []
     },
     {
@@ -570,7 +570,7 @@
         "type": "ui_text",
         "z": "8bff11da7245afcc",
         "group": "751807419a0c11a8",
-        "order": 10,
+        "order": 11,
         "width": 6,
         "height": 1,
         "name": "",
@@ -583,7 +583,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3580,
-        "y": 480,
+        "y": 1020,
         "wires": []
     },
     {
@@ -712,7 +712,7 @@
         "width": 6,
         "height": 1,
         "name": "",
-        "label": "Pressure AI0 0-10 bar [bar] ",
+        "label": "Pressure BOX1-AI0 0-10 bar [bar] ",
         "format": "{{msg.payload.printhead_pressure.toFixed(2)}}",
         "layout": "row-spread",
         "className": "",
@@ -720,8 +720,8 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 3580,
-        "y": 580,
+        "x": 3600,
+        "y": 540,
         "wires": []
     },
     {
@@ -738,7 +738,7 @@
         "layout": "row-spread",
         "className": "",
         "x": 3540,
-        "y": 540,
+        "y": 500,
         "wires": []
     },
     {
@@ -1207,7 +1207,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3570,
-        "y": 1560,
+        "y": 1740,
         "wires": []
     },
     {
@@ -1228,7 +1228,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3570,
-        "y": 1600,
+        "y": 1780,
         "wires": []
     },
     {
@@ -1249,7 +1249,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3570,
-        "y": 2040,
+        "y": 2220,
         "wires": []
     },
     {
@@ -1270,7 +1270,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3570,
-        "y": 2080,
+        "y": 2260,
         "wires": []
     },
     {
@@ -1355,7 +1355,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3550,
-        "y": 1440,
+        "y": 1620,
         "wires": []
     },
     {
@@ -1376,7 +1376,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3550,
-        "y": 1480,
+        "y": 1660,
         "wires": []
     },
     {
@@ -1397,7 +1397,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3550,
-        "y": 1920,
+        "y": 2100,
         "wires": []
     },
     {
@@ -1418,7 +1418,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3550,
-        "y": 1960,
+        "y": 2140,
         "wires": []
     },
     {
@@ -1579,7 +1579,7 @@
         "type": "function",
         "z": "8bff11da7245afcc",
         "name": "Convert and add values",
-        "func": "// Set message topic\nmsg.topic = \"printhead\"\n\n// Pressure\nmsg.payload.printhead_pressure = (msg.payload.printhead_box1_ai0 < 0) ? 0.0 : (msg.payload.printhead_box1_ai0 / 27648 * 10.0);\n\n// Convert analog inputs of box 1 to mA\nmsg.payload.printhead_box1_ai0 = (msg.payload.printhead_box1_ai0 < 0) ? 0.0 : (msg.payload.printhead_box1_ai0 / 27648 * 16.0 + 4.0);\nmsg.payload.printhead_box1_ai1 = (msg.payload.printhead_box1_ai1 < 0) ? 0.0 : (msg.payload.printhead_box1_ai1 / 27648 * 16.0 + 4.0);\nmsg.payload.printhead_box1_ai2 = (msg.payload.printhead_box1_ai2 < 0) ? 0.0 : (msg.payload.printhead_box1_ai2 / 27648 * 16.0 + 4.0);\nmsg.payload.printhead_box1_ai3 = (msg.payload.printhead_box1_ai3 < 0) ? 0.0 : (msg.payload.printhead_box1_ai3 / 27648 * 16.0 + 4.0);\nmsg.payload.printhead_box1_ai4 = (msg.payload.printhead_box1_ai4 < 0) ? 0.0 : (msg.payload.printhead_box1_ai4 / 27648 * 16.0 + 4.0);\nmsg.payload.printhead_box1_ai5 = (msg.payload.printhead_box1_ai5 < 0) ? 0.0 : (msg.payload.printhead_box1_ai5 / 27648 * 16.0 + 4.0);\nmsg.payload.printhead_box1_ai6 = (msg.payload.printhead_box1_ai6 < 0) ? 0.0 : (msg.payload.printhead_box1_ai6 / 27648 * 16.0 + 4.0);\nmsg.payload.printhead_box1_ai7 = (msg.payload.printhead_box1_ai7 < 0) ? 0.0 : (msg.payload.printhead_box1_ai7 / 27648 * 16.0 + 4.0);\n\n// Convert analog inputs of box 2 to mA\nmsg.payload.printhead_box2_ai0 = (msg.payload.printhead_box2_ai0 < 0) ? 0.0 : (msg.payload.printhead_box2_ai0 / 27648 * 16.0 + 4.0);\nmsg.payload.printhead_box2_ai1 = (msg.payload.printhead_box2_ai1 < 0) ? 0.0 : (msg.payload.printhead_box2_ai1 / 27648 * 16.0 + 4.0);\nmsg.payload.printhead_box2_ai2 = (msg.payload.printhead_box2_ai2 < 0) ? 0.0 : (msg.payload.printhead_box2_ai2 / 27648 * 16.0 + 4.0);\nmsg.payload.printhead_box2_ai3 = (msg.payload.printhead_box2_ai3 < 0) ? 0.0 : (msg.payload.printhead_box2_ai3 / 27648 * 16.0 + 4.0);\n\nreturn msg\n",
+        "func": "// Set message topic\nmsg.topic = \"printhead\"\n\n// Pressure\nmsg.payload.printhead_pressure = (msg.payload.printhead_box1_ai0 < 0) ? 0.0 : (msg.payload.printhead_box1_ai0 / 27648 * 10.0);\nmsg.payload.printhead_mortar_temperature = (msg.payload.printhead_box2_ai0 < 0) ? -50 : (msg.payload.printhead_box2_ai0 / 27648 * 200.0 - 50);\n\n// Convert analog inputs of box 1 to mA\nmsg.payload.printhead_box1_ai0 = (msg.payload.printhead_box1_ai0 < 0) ? 0.0 : (msg.payload.printhead_box1_ai0 / 27648 * 16.0 + 4.0);\nmsg.payload.printhead_box1_ai1 = (msg.payload.printhead_box1_ai1 < 0) ? 0.0 : (msg.payload.printhead_box1_ai1 / 27648 * 16.0 + 4.0);\nmsg.payload.printhead_box1_ai2 = (msg.payload.printhead_box1_ai2 < 0) ? 0.0 : (msg.payload.printhead_box1_ai2 / 27648 * 16.0 + 4.0);\nmsg.payload.printhead_box1_ai3 = (msg.payload.printhead_box1_ai3 < 0) ? 0.0 : (msg.payload.printhead_box1_ai3 / 27648 * 16.0 + 4.0);\nmsg.payload.printhead_box1_ai4 = (msg.payload.printhead_box1_ai4 < 0) ? 0.0 : (msg.payload.printhead_box1_ai4 / 27648 * 16.0 + 4.0);\nmsg.payload.printhead_box1_ai5 = (msg.payload.printhead_box1_ai5 < 0) ? 0.0 : (msg.payload.printhead_box1_ai5 / 27648 * 16.0 + 4.0);\nmsg.payload.printhead_box1_ai6 = (msg.payload.printhead_box1_ai6 < 0) ? 0.0 : (msg.payload.printhead_box1_ai6 / 27648 * 16.0 + 4.0);\nmsg.payload.printhead_box1_ai7 = (msg.payload.printhead_box1_ai7 < 0) ? 0.0 : (msg.payload.printhead_box1_ai7 / 27648 * 16.0 + 4.0);\n\n// Convert analog inputs of box 2 to mA\nmsg.payload.printhead_box2_ai0 = (msg.payload.printhead_box2_ai0 < 0) ? 0.0 : (msg.payload.printhead_box2_ai0 / 27648 * 16.0 + 4.0);\nmsg.payload.printhead_box2_ai1 = (msg.payload.printhead_box2_ai1 < 0) ? 0.0 : (msg.payload.printhead_box2_ai1 / 27648 * 16.0 + 4.0);\nmsg.payload.printhead_box2_ai2 = (msg.payload.printhead_box2_ai2 < 0) ? 0.0 : (msg.payload.printhead_box2_ai2 / 27648 * 16.0 + 4.0);\nmsg.payload.printhead_box2_ai3 = (msg.payload.printhead_box2_ai3 < 0) ? 0.0 : (msg.payload.printhead_box2_ai3 / 27648 * 16.0 + 4.0);\n\nreturn msg\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -1590,9 +1590,18 @@
         "y": 440,
         "wires": [
             [
-                "90485ffa8c19b8ee",
-                "1088f83035f19bf3",
-                "d2f6e33452055df1",
+                "42cb607a4f738dbc",
+                "9dcd57ea95f77572",
+                "a8610a7821cca1be",
+                "ed44863ea7395da0",
+                "c615159a6abb725f",
+                "da1c4b24cbe46529",
+                "1fe89b0c688a140e",
+                "5c1bc09a04c578cc",
+                "9c17c8b25e2d08a8",
+                "8569f20e2e808727",
+                "3963f8a32e15bf03",
+                "e1c9a8bcc6753db5",
                 "4154a733f103d75e",
                 "c7292b30440c1fbe",
                 "4d9514ab19896609",
@@ -1605,27 +1614,20 @@
                 "6133ed9eeefe8ff6",
                 "07ae98f2205edac8",
                 "f8ef3f64c3fd9dfd",
-                "da1c4b24cbe46529",
-                "42cb607a4f738dbc",
-                "9dcd57ea95f77572",
-                "a8610a7821cca1be",
-                "c615159a6abb725f",
-                "51651e441fb775fd",
-                "061c8015e106e831",
-                "ed44863ea7395da0",
+                "1088f83035f19bf3",
+                "579a2c32615d040a",
+                "d2f6e33452055df1",
                 "de43f7372a4cfd65",
                 "2d250c5d74eb1bd1",
-                "e1c9a8bcc6753db5",
-                "1fe89b0c688a140e",
-                "5c1bc09a04c578cc",
-                "9c17c8b25e2d08a8",
-                "3963f8a32e15bf03",
-                "160c785d14a3a5e5",
-                "9f065b0317232d24",
-                "8569f20e2e808727",
                 "0394d76ad5b72375",
                 "9220077fb54367bc",
-                "579a2c32615d040a"
+                "51651e441fb775fd",
+                "061c8015e106e831",
+                "160c785d14a3a5e5",
+                "9f065b0317232d24",
+                "90485ffa8c19b8ee",
+                "cfbf24b02fbd5c83",
+                "5f4e327a4bf77e0c"
             ]
         ]
     },
@@ -1690,6 +1692,230 @@
                 "916e336329c32504"
             ]
         ]
+    },
+    {
+        "id": "cfbf24b02fbd5c83",
+        "type": "ui_text",
+        "z": "8bff11da7245afcc",
+        "group": "d5be84c8a2a9dbe3",
+        "order": 9,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Mortar temperature BOX1-AI0 [C] ",
+        "format": "{{msg.payload.printhead_mortar_temperature.toFixed(1)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3600,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "5f4e327a4bf77e0c",
+        "type": "ui_text",
+        "z": "8bff11da7245afcc",
+        "group": "c3182a43b65d6f3f",
+        "order": 11,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Mortar temperature AI0 [C] ",
+        "format": "{{msg.payload.printhead_mortar_temperature.toFixed(1)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3580,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "3fa85c642309d46b",
+        "type": "ui_text",
+        "z": "8bff11da7245afcc",
+        "group": "c3182a43b65d6f3f",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "<b>Converted signals:",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3560,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "ebfdef8ab87cd84f",
+        "type": "ui_text",
+        "z": "8bff11da7245afcc",
+        "group": "751807419a0c11a8",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "<b>Converted signals:",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3560,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "85711bfff470baf2",
+        "type": "ui_spacer",
+        "z": "8bff11da7245afcc",
+        "name": "spacer",
+        "group": "6b810393774c59ed",
+        "order": 7,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "777e0bb983315984",
+        "type": "ui_spacer",
+        "z": "8bff11da7245afcc",
+        "name": "spacer",
+        "group": "6b810393774c59ed",
+        "order": 12,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "1056cd3edb1d05dd",
+        "type": "ui_spacer",
+        "z": "8bff11da7245afcc",
+        "name": "spacer",
+        "group": "6b810393774c59ed",
+        "order": 17,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "0ea2c651ecfd2884",
+        "type": "ui_spacer",
+        "z": "8bff11da7245afcc",
+        "name": "spacer",
+        "group": "6b810393774c59ed",
+        "order": 23,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "0f2fe96a61dfce83",
+        "type": "ui_spacer",
+        "z": "8bff11da7245afcc",
+        "name": "spacer",
+        "group": "b9011e67f72d8da0",
+        "order": 7,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "3bb41a90c70857a4",
+        "type": "ui_spacer",
+        "z": "8bff11da7245afcc",
+        "name": "spacer",
+        "group": "b9011e67f72d8da0",
+        "order": 12,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "d6528ccf59da9217",
+        "type": "ui_spacer",
+        "z": "8bff11da7245afcc",
+        "name": "spacer",
+        "group": "b9011e67f72d8da0",
+        "order": 17,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "f143d1cf99ebf0bc",
+        "type": "ui_spacer",
+        "z": "8bff11da7245afcc",
+        "name": "spacer",
+        "group": "b9011e67f72d8da0",
+        "order": 23,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "a35af72e1fde0e37",
+        "type": "ui_spacer",
+        "z": "8bff11da7245afcc",
+        "name": "spacer",
+        "group": "751807419a0c11a8",
+        "order": 9,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "7f521587e703b20a",
+        "type": "ui_spacer",
+        "z": "8bff11da7245afcc",
+        "name": "spacer",
+        "group": "c3182a43b65d6f3f",
+        "order": 5,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "1a0c289e8c1134f3",
+        "type": "ui_spacer",
+        "z": "8bff11da7245afcc",
+        "name": "spacer",
+        "group": "c3182a43b65d6f3f",
+        "order": 6,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "0ee75a2b0ee9b10c",
+        "type": "ui_spacer",
+        "z": "8bff11da7245afcc",
+        "name": "spacer",
+        "group": "c3182a43b65d6f3f",
+        "order": 7,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "dae500286a2623f8",
+        "type": "ui_spacer",
+        "z": "8bff11da7245afcc",
+        "name": "spacer",
+        "group": "c3182a43b65d6f3f",
+        "order": 8,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "3aaafc2841389db6",
+        "type": "ui_spacer",
+        "z": "8bff11da7245afcc",
+        "name": "spacer",
+        "group": "c3182a43b65d6f3f",
+        "order": 9,
+        "width": 6,
+        "height": 1
     },
     {
         "id": "6b810393774c59ed",
