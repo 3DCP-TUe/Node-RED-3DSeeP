@@ -16,7 +16,7 @@ cd(filepath);
 
 %% Read file and set directory
 % Read multiple files from custom directory
-directory = "D:\GitHub\Node-RED-3DSeeP\src\analysis\logs\20240722_Arjen\";
+directory = "D:\GitHub\Node-RED-3DSeeP\src\analysis\logs\20240708_Alberto2\";
 nodeRed = lib.readData(directory);
 
 %% Settings for layout
@@ -30,13 +30,17 @@ set(0, 'DefaultLineLineWidth', 1.5);
 
 %% Settings for analysis
 % Window for correlations, mean, std, etc. 
-windowStart = duration(10, 17, 0); 
-windowEnd = duration(12, 8, 0);
+windowStart = duration(11, 30, 0); 
+windowEnd = duration(14, 0, 0);
 
 %% Add columns missing in older versions of the data logger
 % Printhead: pressure
 if ~any(strcmp(nodeRed.Properties.VariableNames, 'printhead_pressure_bar'))
   nodeRed.printhead_pressure_bar = (nodeRed.printhead_box1_io_ai0_ma - 4) / 16 * 10;
+end
+% Printhead: mortar temperature
+if ~any(strcmp(nodeRed.Properties.VariableNames, 'printhead_mortar_temperature_c'))
+  nodeRed.printhead_mortar_temperature_c = nodeRed.printhead_box1_io_ai0_ma * 0.0 - 50;
 end
 % MAI MULTIMIX: Water temperature mixer inlet
 if ~any(strcmp(nodeRed.Properties.VariableNames, 'mai_water_temp_mixer_inlet_c'))
@@ -45,10 +49,20 @@ end
 
 %% Calculations: Convert sensor data
 % Differential pressure
-k = 60; % ~6 seconds, 10 samples per second
+k = 60; % ~3 seconds, 10 samples per second
 filtered1 = movmean(nodeRed.material_io_ai0_pressure_bar, k, 'omitnan');
 filtered2 = movmean(nodeRed.material_io_ai1_pressure_bar, k, 'omitnan');
-nodeRed.material_differential_pressure_bar = filtered1 - filtered2;
+filtered3 = movmean(nodeRed.printhead_pressure_bar, k, 'omitnan');
+nodeRed.differential_pressure1_bar = filtered1 - filtered2;
+nodeRed.differential_pressure2_bar = filtered2 - filtered3;
+nodeRed.differential_pressure3_bar = filtered3;
+% Pressure gradient
+length1 = (150 + 144 + 820 + 184 + 113) / 1000;     %Coriolis
+length2 = (150 + 13605 + 199 + 114) / 1000;         %Hose
+length3 = (150 + 1013 + 95.5) / 1000;               %Printhead
+nodeRed.pressure_gradient1_bar_m = nodeRed.differential_pressure1_bar / length1;
+nodeRed.pressure_gradient2_bar_m = nodeRed.differential_pressure2_bar / length2;
+nodeRed.pressure_gradient3_bar_m = nodeRed.differential_pressure3_bar / length3;
 % Filtered values from coriolis io (if connected)
 nodeRed.material_coriolis_mass_flow_filtered_90s_kg_min = (nodeRed.material_io_ai4_ma - 4) / 16 * 16;
 nodeRed.material_coriolis_density_filtered_90s_kg_m3 = (nodeRed.material_io_ai5_ma - 4) / 16 * 400 + 2000;
@@ -111,6 +125,7 @@ box on
 % Plot data
 plot(nodeRed.desktop_time, nodeRed.material_io_ai0_pressure_bar, '.k')
 plot(nodeRed.desktop_time, nodeRed.material_io_ai1_pressure_bar, '.b')
+plot(nodeRed.desktop_time, nodeRed.printhead_pressure_bar, '.r')
 % Limits
 ylim([0 25])
 xlim(xLimits)
@@ -118,14 +133,14 @@ xlim(xLimits)
 xlabel('Time')
 ylabel('Pressure [bar]')
 % Legend
-legend('Pressure sensor 1', 'Pressure sensor 2', 'Location', 'NorthEast')
+legend('Pressure sensor 1', 'Pressure sensor 2', 'Pressure printhead', 'Location', 'NorthEast')
 % Layout
 ax1 = gca;
 set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
 lib.saveFigure(fig, 'pressure')
 
-%% Plot differential pressure
+%% Plot pressure gradient
 fig = figure;
 fig.Units = 'centimeters';
 fig.Position = [1 14 24 8];
@@ -133,23 +148,18 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.desktop_time, nodeRed.material_differential_pressure_bar, '.k')
-yyaxis right
-plot(nodeRed.desktop_time, nodeRed.printhead_pressure_bar, '.b')
+plot(nodeRed.desktop_time, nodeRed.pressure_gradient1_bar_m, '.k')
+plot(nodeRed.desktop_time, nodeRed.pressure_gradient2_bar_m, '.b')
+plot(nodeRed.desktop_time, nodeRed.pressure_gradient3_bar_m, '.r')
 % Limits
-yyaxis left
-ylim([0 1.4])
-yyaxis right
 ylim([0 1.4])
 xlim(xLimits)
 % Labels
 xlabel('Time')
 yyaxis left
-ylabel('Differential pressure [bar]')
-yyaxis right
-ylabel('Differential pressure [bar]')
+ylabel('Pressure gradient [bar/m]')
 % Legend
-legend('Differential pressure coriolis', 'Differential pressure printhead', 'Location', 'NorthEast')
+legend('Coriolis', 'Hose', 'Printhead', 'Location', 'NorthEast')
 % Layout
 ax1 = gca;
 set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
@@ -158,7 +168,7 @@ set(gca, 'YColor','k')
 yyaxis right
 set(gca, 'YColor','k')
 % Write figure
-lib.saveFigure(fig, 'differential_pressure')
+lib.saveFigure(fig, 'pressure_gradient')
 
 %% Plot viscocity
 fig = figure;
@@ -170,7 +180,7 @@ box on
 % Plot data
 plot(nodeRed.desktop_time, nodeRed.material_coriolis_dynamic_viscocity_cp, '.k')
 % Limits
-ylim([0 6000])
+ylim([0 8000])
 xlim(xLimits)
 % Labels
 xlabel('Time')
@@ -236,6 +246,7 @@ box on
 % Plot data
 plot(nodeRed.desktop_time, nodeRed.material_coriolis_temperature_c, '.k')
 plot(nodeRed.desktop_time, nodeRed.mai_temperature_pumping_chamber_c, '.b')
+plot(nodeRed.desktop_time, nodeRed.printhead_mortar_temperature_c, '.r')
 % Limits
 ylim([26 36])
 xlim(xLimits)
@@ -245,7 +256,8 @@ ylabel('Mortar temperature [C]')
 % Legend
 text1 = "Coriolis sensor: " + round(meanValues.material_coriolis_temperature_c*100)/100 + sprintf(' %s ', char(177)) + round(stdValues.material_coriolis_temperature_c*100)/100;
 text2 = "Pumping chamber: " + round(meanValues.mai_temperature_pumping_chamber_c*100)/100 + sprintf(' %s ', char(177)) + round(stdValues.mai_temperature_pumping_chamber_c*100)/100;
-legend(text1, text2, 'Location', 'NorthEast')
+text3 = "Printhead: " + round(meanValues.printhead_mortar_temperature_c*100)/100 + sprintf(' %s ', char(177)) + round(stdValues.printhead_mortar_temperature_c*100)/100;
+legend(text1, text2, text3, 'Location', 'NorthEast')
 % Layout
 ax1 = gca;
 set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
@@ -479,7 +491,7 @@ set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
 % Write figure
 lib.saveFigure(fig, 'mixer_times')
 
-%% Correlation between temperature and differential pressure
+%% Correlation between temperature and pressure gradient
 fig = figure;
 fig.Units = 'centimeters';
 fig.Position = [1 14 11 8];
@@ -487,17 +499,17 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.material_coriolis_temperature_c(index1:index2), nodeRed.material_differential_pressure_bar(index1:index2), '.k')
+plot(nodeRed.material_coriolis_temperature_c(index1:index2), nodeRed.pressure_gradient1_bar_m(index1:index2), '.k')
 % Limits
-ylim([floor(min(nodeRed.material_differential_pressure_bar(index1:index2))*10-1)/10, ceil(max(nodeRed.material_differential_pressure_bar(index1:index2))*10+1)/10])
+ylim([floor(min(nodeRed.pressure_gradient1_bar_m(index1:index2))*10-1)/10, ceil(max(nodeRed.pressure_gradient1_bar_m(index1:index2))*10+1)/10])
 xlim([floor(min(nodeRed.material_coriolis_temperature_c(index1:index2))-1), ceil(max(nodeRed.material_coriolis_temperature_c(index1:index2))+1)])
 % Labels
 xlabel('Mortar temperature [C]')
-ylabel('Differential pressure [bar]')
+ylabel('Pressure gradient [bar/m]')
 % Write figure
-lib.saveFigure(fig, 'correlation_temp_dp')
+lib.saveFigure(fig, 'correlation_temp_pressure_gradient')
 
-%% Correlation between viscocity and differential pressure
+%% Correlation between viscocity and pressure gradient
 fig = figure;
 fig.Units = 'centimeters';
 fig.Position = [1 14 11 8];
@@ -505,15 +517,15 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.material_coriolis_dynamic_viscocity_cp(index1:index2), nodeRed.material_differential_pressure_bar(index1:index2), '.k')
+plot(nodeRed.material_coriolis_dynamic_viscocity_cp(index1:index2), nodeRed.pressure_gradient1_bar_m(index1:index2), '.k')
 % Limits
-ylim([floor(min(nodeRed.material_differential_pressure_bar(index1:index2))*10-1)/10, ceil(max(nodeRed.material_differential_pressure_bar(index1:index2))*10+1)/10])
+ylim([floor(min(nodeRed.pressure_gradient1_bar_m(index1:index2))*10-1)/10, ceil(max(nodeRed.pressure_gradient1_bar_m(index1:index2))*10+1)/10])
 xlim([floor(min(nodeRed.material_coriolis_dynamic_viscocity_cp(index1:index2))/500)*500, ceil(max(nodeRed.material_coriolis_dynamic_viscocity_cp(index1:index2))/500)*500])
 % Labels
 xlabel('Apparent dynamic viscocity [cP]')
-ylabel('Differential pressure [bar]')
+ylabel('Pressure gradient [bar/m]')
 % Write figure
-lib.saveFigure(fig, 'correlation_viscocity_dp')
+lib.saveFigure(fig, 'correlation_viscocity_pressure_gradient')
 
 %% Report generator
 % Create empty table
@@ -529,13 +541,19 @@ columns = {
     {'mai_water_flow_set_lh', 0},...
     {'material_io_ai0_pressure_bar', 2},...
     {'material_io_ai1_pressure_bar', 2},...
-    {'material_differential_pressure_bar', 3},...
     {'material_coriolis_dynamic_viscocity_cp', 0},...
     {'material_coriolis_temperature_c', 2},...
     {'material_coriolis_density_kg_m3', 0},...
     {'material_io_ai7_ambient_temperature_c', 2},...
     {'material_io_ai6_relative_humidity_perc', 2},...
     {'printhead_pressure_bar', 3},...
+    {'printhead_mortar_temperature_c', 2},...
+    {'differential_pressure1_bar', 3},...
+    {'differential_pressure2_bar', 3},...
+    {'differential_pressure3_bar', 3},...
+    {'pressure_gradient1_bar_m', 3},...
+    {'pressure_gradient2_bar_m', 3},...
+    {'pressure_gradient3_bar_m', 3},...
     {'mixer_interval_time', 1},...
     {'mixer_run_time', 1},...
     {'mixer_ratio', 3}...
@@ -561,7 +579,26 @@ title.Style = {Bold(true), FontSize('14pt')};
 add(report, title);
 % Convert MATLAB table to a DOM table
 domTable = BaseTable(T);
-% Add the DOM table to the report
+% Create an unordered list for the summary time window
+timeList = UnorderedList();
+timeItem1 = ListItem(Paragraph(['Start Time: ', char(windowStart)]));
+timeItem2 = ListItem(Paragraph(['End Time: ', char(windowEnd)]));
+append(timeList, timeItem1);
+append(timeList, timeItem2);
+% Create an unordered list for the system lengths
+lengthList = UnorderedList();
+lengthItem1 = ListItem(Paragraph(['System length 1: ', num2str(length1)]));
+lengthItem2 = ListItem(Paragraph(['System length 2: ', num2str(length2)]));
+lengthItem3 = ListItem(Paragraph(['System length 3: ', num2str(length3)]));
+append(lengthList, lengthItem1);
+append(lengthList, lengthItem2);
+append(lengthList, lengthItem3);
+% Add the data to the report
+add(report, " ")
+add(report, "Time window used for summary report:")
+add(report, timeList);
+add(report, "System length used to calculate pressure gradient:")
+add(report, lengthList);
 add(report, domTable);
 % Close the report to generate the PDF
 close(report);
