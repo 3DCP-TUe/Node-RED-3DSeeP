@@ -156,17 +156,12 @@ ylim([0 1.4])
 xlim(xLimits)
 % Labels
 xlabel('Time')
-yyaxis left
 ylabel('Pressure gradient [bar/m]')
 % Legend
 legend('Coriolis', 'Hose', 'Printhead', 'Location', 'NorthEast')
 % Layout
 ax1 = gca;
 set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
-yyaxis left
-set(gca, 'YColor','k')
-yyaxis right
-set(gca, 'YColor','k')
 % Write figure
 lib.saveFigure(fig, 'pressure_gradient')
 
@@ -527,6 +522,11 @@ ylabel('Pressure gradient [bar/m]')
 % Write figure
 lib.saveFigure(fig, 'correlation_viscocity_pressure_gradient')
 
+%% Run time
+time = seconds(nodeRed.desktop_time);
+dt = diff(time);
+pumpRunTime = sum(dt.*nodeRed.mai_pump_run_bool(2:end), 'omitnan') / 60 / 60; % hours
+
 %% Report generator
 % Create empty table
 columnNames = {'Variable', 'Mean', 'Std', 'Min', 'Max'};
@@ -579,26 +579,33 @@ title.Style = {Bold(true), FontSize('14pt')};
 add(report, title);
 % Convert MATLAB table to a DOM table
 domTable = BaseTable(T);
+% Run time
+runTimeList = UnorderedList();
+timeItem1 = ListItem(Paragraph(['Pump run time [h]: ', num2str(pumpRunTime)]));
+append(runTimeList, timeItem1);
 % Create an unordered list for the summary time window
 timeList = UnorderedList();
-timeItem1 = ListItem(Paragraph(['Start Time: ', char(windowStart)]));
-timeItem2 = ListItem(Paragraph(['End Time: ', char(windowEnd)]));
+timeItem1 = ListItem(Paragraph(['Start time: ', char(windowStart)]));
+timeItem2 = ListItem(Paragraph(['End time: ', char(windowEnd)]));
 append(timeList, timeItem1);
 append(timeList, timeItem2);
 % Create an unordered list for the system lengths
 lengthList = UnorderedList();
-lengthItem1 = ListItem(Paragraph(['System length 1: ', num2str(length1)]));
-lengthItem2 = ListItem(Paragraph(['System length 2: ', num2str(length2)]));
-lengthItem3 = ListItem(Paragraph(['System length 3: ', num2str(length3)]));
+lengthItem1 = ListItem(Paragraph(['System length 1 [m]: ', num2str(length1)]));
+lengthItem2 = ListItem(Paragraph(['System length 2 [m]: ', num2str(length2)]));
+lengthItem3 = ListItem(Paragraph(['System length 3 [m]: ', num2str(length3)]));
 append(lengthList, lengthItem1);
 append(lengthList, lengthItem2);
 append(lengthList, lengthItem3);
 % Add the data to the report
 add(report, " ")
-add(report, "Time window used for summary report:")
+add(report, "Run times:")
+add(report, runTimeList);
+add(report, "Time window used for table values:")
 add(report, timeList);
 add(report, "System length used to calculate pressure gradient:")
 add(report, lengthList);
+add(report, PageBreak)
 add(report, domTable);
 % Close the report to generate the PDF
 close(report);
