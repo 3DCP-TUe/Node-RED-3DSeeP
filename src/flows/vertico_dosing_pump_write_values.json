@@ -745,7 +745,7 @@
         "type": "function",
         "z": "aa92b93f0e76caa9",
         "name": "",
-        "func": "if( msg.payload<4.0){msg.payload=4.0}\nelse if(msg.payload>20){msg.payload=20}\nreturn msg",
+        "func": "if( msg.payload<4.0){msg.payload=4.0}\nelse if(msg.payload>20){msg.payload=20}\n\n// Convert (incorrect scaling on PLC)\nmsg.payload = (msg.payload - 4) * (27648 / 32767) + 4\n\nreturn msg",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,

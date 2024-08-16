@@ -2612,7 +2612,7 @@
         "type": "function",
         "z": "5497c1fcd3b57568",
         "name": "Convert and add values",
-        "func": "// Set message topic\nmsg.topic = \"material\"\n\n// Pressure\nmsg.payload.material_pressure_ai0 = (msg.payload.material_io_ai0 < 0) ? 0.0 : (msg.payload.material_io_ai0 / 27648 * 25.0);\nmsg.payload.material_pressure_ai1 = (msg.payload.material_io_ai1 < 0) ? 0.0 : (msg.payload.material_io_ai1 / 27648 * 25.0);\n\n// Temperature pumping chamber\nmsg.payload.material_temperature_ai2 = (msg.payload.material_io_ai2 < 0) ? 0.0 : (msg.payload.material_io_ai2 / 27648 * 100.0);\n\n// Convert analog inputs to mA\nmsg.payload.material_io_ai0 = (msg.payload.material_io_ai0 < 0) ? 0.0 : (msg.payload.material_io_ai0 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai1 = (msg.payload.material_io_ai1 < 0) ? 0.0 : (msg.payload.material_io_ai1 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai2 = (msg.payload.material_io_ai2 < 0) ? 0.0 : (msg.payload.material_io_ai2 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai3 = (msg.payload.material_io_ai3 < 0) ? 0.0 : (msg.payload.material_io_ai3 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai4 = (msg.payload.material_io_ai4 < 0) ? 0.0 : (msg.payload.material_io_ai4 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai5 = (msg.payload.material_io_ai5 < 0) ? 0.0 : (msg.payload.material_io_ai5 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai6 = (msg.payload.material_io_ai6 < 0) ? 0.0 : (msg.payload.material_io_ai6 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai7 = (msg.payload.material_io_ai7 < 0) ? 0.0 : (msg.payload.material_io_ai7 / 27648 * 16.0 + 4.0);\n\n// Coriolis conversions\nmsg.payload.material_coriolis_mass_flow = msg.payload.material_coriolis_mass_flow / 60.0\nmsg.payload.material_coriolis_volume_flow = msg.payload.material_coriolis_volume_flow / 60.0\nmsg.payload.material_coriolis_density = msg.payload.material_coriolis_density * 1000.0\nmsg.payload.material_coriolis_exciter_current_0 = msg.payload.material_coriolis_exciter_current_0 * 1000.0\nmsg.payload.material_coriolis_exciter_current_1 = msg.payload.material_coriolis_exciter_current_1 * 1000.0\n\n// Bronkhorst conversion\nmsg.payload.material_bronkhorst_read_setpoint_slope = msg.payload.material_bronkhorst_read_setpoint_slope / 10.0\n\nreturn msg\n",
+        "func": "// Set message topic\nmsg.topic = \"material\"\n\n// Pressure\nmsg.payload.material_pressure_ai0 = (msg.payload.material_io_ai0 < 0) ? 0.0 : (msg.payload.material_io_ai0 / 27648 * 25.0);\nmsg.payload.material_pressure_ai1 = (msg.payload.material_io_ai1 < 0) ? 0.0 : (msg.payload.material_io_ai1 / 27648 * 25.0);\n\n// Temperature pumping chamber\nmsg.payload.material_temperature_ai2 = (msg.payload.material_io_ai2 < 0) ? 0.0 : (msg.payload.material_io_ai2 / 27648 * 100.0);\n\n// Convert analog inputs to mA\nmsg.payload.material_io_ai0 = (msg.payload.material_io_ai0 < 0) ? 0.0 : (msg.payload.material_io_ai0 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai1 = (msg.payload.material_io_ai1 < 0) ? 0.0 : (msg.payload.material_io_ai1 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai2 = (msg.payload.material_io_ai2 < 0) ? 0.0 : (msg.payload.material_io_ai2 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai3 = (msg.payload.material_io_ai3 < 0) ? 0.0 : (msg.payload.material_io_ai3 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai4 = (msg.payload.material_io_ai4 < 0) ? 0.0 : (msg.payload.material_io_ai4 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai5 = (msg.payload.material_io_ai5 < 0) ? 0.0 : (msg.payload.material_io_ai5 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai6 = (msg.payload.material_io_ai6 < 0) ? 0.0 : (msg.payload.material_io_ai6 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai7 = (msg.payload.material_io_ai7 < 0) ? 0.0 : (msg.payload.material_io_ai7 / 27648 * 16.0 + 4.0);\n\n// Convert analog outputs (incorrect scaling on PLC)\nmsg.payload.material_io_ao0 = (msg.payload.material_io_ao0 - 4) * (32767 / 27648) + 4;\nmsg.payload.material_io_ao1 = (msg.payload.material_io_ao1 - 4) * (32767 / 27648) + 4;\nmsg.payload.material_io_ao2 = (msg.payload.material_io_ao2 - 4) * (32767 / 27648) + 4;\nmsg.payload.material_io_ao3 = (msg.payload.material_io_ao3 - 4) * (32767 / 27648) + 4;\n\n// Coriolis conversions\nmsg.payload.material_coriolis_mass_flow = msg.payload.material_coriolis_mass_flow / 60.0\nmsg.payload.material_coriolis_volume_flow = msg.payload.material_coriolis_volume_flow / 60.0\nmsg.payload.material_coriolis_density = msg.payload.material_coriolis_density * 1000.0\nmsg.payload.material_coriolis_exciter_current_0 = msg.payload.material_coriolis_exciter_current_0 * 1000.0\nmsg.payload.material_coriolis_exciter_current_1 = msg.payload.material_coriolis_exciter_current_1 * 1000.0\n\n// Bronkhorst conversion\nmsg.payload.material_bronkhorst_read_setpoint_slope = msg.payload.material_bronkhorst_read_setpoint_slope / 10.0\n\nreturn msg\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -2969,6 +2969,26 @@
         ]
     },
     {
+        "id": "b79c8b8fd623b4c8",
+        "type": "ui_spacer",
+        "z": "5497c1fcd3b57568",
+        "name": "spacer",
+        "group": "39abb633de44e13c",
+        "order": 5,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "7f720d96bb994f4e",
+        "type": "ui_spacer",
+        "z": "5497c1fcd3b57568",
+        "name": "spacer",
+        "group": "39abb633de44e13c",
+        "order": 10,
+        "width": 6,
+        "height": 1
+    },
+    {
         "id": "85f900f2581b92bc",
         "type": "ui_group",
         "name": "Coriolis sensor",
@@ -3086,6 +3106,17 @@
         "className": ""
     },
     {
+        "id": "39abb633de44e13c",
+        "type": "ui_group",
+        "name": "Read values",
+        "tab": "ca315ccc11e55671",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
         "id": "4596e568da630a4f",
         "type": "ui_tab",
         "name": "Material delivery PLC",
@@ -3109,6 +3140,15 @@
         "name": "Bronkhorst dosing pump",
         "icon": "dashboard",
         "order": 10,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "ca315ccc11e55671",
+        "type": "ui_tab",
+        "name": "Gantry robot",
+        "icon": "dashboard",
+        "order": 4,
         "disabled": false,
         "hidden": false
     }
