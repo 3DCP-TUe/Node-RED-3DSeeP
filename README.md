@@ -1,6 +1,6 @@
 # Node-RED 3DSeeP
 
-General dashboard and logger for the 3D concrete printer in the [Structures Laboratory](https://www.tue.nl/en/research/research-labs/structures-laboratory) at [Eindhoven University of Technology](https://www.tue.nl/en/). 
+General dashboard and data logger for the 3D concrete printer in the [Structures Laboratory](https://www.tue.nl/en/research/research-labs/structures-laboratory) at [Eindhoven University of Technology](https://www.tue.nl/en/). 
 
 ## Dependencies
 
