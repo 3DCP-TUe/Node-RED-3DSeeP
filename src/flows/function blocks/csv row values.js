@@ -24,7 +24,7 @@ msg.payload = {
     'mtec_water_start_control': mtec.mtec_water_start_control ?? NaN,
 	'mtec_water_pump_run': +mtec.mtec_water_pump_run ?? NaN,
 	'mtec_water_solenoid_valve': +mtec.mtec_water_solenoid_valve ?? NaN,
-	'mtec_water_water_valve': mtec.mtec_water_valve_actual ?? NaN,
+	'mtec_water_water_valve': mtec.mtec_water_valve_actual?.toFixed(2) ?? NaN,
     'mtec_water_temp': mtec.mtec_water_temp?.toFixed(3) ?? NaN,
     'mtec_water_flow_set': mtec.mtec_water_flow_set?.toFixed(1) ?? NaN,
     'mtec_water_flow_actual': mtec.mtec_water_flow_actual?.toFixed(1) ?? NaN,
