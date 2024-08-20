@@ -1,0 +1,13 @@
+Event comments corresponding to file: 20240820_Example.csv
+The corresponding csv file is created using Node-RED 3DSeeP v0.5.1
+Available through https://github.com/3DCP-TUe/Node-RED-3DSeeP
+ 
+----------
+ 
+Log of manual comments:
+Time,Comment,Value,Unit
+2024-08-20 14:44:08.923,Start experiment,,
+2024-08-20 14:44:12.488,End experiment,,
+2024-08-20 14:44:16.925,Start cleaning procedure,,
+2024-08-20 14:44:27.071,This is an example comment,,
+2024-08-20 14:44:35.074,Manual mass flow measurement,6.25,kg/min
