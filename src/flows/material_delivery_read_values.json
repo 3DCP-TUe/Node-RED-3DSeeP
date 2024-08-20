@@ -21,7 +21,7 @@
         "layout": "row-spread",
         "className": "",
         "x": 3770,
-        "y": 2420,
+        "y": 2180,
         "wires": []
     },
     {
@@ -38,7 +38,7 @@
         "layout": "row-spread",
         "className": "",
         "x": 3780,
-        "y": 2160,
+        "y": 1920,
         "wires": []
     },
     {
@@ -59,7 +59,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3800,
-        "y": 800,
+        "y": 560,
         "wires": []
     },
     {
@@ -80,7 +80,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3740,
-        "y": 920,
+        "y": 680,
         "wires": []
     },
     {
@@ -101,7 +101,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3740,
-        "y": 960,
+        "y": 720,
         "wires": []
     },
     {
@@ -122,7 +122,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3740,
-        "y": 1000,
+        "y": 760,
         "wires": []
     },
     {
@@ -143,7 +143,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3740,
-        "y": 1040,
+        "y": 800,
         "wires": []
     },
     {
@@ -164,7 +164,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3740,
-        "y": 1080,
+        "y": 840,
         "wires": []
     },
     {
@@ -185,7 +185,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3740,
-        "y": 1120,
+        "y": 880,
         "wires": []
     },
     {
@@ -206,7 +206,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3780,
-        "y": 1160,
+        "y": 920,
         "wires": []
     },
     {
@@ -227,7 +227,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3790,
-        "y": 1200,
+        "y": 960,
         "wires": []
     },
     {
@@ -248,7 +248,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3740,
-        "y": 1260,
+        "y": 1020,
         "wires": []
     },
     {
@@ -269,7 +269,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3740,
-        "y": 1300,
+        "y": 1060,
         "wires": []
     },
     {
@@ -290,7 +290,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3740,
-        "y": 1340,
+        "y": 1100,
         "wires": []
     },
     {
@@ -311,7 +311,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3740,
-        "y": 1380,
+        "y": 1140,
         "wires": []
     },
     {
@@ -332,7 +332,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3750,
-        "y": 1440,
+        "y": 1200,
         "wires": []
     },
     {
@@ -353,7 +353,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3750,
-        "y": 1480,
+        "y": 1240,
         "wires": []
     },
     {
@@ -374,7 +374,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3750,
-        "y": 1520,
+        "y": 1280,
         "wires": []
     },
     {
@@ -395,7 +395,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3750,
-        "y": 1560,
+        "y": 1320,
         "wires": []
     },
     {
@@ -416,7 +416,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3740,
-        "y": 1620,
+        "y": 1380,
         "wires": []
     },
     {
@@ -437,7 +437,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3740,
-        "y": 1660,
+        "y": 1420,
         "wires": []
     },
     {
@@ -458,7 +458,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3740,
-        "y": 1700,
+        "y": 1460,
         "wires": []
     },
     {
@@ -479,7 +479,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3740,
-        "y": 1740,
+        "y": 1500,
         "wires": []
     },
     {
@@ -500,7 +500,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3780,
-        "y": 1800,
+        "y": 1560,
         "wires": []
     },
     {
@@ -521,7 +521,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3790,
-        "y": 1840,
+        "y": 1600,
         "wires": []
     },
     {
@@ -542,7 +542,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3760,
-        "y": 1880,
+        "y": 1640,
         "wires": []
     },
     {
@@ -563,7 +563,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3810,
-        "y": 1920,
+        "y": 1680,
         "wires": []
     },
     {
@@ -584,7 +584,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3760,
-        "y": 1960,
+        "y": 1720,
         "wires": []
     },
     {
@@ -605,7 +605,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3780,
-        "y": 2200,
+        "y": 1960,
         "wires": []
     },
     {
@@ -626,7 +626,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3800,
-        "y": 2240,
+        "y": 2000,
         "wires": []
     },
     {
@@ -647,7 +647,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3800,
-        "y": 2280,
+        "y": 2040,
         "wires": []
     },
     {
@@ -668,7 +668,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3800,
-        "y": 2320,
+        "y": 2080,
         "wires": []
     },
     {
@@ -689,7 +689,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3780,
-        "y": 2360,
+        "y": 2120,
         "wires": []
     },
     {
@@ -710,7 +710,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3730,
-        "y": 2640,
+        "y": 2400,
         "wires": []
     },
     {
@@ -731,7 +731,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3730,
-        "y": 2680,
+        "y": 2440,
         "wires": []
     },
     {
@@ -752,7 +752,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3730,
-        "y": 2720,
+        "y": 2480,
         "wires": []
     },
     {
@@ -773,7 +773,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3730,
-        "y": 2760,
+        "y": 2520,
         "wires": []
     },
     {
@@ -794,7 +794,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3730,
-        "y": 2800,
+        "y": 2560,
         "wires": []
     },
     {
@@ -815,7 +815,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3730,
-        "y": 2840,
+        "y": 2600,
         "wires": []
     },
     {
@@ -836,7 +836,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3730,
-        "y": 2880,
+        "y": 2640,
         "wires": []
     },
     {
@@ -857,7 +857,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3730,
-        "y": 2920,
+        "y": 2680,
         "wires": []
     },
     {
@@ -878,7 +878,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3730,
-        "y": 3000,
+        "y": 2760,
         "wires": []
     },
     {
@@ -899,7 +899,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3730,
-        "y": 2960,
+        "y": 2720,
         "wires": []
     },
     {
@@ -920,7 +920,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3780,
-        "y": 2460,
+        "y": 2220,
         "wires": []
     },
     {
@@ -941,7 +941,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3800,
-        "y": 2500,
+        "y": 2260,
         "wires": []
     },
     {
@@ -962,7 +962,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3800,
-        "y": 2540,
+        "y": 2300,
         "wires": []
     },
     {
@@ -983,7 +983,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3800,
-        "y": 2580,
+        "y": 2340,
         "wires": []
     },
     {
@@ -1004,7 +1004,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3800,
-        "y": 840,
+        "y": 600,
         "wires": []
     },
     {
@@ -1038,150 +1038,6 @@
         ]
     },
     {
-        "id": "c56afe4be1ad886b",
-        "type": "ui_chart",
-        "z": "5497c1fcd3b57568",
-        "name": "",
-        "group": "53d83661cfcefa23",
-        "order": 2,
-        "width": 27,
-        "height": 6,
-        "label": "Pressure at sensing station [bar]",
-        "chartType": "line",
-        "legend": "true",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "0",
-        "ymax": "25",
-        "removeOlder": "10",
-        "removeOlderPoints": "600",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#0011ff",
-            "#ff0000",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "className": "",
-        "x": 3810,
-        "y": 480,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "0d45770fbaf90e93",
-        "type": "ui_chart",
-        "z": "5497c1fcd3b57568",
-        "name": "",
-        "group": "53d83661cfcefa23",
-        "order": 5,
-        "width": 27,
-        "height": 6,
-        "label": "Apparent dynamic viscocity [cP]",
-        "chartType": "line",
-        "legend": "true",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "0",
-        "ymax": "6000",
-        "removeOlder": "10",
-        "removeOlderPoints": "600",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#0011ff",
-            "#ff0000",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "className": "",
-        "x": 3810,
-        "y": 580,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "20aa5dfad1f6f24f",
-        "type": "ui_button",
-        "z": "5497c1fcd3b57568",
-        "name": "Clear chart",
-        "group": "53d83661cfcefa23",
-        "order": 1,
-        "width": 27,
-        "height": 1,
-        "passthru": false,
-        "label": "Clear pressure chart",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "[]",
-        "payloadType": "json",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 3550,
-        "y": 400,
-        "wires": [
-            [
-                "c56afe4be1ad886b"
-            ]
-        ]
-    },
-    {
-        "id": "43f7566282f48f08",
-        "type": "ui_button",
-        "z": "5497c1fcd3b57568",
-        "name": "Clear chart",
-        "group": "53d83661cfcefa23",
-        "order": 4,
-        "width": 27,
-        "height": 1,
-        "passthru": false,
-        "label": "Clear viscocity chart",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "[]",
-        "payloadType": "json",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 3550,
-        "y": 540,
-        "wires": [
-            [
-                "0d45770fbaf90e93"
-            ]
-        ]
-    },
-    {
         "id": "797b0ccd6074df32",
         "type": "link out",
         "z": "5497c1fcd3b57568",
@@ -1190,7 +1046,8 @@
         "links": [
             "ecd23e2819d0c96e",
             "7acf6a303552bacf",
-            "a0688a5c7674197e"
+            "a0688a5c7674197e",
+            "2037be8a143edc97"
         ],
         "x": 2895,
         "y": 420,
@@ -1214,7 +1071,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3800,
-        "y": 720,
+        "y": 480,
         "wires": []
     },
     {
@@ -1235,7 +1092,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3800,
-        "y": 760,
+        "y": 520,
         "wires": []
     },
     {
@@ -1256,7 +1113,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3850,
-        "y": 2000,
+        "y": 1760,
         "wires": []
     },
     {
@@ -1277,7 +1134,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3820,
-        "y": 2040,
+        "y": 1800,
         "wires": []
     },
     {
@@ -1298,7 +1155,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3780,
-        "y": 680,
+        "y": 440,
         "wires": []
     },
     {
@@ -2215,7 +2072,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3770,
-        "y": 3480,
+        "y": 3240,
         "wires": []
     },
     {
@@ -2236,7 +2093,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3770,
-        "y": 3440,
+        "y": 3200,
         "wires": []
     },
     {
@@ -2257,7 +2114,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3770,
-        "y": 3520,
+        "y": 3280,
         "wires": []
     },
     {
@@ -2278,7 +2135,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3780,
-        "y": 3400,
+        "y": 3160,
         "wires": []
     },
     {
@@ -2299,7 +2156,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3760,
-        "y": 3060,
+        "y": 2820,
         "wires": []
     },
     {
@@ -2320,7 +2177,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3780,
-        "y": 3100,
+        "y": 2860,
         "wires": []
     },
     {
@@ -2341,7 +2198,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3760,
-        "y": 3140,
+        "y": 2900,
         "wires": []
     },
     {
@@ -2362,7 +2219,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3760,
-        "y": 3180,
+        "y": 2940,
         "wires": []
     },
     {
@@ -2383,7 +2240,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3760,
-        "y": 3220,
+        "y": 2980,
         "wires": []
     },
     {
@@ -2404,7 +2261,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3770,
-        "y": 3260,
+        "y": 3020,
         "wires": []
     },
     {
@@ -2425,7 +2282,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3760,
-        "y": 3300,
+        "y": 3060,
         "wires": []
     },
     {
@@ -2446,7 +2303,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3760,
-        "y": 3340,
+        "y": 3100,
         "wires": []
     },
     {
@@ -2612,7 +2469,7 @@
         "type": "function",
         "z": "5497c1fcd3b57568",
         "name": "Convert and add values",
-        "func": "// Set message topic\nmsg.topic = \"material\"\n\n// Pressure\nmsg.payload.material_pressure_ai0 = (msg.payload.material_io_ai0 < 0) ? 0.0 : (msg.payload.material_io_ai0 / 27648 * 25.0);\nmsg.payload.material_pressure_ai1 = (msg.payload.material_io_ai1 < 0) ? 0.0 : (msg.payload.material_io_ai1 / 27648 * 25.0);\n\n// Temperature pumping chamber\nmsg.payload.material_temperature_ai2 = (msg.payload.material_io_ai2 < 0) ? 0.0 : (msg.payload.material_io_ai2 / 27648 * 100.0);\n\n// Convert analog inputs to mA\nmsg.payload.material_io_ai0 = (msg.payload.material_io_ai0 < 0) ? 0.0 : (msg.payload.material_io_ai0 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai1 = (msg.payload.material_io_ai1 < 0) ? 0.0 : (msg.payload.material_io_ai1 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai2 = (msg.payload.material_io_ai2 < 0) ? 0.0 : (msg.payload.material_io_ai2 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai3 = (msg.payload.material_io_ai3 < 0) ? 0.0 : (msg.payload.material_io_ai3 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai4 = (msg.payload.material_io_ai4 < 0) ? 0.0 : (msg.payload.material_io_ai4 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai5 = (msg.payload.material_io_ai5 < 0) ? 0.0 : (msg.payload.material_io_ai5 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai6 = (msg.payload.material_io_ai6 < 0) ? 0.0 : (msg.payload.material_io_ai6 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai7 = (msg.payload.material_io_ai7 < 0) ? 0.0 : (msg.payload.material_io_ai7 / 27648 * 16.0 + 4.0);\n\n// Convert analog outputs (incorrect scaling on PLC)\nmsg.payload.material_io_ao0 = (msg.payload.material_io_ao0 - 4) * (32767 / 27648) + 4;\nmsg.payload.material_io_ao1 = (msg.payload.material_io_ao1 - 4) * (32767 / 27648) + 4;\nmsg.payload.material_io_ao2 = (msg.payload.material_io_ao2 - 4) * (32767 / 27648) + 4;\nmsg.payload.material_io_ao3 = (msg.payload.material_io_ao3 - 4) * (32767 / 27648) + 4;\n\n// Coriolis conversions\nmsg.payload.material_coriolis_mass_flow = msg.payload.material_coriolis_mass_flow / 60.0\nmsg.payload.material_coriolis_volume_flow = msg.payload.material_coriolis_volume_flow / 60.0\nmsg.payload.material_coriolis_density = msg.payload.material_coriolis_density * 1000.0\nmsg.payload.material_coriolis_exciter_current_0 = msg.payload.material_coriolis_exciter_current_0 * 1000.0\nmsg.payload.material_coriolis_exciter_current_1 = msg.payload.material_coriolis_exciter_current_1 * 1000.0\n\n// Bronkhorst conversion\nmsg.payload.material_bronkhorst_read_setpoint_slope = msg.payload.material_bronkhorst_read_setpoint_slope / 10.0\n\nreturn msg\n",
+        "func": "// Set message topic\nmsg.topic = \"material\"\n\n// Pressure\nmsg.payload.material_pressure_ai0 = (msg.payload.material_io_ai0 < 0) ? 0.0 : (msg.payload.material_io_ai0 / 27648 * 25.0);\nmsg.payload.material_pressure_ai1 = (msg.payload.material_io_ai1 < 0) ? 0.0 : (msg.payload.material_io_ai1 / 27648 * 25.0);\n\n// Convert analog inputs to mA\nmsg.payload.material_io_ai0 = (msg.payload.material_io_ai0 < 0) ? 0.0 : (msg.payload.material_io_ai0 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai1 = (msg.payload.material_io_ai1 < 0) ? 0.0 : (msg.payload.material_io_ai1 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai2 = (msg.payload.material_io_ai2 < 0) ? 0.0 : (msg.payload.material_io_ai2 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai3 = (msg.payload.material_io_ai3 < 0) ? 0.0 : (msg.payload.material_io_ai3 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai4 = (msg.payload.material_io_ai4 < 0) ? 0.0 : (msg.payload.material_io_ai4 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai5 = (msg.payload.material_io_ai5 < 0) ? 0.0 : (msg.payload.material_io_ai5 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai6 = (msg.payload.material_io_ai6 < 0) ? 0.0 : (msg.payload.material_io_ai6 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai7 = (msg.payload.material_io_ai7 < 0) ? 0.0 : (msg.payload.material_io_ai7 / 27648 * 16.0 + 4.0);\n\n// Convert analog outputs (incorrect scaling on PLC)\nmsg.payload.material_io_ao0 = (msg.payload.material_io_ao0 - 4) * (32767 / 27648) + 4;\nmsg.payload.material_io_ao1 = (msg.payload.material_io_ao1 - 4) * (32767 / 27648) + 4;\nmsg.payload.material_io_ao2 = (msg.payload.material_io_ao2 - 4) * (32767 / 27648) + 4;\nmsg.payload.material_io_ao3 = (msg.payload.material_io_ao3 - 4) * (32767 / 27648) + 4;\n\n// Coriolis conversions\nmsg.payload.material_coriolis_mass_flow = msg.payload.material_coriolis_mass_flow / 60.0\nmsg.payload.material_coriolis_volume_flow = msg.payload.material_coriolis_volume_flow / 60.0\nmsg.payload.material_coriolis_density = msg.payload.material_coriolis_density * 1000.0\nmsg.payload.material_coriolis_exciter_current_0 = msg.payload.material_coriolis_exciter_current_0 * 1000.0\nmsg.payload.material_coriolis_exciter_current_1 = msg.payload.material_coriolis_exciter_current_1 * 1000.0\n\n// Bronkhorst conversion\nmsg.payload.material_bronkhorst_read_setpoint_slope = msg.payload.material_bronkhorst_read_setpoint_slope / 10.0\n\nreturn msg\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -2685,7 +2542,6 @@
                 "3c263bd0acc1eaf5",
                 "c40c8b115d618403",
                 "80d2cb2d5aeb4913",
-                "d944b008636f1496",
                 "797b0ccd6074df32",
                 "4df2a0afa4237e3d"
             ]
@@ -2737,89 +2593,6 @@
         ]
     },
     {
-        "id": "d944b008636f1496",
-        "type": "throttle",
-        "z": "5497c1fcd3b57568",
-        "name": "Pass every second",
-        "throttleType": "time",
-        "timeLimit": "1",
-        "timeLimitType": "seconds",
-        "countLimit": 0,
-        "blockSize": 0,
-        "locked": false,
-        "x": 3290,
-        "y": 480,
-        "wires": [
-            [
-                "89db341e20530820",
-                "f2f233466c717939",
-                "944c4f1319e27529",
-                "ce02eb2906693bab",
-                "a1ab58dcc7ea4b8b"
-            ]
-        ]
-    },
-    {
-        "id": "89db341e20530820",
-        "type": "function",
-        "z": "5497c1fcd3b57568",
-        "name": "Get graph data",
-        "func": "return { topic: \"Apparent dynamic viscocity\", payload: msg.payload.material_coriolis_dynamic_visco };",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 3560,
-        "y": 580,
-        "wires": [
-            [
-                "0d45770fbaf90e93"
-            ]
-        ]
-    },
-    {
-        "id": "f2f233466c717939",
-        "type": "function",
-        "z": "5497c1fcd3b57568",
-        "name": "Get graph data",
-        "func": "return { topic: \"AI0: WIKA Pressure sensor 0-25 bar\", payload: msg.payload.material_pressure_ai0 };",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 3560,
-        "y": 440,
-        "wires": [
-            [
-                "c56afe4be1ad886b"
-            ]
-        ]
-    },
-    {
-        "id": "944c4f1319e27529",
-        "type": "function",
-        "z": "5497c1fcd3b57568",
-        "name": "Get graph data",
-        "func": "return { topic: \"AI1: WIKA Pressure sensor 0-25 bar\", payload: msg.payload.material_pressure_ai1 };",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 3560,
-        "y": 480,
-        "wires": [
-            [
-                "c56afe4be1ad886b"
-            ]
-        ]
-    },
-    {
         "id": "aee2f831799d1c0d",
         "type": "link in",
         "z": "5497c1fcd3b57568",
@@ -2853,120 +2626,8 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3800,
-        "y": 2080,
+        "y": 1840,
         "wires": []
-    },
-    {
-        "id": "f7095a6c4ee4370e",
-        "type": "ui_chart",
-        "z": "5497c1fcd3b57568",
-        "name": "",
-        "group": "53d83661cfcefa23",
-        "order": 8,
-        "width": 27,
-        "height": 6,
-        "label": "Mortar temperature [C]",
-        "chartType": "line",
-        "legend": "true",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "22",
-        "ymax": "38",
-        "removeOlder": "10",
-        "removeOlderPoints": "600",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#0011ff",
-            "#ff0000",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "className": "",
-        "x": 3780,
-        "y": 320,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "f1e55d68c66a5c4c",
-        "type": "ui_button",
-        "z": "5497c1fcd3b57568",
-        "name": "Clear chart",
-        "group": "53d83661cfcefa23",
-        "order": 7,
-        "width": 27,
-        "height": 1,
-        "passthru": false,
-        "label": "Clear temperature chart",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "[]",
-        "payloadType": "json",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 3550,
-        "y": 240,
-        "wires": [
-            [
-                "f7095a6c4ee4370e"
-            ]
-        ]
-    },
-    {
-        "id": "ce02eb2906693bab",
-        "type": "function",
-        "z": "5497c1fcd3b57568",
-        "name": "Get graph data",
-        "func": "return { topic: \"Mortar temperature pumping chamber\", payload: msg.payload.material_temperature_ai2 };",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 3560,
-        "y": 280,
-        "wires": [
-            [
-                "f7095a6c4ee4370e"
-            ]
-        ]
-    },
-    {
-        "id": "a1ab58dcc7ea4b8b",
-        "type": "function",
-        "z": "5497c1fcd3b57568",
-        "name": "Get graph data",
-        "func": "return { topic: \"Mortar temperature coriolis\", payload: msg.payload.material_coriolis_temperature };",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 3560,
-        "y": 320,
-        "wires": [
-            [
-                "f7095a6c4ee4370e"
-            ]
-        ]
     },
     {
         "id": "b79c8b8fd623b4c8",
@@ -3061,16 +2722,6 @@
         "secpol": "None",
         "secmode": "None",
         "login": false
-    },
-    {
-        "id": "53d83661cfcefa23",
-        "type": "ui_group",
-        "name": "Data Graphs",
-        "tab": "53571d4d81ebd061",
-        "order": 2,
-        "disp": true,
-        "width": 27,
-        "collapse": false
     },
     {
         "id": "d5be84c8a2a9dbe3",

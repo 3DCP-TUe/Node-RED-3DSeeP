@@ -21,7 +21,7 @@
         "layout": "row-spread",
         "className": "",
         "x": 3550,
-        "y": 1380,
+        "y": 1280,
         "wires": []
     },
     {
@@ -38,7 +38,7 @@
         "layout": "row-spread",
         "className": "",
         "x": 3550,
-        "y": 1860,
+        "y": 1760,
         "wires": []
     },
     {
@@ -59,7 +59,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3560,
-        "y": 1460,
+        "y": 1360,
         "wires": []
     },
     {
@@ -80,7 +80,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3550,
-        "y": 1500,
+        "y": 1400,
         "wires": []
     },
     {
@@ -101,7 +101,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3570,
-        "y": 1540,
+        "y": 1440,
         "wires": []
     },
     {
@@ -122,7 +122,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3550,
-        "y": 1700,
+        "y": 1600,
         "wires": []
     },
     {
@@ -143,7 +143,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3560,
-        "y": 1580,
+        "y": 1480,
         "wires": []
     },
     {
@@ -164,7 +164,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3540,
-        "y": 1420,
+        "y": 1320,
         "wires": []
     },
     {
@@ -185,7 +185,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3560,
-        "y": 1940,
+        "y": 1840,
         "wires": []
     },
     {
@@ -206,7 +206,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3550,
-        "y": 1980,
+        "y": 1880,
         "wires": []
     },
     {
@@ -227,7 +227,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3570,
-        "y": 2020,
+        "y": 1920,
         "wires": []
     },
     {
@@ -248,7 +248,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3550,
-        "y": 2180,
+        "y": 2080,
         "wires": []
     },
     {
@@ -269,7 +269,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3560,
-        "y": 2060,
+        "y": 1960,
         "wires": []
     },
     {
@@ -290,7 +290,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3540,
-        "y": 1900,
+        "y": 1800,
         "wires": []
     },
     {
@@ -311,7 +311,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3520,
-        "y": 660,
+        "y": 560,
         "wires": []
     },
     {
@@ -332,7 +332,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3520,
-        "y": 700,
+        "y": 600,
         "wires": []
     },
     {
@@ -353,7 +353,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3520,
-        "y": 740,
+        "y": 640,
         "wires": []
     },
     {
@@ -374,7 +374,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3520,
-        "y": 780,
+        "y": 680,
         "wires": []
     },
     {
@@ -395,7 +395,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3520,
-        "y": 820,
+        "y": 720,
         "wires": []
     },
     {
@@ -416,7 +416,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3520,
-        "y": 860,
+        "y": 760,
         "wires": []
     },
     {
@@ -437,7 +437,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3520,
-        "y": 900,
+        "y": 800,
         "wires": []
     },
     {
@@ -458,7 +458,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3520,
-        "y": 940,
+        "y": 840,
         "wires": []
     },
     {
@@ -479,7 +479,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3520,
-        "y": 1100,
+        "y": 1000,
         "wires": []
     },
     {
@@ -500,7 +500,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3520,
-        "y": 1140,
+        "y": 1040,
         "wires": []
     },
     {
@@ -521,7 +521,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3520,
-        "y": 1180,
+        "y": 1080,
         "wires": []
     },
     {
@@ -542,28 +542,8 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3520,
-        "y": 1220,
+        "y": 1120,
         "wires": []
-    },
-    {
-        "id": "6f8707b3f82dbea0",
-        "type": "function",
-        "z": "8bff11da7245afcc",
-        "name": "Get graph data",
-        "func": "return { topic: \"AI0: WIKA Pressure sensor 0-10 bar\", payload: msg.payload.printhead_pressure };",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 3300,
-        "y": 440,
-        "wires": [
-            [
-                "37186ad3ec43f0b8"
-            ]
-        ]
     },
     {
         "id": "1088f83035f19bf3",
@@ -583,7 +563,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3580,
-        "y": 1020,
+        "y": 920,
         "wires": []
     },
     {
@@ -617,78 +597,6 @@
         ]
     },
     {
-        "id": "37186ad3ec43f0b8",
-        "type": "ui_chart",
-        "z": "8bff11da7245afcc",
-        "name": "",
-        "group": "53d83661cfcefa23",
-        "order": 11,
-        "width": 27,
-        "height": 6,
-        "label": "Pressure at printhead [bar]",
-        "chartType": "line",
-        "legend": "true",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "0",
-        "ymax": "2",
-        "removeOlder": "10",
-        "removeOlderPoints": "600",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#0011ff",
-            "#ff0000",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "className": "",
-        "x": 3580,
-        "y": 440,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "8c4578a4729e028b",
-        "type": "ui_button",
-        "z": "8bff11da7245afcc",
-        "name": "Clear chart",
-        "group": "53d83661cfcefa23",
-        "order": 10,
-        "width": 27,
-        "height": 1,
-        "passthru": false,
-        "label": "Clear pressure chart",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "[]",
-        "payloadType": "json",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 3290,
-        "y": 400,
-        "wires": [
-            [
-                "37186ad3ec43f0b8"
-            ]
-        ]
-    },
-    {
         "id": "579a2c32615d040a",
         "type": "link out",
         "z": "8bff11da7245afcc",
@@ -697,7 +605,8 @@
         "links": [
             "c6d9dba04fb03bb9",
             "c3940bec2a790a33",
-            "d21f5b915ab9d47c"
+            "d21f5b915ab9d47c",
+            "874c58a31627f2e2"
         ],
         "x": 2655,
         "y": 380,
@@ -721,7 +630,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3600,
-        "y": 540,
+        "y": 440,
         "wires": []
     },
     {
@@ -738,7 +647,7 @@
         "layout": "row-spread",
         "className": "",
         "x": 3540,
-        "y": 500,
+        "y": 400,
         "wires": []
     },
     {
@@ -1207,7 +1116,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3570,
-        "y": 1740,
+        "y": 1640,
         "wires": []
     },
     {
@@ -1228,7 +1137,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3570,
-        "y": 1780,
+        "y": 1680,
         "wires": []
     },
     {
@@ -1249,7 +1158,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3570,
-        "y": 2220,
+        "y": 2120,
         "wires": []
     },
     {
@@ -1270,7 +1179,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3570,
-        "y": 2260,
+        "y": 2160,
         "wires": []
     },
     {
@@ -1355,7 +1264,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3550,
-        "y": 1620,
+        "y": 1520,
         "wires": []
     },
     {
@@ -1376,7 +1285,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3550,
-        "y": 1660,
+        "y": 1560,
         "wires": []
     },
     {
@@ -1397,7 +1306,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3550,
-        "y": 2100,
+        "y": 2000,
         "wires": []
     },
     {
@@ -1418,27 +1327,8 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3550,
-        "y": 2140,
+        "y": 2040,
         "wires": []
-    },
-    {
-        "id": "90485ffa8c19b8ee",
-        "type": "throttle",
-        "z": "8bff11da7245afcc",
-        "name": "Pass every second",
-        "throttleType": "time",
-        "timeLimit": "1",
-        "timeLimitType": "seconds",
-        "countLimit": 0,
-        "blockSize": 0,
-        "locked": false,
-        "x": 3050,
-        "y": 440,
-        "wires": [
-            [
-                "6f8707b3f82dbea0"
-            ]
-        ]
     },
     {
         "id": "7a7de048cd5f079a",
@@ -1625,7 +1515,6 @@
                 "061c8015e106e831",
                 "160c785d14a3a5e5",
                 "9f065b0317232d24",
-                "90485ffa8c19b8ee",
                 "cfbf24b02fbd5c83",
                 "5f4e327a4bf77e0c"
             ]
@@ -1711,7 +1600,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3600,
-        "y": 580,
+        "y": 480,
         "wires": []
     },
     {
@@ -1732,7 +1621,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3580,
-        "y": 1300,
+        "y": 1200,
         "wires": []
     },
     {
@@ -1753,7 +1642,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3560,
-        "y": 1260,
+        "y": 1160,
         "wires": []
     },
     {
@@ -1774,7 +1663,7 @@
         "fontSize": "",
         "color": "#000000",
         "x": 3560,
-        "y": 980,
+        "y": 880,
         "wires": []
     },
     {
@@ -1972,16 +1861,6 @@
         "usercert": false,
         "usercertificate": "",
         "userprivatekey": ""
-    },
-    {
-        "id": "53d83661cfcefa23",
-        "type": "ui_group",
-        "name": "Data Graphs",
-        "tab": "53571d4d81ebd061",
-        "order": 2,
-        "disp": true,
-        "width": 27,
-        "collapse": false
     },
     {
         "id": "d5be84c8a2a9dbe3",

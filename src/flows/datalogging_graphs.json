@@ -1,0 +1,511 @@
+[
+    {
+        "id": "65bffe9891e2318a",
+        "type": "tab",
+        "label": "Data logging - graphs",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "24d1052a5efb4051",
+        "type": "function",
+        "z": "65bffe9891e2318a",
+        "name": "Get graph data",
+        "func": "return { topic: \"AI0: WIKA Pressure sensor 0-10 bar\", payload: msg.payload.printhead_pressure };",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 380,
+        "wires": [
+            [
+                "b4f19df17c987b8e"
+            ]
+        ]
+    },
+    {
+        "id": "b4f19df17c987b8e",
+        "type": "ui_chart",
+        "z": "65bffe9891e2318a",
+        "name": "",
+        "group": "53d83661cfcefa23",
+        "order": 11,
+        "width": 27,
+        "height": 6,
+        "label": "Pressure at printhead [bar]",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "2",
+        "removeOlder": "10",
+        "removeOlderPoints": "600",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#0011ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1040,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "31513c6c64f6c9e7",
+        "type": "ui_button",
+        "z": "65bffe9891e2318a",
+        "name": "Clear chart",
+        "group": "53d83661cfcefa23",
+        "order": 10,
+        "width": 27,
+        "height": 1,
+        "passthru": false,
+        "label": "Clear pressure chart",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 730,
+        "y": 340,
+        "wires": [
+            [
+                "b4f19df17c987b8e"
+            ]
+        ]
+    },
+    {
+        "id": "a02c3ee3ac779eea",
+        "type": "throttle",
+        "z": "65bffe9891e2318a",
+        "name": "Pass every second",
+        "throttleType": "time",
+        "timeLimit": "1",
+        "timeLimitType": "seconds",
+        "countLimit": 0,
+        "blockSize": 0,
+        "locked": false,
+        "x": 470,
+        "y": 380,
+        "wires": [
+            [
+                "24d1052a5efb4051",
+                "bd0203cab0d84414"
+            ]
+        ]
+    },
+    {
+        "id": "b543155fc24417da",
+        "type": "ui_chart",
+        "z": "65bffe9891e2318a",
+        "name": "",
+        "group": "53d83661cfcefa23",
+        "order": 2,
+        "width": 27,
+        "height": 6,
+        "label": "Pressure at sensing station [bar]",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "25",
+        "removeOlder": "10",
+        "removeOlderPoints": "600",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#0011ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1050,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "483cf9276b552816",
+        "type": "ui_chart",
+        "z": "65bffe9891e2318a",
+        "name": "",
+        "group": "53d83661cfcefa23",
+        "order": 5,
+        "width": 27,
+        "height": 6,
+        "label": "Apparent dynamic viscocity [cP]",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "6000",
+        "removeOlder": "10",
+        "removeOlderPoints": "600",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#0011ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1050,
+        "y": 920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "88a769733be254fd",
+        "type": "ui_button",
+        "z": "65bffe9891e2318a",
+        "name": "Clear chart",
+        "group": "53d83661cfcefa23",
+        "order": 1,
+        "width": 27,
+        "height": 1,
+        "passthru": false,
+        "label": "Clear pressure chart",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 730,
+        "y": 740,
+        "wires": [
+            [
+                "b543155fc24417da"
+            ]
+        ]
+    },
+    {
+        "id": "162aabcd96ae7cdf",
+        "type": "ui_button",
+        "z": "65bffe9891e2318a",
+        "name": "Clear chart",
+        "group": "53d83661cfcefa23",
+        "order": 4,
+        "width": 27,
+        "height": 1,
+        "passthru": false,
+        "label": "Clear viscocity chart",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 730,
+        "y": 880,
+        "wires": [
+            [
+                "483cf9276b552816"
+            ]
+        ]
+    },
+    {
+        "id": "a6743ed421e88947",
+        "type": "throttle",
+        "z": "65bffe9891e2318a",
+        "name": "Pass every second",
+        "throttleType": "time",
+        "timeLimit": "1",
+        "timeLimitType": "seconds",
+        "countLimit": 0,
+        "blockSize": 0,
+        "locked": false,
+        "x": 470,
+        "y": 660,
+        "wires": [
+            [
+                "c1bc30e3ce966b9f",
+                "4039111aead2c039",
+                "b8c5ec00f607dc0d",
+                "a2443c516761c60d"
+            ]
+        ]
+    },
+    {
+        "id": "c1bc30e3ce966b9f",
+        "type": "function",
+        "z": "65bffe9891e2318a",
+        "name": "Get graph data",
+        "func": "return { topic: \"Apparent dynamic viscocity\", payload: msg.payload.material_coriolis_dynamic_visco };",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 920,
+        "wires": [
+            [
+                "483cf9276b552816"
+            ]
+        ]
+    },
+    {
+        "id": "4039111aead2c039",
+        "type": "function",
+        "z": "65bffe9891e2318a",
+        "name": "Get graph data",
+        "func": "return { topic: \"AI0: WIKA Pressure sensor 0-25 bar\", payload: msg.payload.material_pressure_ai0 };",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 780,
+        "wires": [
+            [
+                "b543155fc24417da"
+            ]
+        ]
+    },
+    {
+        "id": "b8c5ec00f607dc0d",
+        "type": "function",
+        "z": "65bffe9891e2318a",
+        "name": "Get graph data",
+        "func": "return { topic: \"AI1: WIKA Pressure sensor 0-25 bar\", payload: msg.payload.material_pressure_ai1 };",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 820,
+        "wires": [
+            [
+                "b543155fc24417da"
+            ]
+        ]
+    },
+    {
+        "id": "90e5ec43941cd5a4",
+        "type": "ui_chart",
+        "z": "65bffe9891e2318a",
+        "name": "",
+        "group": "53d83661cfcefa23",
+        "order": 8,
+        "width": 27,
+        "height": 6,
+        "label": "Mortar temperature [C]",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "22",
+        "ymax": "38",
+        "removeOlder": "10",
+        "removeOlderPoints": "600",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#0011ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1020,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3dbaf19c95999403",
+        "type": "ui_button",
+        "z": "65bffe9891e2318a",
+        "name": "Clear chart",
+        "group": "53d83661cfcefa23",
+        "order": 7,
+        "width": 27,
+        "height": 1,
+        "passthru": false,
+        "label": "Clear temperature chart",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 730,
+        "y": 580,
+        "wires": [
+            [
+                "90e5ec43941cd5a4"
+            ]
+        ]
+    },
+    {
+        "id": "bd0203cab0d84414",
+        "type": "function",
+        "z": "65bffe9891e2318a",
+        "name": "Get graph data",
+        "func": "return { topic: \"Mortar temperature printhead\", payload: msg.payload.printhead_mortar_temperature };",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 620,
+        "wires": [
+            [
+                "90e5ec43941cd5a4"
+            ]
+        ]
+    },
+    {
+        "id": "a2443c516761c60d",
+        "type": "function",
+        "z": "65bffe9891e2318a",
+        "name": "Get graph data",
+        "func": "return { topic: \"Mortar temperature coriolis\", payload: msg.payload.material_coriolis_temperature };",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 660,
+        "wires": [
+            [
+                "90e5ec43941cd5a4"
+            ]
+        ]
+    },
+    {
+        "id": "874c58a31627f2e2",
+        "type": "link in",
+        "z": "65bffe9891e2318a",
+        "name": "link in 1",
+        "links": [
+            "579a2c32615d040a"
+        ],
+        "x": 265,
+        "y": 380,
+        "wires": [
+            [
+                "a02c3ee3ac779eea"
+            ]
+        ]
+    },
+    {
+        "id": "2037be8a143edc97",
+        "type": "link in",
+        "z": "65bffe9891e2318a",
+        "name": "link in 2",
+        "links": [
+            "797b0ccd6074df32"
+        ],
+        "x": 265,
+        "y": 660,
+        "wires": [
+            [
+                "a6743ed421e88947"
+            ]
+        ]
+    },
+    {
+        "id": "53d83661cfcefa23",
+        "type": "ui_group",
+        "name": "Data Graphs",
+        "tab": "53571d4d81ebd061",
+        "order": 2,
+        "disp": true,
+        "width": 27,
+        "collapse": false
+    },
+    {
+        "id": "53571d4d81ebd061",
+        "type": "ui_tab",
+        "name": "Data overview",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
