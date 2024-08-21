@@ -16,9 +16,9 @@
 
 	"license": "GPL-3.0",
 
-	"title": "Node-RED-3DSeeP",
+	"title": "Node-RED 3DSeeP: Data logging and dashboarding tool for 3DCP",
 
-	"description": "Node-RED-3DSeeP is a data logger and dashboarding tool for the 3D concrete printer at Eindhoven University of Technology.",
+	"description": "Node-RED 3DSeeP is a data logger and dashboarding tool for the 3D concrete printer at Eindhoven University of Technology.",
 
 	"keywords": [
 		"3DCP",
