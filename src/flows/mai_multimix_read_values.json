@@ -44,6 +44,29 @@
         "h": 562
     },
     {
+        "id": "3356952b8840e119",
+        "type": "group",
+        "z": "a666a495869d02dc",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "cb428a8c3e870c9c",
+            "7e627caa5394e967",
+            "b331cd3af3ec315b"
+        ],
+        "x": 474,
+        "y": 1559,
+        "w": 392,
+        "h": 162
+    },
+    {
         "id": "66d909b768b75bf9",
         "type": "OpcUa-Client",
         "z": "a666a495869d02dc",
@@ -139,7 +162,7 @@
         "width": 6,
         "height": 1,
         "name": "",
-        "label": "Water temp [C]",
+        "label": "Water temp at tank outlet [C]",
         "format": "{{msg.payload.mai_water_temp.toFixed(1)}}",
         "layout": "row-spread",
         "className": "",
@@ -147,7 +170,7 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 3160,
+        "x": 3200,
         "y": 680,
         "wires": []
     },
@@ -182,7 +205,7 @@
         "height": 1,
         "name": "",
         "label": "Water flow actual [L/h]",
-        "format": "{{msg.payload.mai_water_flow_actual.toFixed(2)}}",
+        "format": "{{msg.payload.mai_water_flow_actual.toFixed(0)}}",
         "layout": "row-spread",
         "className": "",
         "style": false,
@@ -981,7 +1004,9 @@
                 "c43462b24d427311",
                 "b29dcf854aec6d6b",
                 "b695905e2bf1ac24",
-                "289bf8e135a1b4ba"
+                "289bf8e135a1b4ba",
+                "cb428a8c3e870c9c",
+                "7e627caa5394e967"
             ]
         ]
     },
@@ -1020,7 +1045,7 @@
         "joinerType": "str",
         "accumulate": false,
         "timeout": "",
-        "count": "23",
+        "count": "25",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
@@ -1039,7 +1064,7 @@
         "type": "function",
         "z": "a666a495869d02dc",
         "name": "Convert and add values",
-        "func": "// Set message topic\nmsg.topic = \"mai\"\n\nreturn msg\n",
+        "func": "// Set message topic\nmsg.topic = \"mai\"\n\n// Convert inputs of air temperature and relative humidity\nmsg.payload.mai_silo_dry_mortar_temperature = (msg.payload.mai_silo_dry_mortar_temperature+30)/(80+30) * (100 + 0) - 0;\nmsg.payload.mai_pumping_chamber_mortar_temperature = (msg.payload.mai_pumping_chamber_mortar_temperature-5)/(95-5) * (150 + 50) - 50;\n\nreturn msg\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -1073,7 +1098,9 @@
                 "53f4d54fd9b46f38",
                 "fdcc416f6ebfc11a",
                 "2ed794dacb1abebd",
-                "04bd0349df5ea577"
+                "04bd0349df5ea577",
+                "85a618dac1813727",
+                "11cc957338b937d4"
             ]
         ]
     },
@@ -1714,6 +1741,114 @@
         "wires": []
     },
     {
+        "id": "cb428a8c3e870c9c",
+        "type": "OpcUa-Item",
+        "z": "a666a495869d02dc",
+        "g": "3356952b8840e119",
+        "item": "ns=2;s=Tags.GECO/MPTX_DI_Air_Temperature_C_R",
+        "datatype": "Float",
+        "value": "",
+        "name": "mai_silo_dry_mortar_temperature",
+        "x": 640,
+        "y": 1640,
+        "wires": [
+            [
+                "66d909b768b75bf9"
+            ]
+        ]
+    },
+    {
+        "id": "7e627caa5394e967",
+        "type": "OpcUa-Item",
+        "z": "a666a495869d02dc",
+        "g": "3356952b8840e119",
+        "item": "ns=2;s=Tags.GECO/MPTX_DI_Air_Humidity_pct_R",
+        "datatype": "Float",
+        "value": "",
+        "name": "mai_pumping_chamber_mortar_temperature",
+        "x": 670,
+        "y": 1680,
+        "wires": [
+            [
+                "66d909b768b75bf9"
+            ]
+        ]
+    },
+    {
+        "id": "b331cd3af3ec315b",
+        "type": "comment",
+        "z": "a666a495869d02dc",
+        "g": "3356952b8840e119",
+        "name": "Air temp + RH input",
+        "info": "The analog input for the air temperature is used for the dry mortar temperature.\n\nThe analog input for the relative humidity is used for the mortar temperature in the pumping chamber.",
+        "x": 590,
+        "y": 1600,
+        "wires": []
+    },
+    {
+        "id": "c7581d022d06e394",
+        "type": "ui_text",
+        "z": "a666a495869d02dc",
+        "group": "8a339496ca145acd",
+        "order": 16,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "<b>Mortar temperature:",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3190,
+        "y": 1700,
+        "wires": []
+    },
+    {
+        "id": "85a618dac1813727",
+        "type": "ui_text",
+        "z": "a666a495869d02dc",
+        "group": "8a339496ca145acd",
+        "order": 17,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Silo [C]",
+        "format": "{{msg.payload.mai_silo_dry_mortar_temperature.toFixed(1)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3140,
+        "y": 1740,
+        "wires": []
+    },
+    {
+        "id": "11cc957338b937d4",
+        "type": "ui_text",
+        "z": "a666a495869d02dc",
+        "group": "8a339496ca145acd",
+        "order": 18,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Pumping chamber [C]",
+        "format": "{{msg.payload.mai_pumping_chamber_mortar_temperature.toFixed(1)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3180,
+        "y": 1780,
+        "wires": []
+    },
+    {
         "id": "79e648ecbceeae72",
         "type": "ui_spacer",
         "z": "a666a495869d02dc",
@@ -1734,7 +1869,7 @@
         "height": 1
     },
     {
-        "id": "575963cd881e16cf",
+        "id": "37d79325daaee457",
         "type": "ui_spacer",
         "z": "a666a495869d02dc",
         "name": "spacer",
@@ -1744,7 +1879,7 @@
         "height": 1
     },
     {
-        "id": "ea82f724f8ef7b46",
+        "id": "2296fd0f781ba345",
         "type": "ui_spacer",
         "z": "a666a495869d02dc",
         "name": "spacer",
@@ -1754,7 +1889,7 @@
         "height": 1
     },
     {
-        "id": "527afda3e276ce58",
+        "id": "e11530df86ebde84",
         "type": "ui_spacer",
         "z": "a666a495869d02dc",
         "name": "spacer",
@@ -1764,7 +1899,7 @@
         "height": 1
     },
     {
-        "id": "2d49fe8a179dd318",
+        "id": "22b1f3cac7bbda6d",
         "type": "ui_spacer",
         "z": "a666a495869d02dc",
         "name": "spacer",
@@ -1774,7 +1909,7 @@
         "height": 1
     },
     {
-        "id": "d60f97a445771aba",
+        "id": "c333d3f9434ae5c8",
         "type": "ui_spacer",
         "z": "a666a495869d02dc",
         "name": "spacer",
@@ -1784,12 +1919,22 @@
         "height": 1
     },
     {
-        "id": "7d3617471d727879",
+        "id": "cc0ec8926a1c7c25",
         "type": "ui_spacer",
         "z": "a666a495869d02dc",
         "name": "spacer",
         "group": "8a339496ca145acd",
         "order": 6,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "ed04074913ad0f8d",
+        "type": "ui_spacer",
+        "z": "a666a495869d02dc",
+        "name": "spacer",
+        "group": "8a339496ca145acd",
+        "order": 15,
         "width": 6,
         "height": 1
     },
