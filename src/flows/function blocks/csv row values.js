@@ -51,6 +51,8 @@ msg.payload = {
     'mai_pump_ouput_current': mai.mai_pump_output_current ?? NaN,
     'mai_pump_output_power': mai.mai_pump_output_power ?? NaN,
     'mai_pump_vibration_mode': mai.mai_pump_vibration_mode ?? NaN,
+    'mai_silo_dry_mortar_temperature': mai.mai_silo_dry_mortar_temperature?.toFixed(3) ?? NaN,
+    'mai_pumping_chamber_mortar_temperature': mai.mai_pumping_chamber_mortar_temperature?.toFixed(3) ?? NaN,
     'mai_setting_water_pre_run': mai.mai_setting_water_pre_run?.toFixed(2) ?? NaN,
     'mai_setting_mixer_post_run': mai.mai_setting_mixer_post_run?.toFixed(2) ?? NaN,
     'mai_setting_wetprobe_covered_delay': mai.mai_setting_wetprobe_covered_delay ?? NaN,

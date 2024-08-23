@@ -33,6 +33,8 @@ var data ="desktop_time,"+
     "mai_pump_output_current_da,"+
     "mai_pump_output_power_w,"+
     "mai_pump_vibration_mode_i,"+
+    "mai_silo_dry_mortar_temperature_c,"+
+    "mai_pumping_chamber_mortar_temperature_c,"+
     "mai_setting_water_pre_run_s,"+
     "mai_setting_mixer_post_run_s,"+
     "mai_setting_wetprobe_covered_delay_s,"+
