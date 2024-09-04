@@ -16,7 +16,7 @@ cd(filepath);
 
 %% Read file and set directory
 % Read multiple files from custom directory
-directory = "D:\GitHub\Node-RED-3DSeeP\src\analysis\logs\20240708_Alberto2\";
+directory = "D:\GitHub\Node-RED-3DSeeP\src\analysis\logs\20240826_Arjen\";
 nodeRed = lib.readData(directory);
 
 %% Settings for layout
@@ -30,8 +30,8 @@ set(0, 'DefaultLineLineWidth', 1.5);
 
 %% Settings for analysis
 % Window for correlations, mean, std, etc. 
-windowStart = duration(11, 30, 0); 
-windowEnd = duration(14, 0, 0);
+windowStart = duration(10, 0, 0); 
+windowEnd = duration(13, 0, 0);
 
 %% Add columns missing in older versions of the data logger
 % Printhead: pressure
@@ -40,11 +40,15 @@ if ~any(strcmp(nodeRed.Properties.VariableNames, 'printhead_pressure_bar'))
 end
 % Printhead: mortar temperature
 if ~any(strcmp(nodeRed.Properties.VariableNames, 'printhead_mortar_temperature_c'))
-  nodeRed.printhead_mortar_temperature_c = nodeRed.printhead_box1_io_ai0_ma * 0.0 - 50;
+  nodeRed.printhead_mortar_temperature_c = zeros(height(nodeRed), 1);
 end
-% MAI MULTIMIX: Water temperature mixer inlet
+% MAI MULTIMIX: Water temperature at mixer inlet
 if ~any(strcmp(nodeRed.Properties.VariableNames, 'mai_water_temp_mixer_inlet_c'))
   nodeRed.mai_water_temp_mixer_inlet_c = zeros(height(nodeRed), 1);
+end
+% MAI MULTIMIX: Mortar temerature at pumping chamber
+if ~any(strcmp(nodeRed.Properties.VariableNames, 'mai_pumping_chamber_mortar_temperature_c'))
+  nodeRed.mai_pumping_chamber_mortar_temperature_c = zeros(height(nodeRed), 1);
 end
 
 %% Calculations: Convert sensor data
@@ -59,7 +63,9 @@ nodeRed.differential_pressure3_bar = filtered3;
 % Pressure gradient
 length1 = (150 + 144 + 820 + 184 + 113) / 1000;     %Coriolis
 length2 = (150 + 13605 + 199 + 114) / 1000;         %Hose
-length3 = (150 + 1013 + 95.5) / 1000;               %Printhead
+%length3 = (150 + 1013 + 95.5) / 1000;               %Printhead without temp
+%length3 = (150 + 1013 + 49.5 + 95.5) / 1000;        %Printhead with temp
+length3 = (150 + 1013 + 51 + 83 + 1099) / 1000;     %Printhead with 1 meter hose (id)
 nodeRed.pressure_gradient1_bar_m = nodeRed.differential_pressure1_bar / length1;
 nodeRed.pressure_gradient2_bar_m = nodeRed.differential_pressure2_bar / length2;
 nodeRed.pressure_gradient3_bar_m = nodeRed.differential_pressure3_bar / length3;
@@ -68,8 +74,6 @@ nodeRed.material_coriolis_mass_flow_filtered_90s_kg_min = (nodeRed.material_io_a
 nodeRed.material_coriolis_density_filtered_90s_kg_m3 = (nodeRed.material_io_ai5_ma - 4) / 16 * 400 + 2000;
 % Mixer timing
 [times, intervalTimes, runTimes] = lib.mixerTimes(nodeRed.desktop_time, nodeRed.mai_mixer_run_bool);
-% Temperature pumping chamber MAI MULTIMIX
-nodeRed.mai_temperature_pumping_chamber_c = (nodeRed.material_io_ai2_ma - 4) / 16 * 100;
 
 %% Get time in minutes and seconds
 nodeRed.seconds = seconds(nodeRed.desktop_time) - seconds(nodeRed.desktop_time(1));
@@ -240,7 +244,7 @@ grid on
 box on
 % Plot data
 plot(nodeRed.desktop_time, nodeRed.material_coriolis_temperature_c, '.k')
-plot(nodeRed.desktop_time, nodeRed.mai_temperature_pumping_chamber_c, '.b')
+plot(nodeRed.desktop_time, nodeRed.mai_pumping_chamber_mortar_temperature_c, '.b')
 plot(nodeRed.desktop_time, nodeRed.printhead_mortar_temperature_c, '.r')
 % Limits
 ylim([26 36])
@@ -250,7 +254,7 @@ xlabel('Time')
 ylabel('Mortar temperature [C]')
 % Legend
 text1 = "Coriolis sensor: " + round(meanValues.material_coriolis_temperature_c*100)/100 + sprintf(' %s ', char(177)) + round(stdValues.material_coriolis_temperature_c*100)/100;
-text2 = "Pumping chamber: " + round(meanValues.mai_temperature_pumping_chamber_c*100)/100 + sprintf(' %s ', char(177)) + round(stdValues.mai_temperature_pumping_chamber_c*100)/100;
+text2 = "Pumping chamber: " + round(meanValues.mai_pumping_chamber_mortar_temperature_c*100)/100 + sprintf(' %s ', char(177)) + round(stdValues.mai_pumping_chamber_mortar_temperature_c*100)/100;
 text3 = "Printhead: " + round(meanValues.printhead_mortar_temperature_c*100)/100 + sprintf(' %s ', char(177)) + round(stdValues.printhead_mortar_temperature_c*100)/100;
 legend(text1, text2, text3, 'Location', 'NorthEast')
 % Layout
@@ -538,6 +542,7 @@ columns = {
     {'mai_pump_output_power_w', 0},...
     {'mai_water_temp_c', 2},...
     {'mai_water_temp_mixer_inlet_c', 2},...
+    {'mai_pumping_chamber_mortar_temperature_c', 2},...
     {'mai_water_flow_set_lh', 0},...
     {'material_io_ai0_pressure_bar', 2},...
     {'material_io_ai1_pressure_bar', 2},...
