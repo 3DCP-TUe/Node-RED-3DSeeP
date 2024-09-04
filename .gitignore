@@ -133,8 +133,7 @@ dist
 *.asv
 
 # Don't upload log files and plots
-src/analysis/*.pdf
-src/analysis/*.csv
-src/analysis/*.zip
-src/analysis/test/
-src/analysis/log/
+analysis/*.pdf
+analysis/*.csv
+analysis/*.zip
+analysis/log/
