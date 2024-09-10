@@ -16,7 +16,7 @@ cd(filepath);
 
 %% Read file and set directory
 % Read multiple files from custom directory
-directory = "D:\GitHub\Node-RED-3DSeeP\src\analysis\logs\20240826_Arjen\";
+directory = "D:\GitHub\Node-RED-3DSeeP\analysis\logs\20240722_Arjen\";
 nodeRed = lib.readData(directory);
 
 %% Settings for layout
@@ -30,8 +30,8 @@ set(0, 'DefaultLineLineWidth', 1.5);
 
 %% Settings for analysis
 % Window for correlations, mean, std, etc. 
-windowStart = duration(10, 0, 0); 
-windowEnd = duration(13, 0, 0);
+windowStart = duration(10, 15, 0); 
+windowEnd = duration(12, 45, 0);
 
 %% Add columns missing in older versions of the data logger
 % Printhead: pressure
@@ -49,6 +49,19 @@ end
 % MAI MULTIMIX: Mortar temerature at pumping chamber
 if ~any(strcmp(nodeRed.Properties.VariableNames, 'mai_pumping_chamber_mortar_temperature_c'))
   nodeRed.mai_pumping_chamber_mortar_temperature_c = zeros(height(nodeRed), 1);
+end
+
+%% Corrections: bug fix incorrect conversion analog inputs v0.4.0
+applyCorrection = false;
+if (applyCorrection == true)
+    % Pressure
+    nodeRed.material_io_ai0_pressure_bar = nodeRed.material_io_ai0_pressure_bar * 27468 / 27648;
+    nodeRed.material_io_ai1_pressure_bar = nodeRed.material_io_ai1_pressure_bar * 27468 / 27648;
+    nodeRed.printhead_pressure_bar = nodeRed.printhead_pressure_bar * 27468 / 27648;
+    % AI ports
+    columnsToCorrect = contains(nodeRed.Properties.VariableNames, '_ma') & contains(nodeRed.Properties.VariableNames, 'ai');
+    correctionFormula = @(x) (x - 4) * (27468 / 27648) + 4;
+    nodeRed(:, columnsToCorrect) = varfun(correctionFormula, nodeRed(:, columnsToCorrect));
 end
 
 %% Calculations: Convert sensor data
@@ -256,7 +269,7 @@ ylabel('Mortar temperature [C]')
 text1 = "Coriolis sensor: " + round(meanValues.material_coriolis_temperature_c*100)/100 + sprintf(' %s ', char(177)) + round(stdValues.material_coriolis_temperature_c*100)/100;
 text2 = "Pumping chamber: " + round(meanValues.mai_pumping_chamber_mortar_temperature_c*100)/100 + sprintf(' %s ', char(177)) + round(stdValues.mai_pumping_chamber_mortar_temperature_c*100)/100;
 text3 = "Printhead: " + round(meanValues.printhead_mortar_temperature_c*100)/100 + sprintf(' %s ', char(177)) + round(stdValues.printhead_mortar_temperature_c*100)/100;
-legend(text1, text2, text3, 'Location', 'NorthEast')
+legend(text1, text2, text3, 'Location', 'SouthEast')
 % Layout
 ax1 = gca;
 set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
@@ -525,6 +538,27 @@ xlabel('Apparent dynamic viscocity [cP]')
 ylabel('Pressure gradient [bar/m]')
 % Write figure
 lib.saveFigure(fig, 'correlation_viscocity_pressure_gradient')
+
+%% Correlation between density and pressure gradient
+fig = figure;
+fig.Units = 'centimeters';
+fig.Position = [1 14 11 8];
+hold on
+grid on
+box on
+% Plot data
+plot(nodeRed.material_coriolis_density_kg_m3(index1:index2), nodeRed.pressure_gradient1_bar_m(index1:index2), '.k')
+plot(nodeRed.material_coriolis_density_filtered_90s_kg_m3(index1:index2), nodeRed.pressure_gradient1_bar_m(index1:index2), '.b')
+% Limits
+ylim([floor(min(nodeRed.pressure_gradient1_bar_m(index1:index2))*10-1)/10, ceil(max(nodeRed.pressure_gradient1_bar_m(index1:index2))*10+1)/10])
+xlim([floor(min(nodeRed.material_coriolis_density_kg_m3(index1:index2))/10)*10, ceil(max(nodeRed.material_coriolis_density_kg_m3(index1:index2))/10)*10])
+% Legend
+legend('Unfiltered', 'Filter E+H 90s', 'Location', 'SouthEast')
+% Labels
+xlabel('Density [kg/m^{3}]')
+ylabel('Pressure gradient [bar/m]')
+% Write figure
+lib.saveFigure(fig, 'correlation_density_pressure_gradient')
 
 %% Run time
 time = seconds(nodeRed.desktop_time);
