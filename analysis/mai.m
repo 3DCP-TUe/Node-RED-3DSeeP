@@ -54,14 +54,7 @@ end
 %% Corrections: bug fix incorrect conversion analog inputs v0.4.0
 applyCorrection = false;
 if (applyCorrection == true)
-    % Pressure
-    nodeRed.material_io_ai0_pressure_bar = nodeRed.material_io_ai0_pressure_bar * 27468 / 27648;
-    nodeRed.material_io_ai1_pressure_bar = nodeRed.material_io_ai1_pressure_bar * 27468 / 27648;
-    nodeRed.printhead_pressure_bar = nodeRed.printhead_pressure_bar * 27468 / 27648;
-    % AI ports
-    columnsToCorrect = contains(nodeRed.Properties.VariableNames, '_ma') & contains(nodeRed.Properties.VariableNames, 'ai');
-    correctionFormula = @(x) (x - 4) * (27468 / 27648) + 4;
-    nodeRed(:, columnsToCorrect) = varfun(correctionFormula, nodeRed(:, columnsToCorrect));
+    nodeRed = lib.correctionAnalogInputs(nodeRed);
 end
 
 %% Calculations: Convert sensor data

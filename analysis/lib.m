@@ -111,6 +111,17 @@ classdef lib
             ceiledDuration = duration(ceiledHours, ceiledMinutes, 0);
         end
 
+        % Corrections for incorrect conversion of analog inputs (before v0.4.0)
+        function table = correctionAnalogInputs(table)
+            % Pressure
+            table.material_io_ai0_pressure_bar = table.material_io_ai0_pressure_bar * 27468 / 27648;
+            table.material_io_ai1_pressure_bar = table.material_io_ai1_pressure_bar * 27468 / 27648;
+            table.printhead_pressure_bar = table.printhead_pressure_bar * 27468 / 27648;
+            % AI ports
+            columnsToCorrect = contains(table.Properties.VariableNames, '_ma') & contains(table.Properties.VariableNames, 'ai');
+            correctionFormula = @(x) (x - 4) * (27468 / 27648) + 4;
+            table(:, columnsToCorrect) = varfun(correctionFormula, table(:, columnsToCorrect)); 
+        end
     end
 end
 
