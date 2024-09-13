@@ -36,10 +36,10 @@
         "id": "0b08100827d5f1c3",
         "type": "OpcUa-Item",
         "z": "09f74a936e34ed02",
-        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.Livebit2extern",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.Livebit2DuoMix",
         "datatype": "Boolean",
         "value": "",
-        "name": "Livebit2extern",
+        "name": "Livebit2Duomix",
         "x": 960,
         "y": 360,
         "wires": [
@@ -618,7 +618,7 @@
         "type": "ui_tab",
         "name": "M-tec duomix",
         "icon": "dashboard",
-        "order": 8,
+        "order": 9,
         "disabled": false,
         "hidden": false
     }
