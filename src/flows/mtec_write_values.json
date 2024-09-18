@@ -595,6 +595,512 @@
         ]
     },
     {
+        "id": "321c1ae4815eba96",
+        "type": "OpcUa-Item",
+        "z": "09f74a936e34ed02",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.reserve_DO_1",
+        "datatype": "Boolean",
+        "value": "msg.topic",
+        "name": "Write DO1",
+        "x": 950,
+        "y": 1000,
+        "wires": [
+            [
+                "28934a46c30d4da5"
+            ]
+        ]
+    },
+    {
+        "id": "a355e5cdb121f994",
+        "type": "ui_switch",
+        "z": "09f74a936e34ed02",
+        "name": "",
+        "label": "Write DO1 [bool]",
+        "tooltip": "",
+        "group": "2159e8a83bb50b67",
+        "order": 11,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 540,
+        "y": 1000,
+        "wires": [
+            [
+                "321c1ae4815eba96"
+            ]
+        ]
+    },
+    {
+        "id": "2fd8e81cca5d5677",
+        "type": "OpcUa-Item",
+        "z": "09f74a936e34ed02",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.reserve_DO_2",
+        "datatype": "Boolean",
+        "value": "msg.topic",
+        "name": "Write DO2",
+        "x": 950,
+        "y": 1040,
+        "wires": [
+            [
+                "28934a46c30d4da5"
+            ]
+        ]
+    },
+    {
+        "id": "aee4b1f6a002a4c5",
+        "type": "ui_switch",
+        "z": "09f74a936e34ed02",
+        "name": "",
+        "label": "Write DO2 [bool]",
+        "tooltip": "",
+        "group": "2159e8a83bb50b67",
+        "order": 12,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 540,
+        "y": 1040,
+        "wires": [
+            [
+                "2fd8e81cca5d5677"
+            ]
+        ]
+    },
+    {
+        "id": "39af4c410ce3833d",
+        "type": "OpcUa-Item",
+        "z": "09f74a936e34ed02",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.reserve_AO_1",
+        "datatype": "UInt16",
+        "value": "msg.topic",
+        "name": "Write AO1",
+        "x": 950,
+        "y": 1160,
+        "wires": [
+            [
+                "28934a46c30d4da5"
+            ]
+        ]
+    },
+    {
+        "id": "f40e26e904a4e547",
+        "type": "OpcUa-Item",
+        "z": "09f74a936e34ed02",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.reserve_AO_2",
+        "datatype": "UInt16",
+        "value": "msg.topic",
+        "name": "Write AO2",
+        "x": 950,
+        "y": 1200,
+        "wires": [
+            [
+                "28934a46c30d4da5"
+            ]
+        ]
+    },
+    {
+        "id": "2436bfcdb188dab7",
+        "type": "inject",
+        "z": "09f74a936e34ed02",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 250,
+        "y": 1000,
+        "wires": [
+            [
+                "a355e5cdb121f994",
+                "aee4b1f6a002a4c5"
+            ]
+        ]
+    },
+    {
+        "id": "5ba3f6d516def8b4",
+        "type": "inject",
+        "z": "09f74a936e34ed02",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "4",
+        "payloadType": "num",
+        "x": 250,
+        "y": 1160,
+        "wires": [
+            [
+                "f47f7ecf23d3b2c1",
+                "dcd8bbed27794a19"
+            ]
+        ]
+    },
+    {
+        "id": "f47f7ecf23d3b2c1",
+        "type": "ui_text_input",
+        "z": "09f74a936e34ed02",
+        "name": "",
+        "label": "Write AO1",
+        "tooltip": "",
+        "group": "2159e8a83bb50b67",
+        "order": 14,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 530,
+        "y": 1160,
+        "wires": [
+            [
+                "d757c20886e501bf"
+            ]
+        ]
+    },
+    {
+        "id": "b8ad5deeb8ec5bbc",
+        "type": "ui_text",
+        "z": "09f74a936e34ed02",
+        "group": "2159e8a83bb50b67",
+        "order": 15,
+        "width": 1,
+        "height": 1,
+        "name": "",
+        "label": "mA",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 510,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "d757c20886e501bf",
+        "type": "function",
+        "z": "09f74a936e34ed02",
+        "name": "",
+        "func": "if( msg.payload<4.0){msg.payload=4.0}\nelse if(msg.payload>20){msg.payload=20}\n\n// Convert\nmsg.payload = (msg.payload - 4) / 16 * 65536\n\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 1160,
+        "wires": [
+            [
+                "39af4c410ce3833d"
+            ]
+        ]
+    },
+    {
+        "id": "dcd8bbed27794a19",
+        "type": "ui_text_input",
+        "z": "09f74a936e34ed02",
+        "name": "",
+        "label": "Write AO2",
+        "tooltip": "",
+        "group": "2159e8a83bb50b67",
+        "order": 16,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 530,
+        "y": 1200,
+        "wires": [
+            [
+                "0f25ee033779cc2f"
+            ]
+        ]
+    },
+    {
+        "id": "0f25ee033779cc2f",
+        "type": "function",
+        "z": "09f74a936e34ed02",
+        "name": "",
+        "func": "if( msg.payload<4.0){msg.payload=4.0}\nelse if(msg.payload>20){msg.payload=20}\n\n// Convert\nmsg.payload = (msg.payload - 4) / 16 * 65536\n\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 1200,
+        "wires": [
+            [
+                "f40e26e904a4e547"
+            ]
+        ]
+    },
+    {
+        "id": "733c93ec0425f27e",
+        "type": "ui_text",
+        "z": "09f74a936e34ed02",
+        "group": "2159e8a83bb50b67",
+        "order": 17,
+        "width": 1,
+        "height": 1,
+        "name": "",
+        "label": "mA",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 510,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "4057e402051d947a",
+        "type": "ui_spacer",
+        "z": "09f74a936e34ed02",
+        "name": "spacer",
+        "group": "2766a474835c38ac",
+        "order": 7,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "f06ff8b981fa1a1b",
+        "type": "ui_spacer",
+        "z": "09f74a936e34ed02",
+        "name": "spacer",
+        "group": "2766a474835c38ac",
+        "order": 14,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "1bf06b8ae9d85fe0",
+        "type": "ui_spacer",
+        "z": "09f74a936e34ed02",
+        "name": "spacer",
+        "group": "e6b1019bb3a082ac",
+        "order": 5,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "d1a386c4c9384cfa",
+        "type": "ui_spacer",
+        "z": "09f74a936e34ed02",
+        "name": "spacer",
+        "group": "e6b1019bb3a082ac",
+        "order": 6,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "56aa30d919d0e0d5",
+        "type": "ui_spacer",
+        "z": "09f74a936e34ed02",
+        "name": "spacer",
+        "group": "e6b1019bb3a082ac",
+        "order": 15,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "3a626ba4387d9ca9",
+        "type": "ui_spacer",
+        "z": "09f74a936e34ed02",
+        "name": "spacer",
+        "group": "8a339496ca145acd",
+        "order": 6,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "7418413594bc478c",
+        "type": "ui_spacer",
+        "z": "09f74a936e34ed02",
+        "name": "spacer",
+        "group": "8a339496ca145acd",
+        "order": 15,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "0b65ed3bf3a1398b",
+        "type": "ui_spacer",
+        "z": "09f74a936e34ed02",
+        "name": "spacer",
+        "group": "2159e8a83bb50b67",
+        "order": 3,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "ce86a5d69fa650cc",
+        "type": "ui_spacer",
+        "z": "09f74a936e34ed02",
+        "name": "spacer",
+        "group": "2159e8a83bb50b67",
+        "order": 10,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "4c476ec949199391",
+        "type": "ui_spacer",
+        "z": "09f74a936e34ed02",
+        "name": "spacer",
+        "group": "2159e8a83bb50b67",
+        "order": 13,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "72f5bbcf8b703716",
+        "type": "ui_spacer",
+        "z": "09f74a936e34ed02",
+        "name": "spacer",
+        "group": "e8c93459e3f9c364",
+        "order": 8,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "1e55789a11354935",
+        "type": "ui_spacer",
+        "z": "09f74a936e34ed02",
+        "name": "spacer",
+        "group": "e8c93459e3f9c364",
+        "order": 9,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "ce380dadb8b72ddd",
+        "type": "ui_spacer",
+        "z": "09f74a936e34ed02",
+        "name": "spacer",
+        "group": "e8c93459e3f9c364",
+        "order": 10,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "6ac782dcf866e951",
+        "type": "ui_spacer",
+        "z": "09f74a936e34ed02",
+        "name": "spacer",
+        "group": "e8c93459e3f9c364",
+        "order": 14,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "a3b262c7055ea5ac",
+        "type": "ui_spacer",
+        "z": "09f74a936e34ed02",
+        "name": "spacer",
+        "group": "ef446e96828d062e",
+        "order": 10,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "427b3fa337244f48",
+        "type": "ui_spacer",
+        "z": "09f74a936e34ed02",
+        "name": "spacer",
+        "group": "7f5355f280f0fcec",
+        "order": 7,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "e48a678ee5eabe26",
+        "type": "ui_spacer",
+        "z": "09f74a936e34ed02",
+        "name": "spacer",
+        "group": "7f5355f280f0fcec",
+        "order": 11,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "6a5d9f681d75ce25",
+        "type": "ui_spacer",
+        "z": "09f74a936e34ed02",
+        "name": "spacer",
+        "group": "7f5355f280f0fcec",
+        "order": 18,
+        "width": 6,
+        "height": 1
+    },
+    {
         "id": "b02adcf7.368dd",
         "type": "OpcUa-Endpoint",
         "endpoint": "opc.tcp://10.129.4.73:4840",
@@ -614,11 +1120,86 @@
         "className": ""
     },
     {
+        "id": "2766a474835c38ac",
+        "type": "ui_group",
+        "name": "Write values",
+        "tab": "afc4f775962a26f4",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e6b1019bb3a082ac",
+        "type": "ui_group",
+        "name": "Read values part 1",
+        "tab": "afc4f775962a26f4",
+        "order": 2,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "8a339496ca145acd",
+        "type": "ui_group",
+        "name": "Read values part 2",
+        "tab": "afc4f775962a26f4",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e8c93459e3f9c364",
+        "type": "ui_group",
+        "name": "Read values 1",
+        "tab": "4809d57f0b02fac6",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "ef446e96828d062e",
+        "type": "ui_group",
+        "name": "Read values 2",
+        "tab": "4809d57f0b02fac6",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "7f5355f280f0fcec",
+        "type": "ui_group",
+        "name": "Read values 3",
+        "tab": "4809d57f0b02fac6",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
         "id": "4809d57f0b02fac6",
         "type": "ui_tab",
         "name": "M-tec duomix",
         "icon": "dashboard",
         "order": 9,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "afc4f775962a26f4",
+        "type": "ui_tab",
+        "name": "MAI MULTIMIX",
+        "icon": "dashboard",
+        "order": 7,
         "disabled": false,
         "hidden": false
     }

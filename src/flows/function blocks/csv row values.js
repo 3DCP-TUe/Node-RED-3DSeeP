@@ -35,7 +35,21 @@ msg.payload = {
 	'mtec_delay_time_wet_material_probe_statically': mtec.mtec_delay_time_wet_material_probe_statically ?? NaN,
     'mtec_pump_speed_set': mtec.mtec_pump_speed_set?.toFixed(2) ?? NaN,
     'mtec_pump_speed_actual': mtec.mtec_pump_speed_actual?.toFixed(2) ?? NaN,
-
+    'mtec_io_ai1': mtec.mtec_io_ai1?.toFixed(6) ?? NaN,
+	'mtec_io_ai2': mtec.mtec_io_ai2?.toFixed(6) ?? NaN,
+	'mtec_io_ai3': mtec.mtec_io_ai3?.toFixed(6) ?? NaN,
+	'mtec_io_ai4': mtec.mtec_io_ai4?.toFixed(6) ?? NaN,
+	'mtec_io_ai5': mtec.mtec_io_ai5?.toFixed(6) ?? NaN,
+	'mtec_io_ao1': mtec.mtec_io_ao1?.toFixed(6) ?? NaN,
+	'mtec_io_ao2': mtec.mtec_io_ao2?.toFixed(6) ?? NaN,
+    'mtec_io_di1': +mtec.mtec_io_di1 ?? NaN,
+	'mtec_io_di2': +mtec.mtec_io_di2 ?? NaN,
+	'mtec_io_di3': +mtec.mtec_io_di3 ?? NaN,
+	'mtec_io_di4': +mtec.mtec_io_di4 ?? NaN,
+	'mtec_io_di5': +mtec.mtec_io_di5 ?? NaN,
+	'mtec_io_do1': +mtec.mtec_io_do1 ?? NaN,
+	'mtec_io_do2': +mtec.mtec_io_do2 ?? NaN,
+	
     // MAI
     'mai_source_time': mai.mai_source_time ?? NaN,
     'mai_water_run': +mai.mai_water_run ?? NaN,

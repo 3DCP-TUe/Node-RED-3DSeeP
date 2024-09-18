@@ -18,6 +18,20 @@ var data ="desktop_time,"+
     "mtec_delay_time_wet_probe_statically_s,"+
     "mtec_pump_speed_set_rpm,"+
     "mtec_pump_speed_actual_rpm,"+
+	"mtec_io_ai1_v,"+
+	"mtec_io_ai2_v,"+
+	"mtec_io_ai3_v,"+
+	"mtec_io_ai4_ma,"+
+	"mtec_io_ai5_ma,"+
+	"mtec_io_ao1_ma,"+
+	"mtec_io_ao2_ma,"+
+	"mtec_io_di1_bool,"+
+	"mtec_io_di2_bool,"+
+	"mtec_io_di3_bool,"+
+	"mtec_io_di4_bool,"+
+	"mtec_io_di5_bool,"+
+	"mtec_io_do1_bool,"+
+	"mtec_io_do2_bool,"+
 
     "mai_source_time,"+
     "mai_water_run_bool,"+

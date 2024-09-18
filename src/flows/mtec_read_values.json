@@ -271,8 +271,8 @@
         "receiveBufferSize": "",
         "sendBufferSize": "",
         "name": "",
-        "x": 1180,
-        "y": 480,
+        "x": 1080,
+        "y": 460,
         "wires": [
             [
                 "a29e77a00dd04d8f"
@@ -326,7 +326,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 260,
+        "x": 200,
         "y": 460,
         "wires": [
             [
@@ -355,7 +355,21 @@
                 "2054311018c779d4",
                 "8b71337df31a5ad4",
                 "a6d1c80277ff4465",
-                "b482ca2ed1c6906a"
+                "b482ca2ed1c6906a",
+                "e97015f4862882fa",
+                "2874f39968d89729",
+                "3d13abe0c3e2a8d2",
+                "778a432575aac88f",
+                "20d0485b63bb5b32",
+                "f774149289f9a4c2",
+                "b8a6dbbfbd158006",
+                "9c9d275c6cc26d83",
+                "e22547a65b0f746a",
+                "fbcd22a3f8f9468f",
+                "7ea687fa5d9eec4c",
+                "b35c3d9e3ff1612b",
+                "7f6a68bcd06ab0e5",
+                "a32e2c71d6f95f0f"
             ]
         ]
     },
@@ -394,7 +408,7 @@
         "joinerType": "str",
         "accumulate": false,
         "timeout": "",
-        "count": "27",
+        "count": "41",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
@@ -413,14 +427,14 @@
         "type": "function",
         "z": "dbcff3a91e8577ef",
         "name": "Convert and add values",
-        "func": "// Set message topic\nmsg.topic = \"mtec\"\n\n// Convert values\nif (msg.payload.mtec_pump_speed_actual < 20000)\n{\n    msg.payload.mtec_pump_speed_actual = 0.0;\n}\nelse\n{\n    msg.payload.mtec_pump_speed_actual = ((msg.payload.mtec_pump_speed_actual - 26400) / (65535-26400)) * 65535\n    msg.payload.mtec_pump_speed_actual = ((msg.payload.mtec_pump_speed_actual / 65535)  * (50 - 20) + 20) * (195.6 / 50)   \n}\n\nmsg.payload.mtec_pump_speed_set = ((msg.payload.mtec_pump_speed_set / 65535)  * (50 - 20) + 20) * (195.6 / 50)\nmsg.payload.mtec_reverse_running_active = msg.payload.mtec_reverse_running_active == 0 ? true : false\nmsg.payload.mtec_water_control_active = msg.payload.mtec_water_control_active == false ? true : false\nmsg.payload.mtec_state_remote = msg.payload.mtec_state_remote == true ? false : true\nreturn msg",
+        "func": "// Set message topic\nmsg.topic = \"mtec\"\n\n// Convert actual speed\nif (msg.payload.mtec_pump_speed_actual < 20000)\n{\n    msg.payload.mtec_pump_speed_actual = 0.0;\n}\nelse\n{\n    msg.payload.mtec_pump_speed_actual = ((msg.payload.mtec_pump_speed_actual - 26400) / (65535-26400)) * 65535\n    msg.payload.mtec_pump_speed_actual = ((msg.payload.mtec_pump_speed_actual / 65535)  * (50 - 20) + 20) * (195.6 / 50)   \n}\n\n// Convert analog inputs to mA and V\nmsg.payload.mtec_io_ai1 = msg.payload.mtec_io_ai1 / 10000;\nmsg.payload.mtec_io_ai2 = msg.payload.mtec_io_ai2 / 10000;\nmsg.payload.mtec_io_ai3 = msg.payload.mtec_io_ai3 / 10000;\nmsg.payload.mtec_io_ai4 = (msg.payload.mtec_io_ai4 < 0) ? 0.0 : (msg.payload.mtec_io_ai4 / 65536 * 16.0 + 4.0);\nmsg.payload.mtec_io_ai5 = (msg.payload.mtec_io_ai5 < 0) ? 0.0 : (msg.payload.mtec_io_ai5 / 65536 * 16.0 + 4.0);\n\n\n// Convert analog outputs to mA\nmsg.payload.mtec_io_ao1 = (msg.payload.mtec_io_ao1 < 0) ? 0.0 : (msg.payload.mtec_io_ao1 / 65536 * 16.0 + 4.0);\nmsg.payload.mtec_io_ao2 = (msg.payload.mtec_io_ao2 < 0) ? 0.0 : (msg.payload.mtec_io_ao2 / 65536 * 16.0 + 4.0);\n\n// Convert other values\nmsg.payload.mtec_pump_speed_set = ((msg.payload.mtec_pump_speed_set / 65535)  * (50 - 20) + 20) * (195.6 / 50)\nmsg.payload.mtec_reverse_running_active = msg.payload.mtec_reverse_running_active == 0 ? true : false\nmsg.payload.mtec_water_control_active = msg.payload.mtec_water_control_active == false ? true : false\nmsg.payload.mtec_state_remote = msg.payload.mtec_state_remote == true ? false : true\n\nreturn msg",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2590,
+        "x": 2570,
         "y": 480,
         "wires": [
             [
@@ -452,7 +466,21 @@
                 "4c6cd971faef1520",
                 "7ac3059a4b20dcdc",
                 "678a75060a340313",
-                "e146e11dfde57d6a"
+                "e146e11dfde57d6a",
+                "9b7841986a23f99d",
+                "14d9f6266ba945a3",
+                "5899253c10108054",
+                "25d72bb521503699",
+                "310361f30051c089",
+                "10066f2e407a45e0",
+                "c225bba12a553a58",
+                "fdf29a36fa3330c5",
+                "1073c477a867f152",
+                "255cc4838db8c3f8",
+                "3bb61fe45ca84fd9",
+                "f5b5ca86bd8681b4",
+                "1a37420c8871aabd",
+                "b04fd7b8227aef16"
             ]
         ]
     },
@@ -1580,64 +1608,606 @@
         "wires": []
     },
     {
-        "id": "af52a92aedbb0fe6",
-        "type": "ui_spacer",
+        "id": "e97015f4862882fa",
+        "type": "OpcUa-Item",
         "z": "dbcff3a91e8577ef",
-        "name": "spacer",
-        "group": "2159e8a83bb50b67",
-        "order": 3,
-        "width": 6,
-        "height": 1
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.reserve_AI_1",
+        "datatype": "Float",
+        "value": "",
+        "name": "mtec_io_ai1",
+        "x": 550,
+        "y": 1700,
+        "wires": [
+            [
+                "a106ea0c2e4dda58"
+            ]
+        ]
     },
     {
-        "id": "b7301a4797a16a50",
-        "type": "ui_spacer",
+        "id": "2874f39968d89729",
+        "type": "OpcUa-Item",
         "z": "dbcff3a91e8577ef",
-        "name": "spacer",
-        "group": "e8c93459e3f9c364",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.reserve_AI_2",
+        "datatype": "Float",
+        "value": "",
+        "name": "mtec_io_ai2",
+        "x": 550,
+        "y": 1740,
+        "wires": [
+            [
+                "a106ea0c2e4dda58"
+            ]
+        ]
+    },
+    {
+        "id": "3d13abe0c3e2a8d2",
+        "type": "OpcUa-Item",
+        "z": "dbcff3a91e8577ef",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.reserve_AI_3",
+        "datatype": "Float",
+        "value": "",
+        "name": "mtec_io_ai3",
+        "x": 550,
+        "y": 1780,
+        "wires": [
+            [
+                "a106ea0c2e4dda58"
+            ]
+        ]
+    },
+    {
+        "id": "778a432575aac88f",
+        "type": "OpcUa-Item",
+        "z": "dbcff3a91e8577ef",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.reserve_AI_4",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "mtec_io_ai4",
+        "x": 550,
+        "y": 1820,
+        "wires": [
+            [
+                "a106ea0c2e4dda58"
+            ]
+        ]
+    },
+    {
+        "id": "20d0485b63bb5b32",
+        "type": "OpcUa-Item",
+        "z": "dbcff3a91e8577ef",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.reserve_AI_5",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "mtec_io_ai5",
+        "x": 550,
+        "y": 1860,
+        "wires": [
+            [
+                "a106ea0c2e4dda58"
+            ]
+        ]
+    },
+    {
+        "id": "f774149289f9a4c2",
+        "type": "OpcUa-Item",
+        "z": "dbcff3a91e8577ef",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.reserve_AO_1",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "mtec_io_ao1",
+        "x": 550,
+        "y": 1920,
+        "wires": [
+            [
+                "a106ea0c2e4dda58"
+            ]
+        ]
+    },
+    {
+        "id": "b8a6dbbfbd158006",
+        "type": "OpcUa-Item",
+        "z": "dbcff3a91e8577ef",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.reserve_AO_2",
+        "datatype": "UInt16",
+        "value": "",
+        "name": "mtec_io_ao2",
+        "x": 550,
+        "y": 1960,
+        "wires": [
+            [
+                "a106ea0c2e4dda58"
+            ]
+        ]
+    },
+    {
+        "id": "9c9d275c6cc26d83",
+        "type": "OpcUa-Item",
+        "z": "dbcff3a91e8577ef",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.reserve_DI_1",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "mtec_io_di1",
+        "x": 550,
+        "y": 2020,
+        "wires": [
+            [
+                "a106ea0c2e4dda58"
+            ]
+        ]
+    },
+    {
+        "id": "e22547a65b0f746a",
+        "type": "OpcUa-Item",
+        "z": "dbcff3a91e8577ef",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.reserve_DI_2",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "mtec_io_di2",
+        "x": 550,
+        "y": 2060,
+        "wires": [
+            [
+                "a106ea0c2e4dda58"
+            ]
+        ]
+    },
+    {
+        "id": "fbcd22a3f8f9468f",
+        "type": "OpcUa-Item",
+        "z": "dbcff3a91e8577ef",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.reserve_DI_3",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "mtec_io_di3",
+        "x": 550,
+        "y": 2100,
+        "wires": [
+            [
+                "a106ea0c2e4dda58"
+            ]
+        ]
+    },
+    {
+        "id": "7ea687fa5d9eec4c",
+        "type": "OpcUa-Item",
+        "z": "dbcff3a91e8577ef",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.reserve_DI_4",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "mtec_io_di4",
+        "x": 550,
+        "y": 2140,
+        "wires": [
+            [
+                "a106ea0c2e4dda58"
+            ]
+        ]
+    },
+    {
+        "id": "b35c3d9e3ff1612b",
+        "type": "OpcUa-Item",
+        "z": "dbcff3a91e8577ef",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.reserve_DI_5",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "mtec_io_di5",
+        "x": 550,
+        "y": 2180,
+        "wires": [
+            [
+                "a106ea0c2e4dda58"
+            ]
+        ]
+    },
+    {
+        "id": "7f6a68bcd06ab0e5",
+        "type": "OpcUa-Item",
+        "z": "dbcff3a91e8577ef",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.reserve_DO_1",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "mtec_io_do1",
+        "x": 550,
+        "y": 2240,
+        "wires": [
+            [
+                "a106ea0c2e4dda58"
+            ]
+        ]
+    },
+    {
+        "id": "a32e2c71d6f95f0f",
+        "type": "OpcUa-Item",
+        "z": "dbcff3a91e8577ef",
+        "item": "ns=4;s=|var|B-Fortis CC-Slim S04.Application.GVL_OPC.reserve_DO_2",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "mtec_io_do2",
+        "x": 550,
+        "y": 2280,
+        "wires": [
+            [
+                "a106ea0c2e4dda58"
+            ]
+        ]
+    },
+    {
+        "id": "48a7b184bd25cfce",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "group": "7f5355f280f0fcec",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "<b>Analog inputs:",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3370,
+        "y": 1900,
+        "wires": []
+    },
+    {
+        "id": "2db4af68d4da573a",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "group": "7f5355f280f0fcec",
         "order": 8,
         "width": 6,
-        "height": 1
+        "height": 1,
+        "name": "",
+        "label": "<b>Analog outputs:",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3370,
+        "y": 2180,
+        "wires": []
     },
     {
-        "id": "5f813389c38b4b79",
-        "type": "ui_spacer",
+        "id": "50d8bc492218049f",
+        "type": "ui_text",
         "z": "dbcff3a91e8577ef",
-        "name": "spacer",
-        "group": "e8c93459e3f9c364",
+        "group": "7f5355f280f0fcec",
+        "order": 12,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "<b>Digital inputs:",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3370,
+        "y": 2340,
+        "wires": []
+    },
+    {
+        "id": "4ad31865fcc46aa8",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "group": "7f5355f280f0fcec",
+        "order": 19,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "<b>Digital outputs:",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3370,
+        "y": 2620,
+        "wires": []
+    },
+    {
+        "id": "9b7841986a23f99d",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "group": "7f5355f280f0fcec",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "AI1 [V]",
+        "format": "{{msg.payload.mtec_io_ai1.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3330,
+        "y": 1940,
+        "wires": []
+    },
+    {
+        "id": "14d9f6266ba945a3",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "group": "7f5355f280f0fcec",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "AI2 [V]",
+        "format": "{{msg.payload.mtec_io_ai2.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3330,
+        "y": 1980,
+        "wires": []
+    },
+    {
+        "id": "5899253c10108054",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "group": "7f5355f280f0fcec",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "AI3 [V]",
+        "format": "{{msg.payload.mtec_io_ai3.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3330,
+        "y": 2020,
+        "wires": []
+    },
+    {
+        "id": "25d72bb521503699",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "group": "7f5355f280f0fcec",
+        "order": 5,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "AI4 [mA]",
+        "format": "{{msg.payload.mtec_io_ai4.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3340,
+        "y": 2060,
+        "wires": []
+    },
+    {
+        "id": "310361f30051c089",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "group": "7f5355f280f0fcec",
+        "order": 6,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "AI5 [mA]",
+        "format": "{{msg.payload.mtec_io_ai5.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3340,
+        "y": 2100,
+        "wires": []
+    },
+    {
+        "id": "c225bba12a553a58",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "group": "7f5355f280f0fcec",
         "order": 9,
         "width": 6,
-        "height": 1
+        "height": 1,
+        "name": "",
+        "label": "AO2 [mA]",
+        "format": "{{msg.payload.mtec_io_ao2.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3340,
+        "y": 2260,
+        "wires": []
     },
     {
-        "id": "e9321028a0e790b5",
-        "type": "ui_spacer",
+        "id": "10066f2e407a45e0",
+        "type": "ui_text",
         "z": "dbcff3a91e8577ef",
-        "name": "spacer",
-        "group": "e8c93459e3f9c364",
+        "group": "7f5355f280f0fcec",
         "order": 10,
         "width": 6,
-        "height": 1
+        "height": 1,
+        "name": "",
+        "label": "AO1 [mA]",
+        "format": "{{msg.payload.mtec_io_ao1.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3340,
+        "y": 2220,
+        "wires": []
     },
     {
-        "id": "8814368aa0a596d1",
-        "type": "ui_spacer",
+        "id": "fdf29a36fa3330c5",
+        "type": "ui_text",
         "z": "dbcff3a91e8577ef",
-        "name": "spacer",
-        "group": "e8c93459e3f9c364",
+        "group": "7f5355f280f0fcec",
+        "order": 13,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "DI1 [bool]",
+        "format": "{{msg.payload.mtec_io_di1.toString()}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3340,
+        "y": 2380,
+        "wires": []
+    },
+    {
+        "id": "1073c477a867f152",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "group": "7f5355f280f0fcec",
         "order": 14,
         "width": 6,
-        "height": 1
+        "height": 1,
+        "name": "",
+        "label": "DI2 [bool]",
+        "format": "{{msg.payload.mtec_io_di2.toString()}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3340,
+        "y": 2420,
+        "wires": []
     },
     {
-        "id": "19cd3b34389e84b7",
-        "type": "ui_spacer",
+        "id": "3bb61fe45ca84fd9",
+        "type": "ui_text",
         "z": "dbcff3a91e8577ef",
-        "name": "spacer",
-        "group": "ef446e96828d062e",
-        "order": 10,
+        "group": "7f5355f280f0fcec",
+        "order": 15,
         "width": 6,
-        "height": 1
+        "height": 1,
+        "name": "",
+        "label": "DI3 [bool]",
+        "format": "{{msg.payload.mtec_io_di3.toString()}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3340,
+        "y": 2460,
+        "wires": []
+    },
+    {
+        "id": "255cc4838db8c3f8",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "group": "7f5355f280f0fcec",
+        "order": 16,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "DI4 [bool]",
+        "format": "{{msg.payload.mtec_io_di4.toString()}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3340,
+        "y": 2500,
+        "wires": []
+    },
+    {
+        "id": "f5b5ca86bd8681b4",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "group": "7f5355f280f0fcec",
+        "order": 17,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "DI5 [bool]",
+        "format": "{{msg.payload.mtec_io_di5.toString()}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3340,
+        "y": 2540,
+        "wires": []
+    },
+    {
+        "id": "1a37420c8871aabd",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "group": "7f5355f280f0fcec",
+        "order": 20,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "DO1 [bool]",
+        "format": "{{msg.payload.mtec_io_do1.toString()}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3350,
+        "y": 2660,
+        "wires": []
+    },
+    {
+        "id": "b04fd7b8227aef16",
+        "type": "ui_text",
+        "z": "dbcff3a91e8577ef",
+        "group": "7f5355f280f0fcec",
+        "order": 21,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "DO2 [bool]",
+        "format": "{{msg.payload.mtec_io_do2.toString()}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3350,
+        "y": 2700,
+        "wires": []
     },
     {
         "id": "e8c93459e3f9c364",
@@ -1674,18 +2244,18 @@
         "type": "ui_group",
         "name": "Analysis",
         "tab": "4809d57f0b02fac6",
-        "order": 4,
+        "order": 5,
         "disp": true,
         "width": "6",
         "collapse": false,
         "className": ""
     },
     {
-        "id": "2159e8a83bb50b67",
+        "id": "7f5355f280f0fcec",
         "type": "ui_group",
-        "name": "Write values",
+        "name": "Read values 3",
         "tab": "4809d57f0b02fac6",
-        "order": 1,
+        "order": 4,
         "disp": true,
         "width": "6",
         "collapse": false,
