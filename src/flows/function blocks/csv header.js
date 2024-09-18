@@ -9,8 +9,8 @@ var data ="desktop_time,"+
     "mtec_water_solenoid_valve_bool,"+
     "mtec_water_water_valve_actual_perc,"+
     "mtec_water_temp_c,"+
-    "mtec_water_flow_set_l_min,"+
-    "mtec_water_flow_actual_l_min,"+
+    "mtec_water_flow_set_l_h,"+
+    "mtec_water_flow_actual_l_h,"+
     "mtec_mixer_run_bool,"+
     "mtec_state_wet_material_probe_bool,"+
     "mtec_state_delay_time_wet_probe_bool,"+
