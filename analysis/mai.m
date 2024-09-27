@@ -16,7 +16,7 @@ cd(filepath);
 
 %% Read file and set directory
 % Read multiple files from custom directory
-directory = "D:\GitHub\Node-RED-3DSeeP\analysis\logs\20240722_Arjen\";
+directory = "D:\GitHub\Node-RED-3DSeeP\analysis\logs\20240924_Idil\";
 nodeRed = lib.readData(directory);
 
 %% Settings for layout
@@ -30,8 +30,8 @@ set(0, 'DefaultLineLineWidth', 1.5);
 
 %% Settings for analysis
 % Window for correlations, mean, std, etc. 
-windowStart = duration(10, 15, 0); 
-windowEnd = duration(12, 45, 0);
+windowStart = duration(11, 10, 0); 
+windowEnd = duration(12, 10, 0);
 
 %% Add columns missing in older versions of the data logger
 % Printhead: pressure
@@ -301,13 +301,13 @@ hold on
 grid on
 box on
 % Plot data
-plot(nodeRed.desktop_time, nodeRed.mai_pump_speed_chz./100, '.k')
+plot(nodeRed.desktop_time, nodeRed.mai_pump_speed_chz, '.k')
 % Limits
-ylim([0 50])
+ylim([0 5000])
 xlim(xLimits)
 % Labels
 xlabel('Time')
-ylabel('Pump frequency [Hz]')
+ylabel('Pump frequency [cHz]')
 % Layout
 ax1 = gca;
 set(ax1, 'XTick', xticks, 'XTickLabel', datestr(xticks, 'HH:MM'))
