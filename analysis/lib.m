@@ -21,7 +21,9 @@ classdef lib
             %Read files and append if multiple
             data = [];
             for i = 1:length(files)
-                data = [data; readtable(fullfile(directory, files(i).name))];
+                if ~contains(files(i).name, "EventComments")
+                    data = [data; readtable(fullfile(directory, files(i).name))];
+                end
             end
             % Create and navigate to save folder
             saveFolderName = fullfile(directory, "Results");
