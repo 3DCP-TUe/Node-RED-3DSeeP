@@ -1,0 +1,680 @@
+[
+    {
+        "id": "0a88fa0efc69e7c6",
+        "type": "tab",
+        "label": "Toolbox",
+        "disabled": false,
+        "info": "Toolbox with various functions for experiments",
+        "env": []
+    },
+    {
+        "id": "c7f1a80dc6d21e6c",
+        "type": "group",
+        "z": "0a88fa0efc69e7c6",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "fde7bc62dc148e73",
+            "cbafc0df9b12787b",
+            "677fb21860f39f8e",
+            "68b71486dcfc8eaa",
+            "fe4065f6b2f6e944",
+            "818499368f167320",
+            "c4643cc422a93f6a",
+            "9673660076bdd95e",
+            "9466fdcc73c7377d",
+            "a872ea4401cdacec",
+            "cdf3ec589f854a2e",
+            "cba2c1a5416a6e5d",
+            "a5180a4578a9a56d",
+            "f4dd1dda8a8d482e",
+            "a130f0996513322d",
+            "a144e6c6f95443d5",
+            "6a8a161e47bb7103",
+            "e47e7f60f7f2ca5e",
+            "bdb72fdaf6b750d7",
+            "aa752e1ba4815307",
+            "13aa57b9c4054983",
+            "802c2b5ea94d8689",
+            "9453fcbb8f3cd907",
+            "364619ed816ed9fc"
+        ],
+        "x": 134,
+        "y": 239,
+        "w": 1672,
+        "h": 362
+    },
+    {
+        "id": "fde7bc62dc148e73",
+        "type": "OpcUa-Item",
+        "z": "0a88fa0efc69e7c6",
+        "g": "c7f1a80dc6d21e6c",
+        "item": "ns=2;s=Tags.GECO/MPRX_EXT_Pump_Speed_cHz_I",
+        "datatype": "Int16",
+        "value": "msg.payload",
+        "name": "Set pump speed",
+        "x": 1180,
+        "y": 520,
+        "wires": [
+            [
+                "cdf3ec589f854a2e"
+            ]
+        ]
+    },
+    {
+        "id": "cbafc0df9b12787b",
+        "type": "ui_text",
+        "z": "0a88fa0efc69e7c6",
+        "g": "c7f1a80dc6d21e6c",
+        "group": "427cf8828e9e9476",
+        "order": 6,
+        "width": 1,
+        "height": 1,
+        "name": "",
+        "label": "cHz",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1150,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "677fb21860f39f8e",
+        "type": "ui_text",
+        "z": "0a88fa0efc69e7c6",
+        "g": "c7f1a80dc6d21e6c",
+        "group": "427cf8828e9e9476",
+        "order": 8,
+        "width": 1,
+        "height": 1,
+        "name": "",
+        "label": "cHz",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1150,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "68b71486dcfc8eaa",
+        "type": "ui_button",
+        "z": "0a88fa0efc69e7c6",
+        "g": "c7f1a80dc6d21e6c",
+        "name": "",
+        "group": "427cf8828e9e9476",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "RUN",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 230,
+        "y": 520,
+        "wires": [
+            [
+                "aa752e1ba4815307",
+                "13aa57b9c4054983"
+            ]
+        ]
+    },
+    {
+        "id": "fe4065f6b2f6e944",
+        "type": "delay",
+        "z": "0a88fa0efc69e7c6",
+        "g": "c7f1a80dc6d21e6c",
+        "name": "run time",
+        "pauseType": "delayv",
+        "timeout": "5000",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 860,
+        "y": 560,
+        "wires": [
+            [
+                "a872ea4401cdacec"
+            ]
+        ]
+    },
+    {
+        "id": "818499368f167320",
+        "type": "inject",
+        "z": "0a88fa0efc69e7c6",
+        "g": "c7f1a80dc6d21e6c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "10",
+        "payloadType": "num",
+        "x": 230,
+        "y": 420,
+        "wires": [
+            [
+                "802c2b5ea94d8689"
+            ]
+        ]
+    },
+    {
+        "id": "c4643cc422a93f6a",
+        "type": "change",
+        "z": "0a88fa0efc69e7c6",
+        "g": "c7f1a80dc6d21e6c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "run_time_mai",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 900,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9673660076bdd95e",
+        "type": "change",
+        "z": "0a88fa0efc69e7c6",
+        "g": "c7f1a80dc6d21e6c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "delay",
+                "pt": "msg",
+                "to": "run_time_mai",
+                "tot": "flow",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 560,
+        "wires": [
+            [
+                "fe4065f6b2f6e944"
+            ]
+        ]
+    },
+    {
+        "id": "9466fdcc73c7377d",
+        "type": "function",
+        "z": "0a88fa0efc69e7c6",
+        "g": "c7f1a80dc6d21e6c",
+        "name": "convert to ms",
+        "func": "msg.payload = msg.payload * 1000;\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 420,
+        "wires": [
+            [
+                "c4643cc422a93f6a"
+            ]
+        ]
+    },
+    {
+        "id": "a872ea4401cdacec",
+        "type": "OpcUa-Item",
+        "z": "0a88fa0efc69e7c6",
+        "g": "c7f1a80dc6d21e6c",
+        "item": "ns=2;s=Tags.GECO/MPRX_EXT_Pump_Speed_cHz_I",
+        "datatype": "Int16",
+        "value": "msg.payload",
+        "name": "Set pump speed",
+        "x": 1180,
+        "y": 560,
+        "wires": [
+            [
+                "cdf3ec589f854a2e"
+            ]
+        ]
+    },
+    {
+        "id": "cdf3ec589f854a2e",
+        "type": "OpcUa-Client",
+        "z": "0a88fa0efc69e7c6",
+        "g": "c7f1a80dc6d21e6c",
+        "endpoint": "b6399b95df174ec3",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": "",
+        "maxMessageSize": "",
+        "receiveBufferSize": "",
+        "sendBufferSize": "",
+        "name": "",
+        "x": 1700,
+        "y": 540,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "cba2c1a5416a6e5d",
+        "type": "ui_text_input",
+        "z": "0a88fa0efc69e7c6",
+        "g": "c7f1a80dc6d21e6c",
+        "name": "",
+        "label": "Pump speed start",
+        "tooltip": "",
+        "group": "427cf8828e9e9476",
+        "order": 5,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 450,
+        "y": 340,
+        "wires": [
+            [
+                "e47e7f60f7f2ca5e"
+            ]
+        ]
+    },
+    {
+        "id": "a5180a4578a9a56d",
+        "type": "ui_text_input",
+        "z": "0a88fa0efc69e7c6",
+        "g": "c7f1a80dc6d21e6c",
+        "name": "",
+        "label": "Pump speed end",
+        "tooltip": "",
+        "group": "427cf8828e9e9476",
+        "order": 7,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 450,
+        "y": 380,
+        "wires": [
+            [
+                "bdb72fdaf6b750d7"
+            ]
+        ]
+    },
+    {
+        "id": "f4dd1dda8a8d482e",
+        "type": "change",
+        "z": "0a88fa0efc69e7c6",
+        "g": "c7f1a80dc6d21e6c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "pump_speed_end",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 910,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a130f0996513322d",
+        "type": "change",
+        "z": "0a88fa0efc69e7c6",
+        "g": "c7f1a80dc6d21e6c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "pump_speed_start",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 920,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a144e6c6f95443d5",
+        "type": "inject",
+        "z": "0a88fa0efc69e7c6",
+        "g": "c7f1a80dc6d21e6c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "2100",
+        "payloadType": "num",
+        "x": 230,
+        "y": 340,
+        "wires": [
+            [
+                "cba2c1a5416a6e5d"
+            ]
+        ]
+    },
+    {
+        "id": "6a8a161e47bb7103",
+        "type": "inject",
+        "z": "0a88fa0efc69e7c6",
+        "g": "c7f1a80dc6d21e6c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "2100",
+        "payloadType": "num",
+        "x": 230,
+        "y": 380,
+        "wires": [
+            [
+                "a5180a4578a9a56d"
+            ]
+        ]
+    },
+    {
+        "id": "e47e7f60f7f2ca5e",
+        "type": "function",
+        "z": "0a88fa0efc69e7c6",
+        "g": "c7f1a80dc6d21e6c",
+        "name": "",
+        "func": "if( msg.payload<1500){msg.payload=1500}\nelse if(msg.payload>8000){msg.payload=8000}\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 340,
+        "wires": [
+            [
+                "a130f0996513322d"
+            ]
+        ]
+    },
+    {
+        "id": "bdb72fdaf6b750d7",
+        "type": "function",
+        "z": "0a88fa0efc69e7c6",
+        "g": "c7f1a80dc6d21e6c",
+        "name": "",
+        "func": "if( msg.payload<1500){msg.payload=1500}\nelse if(msg.payload>8000){msg.payload=8000}\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 380,
+        "wires": [
+            [
+                "f4dd1dda8a8d482e"
+            ]
+        ]
+    },
+    {
+        "id": "aa752e1ba4815307",
+        "type": "change",
+        "z": "0a88fa0efc69e7c6",
+        "g": "c7f1a80dc6d21e6c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "pump_speed_end",
+                "tot": "flow",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 560,
+        "wires": [
+            [
+                "9673660076bdd95e"
+            ]
+        ]
+    },
+    {
+        "id": "13aa57b9c4054983",
+        "type": "change",
+        "z": "0a88fa0efc69e7c6",
+        "g": "c7f1a80dc6d21e6c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "pump_speed_start",
+                "tot": "flow",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 520,
+        "wires": [
+            [
+                "fde7bc62dc148e73"
+            ]
+        ]
+    },
+    {
+        "id": "802c2b5ea94d8689",
+        "type": "ui_text_input",
+        "z": "0a88fa0efc69e7c6",
+        "g": "c7f1a80dc6d21e6c",
+        "name": "",
+        "label": "Run time [s]",
+        "tooltip": "",
+        "group": "427cf8828e9e9476",
+        "order": 3,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 430,
+        "y": 420,
+        "wires": [
+            [
+                "9466fdcc73c7377d"
+            ]
+        ]
+    },
+    {
+        "id": "9453fcbb8f3cd907",
+        "type": "ui_text",
+        "z": "0a88fa0efc69e7c6",
+        "g": "c7f1a80dc6d21e6c",
+        "group": "427cf8828e9e9476",
+        "order": 4,
+        "width": 1,
+        "height": 1,
+        "name": "",
+        "label": "s",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1150,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "364619ed816ed9fc",
+        "type": "comment",
+        "z": "0a88fa0efc69e7c6",
+        "g": "c7f1a80dc6d21e6c",
+        "name": "Mai pump run",
+        "info": "",
+        "x": 230,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "427cf8828e9e9476",
+        "type": "ui_group",
+        "name": "MAI pump run",
+        "tab": "4d5fffccf03df614",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "b6399b95df174ec3",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://10.129.4.80:48010",
+        "secpol": "None",
+        "secmode": "None",
+        "login": false
+    },
+    {
+        "id": "4d5fffccf03df614",
+        "type": "ui_tab",
+        "name": "Toolbox",
+        "icon": "dashboard",
+        "order": 12,
+        "disabled": false,
+        "hidden": false
+    }
+]
