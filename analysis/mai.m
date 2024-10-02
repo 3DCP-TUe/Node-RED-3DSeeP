@@ -559,7 +559,7 @@ time = hours(nodeRed.desktop_time);
 dt = diff(time);
 pumpRunTime = sum(dt.*nodeRed.mai_pump_run_bool(2:end), 'omitnan');
 % Equivalent run time: time * frequency / reference frequency
-equivalentRuntTime = sum((dt.*nodeRed.mai_pump_run_bool(2:end)) .* (nodeRed.mai_pump_speed_chz(2:end) ./ 100 / 50), 'omitnan');
+equivalentRunTime = sum((dt.*nodeRed.mai_pump_run_bool(2:end)) .* (nodeRed.mai_pump_speed_chz(2:end) ./ 100 / 50), 'omitnan');
 
 %% Report generator
 % Create empty table
@@ -617,7 +617,7 @@ domTable = BaseTable(T);
 % Run time
 runTimeList = UnorderedList();
 timeItem1 = ListItem(Paragraph(['Pump run time [h]: ', num2str(pumpRunTime)]));
-timeItem2 = ListItem(Paragraph(['Equivalent run time [h x Hz]: ', num2str(equivalentRuntTime)]));
+timeItem2 = ListItem(Paragraph(['Equivalent run time [h x Hz]: ', num2str(equivalentRunTime)]));
 append(runTimeList, timeItem1);
 append(runTimeList, timeItem2);
 % Create an unordered list for the summary time window
