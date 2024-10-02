@@ -16,7 +16,7 @@ cd(filepath);
 
 %% Read file and set directory
 % Read multiple files from custom directory
-directory = "D:\GitHub\Node-RED-3DSeeP\analysis\logs\20240924_Idil\";
+directory = "D:\GitHub\Node-RED-3DSeeP\analysis\logs\20240930_Chapter_9\";
 nodeRed = lib.readData(directory);
 
 %% Settings for layout
@@ -30,8 +30,8 @@ set(0, 'DefaultLineLineWidth', 1.5);
 
 %% Settings for analysis
 % Window for correlations, mean, std, etc. 
-windowStart = duration(11, 10, 0); 
-windowEnd = duration(12, 10, 0);
+windowStart = duration(10, 0, 0); 
+windowEnd = duration(10, 30, 0);
 
 %% Add columns missing in older versions of the data logger
 % Printhead: pressure
@@ -162,7 +162,7 @@ plot(nodeRed.desktop_time, nodeRed.pressure_gradient1_bar_m, '.k')
 plot(nodeRed.desktop_time, nodeRed.pressure_gradient2_bar_m, '.b')
 plot(nodeRed.desktop_time, nodeRed.pressure_gradient3_bar_m, '.r')
 % Limits
-ylim([0 1.4])
+ylim([0 2.0])
 xlim(xLimits)
 % Labels
 xlabel('Time')
@@ -554,9 +554,12 @@ ylabel('Pressure gradient [bar/m]')
 lib.saveFigure(fig, 'correlation_density_pressure_gradient')
 
 %% Run time
-time = seconds(nodeRed.desktop_time);
+% Run time
+time = hours(nodeRed.desktop_time);
 dt = diff(time);
-pumpRunTime = sum(dt.*nodeRed.mai_pump_run_bool(2:end), 'omitnan') / 60 / 60; % hours
+pumpRunTime = sum(dt.*nodeRed.mai_pump_run_bool(2:end), 'omitnan');
+% Equivalent run time: time * frequency / reference frequency
+equivalentRuntTime = sum((dt.*nodeRed.mai_pump_run_bool(2:end)) .* (nodeRed.mai_pump_speed_chz(2:end) ./ 100 / 50), 'omitnan');
 
 %% Report generator
 % Create empty table
@@ -614,7 +617,9 @@ domTable = BaseTable(T);
 % Run time
 runTimeList = UnorderedList();
 timeItem1 = ListItem(Paragraph(['Pump run time [h]: ', num2str(pumpRunTime)]));
+timeItem2 = ListItem(Paragraph(['Equivalent run time [h x Hz]: ', num2str(equivalentRuntTime)]));
 append(runTimeList, timeItem1);
+append(runTimeList, timeItem2);
 % Create an unordered list for the summary time window
 timeList = UnorderedList();
 timeItem1 = ListItem(Paragraph(['Start time: ', char(windowStart)]));
