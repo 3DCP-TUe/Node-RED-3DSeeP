@@ -1,0 +1,507 @@
+[
+    {
+        "id": "db1d72e1be729b35",
+        "type": "tab",
+        "label": "M-tec: Silo control",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ab6aebbc34c92536",
+        "type": "OpcUa-Item",
+        "z": "db1d72e1be729b35",
+        "item": "ns=4;i=25",
+        "datatype": "Boolean",
+        "value": "msg.topic",
+        "name": "Write DO3",
+        "x": 1570,
+        "y": 280,
+        "wires": [
+            [
+                "6d227d3cefd3230e"
+            ]
+        ]
+    },
+    {
+        "id": "6d227d3cefd3230e",
+        "type": "OpcUa-Client",
+        "z": "db1d72e1be729b35",
+        "endpoint": "9c6664b374f58bc5",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": "",
+        "maxMessageSize": "",
+        "receiveBufferSize": "",
+        "sendBufferSize": "",
+        "name": "",
+        "x": 1780,
+        "y": 280,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "4a2ad52da78c57b6",
+        "type": "link in",
+        "z": "db1d72e1be729b35",
+        "name": "mtec mixer on/off in",
+        "links": [
+            "769cbc7c61ddfd9b"
+        ],
+        "x": 225,
+        "y": 280,
+        "wires": [
+            [
+                "1fc83aba65a590b2"
+            ]
+        ]
+    },
+    {
+        "id": "1fc83aba65a590b2",
+        "type": "function",
+        "z": "db1d72e1be729b35",
+        "name": "Only inject when value changes",
+        "func": "if (context.get('prev_mixer_run') === 'undefined') {\n    context.set('prev_mixer_run', false);\n}\n\nif (msg.payload !== context.get('prev_mixer_run')) {\n    context.set('prev_mixer_run', msg.payload);\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 280,
+        "wires": [
+            [
+                "ab6aebbc34c92536",
+                "cafb92f122c1bc40"
+            ]
+        ]
+    },
+    {
+        "id": "38f54e8dbfbaa3b7",
+        "type": "inject",
+        "z": "db1d72e1be729b35",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "5",
+        "payloadType": "num",
+        "x": 190,
+        "y": 380,
+        "wires": [
+            [
+                "aada589222e61573"
+            ]
+        ]
+    },
+    {
+        "id": "aada589222e61573",
+        "type": "ui_numeric",
+        "z": "db1d72e1be729b35",
+        "name": "",
+        "label": "Run time [s]",
+        "tooltip": "",
+        "group": "38aedf17fb117e34",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": false,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "60",
+        "step": 1,
+        "className": "",
+        "x": 390,
+        "y": 380,
+        "wires": [
+            [
+                "c2edc40141939117"
+            ]
+        ]
+    },
+    {
+        "id": "c2edc40141939117",
+        "type": "change",
+        "z": "db1d72e1be729b35",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "run_time",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8a1b1e6d1d7f104d",
+        "type": "delay",
+        "z": "db1d72e1be729b35",
+        "name": "run time",
+        "pauseType": "delayv",
+        "timeout": "5000",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1180,
+        "y": 200,
+        "wires": [
+            [
+                "9b6d5b5cf34bd55d"
+            ]
+        ]
+    },
+    {
+        "id": "cafb92f122c1bc40",
+        "type": "change",
+        "z": "db1d72e1be729b35",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "delay",
+                "pt": "msg",
+                "to": "run_time",
+                "tot": "flow",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 200,
+        "wires": [
+            [
+                "ab3ffa8d57931174"
+            ]
+        ]
+    },
+    {
+        "id": "ab3ffa8d57931174",
+        "type": "function",
+        "z": "db1d72e1be729b35",
+        "name": "convert to ms",
+        "func": "msg.delay = msg.delay * 1000;\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1000,
+        "y": 200,
+        "wires": [
+            [
+                "8a1b1e6d1d7f104d"
+            ]
+        ]
+    },
+    {
+        "id": "77f488d867e7c8d7",
+        "type": "ui_button",
+        "z": "db1d72e1be729b35",
+        "name": "",
+        "group": "38aedf17fb117e34",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "RUN",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 190,
+        "y": 200,
+        "wires": [
+            [
+                "ab6aebbc34c92536",
+                "cafb92f122c1bc40"
+            ]
+        ]
+    },
+    {
+        "id": "9b6d5b5cf34bd55d",
+        "type": "ui_button",
+        "z": "db1d72e1be729b35",
+        "name": "",
+        "group": "38aedf17fb117e34",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "STOP",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1350,
+        "y": 200,
+        "wires": [
+            [
+                "ab6aebbc34c92536"
+            ]
+        ]
+    },
+    {
+        "id": "7b552b1ba763368e",
+        "type": "ui_text",
+        "z": "db1d72e1be729b35",
+        "group": "38aedf17fb117e34",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Note: Connect the plug of the valve to DO3 of the sensing station. ",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 360,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "ca950ed7c3ba0a94",
+        "type": "ui_spacer",
+        "z": "db1d72e1be729b35",
+        "name": "spacer",
+        "group": "2159e8a83bb50b67",
+        "order": 3,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "3545f1ec46f9a62f",
+        "type": "ui_spacer",
+        "z": "db1d72e1be729b35",
+        "name": "spacer",
+        "group": "2159e8a83bb50b67",
+        "order": 10,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "4407c1e0b6654168",
+        "type": "ui_spacer",
+        "z": "db1d72e1be729b35",
+        "name": "spacer",
+        "group": "2159e8a83bb50b67",
+        "order": 13,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "2ee70509cf8f02c9",
+        "type": "ui_spacer",
+        "z": "db1d72e1be729b35",
+        "name": "spacer",
+        "group": "e8c93459e3f9c364",
+        "order": 8,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "2030e6ead389a5b2",
+        "type": "ui_spacer",
+        "z": "db1d72e1be729b35",
+        "name": "spacer",
+        "group": "e8c93459e3f9c364",
+        "order": 9,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "ae621b4a45546f3c",
+        "type": "ui_spacer",
+        "z": "db1d72e1be729b35",
+        "name": "spacer",
+        "group": "e8c93459e3f9c364",
+        "order": 10,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "33ec70601db72fe6",
+        "type": "ui_spacer",
+        "z": "db1d72e1be729b35",
+        "name": "spacer",
+        "group": "e8c93459e3f9c364",
+        "order": 14,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "37461bbe619dca41",
+        "type": "ui_spacer",
+        "z": "db1d72e1be729b35",
+        "name": "spacer",
+        "group": "ef446e96828d062e",
+        "order": 10,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "f5bbc5c81ae376af",
+        "type": "ui_spacer",
+        "z": "db1d72e1be729b35",
+        "name": "spacer",
+        "group": "7f5355f280f0fcec",
+        "order": 7,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "7254ecdb30b8ece9",
+        "type": "ui_spacer",
+        "z": "db1d72e1be729b35",
+        "name": "spacer",
+        "group": "7f5355f280f0fcec",
+        "order": 11,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "06deb66909940be7",
+        "type": "ui_spacer",
+        "z": "db1d72e1be729b35",
+        "name": "spacer",
+        "group": "7f5355f280f0fcec",
+        "order": 18,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "9c6664b374f58bc5",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://10.129.4.30:4840",
+        "secpol": "None",
+        "secmode": "None",
+        "login": false
+    },
+    {
+        "id": "38aedf17fb117e34",
+        "type": "ui_group",
+        "name": "Silo",
+        "tab": "4809d57f0b02fac6",
+        "order": 6,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "2159e8a83bb50b67",
+        "type": "ui_group",
+        "name": "Write values",
+        "tab": "4809d57f0b02fac6",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e8c93459e3f9c364",
+        "type": "ui_group",
+        "name": "Read values 1",
+        "tab": "4809d57f0b02fac6",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "ef446e96828d062e",
+        "type": "ui_group",
+        "name": "Read values 2",
+        "tab": "4809d57f0b02fac6",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "7f5355f280f0fcec",
+        "type": "ui_group",
+        "name": "Read values 3",
+        "tab": "4809d57f0b02fac6",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "4809d57f0b02fac6",
+        "type": "ui_tab",
+        "name": "M-tec duomix",
+        "icon": "dashboard",
+        "order": 8,
+        "disabled": false,
+        "hidden": false
+    }
+]
