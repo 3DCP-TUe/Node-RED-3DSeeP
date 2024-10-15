@@ -1193,7 +1193,7 @@
         "z": "a666a495869d02dc",
         "g": "4eab8620562f9ee0",
         "name": "batch and interval time",
-        "func": "if (msg.payload !== context.get('prev_mixer_run')) {\n   \n    context.set('prev_mixer_run', msg.payload);\n\t\n\ttime = new Date().getTime() / 1000;\n\tprev_start = context.get('prev_mixer_start')\n\tprev_stop = context.get('prev_mixer_stop')\n\tprev_batch_time = context.get('batch_time');\n\tprev_interval_time = context.get('interval_time');\n\t\n\tif (msg.payload == false)\n\t{\n\t    batch_time = time - prev_start;\n\t\tcontext.set('prev_mixer_stop', time);\n\t\tcontext.set('batch_time', batch_time);\n\t}\n\telse\n\t{\n\t\tinterval_time = time - prev_start;\n\t    msg.batch_time = prev_batch_time;\n\t\tmsg.interval_time = interval_time;\n\t\tmsg.prediction = prev_batch_time / interval_time * 1.0;\n\t\t\n\t\tqueue = context.get('queue');\n\t\tqueue.push(msg.prediction);\n\t\tif(queue.length > 10)\n\t\t{\n\t\t    queue.shift();\n\t\t}\n\t\t\n\t\tlet sum = queue.reduce((acc, curr) => acc + curr, 0);\n\t\tmsg.mean = sum / queue.length;\n\t\t\n\t\tcontext.set('queue', queue);\n\t\tcontext.set('interval_time', interval_time);\n\t\tcontext.set('prev_mixer_start', time);\n\t\treturn msg;\n\t}\n}",
+        "func": "if (msg.payload !== context.get('prev_mixer_run')) {\n   \n    context.set('prev_mixer_run', msg.payload);\n\t\n\ttime = new Date().getTime() / 1000;\n\tqueue = context.get('queue');\n\tprev_start = context.get('prev_mixer_start')\n\tprev_stop = context.get('prev_mixer_stop')\n\tprev_batch_time = context.get('batch_time');\n\tprev_interval_time = context.get('interval_time');\n\t\n\tif (msg.payload == false)\n\t{\n\t    batch_time = time - prev_start;\n\t\tcontext.set('prev_mixer_stop', time);\n\t\tcontext.set('batch_time', batch_time);\n\t\t\n\t\tmsg.batch_time = batch_time;\n\t\tmsg.interval_time = prev_interval_time;\n\t\tmsg.prediction = prev_batch_time / prev_interval_time * 1.0;\n\n\t\tlet sum = queue.reduce((acc, curr) => acc + curr, 0);\n\t\tmsg.mean = sum / queue.length;\n\t\t\n\t\treturn msg;\n\t}\n\telse\n\t{\n\t\tinterval_time = time - prev_start;\n\t    msg.batch_time = prev_batch_time;\n\t\tmsg.interval_time = interval_time;\n\t\tmsg.prediction = prev_batch_time / interval_time * 1.0;\n\t\t\n\t\tqueue.push(msg.prediction);\n\t\t\n\t\tif(queue.length > 8)\n\t\t{\n\t\t    queue.shift();\n\t\t}\n\t\t\n\t\tlet sum = queue.reduce((acc, curr) => acc + curr, 0);\n\t\tmsg.mean = sum / queue.length;\n\t\t\n\t\tcontext.set('queue', queue);\n\t\tcontext.set('interval_time', interval_time);\n\t\tcontext.set('prev_mixer_start', time);\n\t\treturn msg;\n\t}\n}",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1706,7 +1706,7 @@
         "width": 6,
         "height": 1,
         "name": "",
-        "label": "Mean ratio last 10 cycles [-]",
+        "label": "Mean ratio last 8 cycles [-]",
         "format": "{{msg.mean.toFixed(3)}}",
         "layout": "row-spread",
         "className": "",
@@ -1714,7 +1714,7 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 4220,
+        "x": 4210,
         "y": 260,
         "wires": []
     },
@@ -1869,76 +1869,6 @@
         "height": 1
     },
     {
-        "id": "37d79325daaee457",
-        "type": "ui_spacer",
-        "z": "a666a495869d02dc",
-        "name": "spacer",
-        "group": "2766a474835c38ac",
-        "order": 7,
-        "width": 6,
-        "height": 1
-    },
-    {
-        "id": "2296fd0f781ba345",
-        "type": "ui_spacer",
-        "z": "a666a495869d02dc",
-        "name": "spacer",
-        "group": "2766a474835c38ac",
-        "order": 14,
-        "width": 6,
-        "height": 1
-    },
-    {
-        "id": "e11530df86ebde84",
-        "type": "ui_spacer",
-        "z": "a666a495869d02dc",
-        "name": "spacer",
-        "group": "e6b1019bb3a082ac",
-        "order": 5,
-        "width": 6,
-        "height": 1
-    },
-    {
-        "id": "22b1f3cac7bbda6d",
-        "type": "ui_spacer",
-        "z": "a666a495869d02dc",
-        "name": "spacer",
-        "group": "e6b1019bb3a082ac",
-        "order": 6,
-        "width": 6,
-        "height": 1
-    },
-    {
-        "id": "c333d3f9434ae5c8",
-        "type": "ui_spacer",
-        "z": "a666a495869d02dc",
-        "name": "spacer",
-        "group": "e6b1019bb3a082ac",
-        "order": 15,
-        "width": 6,
-        "height": 1
-    },
-    {
-        "id": "cc0ec8926a1c7c25",
-        "type": "ui_spacer",
-        "z": "a666a495869d02dc",
-        "name": "spacer",
-        "group": "8a339496ca145acd",
-        "order": 6,
-        "width": 6,
-        "height": 1
-    },
-    {
-        "id": "ed04074913ad0f8d",
-        "type": "ui_spacer",
-        "z": "a666a495869d02dc",
-        "name": "spacer",
-        "group": "8a339496ca145acd",
-        "order": 15,
-        "width": 6,
-        "height": 1
-    },
-    {
         "id": "b6399b95df174ec3",
         "type": "OpcUa-Endpoint",
         "endpoint": "opc.tcp://10.129.4.80:48010",
@@ -1991,22 +1921,11 @@
         "className": ""
     },
     {
-        "id": "2766a474835c38ac",
-        "type": "ui_group",
-        "name": "Write values",
-        "tab": "afc4f775962a26f4",
-        "order": 1,
-        "disp": true,
-        "width": "6",
-        "collapse": false,
-        "className": ""
-    },
-    {
         "id": "afc4f775962a26f4",
         "type": "ui_tab",
         "name": "MAI MULTIMIX",
         "icon": "dashboard",
-        "order": 7,
+        "order": 6,
         "disabled": false,
         "hidden": false
     },
@@ -2015,7 +1934,7 @@
         "type": "ui_tab",
         "name": "MAI MULTIMIX Charts",
         "icon": "dashboard",
-        "order": 8,
+        "order": 7,
         "disabled": true,
         "hidden": true
     }

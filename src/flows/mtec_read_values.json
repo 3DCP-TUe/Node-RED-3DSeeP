@@ -30,7 +30,7 @@
         ],
         "x": 3254,
         "y": 159,
-        "w": 572,
+        "w": 552,
         "h": 242
     },
     {
@@ -678,7 +678,7 @@
         "z": "dbcff3a91e8577ef",
         "g": "b1b0fd273f6291ec",
         "name": "batch and interval time",
-        "func": "if (msg.payload !== context.get('prev_mixer_run')) {\n   \n    context.set('prev_mixer_run', msg.payload);\n\t\n\ttime = new Date().getTime() / 1000;\n\tprev_start = context.get('prev_mixer_start')\n\tprev_stop = context.get('prev_mixer_stop')\n\tprev_batch_time = context.get('batch_time');\n\tprev_interval_time = context.get('interval_time');\n\t\n\tif (msg.payload == false)\n\t{\n\t    batch_time = time - prev_start;\n\t\tcontext.set('prev_mixer_stop', time);\n\t\tcontext.set('batch_time', batch_time);\n\t}\n\telse\n\t{\n\t\tinterval_time = time - prev_start;\n\t    msg.batch_time = prev_batch_time;\n\t\tmsg.interval_time = interval_time;\n\t\tmsg.prediction = prev_batch_time / interval_time * 1.0;\n\t\t\n\t\tqueue = context.get('queue');\n\t\tqueue.push(msg.prediction);\n\t\tif(queue.length > 10)\n\t\t{\n\t\t    queue.shift();\n\t\t}\n\t\t\n\t\tlet sum = queue.reduce((acc, curr) => acc + curr, 0);\n\t\tmsg.mean = sum / queue.length;\n\t\t\n\t\tcontext.set('queue', queue);\n\t\tcontext.set('interval_time', interval_time);\n\t\tcontext.set('prev_mixer_start', time);\n\t\treturn msg;\n\t}\n}",
+        "func": "if (msg.payload !== context.get('prev_mixer_run')) {\n   \n    context.set('prev_mixer_run', msg.payload);\n\t\n\ttime = new Date().getTime() / 1000;\n\tqueue = context.get('queue');\n\tprev_start = context.get('prev_mixer_start')\n\tprev_stop = context.get('prev_mixer_stop')\n\tprev_batch_time = context.get('batch_time');\n\tprev_interval_time = context.get('interval_time');\n\t\n\tif (msg.payload == false)\n\t{\n\t    batch_time = time - prev_start;\n\t\tcontext.set('prev_mixer_stop', time);\n\t\tcontext.set('batch_time', batch_time);\n\t\t\n\t\tmsg.batch_time = batch_time;\n\t\tmsg.interval_time = prev_interval_time;\n\t\tmsg.prediction = prev_batch_time / prev_interval_time * 1.0;\n\n\t\tlet sum = queue.reduce((acc, curr) => acc + curr, 0);\n\t\tmsg.mean = sum / queue.length;\n\t\t\n\t\treturn msg;\n\t}\n\telse\n\t{\n\t\tinterval_time = time - prev_start;\n\t    msg.batch_time = prev_batch_time;\n\t\tmsg.interval_time = interval_time;\n\t\tmsg.prediction = prev_batch_time / interval_time * 1.0;\n\t\t\n\t\tqueue.push(msg.prediction);\n\t\t\n\t\tif(queue.length > 8)\n\t\t{\n\t\t    queue.shift();\n\t\t}\n\t\t\n\t\tlet sum = queue.reduce((acc, curr) => acc + curr, 0);\n\t\tmsg.mean = sum / queue.length;\n\t\t\n\t\tcontext.set('queue', queue);\n\t\tcontext.set('interval_time', interval_time);\n\t\tcontext.set('prev_mixer_start', time);\n\t\treturn msg;\n\t}\n}",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -1573,7 +1573,7 @@
         "width": 6,
         "height": 1,
         "name": "",
-        "label": "Mean ratio last 10 cycles [-]",
+        "label": "Mean ratio last 8 cycles [-]",
         "format": "{{msg.mean.toFixed(3)}}",
         "layout": "row-spread",
         "className": "",
@@ -1581,7 +1581,7 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 3680,
+        "x": 3670,
         "y": 360,
         "wires": []
     },
@@ -2266,7 +2266,7 @@
         "type": "ui_tab",
         "name": "M-tec duomix",
         "icon": "dashboard",
-        "order": 9,
+        "order": 8,
         "disabled": false,
         "hidden": false
     }
