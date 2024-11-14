@@ -16,7 +16,7 @@ cd(filepath);
 
 %% Read file and set directory
 % Read multiple files from custom directory
-directory = "D:\GitHub\Node-RED-3DSeeP\analysis\logs\20241017_Carolina\";
+directory = "D:\GitHub\Node-RED-3DSeeP\analysis\logs\20241030_Carolina\";
 nodeRed = lib.readData(directory);
 
 %% Settings for layout
@@ -30,8 +30,8 @@ set(0, 'DefaultLineLineWidth', 1.5);
 
 %% Settings for analysis
 % Window for correlations, mean, std, etc. 
-windowStart = duration(14, 0, 0); 
-windowEnd = duration(15, 0, 0);
+windowStart = duration(14, 30, 0); 
+windowEnd = duration(15, 30, 0);
 
 %% Add columns missing in older versions of the data logger
 % Printhead: pressure
@@ -517,9 +517,12 @@ ylabel('Pressure gradient [bar/m]')
 lib.saveFigure(fig, 'correlation_density_pressure_gradient')
 
 %% Run time
-time = seconds(nodeRed.desktop_time);
+time = hours (nodeRed.desktop_time);
 dt = diff(time);
-pumpRunTime = sum(dt.*(nodeRed.mtec_pump_speed_actual_rpm(2:end)>10), 'omitnan') / 60 / 60; % hours
+pumpRunTime = sum(dt.*(nodeRed.mtec_pump_speed_actual_rpm(2:end)>10), 'omitnan');
+% Equivalent run time: time * frequency / reference frequency
+refFrequency = 100; % RPM!
+equivalentRunTime = sum((dt.*(nodeRed.mtec_pump_speed_actual_rpm(2:end)>10)) .* (nodeRed.mtec_pump_speed_actual_rpm(2:end) / refFrequency), 'omitnan');
 
 %% Report generator
 % Create empty table
@@ -576,7 +579,9 @@ domTable = BaseTable(T);
 % Run time
 runTimeList = UnorderedList();
 timeItem1 = ListItem(Paragraph(['Pump run time [h]: ', num2str(pumpRunTime)]));
+timeItem2 = ListItem(Paragraph(['Equivalent run time [h x Hz]: ', num2str(equivalentRunTime)]));
 append(runTimeList, timeItem1);
+append(runTimeList, timeItem2);
 % Create an unordered list for the summary time window
 timeList = UnorderedList();
 timeItem1 = ListItem(Paragraph(['Start time: ', char(windowStart)]));
