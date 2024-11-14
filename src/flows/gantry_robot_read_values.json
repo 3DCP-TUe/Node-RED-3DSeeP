@@ -420,7 +420,7 @@
             "999dc9438e6b944c",
             "4ef9f95a54d565bc"
         ],
-        "x": 2235,
+        "x": 2275,
         "y": 260,
         "wires": []
     },
@@ -697,7 +697,9 @@
                 "7b40669016c3bfc9",
                 "bd779217b37cd5a2",
                 "d269581578f30a3e",
-                "d11cdddc5a322cdc"
+                "d11cdddc5a322cdc",
+                "7f7def097cb4dab5",
+                "e612cc44241d484e"
             ]
         ]
     },
@@ -844,32 +846,136 @@
         "wires": []
     },
     {
-        "id": "5a06500b4af42181",
+        "id": "7f7def097cb4dab5",
+        "type": "function",
+        "z": "a71eb2e3d73a904d",
+        "name": "Pass data R101",
+        "func": "return { topic: \"gantry_r101\", payload: msg.payload.gantry_r_parameters[1] };",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2340,
+        "y": 220,
+        "wires": [
+            [
+                "3a1ccd11aab7dd16"
+            ]
+        ]
+    },
+    {
+        "id": "3a1ccd11aab7dd16",
+        "type": "link out",
+        "z": "a71eb2e3d73a904d",
+        "name": "Gantry R101 out",
+        "mode": "link",
+        "links": [
+            "912fa5ab3ae08043"
+        ],
+        "x": 2485,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "e612cc44241d484e",
+        "type": "ui_text",
+        "z": "a71eb2e3d73a904d",
+        "group": "941553f899610cff",
+        "order": 10,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "R101 [mA]",
+        "format": "{{msg.payload.gantry_r_parameters[1].toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 2990,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "39f73922e7d3b606",
         "type": "ui_spacer",
         "z": "a71eb2e3d73a904d",
         "name": "spacer",
-        "group": "39abb633de44e13c",
+        "group": "941553f899610cff",
+        "order": 6,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "b6bab2d3c42dd240",
+        "type": "ui_spacer",
+        "z": "a71eb2e3d73a904d",
+        "name": "spacer",
+        "group": "941553f899610cff",
+        "order": 11,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "c91eb8eab847fa67",
+        "type": "ui_spacer",
+        "z": "a71eb2e3d73a904d",
+        "name": "spacer",
+        "group": "b1d6f3e06f0a0eff",
+        "order": 3,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "facd4840dece21e5",
+        "type": "ui_spacer",
+        "z": "a71eb2e3d73a904d",
+        "name": "spacer",
+        "group": "b1d6f3e06f0a0eff",
+        "order": 4,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "c49984df41726f48",
+        "type": "ui_spacer",
+        "z": "a71eb2e3d73a904d",
+        "name": "spacer",
+        "group": "b1d6f3e06f0a0eff",
         "order": 5,
         "width": 6,
         "height": 1
     },
     {
-        "id": "04494c21b80c5660",
+        "id": "4a36ad0477ed2393",
         "type": "ui_spacer",
         "z": "a71eb2e3d73a904d",
         "name": "spacer",
-        "group": "39abb633de44e13c",
-        "order": 10,
+        "group": "b1d6f3e06f0a0eff",
+        "order": 8,
         "width": 6,
         "height": 1
     },
     {
-        "id": "a1c5f489512d9fdc",
+        "id": "cb331e8e4ed9b766",
         "type": "ui_spacer",
         "z": "a71eb2e3d73a904d",
         "name": "spacer",
-        "group": "39abb633de44e13c",
-        "order": 16,
+        "group": "b1d6f3e06f0a0eff",
+        "order": 9,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "c9c9f8e9e9e64d42",
+        "type": "ui_spacer",
+        "z": "a71eb2e3d73a904d",
+        "name": "spacer",
+        "group": "b1d6f3e06f0a0eff",
+        "order": 10,
         "width": 6,
         "height": 1
     },
@@ -908,11 +1014,42 @@
         "userprivatekey": ""
     },
     {
+        "id": "941553f899610cff",
+        "type": "ui_group",
+        "name": "ADS",
+        "tab": "d16e0686aa3f78d3",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "b1d6f3e06f0a0eff",
+        "type": "ui_group",
+        "name": "Vertico liquid dosing",
+        "tab": "d16e0686aa3f78d3",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
         "id": "ca315ccc11e55671",
         "type": "ui_tab",
         "name": "Gantry robot",
         "icon": "dashboard",
         "order": 3,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "d16e0686aa3f78d3",
+        "type": "ui_tab",
+        "name": "Project Frankenstein",
+        "icon": "dashboard",
+        "order": 11,
         "disabled": false,
         "hidden": false
     }
