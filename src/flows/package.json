@@ -1,0 +1,14 @@
+{
+    "name": "node-red-project",
+    "description": "A Node-RED Project",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "node-red-contrib-boolean-logic-ultimate": "~1.1.9",
+        "node-red-contrib-fs": "~1.4.1",
+        "node-red-contrib-moment": "~5.0.0",
+        "node-red-contrib-opcua": "~0.2.328",
+        "node-red-contrib-throttle": "~0.1.7",
+        "node-red-dashboard": "~3.6.5"
+    }
+}
