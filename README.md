@@ -34,7 +34,12 @@ Changes that change the data logger's CSV file result in at least a new minor re
 
 Authors: 
 - [Arjen Deetman](https://research.tue.nl/en/persons/arjen-deetman)
-- [Derk Bos](https://research.tue.nl/en/persons/derk-h-bos) 
+- [Derk Bos](https://research.tue.nl/en/persons/derk-h-bos)
+
+Contributors:
+- Benedek Papp
+- Martijn van der Horst
+- Laurens Schaap
 
 Technical support:
 - Siemens Digital Industries
