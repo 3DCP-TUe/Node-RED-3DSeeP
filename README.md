@@ -50,6 +50,20 @@ This software could be developed and maintained with the financial support of th
 - The project _"Parametric mortar design and control of system parameters"_ funded by [Saint-Gobain Weber Beamix](https://www.nl.weber/).
 - The project _"Additive manufacturing of functional construction materials on-demand"_ (with project number 17895) of the research program _"Materialen NL: Challenges 2018"_ which is financed by the [Dutch Research Council](https://www.nwo.nl/en) (NWO).
 
+## Contact information
+
+If you have any questions or comments about this project, please open an issue on the repository’s issue page. This can include questions about the content, such as missing information, and the data structure. We encourage you to open an issue instead of sending us emails to help establish an open community. By keeping discussions open, everyone can contribute and see the feedback and questions of others. In addition to this, please see our open science statement below.
+
+## Open science statement
+
+We are committed to the principles of open science to ensure that our work can be reproduced and built upon by others. Our approach includes the following key points:
+
+- Reproducibility: We strive to make our work reproducible by sharing detailed methodologies and data.
+- Unique Resources and Data: We have equipment and facilities that are not available at other institutes. We generate data that other institutes cannot produce, and we share this data openly.
+- Data and Software Sharing: We share our data and software and encourage others to do the same. If others use our data and software, they must also share their software and data under similar terms.
+
+To support these principles, we license our software under the General Public License version 3 or later (free to use, with attribution, share with source code) and our data and documentation under CC BY-SA (free to use, with attribution, share-alike). By adhering to these principles, we aim to encourage an open and collaborative scientific community. We expect that if you use our resources, you will do the same. 
+
 ## License
 
 Copyright (c) 2020-2024 [3D Concrete Printing Research Group at Eindhoven University of Technology](https://www.tue.nl/en/research/research-groups/structural-engineering-and-design/3d-concrete-printing)
