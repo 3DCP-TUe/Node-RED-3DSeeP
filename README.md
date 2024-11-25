@@ -37,8 +37,8 @@ Authors:
 - [Derk Bos](https://research.tue.nl/en/persons/derk-h-bos)
 
 Contributors:
-- Benedek Papp
-- Martijn van der Horst
+- Benedek Papp (as part of an internship project at Siemens Digital Industries)
+- Martijn van der Horst (as part of an internship project at Siemens Digital Industries)
 
 Technical support:
 - Siemens Digital Industries
