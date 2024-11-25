@@ -39,7 +39,6 @@ Authors:
 Contributors:
 - Benedek Papp
 - Martijn van der Horst
-- Laurens Schaap
 
 Technical support:
 - Siemens Digital Industries
