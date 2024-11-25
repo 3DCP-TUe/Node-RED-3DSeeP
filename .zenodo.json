@@ -12,6 +12,15 @@
 		}
 	],
 
+	"contributors": [
+	   	{
+		      	"name": "Papp, Benedek"
+		},
+	    	{
+	     	 	"name": "van der Horst, Martijn"
+	    	}
+	],
+
 	"access_right": "open",
 
 	"license": "GPL-3.0",
