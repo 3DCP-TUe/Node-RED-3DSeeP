@@ -16,7 +16,7 @@ cd(filepath);
 
 %% Read file and set directory
 % Read multiple files from custom directory
-directory = "D:\GitHub\Node-RED-3DSeeP\analysis\logs\20241030_Carolina\";
+directory = "D:\GitHub\Node-RED-3DSeeP\analysis\logs\20241118_Carolina\";
 nodeRed = lib.readData(directory);
 
 %% Settings for layout
@@ -30,7 +30,7 @@ set(0, 'DefaultLineLineWidth', 1.5);
 
 %% Settings for analysis
 % Window for correlations, mean, std, etc. 
-windowStart = duration(14, 30, 0); 
+windowStart = duration(11, 30, 0); 
 windowEnd = duration(15, 30, 0);
 
 %% Add columns missing in older versions of the data logger
@@ -79,7 +79,7 @@ nodeRed.pressure_gradient3_bar_m = nodeRed.differential_pressure3_bar / length3;
 nodeRed.material_coriolis_mass_flow_filtered_90s_kg_min = (nodeRed.material_io_ai4_ma - 4) / 16 * 16;
 nodeRed.material_coriolis_density_filtered_90s_kg_m3 = (nodeRed.material_io_ai5_ma - 4) / 16 * 400 + 2000;
 % Mixer timing
-[times, intervalTimes, runTimes] = lib.mixerTimes(nodeRed.desktop_time, nodeRed.mtec_mixer_run_bool);
+[times, intervalTimes, runtimes] = lib.mixerTimes(nodeRed.desktop_time, nodeRed.mtec_mixer_run_bool);
 
 %% Get time in minutes and seconds
 nodeRed.seconds = seconds(nodeRed.desktop_time) - seconds(nodeRed.desktop_time(1));
@@ -105,20 +105,20 @@ maxValues.Properties.VariableNames = strrep(maxValues.Properties.VariableNames, 
 [~, index3] = min(abs(times - windowStart));
 [~, index4] = min(abs(times - windowEnd));
 % Extract data within the window
-runTimes_window = runTimes(index3:index4);
+runtimesWindow = runtimes(index3:index4);
 intervalTimes_window = intervalTimes(index3:index4);
 % Calculate mean, std, min, max for mixer_run_time
-meanValues.mixer_run_time = mean(runTimes_window);
-stdValues.mixer_run_time = std(runTimes_window);
-minValues.mixer_run_time = min(runTimes_window);
-maxValues.mixer_run_time = max(runTimes_window);
+meanValues.mixer_run_time = mean(runtimesWindow);
+stdValues.mixer_run_time = std(runtimesWindow);
+minValues.mixer_run_time = min(runtimesWindow);
+maxValues.mixer_run_time = max(runtimesWindow);
 % Calculate mean, std, min, max for mixer_interval_time
 meanValues.mixer_interval_time = mean(intervalTimes_window);
 stdValues.mixer_interval_time = std(intervalTimes_window);
 minValues.mixer_interval_time = min(intervalTimes_window);
 maxValues.mixer_interval_time = max(intervalTimes_window);
 % Calculate mean, std, min, max for mixer_ratio
-ratioValues = runTimes_window ./ intervalTimes_window;
+ratioValues = runtimesWindow ./ intervalTimes_window;
 ratioValues = ratioValues(isfinite(ratioValues));
 meanValues.mixer_ratio = mean(ratioValues);
 stdValues.mixer_ratio = std(ratioValues);
@@ -416,8 +416,8 @@ grid on
 box on
 % Plot data
 k = 8;
-plot(times, runTimes./intervalTimes, '.k')
-plot(times, movmean(runTimes./intervalTimes, [k 0]), '-k')
+plot(times, runtimes./intervalTimes, '.k')
+plot(times, movmean(runtimes./intervalTimes, [k 0]), '-k')
 % Limits
 xlim(xLimits)
 ylim([0 0.4])
@@ -443,8 +443,8 @@ box on
 k = 8;
 plot(times, intervalTimes, '.k')
 plot(times, movmean(intervalTimes, [k 0]), '-k')
-plot(times, runTimes, '.b')
-plot(times, movmean(runTimes, [k 0]), '-b')
+plot(times, runtimes, '.b')
+plot(times, movmean(runtimes, [k 0]), '-b')
 % Limits
 xlim(xLimits)
 ylim([0 120])
@@ -519,10 +519,11 @@ lib.saveFigure(fig, 'correlation_density_pressure_gradient')
 %% Run time
 time = hours (nodeRed.desktop_time);
 dt = diff(time);
-pumpRunTime = sum(dt.*(nodeRed.mtec_pump_speed_actual_rpm(2:end)>10), 'omitnan');
-% Equivalent run time: time * frequency / reference frequency
+mixerRuntime = sum(dt.*nodeRed.mtec_mixer_run_bool(2:end), 'omitnan');
+pumpRuntime = sum(dt.*(nodeRed.mtec_pump_speed_actual_rpm(2:end)>10), 'omitnan');
+% Equivalent runtime: time * frequency / reference frequency
 refFrequency = 100; % RPM!
-equivalentRunTime = sum((dt.*(nodeRed.mtec_pump_speed_actual_rpm(2:end)>10)) .* (nodeRed.mtec_pump_speed_actual_rpm(2:end) / refFrequency), 'omitnan');
+equivalentPumpRuntime = sum((dt.*(nodeRed.mtec_pump_speed_actual_rpm(2:end)>10)) .* (nodeRed.mtec_pump_speed_actual_rpm(2:end) / refFrequency), 'omitnan');
 
 %% Report generator
 % Create empty table
@@ -578,10 +579,12 @@ add(report, title);
 domTable = BaseTable(T);
 % Run time
 runTimeList = UnorderedList();
-timeItem1 = ListItem(Paragraph(['Pump run time [h]: ', num2str(pumpRunTime)]));
-timeItem2 = ListItem(Paragraph(['Equivalent run time [h x Hz]: ', num2str(equivalentRunTime)]));
+timeItem1 = ListItem(Paragraph(['Mixer runtime [h]: ', num2str(mixerRuntime)]));
+timeItem2 = ListItem(Paragraph(['Pump runtime [h]: ', num2str(pumpRuntime)]));
+timeItem3 = ListItem(Paragraph(['Equivalent runtime [h x Hz]: ', num2str(equivalentPumpRuntime)]));
 append(runTimeList, timeItem1);
 append(runTimeList, timeItem2);
+append(runTimeList, timeItem3);
 % Create an unordered list for the summary time window
 timeList = UnorderedList();
 timeItem1 = ListItem(Paragraph(['Start time: ', char(windowStart)]));

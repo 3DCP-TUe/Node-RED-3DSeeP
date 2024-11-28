@@ -16,7 +16,7 @@ cd(filepath);
 
 %% Read file and set directory
 % Read multiple files from custom directory
-directory = "D:\GitHub\Node-RED-3DSeeP\analysis\logs\20240930_Chapter_9\";
+directory = "D:\GitHub\Node-RED-3DSeeP\analysis\logs\20241121_4People\";
 nodeRed = lib.readData(directory);
 
 %% Settings for layout
@@ -30,8 +30,8 @@ set(0, 'DefaultLineLineWidth', 1.5);
 
 %% Settings for analysis
 % Window for correlations, mean, std, etc. 
-windowStart = duration(10, 0, 0); 
-windowEnd = duration(10, 30, 0);
+windowStart = duration(10, 30, 0); 
+windowEnd = duration(11, 30, 0);
 
 %% Add columns missing in older versions of the data logger
 % Printhead: pressure
@@ -79,7 +79,7 @@ nodeRed.pressure_gradient3_bar_m = nodeRed.differential_pressure3_bar / length3;
 nodeRed.material_coriolis_mass_flow_filtered_90s_kg_min = (nodeRed.material_io_ai4_ma - 4) / 16 * 16;
 nodeRed.material_coriolis_density_filtered_90s_kg_m3 = (nodeRed.material_io_ai5_ma - 4) / 16 * 400 + 2000;
 % Mixer timing
-[times, intervalTimes, runTimes] = lib.mixerTimes(nodeRed.desktop_time, nodeRed.mai_mixer_run_bool);
+[times, intervalTimes, runtimes] = lib.mixerTimes(nodeRed.desktop_time, nodeRed.mai_mixer_run_bool);
 
 %% Get time in minutes and seconds
 nodeRed.seconds = seconds(nodeRed.desktop_time) - seconds(nodeRed.desktop_time(1));
@@ -105,20 +105,20 @@ maxValues.Properties.VariableNames = strrep(maxValues.Properties.VariableNames, 
 [~, index3] = min(abs(times - windowStart));
 [~, index4] = min(abs(times - windowEnd));
 % Extract data within the window
-runTimes_window = runTimes(index3:index4);
+runtimesWindow = runtimes(index3:index4);
 intervalTimes_window = intervalTimes(index3:index4);
 % Calculate mean, std, min, max for mixer_run_time
-meanValues.mixer_run_time = mean(runTimes_window);
-stdValues.mixer_run_time = std(runTimes_window);
-minValues.mixer_run_time = min(runTimes_window);
-maxValues.mixer_run_time = max(runTimes_window);
+meanValues.mixer_run_time = mean(runtimesWindow);
+stdValues.mixer_run_time = std(runtimesWindow);
+minValues.mixer_run_time = min(runtimesWindow);
+maxValues.mixer_run_time = max(runtimesWindow);
 % Calculate mean, std, min, max for mixer_interval_time
 meanValues.mixer_interval_time = mean(intervalTimes_window);
 stdValues.mixer_interval_time = std(intervalTimes_window);
 minValues.mixer_interval_time = min(intervalTimes_window);
 maxValues.mixer_interval_time = max(intervalTimes_window);
 % Calculate mean, std, min, max for mixer_ratio
-ratioValues = runTimes_window ./ intervalTimes_window;
+ratioValues = runtimesWindow ./ intervalTimes_window;
 ratioValues = ratioValues(isfinite(ratioValues));
 meanValues.mixer_ratio = mean(ratioValues);
 stdValues.mixer_ratio = std(ratioValues);
@@ -370,7 +370,7 @@ box on
 plot(nodeRed.desktop_time, nodeRed.mai_water_flow_actual_lh, '.k')
 plot(nodeRed.desktop_time, nodeRed.mai_water_flow_set_lh, '.b')
 % Limits
-ylim([160 220])
+ylim([0 400])
 xlim(xLimits)
 % Labels
 xlabel('Time')
@@ -453,8 +453,8 @@ grid on
 box on
 % Plot data
 k = 8;
-plot(times, runTimes./intervalTimes, '.k')
-plot(times, movmean(runTimes./intervalTimes, [k 0]), '-k')
+plot(times, runtimes./intervalTimes, '.k')
+plot(times, movmean(runtimes./intervalTimes, [k 0]), '-k')
 % Limits
 xlim(xLimits)
 ylim([0 0.4])
@@ -480,8 +480,8 @@ box on
 k = 8;
 plot(times, intervalTimes, '.k')
 plot(times, movmean(intervalTimes, [k 0]), '-k')
-plot(times, runTimes, '.b')
-plot(times, movmean(runTimes, [k 0]), '-b')
+plot(times, runtimes, '.b')
+plot(times, movmean(runtimes, [k 0]), '-b')
 % Limits
 xlim(xLimits)
 ylim([0 120])
@@ -557,9 +557,11 @@ lib.saveFigure(fig, 'correlation_density_pressure_gradient')
 % Run time
 time = hours(nodeRed.desktop_time);
 dt = diff(time);
-pumpRunTime = sum(dt.*nodeRed.mai_pump_run_bool(2:end), 'omitnan');
-% Equivalent run time: time * frequency / reference frequency
-equivalentRunTime = sum((dt.*nodeRed.mai_pump_run_bool(2:end)) .* (nodeRed.mai_pump_speed_chz(2:end) ./ 100 / 50), 'omitnan');
+mixerRuntime = sum(dt.*nodeRed.mai_mixer_run_bool(2:end), 'omitnan');
+pumpRuntime = sum(dt.*nodeRed.mai_pump_run_bool(2:end), 'omitnan');
+% Equivalent runtime: time * frequency / reference frequency
+refFrequency = 50; % Hz! 
+equivalentPumpRuntime = sum((dt.*nodeRed.mai_pump_run_bool(2:end)) .* (nodeRed.mai_pump_speed_chz(2:end) ./ 100 / refFrequency), 'omitnan');
 
 %% Report generator
 % Create empty table
@@ -615,11 +617,13 @@ add(report, title);
 % Convert MATLAB table to a DOM table
 domTable = BaseTable(T);
 % Run time
-runTimeList = UnorderedList();
-timeItem1 = ListItem(Paragraph(['Pump run time [h]: ', num2str(pumpRunTime)]));
-timeItem2 = ListItem(Paragraph(['Equivalent run time [h x Hz]: ', num2str(equivalentRunTime)]));
-append(runTimeList, timeItem1);
-append(runTimeList, timeItem2);
+runtimeList = UnorderedList();
+timeItem1 = ListItem(Paragraph(['Mixer runtime [h]: ', num2str(mixerRuntime)]));
+timeItem2 = ListItem(Paragraph(['Pump runtime [h]: ', num2str(pumpRuntime)]));
+timeItem3 = ListItem(Paragraph(['Equivalent pump runtime [h x Hz]: ', num2str(equivalentPumpRuntime)]));
+append(runtimeList, timeItem1);
+append(runtimeList, timeItem2);
+append(runtimeList, timeItem3);
 % Create an unordered list for the summary time window
 timeList = UnorderedList();
 timeItem1 = ListItem(Paragraph(['Start time: ', char(windowStart)]));
@@ -636,8 +640,8 @@ append(lengthList, lengthItem2);
 append(lengthList, lengthItem3);
 % Add the data to the report
 add(report, " ")
-add(report, "Run times:")
-add(report, runTimeList);
+add(report, "Runtimes:")
+add(report, runtimeList);
 add(report, "Time window used for table values:")
 add(report, timeList);
 add(report, "System length used to calculate pressure gradient:")
