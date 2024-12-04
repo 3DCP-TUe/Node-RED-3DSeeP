@@ -16,7 +16,7 @@ cd(filepath);
 
 %% Read file and set directory
 % Read multiple files from custom directory
-directory = "D:\GitHub\Node-RED-3DSeeP\analysis\logs\20241121_4People\";
+directory = "D:\GitHub\Node-RED-3DSeeP\analysis\logs\20241007_Chapter_9\";
 nodeRed = lib.readData(directory);
 
 %% Settings for layout
@@ -31,7 +31,7 @@ set(0, 'DefaultLineLineWidth', 1.5);
 %% Settings for analysis
 % Window for correlations, mean, std, etc. 
 windowStart = duration(10, 30, 0); 
-windowEnd = duration(11, 30, 0);
+windowEnd = duration(15, 0, 0);
 
 %% Add columns missing in older versions of the data logger
 % Printhead: pressure
@@ -70,8 +70,8 @@ nodeRed.differential_pressure3_bar = filtered3;
 length1 = (150 + 144 + 820 + 184 + 113) / 1000;     %Coriolis
 length2 = (150 + 13605 + 199 + 114) / 1000;         %Hose
 %length3 = (150 + 1013 + 95.5) / 1000;               %Printhead without temp
-%length3 = (150 + 1013 + 49.5 + 95.5) / 1000;        %Printhead with temp
-length3 = (150 + 1013 + 51 + 83 + 1099) / 1000;     %Printhead with 1 meter hose (id)
+length3 = (150 + 1013 + 49.5 + 95.5) / 1000;        %Printhead with temp
+%length3 = (150 + 1013 + 51 + 83 + 1099) / 1000;     %Printhead with 1 meter hose (id)
 nodeRed.pressure_gradient1_bar_m = nodeRed.differential_pressure1_bar / length1;
 nodeRed.pressure_gradient2_bar_m = nodeRed.differential_pressure2_bar / length2;
 nodeRed.pressure_gradient3_bar_m = nodeRed.differential_pressure3_bar / length3;
@@ -575,6 +575,7 @@ columns = {
     {'mai_water_temp_c', 2},...
     {'mai_water_temp_mixer_inlet_c', 2},...
     {'mai_pumping_chamber_mortar_temperature_c', 2},...
+    {'mai_silo_dry_mortar_temperature_c', 2},...
     {'mai_water_flow_set_lh', 0},...
     {'material_io_ai0_pressure_bar', 2},...
     {'material_io_ai1_pressure_bar', 2},...
