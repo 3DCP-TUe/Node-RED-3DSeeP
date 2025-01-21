@@ -16,7 +16,7 @@ cd(filepath);
 
 %% Read file and set directory
 % Read multiple files from custom directory
-directory = "D:\GitHub\Node-RED-3DSeeP\analysis\logs\20241007_Chapter_9\";
+directory = "D:\GitHub\Node-RED-3DSeeP\analysis\logs\20250108_Rob\";
 nodeRed = lib.readData(directory);
 
 %% Settings for layout
@@ -30,8 +30,8 @@ set(0, 'DefaultLineLineWidth', 1.5);
 
 %% Settings for analysis
 % Window for correlations, mean, std, etc. 
-windowStart = duration(10, 30, 0); 
-windowEnd = duration(15, 0, 0);
+windowStart = duration(10, 10, 0); 
+windowEnd = duration(10, 25, 0);
 
 %% Add columns missing in older versions of the data logger
 % Printhead: pressure
@@ -42,13 +42,13 @@ end
 if ~any(strcmp(nodeRed.Properties.VariableNames, 'printhead_mortar_temperature_c'))
   nodeRed.printhead_mortar_temperature_c = zeros(height(nodeRed), 1);
 end
-% MAI MULTIMIX: Water temperature at mixer inlet
-if ~any(strcmp(nodeRed.Properties.VariableNames, 'mai_water_temp_mixer_inlet_c'))
-  nodeRed.mai_water_temp_mixer_inlet_c = zeros(height(nodeRed), 1);
-end
-% MAI MULTIMIX: Mortar temerature at pumping chamber
+% MAI MULTIMIX: Mortar temperature at pumping chamber
 if ~any(strcmp(nodeRed.Properties.VariableNames, 'mai_pumping_chamber_mortar_temperature_c'))
   nodeRed.mai_pumping_chamber_mortar_temperature_c = zeros(height(nodeRed), 1);
+end
+% MAI MULTIMIX: Mortar temperature at silo
+if ~any(strcmp(nodeRed.Properties.VariableNames, 'mai_silo_dry_mortar_temperature_c'))
+  nodeRed.mai_silo_dry_mortar_temperature_c = zeros(height(nodeRed), 1);
 end
 
 %% Corrections: bug fix incorrect conversion analog inputs v0.4.0

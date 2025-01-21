@@ -42,13 +42,13 @@ end
 if ~any(strcmp(nodeRed.Properties.VariableNames, 'printhead_mortar_temperature_c'))
   nodeRed.printhead_mortar_temperature_c = zeros(height(nodeRed), 1);
 end
-% MAI MULTIMIX: Water temperature at mixer inlet
-if ~any(strcmp(nodeRed.Properties.VariableNames, 'mai_water_temp_mixer_inlet_c'))
-  nodeRed.mai_water_temp_mixer_inlet_c = zeros(height(nodeRed), 1);
+% MAI MULTIMIX: Mortar temperature at pumping chamber
+if ~any(strcmp(nodeRed.Properties.VariableNames, 'mai_pumping_chamber_mortar_temperature_c'))
+  nodeRed.mai_pumping_chamber_mortar_temperature_c = zeros(height(nodeRed), 1);
 end
-% MAI MULTIMIX: Mortar temerature at pumping chamber
-if ~any(strcmp(nodeRed.Properties.VariableNames, 'mtec_pumping_chamber_mortar_temperature_c'))
-  nodeRed.mtec_pumping_chamber_mortar_temperature_c = zeros(height(nodeRed), 1);
+% MAI MULTIMIX: Mortar temperature at silo
+if ~any(strcmp(nodeRed.Properties.VariableNames, 'mai_silo_dry_mortar_temperature_c'))
+  nodeRed.mai_silo_dry_mortar_temperature_c = zeros(height(nodeRed), 1);
 end
 
 %% Corrections: bug fix incorrect conversion analog inputs v0.4.0
