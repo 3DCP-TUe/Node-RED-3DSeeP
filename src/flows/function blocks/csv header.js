@@ -159,7 +159,7 @@ var data ="desktop_time,"+
     "vertico_do3_bool,"+
     
     "printhead_source_time,"+
-    "printhead_motor_1_motor_1_power_on_bool,"+
+    "printhead_motor_1_power_on_bool,"+
     "printhead_motor_1_move_jog_backward_bool,"+
     "printhead_motor_1_move_jog_forward_bool,"+
     "printhead_motor_1_velocity_jog_rpm,"+
