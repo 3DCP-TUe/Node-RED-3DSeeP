@@ -364,7 +364,6 @@
             "d341fe2b174049a3",
             "44bd8c327a5241be",
             "b868ce963f739e40",
-            "23d61be9231596de",
             "6e6f53f75617275b",
             "8b5f40fb37f58a5c"
         ],
@@ -627,7 +626,6 @@
             "321b660bcf176f18",
             "1e0cf9ada073d023",
             "7af0b7fdb3ebbeda",
-            "d20ea0cd7c4674bf",
             "aa0f854450ae33d5",
             "ac38d373608f6e09"
         ],
@@ -2118,7 +2116,7 @@
         "order": 2,
         "width": 0,
         "height": 0,
-        "format": "<script id=\"titleScript\" type=\"text/javascript\">\n$(function() {\n    if ($('.md-toolbar-tools').length != 0) {\n        loadToolbarItems();\n    } else {\n        setTimeout(loadToolbarItems, 500);\n    }\n});\n\nfunction loadToolbarItems() {\n    $('#clock, #version').remove();\n    var toolbar = $('.md-toolbar-tools');\n    \n    var div = $('<div/>').css({\n        'display': 'flex',\n        'align-items': 'center',\n        'margin-left': 'auto',\n        'margin-right': '5px'\n    });\n    var clockP = $('<p id=\"clock\" style=\"margin: 0 10px 0 0;\"/>');\n    var versionP = $('<p id=\"version\" style=\"margin: 0 10px 0 0;\"/>');\n    \n    div.append(clockP);\n    div.append(versionP);\n    toolbar.append(div);\n\n    // Add the version number\n    var versionNumber = 'v0.8.0';\n    versionP.text(versionNumber);\n\n    function upTime() {\n        var d = new Date();\n        clockP.text(d.toLocaleTimeString());\n    }\n\n    if (document.clockInterval) {\n        clearInterval(document.clockInterval);\n        document.clockInterval = null;\n    }\n\n    document.clockInterval = setInterval(upTime, 1000);\n}\n</script>",
+        "format": "<script id=\"titleScript\" type=\"text/javascript\">\n$(function() {\n    if ($('.md-toolbar-tools').length != 0) {\n        loadToolbarItems();\n    } else {\n        setTimeout(loadToolbarItems, 500);\n    }\n});\n\nfunction loadToolbarItems() {\n    $('#clock, #version').remove();\n    var toolbar = $('.md-toolbar-tools');\n    \n    var div = $('<div/>').css({\n        'display': 'flex',\n        'align-items': 'center',\n        'margin-left': 'auto',\n        'margin-right': '5px'\n    });\n    var clockP = $('<p id=\"clock\" style=\"margin: 0 10px 0 0;\"/>');\n    var versionP = $('<p id=\"version\" style=\"margin: 0 10px 0 0;\"/>');\n    \n    div.append(clockP);\n    div.append(versionP);\n    toolbar.append(div);\n\n    // Add the version number\n    var versionNumber = 'v0.8.1';\n    versionP.text(versionNumber);\n\n    function upTime() {\n        var d = new Date();\n        clockP.text(d.toLocaleTimeString());\n    }\n\n    if (document.clockInterval) {\n        clearInterval(document.clockInterval);\n        document.clockInterval = null;\n    }\n\n    document.clockInterval = setInterval(upTime, 1000);\n}\n</script>",
         "storeOutMessages": false,
         "fwdInMessages": false,
         "resendOnRefresh": false,
@@ -3326,7 +3324,7 @@
         "once": true,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "v0.8.0",
+        "payload": "v0.8.1",
         "payloadType": "str",
         "x": 270,
         "y": 520,
@@ -22710,7 +22708,7 @@
         "wires": [
             [
                 "54cdf15801bd459e",
-                "23d61be9231596de"
+                "6e6f53f75617275b"
             ]
         ]
     },
@@ -23340,7 +23338,7 @@
         "g": "f3ae6258e2ef6f06",
         "item": "ns=2;s=/Channel/Parameter/R[101]",
         "datatype": "Double",
-        "value": "",
+        "value": "msg.payload",
         "name": "gantry_r101",
         "x": 1650,
         "y": 480,
@@ -23459,27 +23457,6 @@
         "wires": [
             [
                 "ba72a35ca15897db"
-            ]
-        ]
-    },
-    {
-        "id": "23d61be9231596de",
-        "type": "function",
-        "z": "ee47eb5696c14296",
-        "g": "f3ae6258e2ef6f06",
-        "name": "",
-        "func": "listen = flow.get(\"listen_to_gantry\");\n\n// Listen?\nif (listen == true)\n{\n    return msg;\n}",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "// Code added here will be run once\n// whenever the node is started.\n\nif (flow.get(\"listen_to_gantry\")===undefined) {\n    flow.set(\"listen_to_gantry\", false);\n}",
-        "finalize": "",
-        "libs": [],
-        "x": 1440,
-        "y": 480,
-        "wires": [
-            [
-                "6e6f53f75617275b"
             ]
         ]
     },
@@ -23696,7 +23673,7 @@
         "wires": [
             [
                 "4ac50c4beb4b3a90",
-                "d20ea0cd7c4674bf"
+                "aa0f854450ae33d5"
             ]
         ]
     },
@@ -23859,34 +23836,13 @@
         ]
     },
     {
-        "id": "d20ea0cd7c4674bf",
-        "type": "function",
-        "z": "ee47eb5696c14296",
-        "g": "a8061bde3a103def",
-        "name": "",
-        "func": "listen = flow.get(\"listen_to_gantry_peristaltic_pump\");\n\n// Listen?\nif (listen == true)\n{\n    return msg;\n}",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "// Code added here will be run once\n// whenever the node is started.\n\nif (flow.get(\"listen_to_gantry_peristaltic_pump\")===undefined) {\n    flow.set(\"listen_to_gantry_peristaltic_pump\", false);\n}",
-        "finalize": "",
-        "libs": [],
-        "x": 1440,
-        "y": 1040,
-        "wires": [
-            [
-                "aa0f854450ae33d5"
-            ]
-        ]
-    },
-    {
         "id": "aa0f854450ae33d5",
         "type": "OpcUa-Item",
         "z": "ee47eb5696c14296",
         "g": "a8061bde3a103def",
         "item": "ns=2;s=/Channel/Parameter/R[102]",
         "datatype": "Double",
-        "value": "",
+        "value": "msg.payload",
         "name": "gantry_r102",
         "x": 1650,
         "y": 1040,
