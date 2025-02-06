@@ -32,6 +32,7 @@ var data ="desktop_time,"+
 	"mtec_io_di5_bool,"+
 	"mtec_io_do1_bool,"+
 	"mtec_io_do2_bool,"+
+    "mtec_level_sensor_position_cm,"+
 
     "mai_source_time,"+
     "mai_water_run_bool,"+
