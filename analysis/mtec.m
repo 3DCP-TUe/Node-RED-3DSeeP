@@ -16,7 +16,7 @@ cd(filepath);
 
 %% Read file and set directory
 % Read multiple files from custom directory
-directory = "D:\GitHub\Node-RED-3DSeeP\analysis\logs\20241118_Carolina\";
+directory = "D:\GitHub\Node-RED-3DSeeP\analysis\logs\20250213_Frankenstein\";
 nodeRed = lib.readData(directory);
 
 %% Settings for layout
@@ -30,8 +30,8 @@ set(0, 'DefaultLineLineWidth', 1.5);
 
 %% Settings for analysis
 % Window for correlations, mean, std, etc. 
-windowStart = duration(11, 30, 0); 
-windowEnd = duration(15, 30, 0);
+windowStart = duration(15, 30, 0); 
+windowEnd = duration(18, 30, 0);
 
 %% Add columns missing in older versions of the data logger
 % Printhead: pressure
@@ -534,7 +534,6 @@ T = table('Size', [0, 5], 'VariableTypes', varTypes, 'VariableNames', columnName
 columns = {
     {'mtec_pump_speed_actual_rpm', 0},...
     {'mtec_water_temp_c', 2},...
-    {'mtec_pumping_chamber_mortar_temperature_c', 2},...
     {'mtec_water_water_valve_actual_perc', 0},...
     {'mtec_water_flow_actual_l_h', 0},...
     {'material_io_ai0_pressure_bar', 2},...
