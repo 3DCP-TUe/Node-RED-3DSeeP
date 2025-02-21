@@ -16,7 +16,7 @@ cd(filepath);
 
 %% Read file and set directory
 % Read multiple files from custom directory
-directory = "D:\GitHub\Node-RED-3DSeeP\analysis\logs\20250108_Rob\";
+directory = "D:\GitHub\Node-RED-3DSeeP\analysis\logs\20250210_builtwise3\";
 nodeRed = lib.readData(directory);
 
 %% Settings for layout
@@ -30,8 +30,8 @@ set(0, 'DefaultLineLineWidth', 1.5);
 
 %% Settings for analysis
 % Window for correlations, mean, std, etc. 
-windowStart = duration(10, 10, 0); 
-windowEnd = duration(10, 25, 0);
+windowStart = duration(12, 5, 0); 
+windowEnd = duration(12, 15, 0);
 
 %% Add columns missing in older versions of the data logger
 % Printhead: pressure
@@ -76,8 +76,10 @@ nodeRed.pressure_gradient1_bar_m = nodeRed.differential_pressure1_bar / length1;
 nodeRed.pressure_gradient2_bar_m = nodeRed.differential_pressure2_bar / length2;
 nodeRed.pressure_gradient3_bar_m = nodeRed.differential_pressure3_bar / length3;
 % Filtered values from coriolis io (if connected)
-nodeRed.material_coriolis_mass_flow_filtered_90s_kg_min = (nodeRed.material_io_ai4_ma - 4) / 16 * 16;
-nodeRed.material_coriolis_density_filtered_90s_kg_m3 = (nodeRed.material_io_ai5_ma - 4) / 16 * 400 + 2000;
+%nodeRed.material_coriolis_mass_flow_filtered_90s_kg_min = (nodeRed.material_io_ai4_ma - 4) / 16 * 16;
+%nodeRed.material_coriolis_density_filtered_90s_kg_m3 = (nodeRed.material_io_ai5_ma - 4) / 16 * 400 + 2000;
+nodeRed.material_coriolis_mass_flow_filtered_90s_kg_min = (nodeRed.material_io_ai4_ma - 4) / 16 * 32;
+nodeRed.material_coriolis_density_filtered_90s_kg_m3 = (nodeRed.material_io_ai5_ma - 4) / 16 * 3200;
 % Mixer timing
 [times, intervalTimes, runtimes] = lib.mixerTimes(nodeRed.desktop_time, nodeRed.mai_mixer_run_bool);
 

@@ -76,8 +76,10 @@ nodeRed.pressure_gradient1_bar_m = nodeRed.differential_pressure1_bar / length1;
 nodeRed.pressure_gradient2_bar_m = nodeRed.differential_pressure2_bar / length2;
 nodeRed.pressure_gradient3_bar_m = nodeRed.differential_pressure3_bar / length3;
 % Filtered values from coriolis io (if connected)
-nodeRed.material_coriolis_mass_flow_filtered_90s_kg_min = (nodeRed.material_io_ai4_ma - 4) / 16 * 16;
-nodeRed.material_coriolis_density_filtered_90s_kg_m3 = (nodeRed.material_io_ai5_ma - 4) / 16 * 400 + 2000;
+%nodeRed.material_coriolis_mass_flow_filtered_90s_kg_min = (nodeRed.material_io_ai4_ma - 4) / 16 * 16;
+%nodeRed.material_coriolis_density_filtered_90s_kg_m3 = (nodeRed.material_io_ai5_ma - 4) / 16 * 400 + 2000;
+nodeRed.material_coriolis_mass_flow_filtered_90s_kg_min = (nodeRed.material_io_ai4_ma - 4) / 16 * 32;
+nodeRed.material_coriolis_density_filtered_90s_kg_m3 = (nodeRed.material_io_ai5_ma - 4) / 16 * 3200;
 % Mixer timing
 [times, intervalTimes, runtimes] = lib.mixerTimes(nodeRed.desktop_time, nodeRed.mtec_mixer_run_bool);
 
