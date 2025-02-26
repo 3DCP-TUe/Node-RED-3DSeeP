@@ -130,35 +130,35 @@ classdef lib
         % -----------------------------------------------------------------
 
         % Floor duration
-        function flooredDuration = floor_to_nearest(d, m)
+        function floored = floor_to_nearest(d, m)
             % Convert the duration to total minutes
-            totalMinutes = minutes(d);
+            total_minutes = minutes(d);
             % Determine the nearest floor in minutes
-            flooredMinutes = floor(totalMinutes / m) * m;
+            floored_minutes = floor(total_minutes / m) * m;
             % Convert minutes back to duration
-            flooredHours = floor(flooredMinutes / 60);
-            flooredMinutes = mod(flooredMinutes, 60);
-            flooredDuration = duration(flooredHours, flooredMinutes, 0, 0);
+            floored_hours = floor(floored_minutes / 60);
+            floored_minutes = mod(floored_minutes, 60);
+            floored = duration(floored_hours, floored_minutes, 0, 0);
         end
         
         % -----------------------------------------------------------------
 
         % Ceil duration
-        function ceiledDuration = ceil_to_nearest(d, m)   
+        function ceiled = ceil_to_nearest(d, m)   
             % Convert the duration to total minutes
-            totalMinutes = minutes(d);
+            total_minutes = minutes(d);
             % Determine the nearest ceil in minutes
-            if mod(totalMinutes, m) == 0
+            if mod(total_minutes, m) == 0
                 % If already at an exact multiple of m
-                ceiledMinutes = totalMinutes;
+                ceiled_minutes = total_minutes;
             else
                 % Round up to the next multiple of m
-                ceiledMinutes = ceil(totalMinutes / m) * m;
+                ceiled_minutes = ceil(total_minutes / m) * m;
             end
             % Convert minutes back to duration
-            ceiledHours = floor(ceiledMinutes / 60);
-            ceiledMinutes = mod(ceiledMinutes, 60);
-            ceiledDuration = duration(ceiledHours, ceiledMinutes, 0, 0);
+            ceiled_hours = floor(ceiled_minutes / 60);
+            ceiled_minutes = mod(ceiled_minutes, 60);
+            ceiled = duration(ceiled_hours, ceiled_minutes, 0, 0);
         end
 
         % -----------------------------------------------------------------
