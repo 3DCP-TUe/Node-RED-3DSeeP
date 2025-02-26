@@ -31,58 +31,91 @@ classdef lib
                 end
             end
             % Create and navigate to save folder
-            saveFolderName = fullfile(directory, "Results");
-            if ~exist(saveFolderName, 'dir' )
-                mkdir(saveFolderName)
+            folder_name = fullfile(directory, "Results");
+            if ~exist(folder_name, 'dir' )
+                mkdir(folder_name)
             end
-            cd(saveFolderName)
+            cd(folder_name)
         end
         
         % -----------------------------------------------------------------
         
         % Mixer run and interval times
-        function [times, intervalTimes, runTimes] = mixer_times(time, ...
-                bools) 
+        function tab = mixer_times(time, bools) 
             % Remove NaN values
-            validIndices = ~isnan(bools);
-            boolsFiltered = bools(validIndices);
-            timeFiltered = time(validIndices);
+            valid_indices = ~isnan(bools);
+            bools_filtered = bools(valid_indices);
+            time_filtered = time(valid_indices);
             % Force first and last element to be mixer off
-            boolsFiltered(1) = 0;
-            boolsFiltered(end) = 0;
+            bools_filtered(1) = 0;
+            bools_filtered(end) = 0;
             % Preallocate output arrays
-            max_transitions = sum(diff(boolsFiltered) ~= 0);
+            max_transitions = sum(diff(bools_filtered) ~= 0);
             times = duration.empty(max_transitions, 0);
-            intervalTimes = zeros(1, max_transitions);
-            runTimes = zeros(1, max_transitions);
+            interval_times = zeros(1, max_transitions);
+            runtimes = zeros(1, max_transitions);
             % Initialize variables
-            startTime = nan;
-            intervalIndex = 0;
-            runIndex = 0;
+            start_time = nan;
+            interval_index = 0;
+            run_index = 0;
             % Calculate interval and run times
-            for i = 2:length(boolsFiltered)
+            for i = 2:length(bools_filtered)
                 % Start of mixer run
-                if (boolsFiltered(i-1) == 0 && boolsFiltered(i) == 1)
-                    if ~isnan(startTime)
-                        intervalIndex = intervalIndex + 1;
-                        intervalTimes(intervalIndex) = ...
-                            seconds(timeFiltered(i) - startTime);
+                if (bools_filtered(i-1) == 0 && bools_filtered(i) == 1)
+                    if ~isnan(start_time)
+                        interval_index = interval_index + 1;
+                        interval_times(interval_index) = ...
+                            seconds(time_filtered(i) - start_time);
                     end
-                startTime = timeFiltered(i);
+                start_time = time_filtered(i);
                 % End of mixer run
-                elseif (boolsFiltered(i-1) == 1 && boolsFiltered(i) == 0)
-                    runIndex = runIndex + 1;
-                    endTime = timeFiltered(i);
-                    runTimes(runIndex) = seconds(endTime - startTime);
-                    times(runIndex) = startTime;
+                elseif (bools_filtered(i-1) == 1 && bools_filtered(i) == 0)
+                    run_index = run_index + 1;
+                    end_time = time_filtered(i);
+                    runtimes(run_index) = seconds(end_time - start_time);
+                    times(run_index) = start_time;
                 end
             end
             % Remove unused preallocated elements
-            times = times(1:runIndex);
-            intervalTimes = intervalTimes(1:runIndex);
-            runTimes = runTimes(1:runIndex);  
+            times = times(1:run_index);
+            interval_times = interval_times(1:run_index);
+            runtimes = runtimes(1:run_index);
+            % Calculate ratio
+            ratio =  runtimes./interval_times;
+            % Make table
+            tab = table(times', interval_times', runtimes', ratio', 'VariableNames', {'times', 'interval_times', 'runtimes', 'ratio'});
         end
-        
+
+        % -----------------------------------------------------------------
+
+        function tab = calculate_timetable_properties(timetab, times, window_start, window_end)
+            % Find indices for the window
+            [~, index1] = min(abs(times - window_start));
+            [~, index2] = min(abs(times - window_end));
+            % Extract relevant rows
+            selected_data = timetab(index1:index2, :);
+            % Find columns with 'duration' type
+            duration_columns = varfun(@(x) isa(x, 'duration'), selected_data, 'OutputFormat', 'uniform');
+            selected_data(:, duration_columns) = [];
+            % Calculate statistics
+            mean_values = varfun(@(x) mean(x, 'omitnan'), selected_data);
+            median_values = varfun(@(x) median(x, 'omitnan'), selected_data);
+            std_values = varfun(@(x) std(x, 'omitnan'), selected_data);
+            min_values = varfun(@(x) min(x, [], 'omitnan'), selected_data);
+            max_values = varfun(@(x) max(x, [], 'omitnan'), selected_data);
+            % Extract variable names (column names of timetab)
+            column_names = selected_data.Properties.VariableNames';
+            % Convert tables to arrays for easier concatenation
+            mean_values = mean_values{:,:}';
+            median_values = median_values{:,:}';
+            std_values = std_values{:,:}';
+            min_values = min_values{:,:}';
+            max_values = max_values{:,:}';
+            % Create final table with desired structure
+            tab = table(column_names, mean_values, median_values, std_values, min_values, max_values, ...
+                        'VariableNames', {'variable', 'mean', 'median', 'std', 'min', 'max'});
+        end
+
         % -----------------------------------------------------------------
 
         % Write figure

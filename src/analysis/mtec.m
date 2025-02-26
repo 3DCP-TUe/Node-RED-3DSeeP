@@ -21,6 +21,16 @@ cd('logs\20250213_Frankenstein\')
 directory = pwd;
 node_red = lib.read_data(directory);
 
+%% Add and remove columns (clean-up)
+% Add (missing from old version of the data logger)
+node_red = lib.add_missing_columns(node_red);
+% Remove unused
+remove = startsWith(node_red.Properties.VariableNames, 'printhead_motor') | ...
+         startsWith(node_red.Properties.VariableNames, 'material_bronkhorst') | ...
+         startsWith(node_red.Properties.VariableNames, 'material_peristaltic') | ...
+         startsWith(node_red.Properties.VariableNames, 'mai');
+node_red(:, remove) = [];
+
 %% Settings for layout
 % X-axis
 xtick = 30; % Interval of ticks on x-axis in minutes
@@ -35,9 +45,9 @@ set(0, 'DefaultLineLineWidth', 1.5);
 % Window for correlations, mean, std, etc. 
 window_start = duration(15, 30, 0); 
 window_end = duration(18, 30, 0);
-
-%% Add columns missing in older versions of the data loggerr
-node_red = lib.add_missing_columns(node_red);
+% Indices
+[~, index1] = min(abs(node_red.desktop_time - window_start));
+[~, index2] = min(abs(node_red.desktop_time - window_end));
 
 %% Corrections: bug fix incorrect conversion analog inputs v0.4.0
 applyCorrection = false;
@@ -71,51 +81,16 @@ node_red.pressure_gradient3_bar_m = node_red.differential_pressure3_bar / length
 node_red.material_coriolis_mass_flow_filtered_90s_kg_min = (node_red.material_io_ai4_ma - 4) / 16 * 32;
 node_red.material_coriolis_density_filtered_90s_kg_m3 = (node_red.material_io_ai5_ma - 4) / 16 * 3200;
 % Mixer timing
-[times, interval_times, runtimes] = lib.mixer_times(node_red.desktop_time, node_red.mtec_mixer_run_bool);
+mixer_data = lib.mixer_times(node_red.desktop_time, node_red.mtec_mixer_run_bool);
 
 %% Get time in minutes and seconds
 node_red.seconds = seconds(node_red.desktop_time) - seconds(node_red.desktop_time(1));
 node_red.minutes = minutes(node_red.desktop_time) - minutes(node_red.desktop_time(1));
 
 %% Calculate properties
-% Index of window
-[~, index1] = min(abs(node_red.desktop_time - window_start));
-[~, index2] = min(abs(node_red.desktop_time - window_end));
-% Calculate mean, std, min and max
-mean_values = varfun(@(x) mean(x, 'omitnan'), node_red(index1:index2, :));
-std_values = varfun(@(x) std(x, 'omitnan'), node_red(index1:index2, :));
-min_values = varfun(@(x) min(x, [], 'omitnan'), node_red(index1:index2, :));
-max_values = varfun(@(x) max(x, [], 'omitnan'), node_red(index1:index2, :));
-% Remove '_Fun' from column names
-mean_values.Properties.VariableNames = strrep(min_values.Properties.VariableNames, 'Fun_', '');
-std_values.Properties.VariableNames = strrep(max_values.Properties.VariableNames, 'Fun_', '');
-min_values.Properties.VariableNames = strrep(min_values.Properties.VariableNames, 'Fun_', '');
-max_values.Properties.VariableNames = strrep(max_values.Properties.VariableNames, 'Fun_', '');
-
-%% Mixer time properties
-% Calculate indices
-[~, index3] = min(abs(times - window_start));
-[~, index4] = min(abs(times - window_end));
-% Extract data within the window
-runtimesWindow = runtimes(index3:index4);
-interval_times_window = interval_times(index3:index4);
-% Calculate mean, std, min, max for mixer_run_time
-mean_values.mixer_run_time = mean(runtimesWindow);
-std_values.mixer_run_time = std(runtimesWindow);
-min_values.mixer_run_time = min(runtimesWindow);
-max_values.mixer_run_time = max(runtimesWindow);
-% Calculate mean, std, min, max for mixer_interval_time
-mean_values.mixer_interval_time = mean(interval_times_window);
-std_values.mixer_interval_time = std(interval_times_window);
-min_values.mixer_interval_time = min(interval_times_window);
-max_values.mixer_interval_time = max(interval_times_window);
-% Calculate mean, std, min, max for mixer_ratio
-ratioValues = runtimesWindow ./ interval_times_window;
-ratioValues = ratioValues(isfinite(ratioValues));
-mean_values.mixer_ratio = mean(ratioValues);
-std_values.mixer_ratio = std(ratioValues);
-min_values.mixer_ratio = min(ratioValues);
-max_values.mixer_ratio = max(ratioValues);
+properties_system = lib.calculate_timetable_properties(node_red, node_red.desktop_time, window_start, window_end);
+properties_mixer = lib.calculate_timetable_properties(mixer_data, mixer_data.times, window_start, window_end);
+properties = [properties_system; properties_mixer];
 
 %% Plot pressure
 fig = lib.figure_time_series(xticks, xlimits);
@@ -190,13 +165,16 @@ plot(node_red.desktop_time, node_red.material_coriolis_temperature_c, '.k')
 %plot(node_red.desktop_time, node_red.mtec_pumping_chamber_mortar_temperature_c, '.b')
 plot(node_red.desktop_time, node_red.printhead_mortar_temperature_c, '.r')
 % Limits
-ylim([20 36])
+ylim([26 36])
 % Labels
 ylabel('Mortar temperature [C]')
 % Legend
-text1 = "Coriolis sensor: " + round(mean_values.material_coriolis_temperature_c*100)/100 + sprintf(' %s ', char(177)) + round(std_values.material_coriolis_temperature_c*100)/100;
-%text2 = "Pumping chamber: " + round(mean_values.mtec_pumping_chamber_mortar_temperature_c*100)/100 + sprintf(' %s ', char(177)) + round(std_values.mtec_pumping_chamber_mortar_temperature_c*100)/100;
-text3 = "Printhead: " + round(mean_values.printhead_mortar_temperature_c*100)/100 + sprintf(' %s ', char(177)) + round(std_values.printhead_mortar_temperature_c*100)/100;
+temp_coriolis = properties(strcmp(properties.variable, 'material_coriolis_temperature_c'), :);
+%temp_pump = properties(strcmp(properties.variable, 'mtec_pumping_chamber_mortar_temperature_c'), :);
+temp_head = properties(strcmp(properties.variable, 'printhead_mortar_temperature_c'), :);
+text1 = "Coriolis sensor: " + round(temp_coriolis.mean*100)/100 + sprintf(' %s ', char(177)) + round(temp_coriolis.std*100)/100;
+%text2 = "Pumping chamber: " + round(temp_pump.mean*100)/100 + sprintf(' %s ', char(177)) + round(temp_pump.std*100)/100;
+text3 = "Printhead: " + round(temp_head.mean*100)/100 + sprintf(' %s ', char(177)) + round(temp_head.std*100)/100;
 legend(text1, text3, 'Location', 'SouthEast')
 % Write figure
 lib.save_figure(fig, 'mortar_temperature')
@@ -280,10 +258,12 @@ ylabel('Ambient temperature [C]')
 yyaxis right
 ylabel('Relative humidity [%]')
 % Legend
-text1 = "Ambient temperature: " + round(mean_values.material_io_ai7_ambient_temperature_c*100)/100 + sprintf(' %s ', char(177)) + round(std_values.material_io_ai7_ambient_temperature_c*100)/100 + " C";
-text2 = "Relative humidity: " + round(mean_values.material_io_ai6_relative_humidity_perc*100)/100 + sprintf(' %s ', char(177)) + round(std_values.material_io_ai6_relative_humidity_perc*100)/100 + " %";
+ambient = properties(strcmp(properties.variable, 'material_io_ai7_ambient_temperature_c'), :);
+rh = properties(strcmp(properties.variable, 'material_io_ai6_relative_humidity_perc'), :);
+text1 = "Ambient temperature: " + round(ambient.mean*100)/100 + sprintf(' %s ', char(177)) + round(ambient.std*100)/100 + " C";
+text2 = "Relative humidity: " + round(rh.mean*100)/100 + sprintf(' %s ', char(177)) + round(ambient.std*100)/100 + " %";
 legend(text1, text2, 'Location', 'NorthEast')
-% Layout
+% Layout)
 yyaxis left
 set(gca, 'YColor','k')
 yyaxis right
@@ -295,12 +275,12 @@ lib.save_figure(fig, 'ambient_temperature')
 fig = lib.figure_time_series(xticks, xlimits);
 % Plot data
 k = 8;
-plot(times, runtimes./interval_times, '.k')
-plot(times, movmean(runtimes./interval_times, [k 0]), '-k')
+plot(mixer_data.times, mixer_data.ratio, '.k')
+plot(mixer_data.times, movmean(mixer_data.ratio, [k 0]), '-k')
 % Limits
 ylim([0 0.4])
 % Labels
-ylabel('Run time / interval time')
+ylabel('Runtime / interval time')
 % Legend
 legend('Single run', sprintf('Moving mean k=%d', k), 'Location', 'NorthEast')
 % Write figure
@@ -310,10 +290,10 @@ lib.save_figure(fig, 'mixer_times_ratio')
 fig = lib.figure_time_series(xticks, xlimits);
 % Plot data
 k = 8;
-plot(times, interval_times, '.k')
-plot(times, movmean(interval_times, [k 0]), '-k')
-plot(times, runtimes, '.b')
-plot(times, movmean(runtimes, [k 0]), '-b')
+plot(mixer_data.times, mixer_data.interval_times, '.k')
+plot(mixer_data.times, movmean(mixer_data.interval_times, [k 0]), '-k')
+plot(mixer_data.times, mixer_data.runtimes, '.b')
+plot(mixer_data.times, movmean(mixer_data.runtimes, [k 0]), '-b')
 % Limits
 ylim([0 120])
 % Labels
@@ -381,7 +361,7 @@ ylabel('Pressure gradient [bar/m]')
 lib.save_figure(fig, 'correlation_density_pressure_gradient')
 
 %% Runtime
-time = hours (node_red.desktop_time);
+time = hours(node_red.desktop_time);
 dt = diff(time);
 mixer_runtime = sum(dt.*node_red.mtec_mixer_run_bool(2:end), 'omitnan');
 pump_runtime = sum(dt.*(node_red.mtec_pump_speed_actual_rpm(2:end)>10), 'omitnan');
@@ -391,9 +371,9 @@ equivalent_pump_runtime = sum((dt.*(node_red.mtec_pump_speed_actual_rpm(2:end)>1
 
 %% Report generator
 % Create empty table
-column_names = {'Variable', 'Mean', 'Std', 'Min', 'Max'};
-var_types = {'string', 'string', 'string', 'string', 'string'};
-T = table('Size', [0, 5], 'VariableTypes', var_types, 'VariableNames', column_names);
+column_names = {'variable', 'mean', 'median', 'std', 'min', 'max'};
+var_types = {'string', 'string', 'string', 'string', 'string', 'string'};
+T = table('Size', [0, 6], 'VariableTypes', var_types, 'VariableNames', column_names);
 % Add data: {name, decimal precision}
 columns = {
     {'mtec_pump_speed_actual_rpm', 0},...
@@ -415,25 +395,33 @@ columns = {
     {'pressure_gradient1_bar_m', 3},...
     {'pressure_gradient2_bar_m', 3},...
     {'pressure_gradient3_bar_m', 3},...
-    {'mixer_interval_time', 1},...
-    {'mixer_run_time', 1},...
-    {'mixer_ratio', 3}...
+    {'interval_times', 1},...
+    {'runtimes', 1},...
+    {'ratio', 3}...
 };
 for i = 1:length(columns)
-   % Define the new row data
-    new_row = {columns{i}{1},...
-        round(mean_values.(columns{i}{1}), columns{i}{2}),... 
-        round(std_values.(columns{i}{1}), columns{i}{2}),... 
-        round(min_values.(columns{i}{1}), columns{i}{2}),... 
-        round(max_values.(columns{i}{1}), columns{i}{2})};
-    % Add the new row to the table
-    T(end+1, :) = new_row;
+    % Extract column name and precision from columns list
+    variable = columns{i}{1};
+    precision = columns{i}{2};
+    % Check if the column exists in the timetable
+    if ismember(variable, properties.variable)
+        row = properties(strcmp(properties.variable, variable), :);
+        row.mean = round(row.mean, precision);
+        row.median = round(row.median, precision);
+        row.std = round(row.std, precision);
+        row.min = round(row.min, precision);
+        row.max = round(row.max, precision);
+        T = [T; row];
+    else
+        warning('Column "%s" not found in timetable.', variable);
+    end
 end
 % Import report generator
 import mlreportgen.report.*
 import mlreportgen.dom.*
 % Create a PDF report
 report = Report('report', 'pdf');
+report.Layout.Landscape = true;
 % Add a title to the report
 title = Paragraph('Report 3DCP');
 title.Style = {Bold(true), FontSize('14pt')};
