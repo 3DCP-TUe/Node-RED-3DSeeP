@@ -6,24 +6,29 @@ Foundation. For more information and the LICENSE file, see
 %}
 
 %% Clear and close
+
 close all; 
 clear; 
 clc;
 
 %% Get file path
+
 path = mfilename('fullpath');
 [filepath, name, ext] = fileparts(path);
 cd(filepath);
 
 %% Read file and set directory
+
 % Read multiple files from custom directory
 cd('logs\20240507_Arjen\')
 directory = pwd;
 node_red = lib.read_data(directory);
 
 %% Add and remove columns (clean-up)
+
 % Add (missing from old version of the data logger)
 node_red = lib.add_missing_columns(node_red);
+
 % Remove unused
 remove = startsWith(node_red.Properties.VariableNames, 'printhead_motor') | ...
          startsWith(node_red.Properties.VariableNames, 'material_bronkhorst') | ...
@@ -33,30 +38,36 @@ remove = startsWith(node_red.Properties.VariableNames, 'printhead_motor') | ...
 node_red(:, remove) = [];
 
 %% Settings for layout
+
 % X-axis
 xtick = 30; % Interval of ticks on x-axis in minutes
 xlimits = [lib.floor_to_nearest(node_red.desktop_time(1), xtick) 
     lib.ceil_to_nearest(node_red.desktop_time(end), xtick)];
 xticks = xlimits(1):minutes(xtick):xlimits(2);
+
 % Set default marker size and line width
 set(0, 'DefaultLineMarkerSize', 2);
 set(0, 'DefaultLineLineWidth', 1.5);
 
 %% Settings for analysis
+
 % Window for correlations, mean, std, etc. 
 window_start = duration(9, 0, 0); 
 window_end = duration(17, 0, 0);
+
 % Indices
 [~, index1] = min(abs(node_red.desktop_time - window_start));
 [~, index2] = min(abs(node_red.desktop_time - window_end));
 
 %% Corrections: bug fix incorrect conversion analog inputs v0.4.0
+
 apply_correction = false;
 if (apply_correction == true)
     node_red = lib.correction_analog_inputs(node_red);
 end
 
 %% Calculations: Convert sensor data
+
 % Differential pressure
 k = 60; % ~3 seconds, 10 samples per second
 filtered1 = movmean(node_red.material_io_ai0_pressure_bar, k, 'omitnan');
@@ -65,6 +76,7 @@ filtered3 = movmean(node_red.printhead_pressure_bar, k, 'omitnan');
 node_red.differential_pressure1_bar = filtered1 - filtered2;
 node_red.differential_pressure2_bar = filtered2 - filtered3;
 node_red.differential_pressure3_bar = filtered3;
+
 % Pressure gradient
 length1 = (150 + 144 + 820 + 184 + 113) / 1000;     %Coriolis
 length2 = (150 + 13605 + 199 + 114) / 1000;         %Hose
@@ -74,11 +86,13 @@ length3 = (150 + 1013 + 49.5 + 95.5) / 1000;        %Printhead with temp
 node_red.pressure_gradient1_bar_m = node_red.differential_pressure1_bar / length1;
 node_red.pressure_gradient2_bar_m = node_red.differential_pressure2_bar / length2;
 node_red.pressure_gradient3_bar_m = node_red.differential_pressure3_bar / length3;
+
 % Filtered values from coriolis io (if connected)
 %node_red.material_coriolis_mass_flow_filtered_90s_kg_min = (node_red.material_io_ai4_ma - 4) / 16 * 16;
 %node_red.material_coriolis_density_filtered_90s_kg_m3 = (node_red.material_io_ai5_ma - 4) / 16 * 400 + 2000;
 node_red.material_coriolis_mass_flow_filtered_90s_kg_min = (node_red.material_io_ai4_ma - 4) / 16 * 32;
 node_red.material_coriolis_density_filtered_90s_kg_m3 = (node_red.material_io_ai5_ma - 4) / 16 * 3200;
+
 % Mixer timing
 mixer_data = lib.mixer_times(node_red.desktop_time, node_red.mai_mixer_run_bool);
 
@@ -400,21 +414,25 @@ ylabel('Pressure gradient [bar/m]')
 % Write figure
 lib.save_figure(fig, 'correlation_density_pressure_gradient')
 
-%% Run time
-% Run time
+%% Runtime
+
+% Runtime
 time = hours(node_red.desktop_time);
 dt = diff(time);
 mixer_runtime = sum(dt.*node_red.mai_mixer_run_bool(2:end), 'omitnan');
 pump_runtime = sum(dt.*node_red.mai_pump_run_bool(2:end), 'omitnan');
+
 % Equivalent runtime: time * frequency / reference frequency
 ref_frequency = 50; % Hz! 
 equivalent_pump_runtime = sum((dt.*node_red.mai_pump_run_bool(2:end)) .* (node_red.mai_pump_speed_chz(2:end) ./ 100 / ref_frequency), 'omitnan');
 
 %% Report generator
+
 % Create empty table
 column_names = {'variable', 'mean', 'median', 'std', 'min', 'max'};
 var_types = {'string', 'string', 'string', 'string', 'string', 'string'};
 T = table('Size', [0, 6], 'VariableTypes', var_types, 'VariableNames', column_names);
+
 % Add data: {name, decimal precision}
 columns = {
     {'mai_pump_speed_chz', 0},...
@@ -443,6 +461,7 @@ columns = {
     {'runtimes', 1},...
     {'ratio', 3}...
 };
+
 for i = 1:length(columns)
     % Extract column name and precision from columns list
     variable = columns{i}{1};
@@ -460,19 +479,24 @@ for i = 1:length(columns)
         warning('Column "%s" not found in timetable.', variable);
     end
 end
+
 % Import report generator
 import mlreportgen.report.*
 import mlreportgen.dom.*
+
 % Create a PDF report
 report = Report('report', 'pdf');
 report.Layout.Landscape = true;
+
 % Add a title to the report
 title = Paragraph('Report 3DCP');
 title.Style = {Bold(true), FontSize('14pt')};
 add(report, title);
+
 % Convert MATLAB table to a DOM table
 dom_table = BaseTable(T);
-% Run time
+
+% Runtime
 runtime_list = UnorderedList();
 time_item1 = ListItem(Paragraph(['Mixer runtime [h]: ', num2str(mixer_runtime)]));
 time_item2 = ListItem(Paragraph(['Pump runtime [h]: ', num2str(pump_runtime)]));
@@ -480,12 +504,14 @@ time_item3 = ListItem(Paragraph(['Equivalent pump runtime [h x Hz]: ', num2str(e
 append(runtime_list, time_item1);
 append(runtime_list, time_item2);
 append(runtime_list, time_item3);
+
 % Create an unordered list for the summary time window
 time_list = UnorderedList();
 time_item1 = ListItem(Paragraph(['Start time: ', char(window_start)]));
 time_item2 = ListItem(Paragraph(['End time: ', char(window_end)]));
 append(time_list, time_item1);
 append(time_list, time_item2);
+
 % Create an unordered list for the system lengths
 length_list = UnorderedList();
 length_item1 = ListItem(Paragraph(['System length 1 [m]: ', num2str(length1)]));
@@ -494,6 +520,7 @@ length_item3 = ListItem(Paragraph(['System length 3 [m]: ', num2str(length3)]));
 append(length_list, length_item1);
 append(length_list, length_item2);
 append(length_list, length_item3);
+
 % Add the data to the report
 add(report, " ")
 add(report, "Runtimes:")
@@ -504,8 +531,10 @@ add(report, "System length used to calculate pressure gradient:")
 add(report, length_list);
 add(report, PageBreak)
 add(report, dom_table);
+
 % Close the report to generate the PDF
 close(report);
+
 % View the report
 rptview(report);
 
