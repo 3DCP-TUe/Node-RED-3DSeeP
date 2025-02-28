@@ -34,12 +34,6 @@ classdef lib
                 end
             end
             
-            % Create and navigate to save folder
-            folder_name = fullfile(directory, "Results");
-            if ~exist(folder_name, 'dir' )
-                mkdir(folder_name)
-            end
-            cd(folder_name)
         end
         
         % -----------------------------------------------------------------
@@ -97,34 +91,39 @@ classdef lib
             ratio =  runtimes./interval_times;
             
             % Make table
-            tab = table(times', interval_times', runtimes', ratio', 'VariableNames', {'times', 'interval_times', 'runtimes', 'ratio'});
+            tab = table(times', interval_times', runtimes', ratio', ...
+                'VariableNames', {'times', 'interval_times', ...
+                'runtimes', 'ratio'});
         end
 
         % -----------------------------------------------------------------
 
-        % Cacluates properties from a timetable: mean, median, etc. of each column
-        function tab = calculate_timetable_properties(timetab, times, window_start, window_end)
+        % Cacluates properties from a timetable. 
+        % Mean, median, std, min, max of each column
+        function tab = calculate_timetable_properties(timetab, ...
+                times, window_start, window_end)
             
             % Find indices for the window
             [~, index1] = min(abs(times - window_start));
             [~, index2] = min(abs(times - window_end));
             
             % Extract relevant rows
-            selected_data = timetab(index1:index2, :);
+            selected = timetab(index1:index2, :);
             
             % Find columns with 'duration' type
-            duration_columns = varfun(@(x) isa(x, 'duration'), selected_data, 'OutputFormat', 'uniform');
-            selected_data(:, duration_columns) = [];
+            duration_columns = varfun(@(x) isa(x, 'duration'), ...
+                selected, 'OutputFormat', 'uniform');
+            selected(:, duration_columns) = [];
             
             % Calculate statistics
-            mean_values = varfun(@(x) mean(x, 'omitnan'), selected_data);
-            median_values = varfun(@(x) median(x, 'omitnan'), selected_data);
-            std_values = varfun(@(x) std(x, 'omitnan'), selected_data);
-            min_values = varfun(@(x) min(x, [], 'omitnan'), selected_data);
-            max_values = varfun(@(x) max(x, [], 'omitnan'), selected_data);
+            mean_values = varfun(@(x) mean(x, 'omitnan'), selected);
+            median_values = varfun(@(x) median(x, 'omitnan'), selected);
+            std_values = varfun(@(x) std(x, 'omitnan'), selected);
+            min_values = varfun(@(x) min(x, [], 'omitnan'), selected);
+            max_values = varfun(@(x) max(x, [], 'omitnan'), selected);
             
             % Extract variable names (column names of timetab)
-            column_names = selected_data.Properties.VariableNames';
+            column_names = selected.Properties.VariableNames';
             
             % Convert tables to arrays for easier concatenation
             mean_values = mean_values{:,:}';
@@ -134,8 +133,10 @@ classdef lib
             max_values = max_values{:,:}';
             
             % Create final table with desired structure
-            tab = table(column_names, mean_values, median_values, std_values, min_values, max_values, ...
-                        'VariableNames', {'variable', 'mean', 'median', 'std', 'min', 'max'});
+            tab = table(column_names, mean_values, median_values, ...
+                std_values, min_values, max_values, ...
+                        'VariableNames', {'variable', 'mean', 'median', ...
+                        'std', 'min', 'max'});
         end
 
         % -----------------------------------------------------------------
@@ -216,29 +217,52 @@ classdef lib
         
         function fig = figure_time_series(xticks, xlimits)
             
-            % Create figure
+            % Initialize figure
             fig = figure;
-            fig.Units = 'centimeters';
-            fig.Position = [1 14 24 8];
             hold on
             grid on
             box on
+            set(gca, 'FontSize', 24);
+            set(gca,'YColor',[0,0,0])
+            set(gca,'XColor',[0,0,0])
+            set(gcf, 'PaperUnits', 'inches');
+            set(gcf, 'Units', 'inches');
+            fig_width = 3^(3/2)/7*18;
+            fig_height = 3^(3/2); 
+            set(gcf, 'PaperPosition', [0 0 fig_width fig_height]); 
+            set(gcf, 'PaperSize', [fig_width fig_height]); 
+            set(gcf, 'Position', [1 1 fig_width, fig_height]);
             
-            % Dummy plot: axis layout does not function correctly when the
-            % figure is empty
+            % Layout x-axis
+            % Dummy plot is needed since correct ticks (with clock time)
+            % cannot be added on an empty axis. 
             dum = plot([xlimits(1)-duration(1,0,0), ...
                 xlimits(2)+duration(1,0,0)], [0, 0]);
-            
-            % Layout of x-axis
-            ax = gca;
-            set(ax, 'XTick',  xticks, 'XTickLabel', ...
+            set(gca, 'XTick',  xticks, 'XTickLabel', ...
                 datestr(xticks, 'HH:MM'))
             xlim(xlimits)
-            xlabel('Time')
-            
-            % Delete dummy
+            xlabel('Time', 'interpreter', 'latex')
             delete(dum);
         end
+
+        % Figure layout
+        function fig = figure_box()
+            fig = figure;
+            hold on
+            grid on
+            box on
+            set(gca, 'FontSize', 24);
+            set(gca,'YColor',[0,0,0])
+            set(gca,'XColor',[0,0,0])
+            set(gcf, 'PaperUnits', 'inches');
+            set(gcf, 'Units', 'inches');
+            fig_width = 4^(3/2);
+            fig_height = 3^(3/2);
+            set(gcf, 'PaperPosition', [0 0 fig_width fig_height]); 
+            set(gcf, 'PaperSize', [fig_width fig_height]); 
+            set(gcf, 'Position', [1 1 fig_width, fig_height]);
+        end
+
 
         % -----------------------------------------------------------------
 
@@ -246,28 +270,38 @@ classdef lib
         function data = add_missing_columns(data)
             
             % Printhead: pressure
-            if ~any(strcmp(data.Properties.VariableNames, 'printhead_pressure_bar'))
-              data.printhead_pressure_bar = (data.printhead_box1_io_ai0_ma - 4) / 16 * 10;
+            if ~any(strcmp(data.Properties.VariableNames, ...
+                    'printhead_pressure_bar'))
+              data.printhead_pressure_bar = ...
+                  (data.printhead_box1_io_ai0_ma - 4) / 16 * 10;
             end
             
             % Printhead: mortar temperature
-            if ~any(strcmp(data.Properties.VariableNames, 'printhead_mortar_temperature_c'))
-              data.printhead_mortar_temperature_c = zeros(height(data), 1);
+            if ~any(strcmp(data.Properties.VariableNames, ...
+                    'printhead_mortar_temperature_c'))
+              data.printhead_mortar_temperature_c = ...
+                  zeros(height(data), 1);
             end
             
             % MAI MULTIMIX: Mortar temperature at pumping chamber
-            if ~any(strcmp(data.Properties.VariableNames, 'mai_pumping_chamber_mortar_temperature_c'))
-              data.mai_pumping_chamber_mortar_temperature_c = zeros(height(data), 1);
+            if ~any(strcmp(data.Properties.VariableNames, ...
+                    'mai_pumping_chamber_mortar_temperature_c'))
+              data.mai_pumping_chamber_mortar_temperature_c = ...
+                  zeros(height(data), 1);
             end
             
             % MAI MULTIMIX: Mortar temperature at silo
-            if ~any(strcmp(data.Properties.VariableNames, 'mai_silo_dry_mortar_temperature_c'))
-              data.mai_silo_dry_mortar_temperature_c = zeros(height(data), 1);
+            if ~any(strcmp(data.Properties.VariableNames, ...
+                    'mai_silo_dry_mortar_temperature_c'))
+              data.mai_silo_dry_mortar_temperature_c = ...
+                  zeros(height(data), 1);
             end
             
             % MAI MULTIMIX: Additional water temperature sensor
-            if ~any(strcmp(data.Properties.VariableNames, 'mai_water_temp_mixer_inlet_c'))
-              data.mai_water_temp_mixer_inlet_c = zeros(height(data), 1);
+            if ~any(strcmp(data.Properties.VariableNames, ...
+                    'mai_water_temp_mixer_inlet_c'))
+              data.mai_water_temp_mixer_inlet_c = ...
+                  zeros(height(data), 1);
             end
         end
 

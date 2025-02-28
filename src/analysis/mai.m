@@ -24,6 +24,12 @@ cd('logs\20240507_Arjen\')
 directory = pwd;
 node_red = lib.read_data(directory);
 
+%% Folder to store figures and report
+
+folder_name = fullfile(directory, "Results");
+if ~exist(folder_name, 'dir' ), mkdir(folder_name), end
+cd(folder_name)
+
 %% Add and remove columns (clean-up)
 
 % Add (missing from old version of the data logger)
@@ -88,8 +94,8 @@ node_red.pressure_gradient2_bar_m = node_red.differential_pressure2_bar / length
 node_red.pressure_gradient3_bar_m = node_red.differential_pressure3_bar / length3;
 
 % Filtered values from coriolis io (if connected)
-%node_red.material_coriolis_mass_flow_filtered_90s_kg_min = (node_red.material_io_ai4_ma - 4) / 16 * 16;
-%node_red.material_coriolis_density_filtered_90s_kg_m3 = (node_red.material_io_ai5_ma - 4) / 16 * 400 + 2000;
+%node_red.material_coriolis_mass_flow_filtered_90s_kg_min = (node_red.material_io_ai4_ma - 4) / 16 * 16;            % old conversion (till january 2025)
+%node_red.material_coriolis_density_filtered_90s_kg_m3 = (node_red.material_io_ai5_ma - 4) / 16 * 400 + 2000;       % old conversion (till january 2025)
 node_red.material_coriolis_mass_flow_filtered_90s_kg_min = (node_red.material_io_ai4_ma - 4) / 16 * 32;
 node_red.material_coriolis_density_filtered_90s_kg_m3 = (node_red.material_io_ai5_ma - 4) / 16 * 3200;
 
@@ -106,6 +112,8 @@ properties_mixer = lib.calculate_timetable_properties(mixer_data, mixer_data.tim
 properties = [properties_system; properties_mixer];
 
 %% Plot pressure
+
+% Initialize figure
 fig = lib.figure_time_series(xticks, xlimits);
 % Plot data
 plot(node_red.desktop_time, node_red.material_io_ai0_pressure_bar, '.k')
@@ -114,13 +122,15 @@ plot(node_red.desktop_time, node_red.printhead_pressure_bar, '.r')
 % Limits
 ylim([0 25])
 % Labels
-ylabel('Pressure [bar]')
+ylabel('Pressure [bar]', 'interpreter', 'latex')
 % Legend
-legend('Pressure sensor 1', 'Pressure sensor 2', 'Pressure printhead', 'Location', 'NorthEast')
+legend('Pressure sensor 1', 'Pressure sensor 2', 'Pressure printhead', 'Location', 'NorthEast', 'interpreter', 'latex')
 % Write figure
 lib.save_figure(fig, 'pressure')
 
 %% Plot pressure gradient
+
+% Initialize figure
 fig = lib.figure_time_series(xticks, xlimits);
 % Plot data
 plot(node_red.desktop_time, node_red.pressure_gradient1_bar_m, '.k')
@@ -129,49 +139,59 @@ plot(node_red.desktop_time, node_red.pressure_gradient3_bar_m, '.r')
 % Limits
 ylim([0 2.0])
 % Labels
-ylabel('Pressure gradient [bar/m]')
+ylabel('Pressure gradient [bar/m]', 'interpreter', 'latex')
 % Legend
-legend('Coriolis', 'Hose', 'Printhead', 'Location', 'NorthEast')
+legend('Coriolis', 'Hose', 'Printhead', 'Location', 'NorthEast', 'interpreter', 'latex')
 % Write figure
 lib.save_figure(fig, 'pressure_gradient')
 
 %% Plot viscocity
+
+% Initialize figure
 fig = lib.figure_time_series(xticks, xlimits);
 % Plot data
 plot(node_red.desktop_time, node_red.material_coriolis_dynamic_viscocity_cp, '.k')
 % Limits
 ylim([0 8000])
 % Labels
-ylabel('Apparent dynamic viscocity [cP]')
+ylabel('Apparent viscocity [cP]', 'interpreter', 'latex')
 % Write figure
 lib.save_figure(fig, 'viscocity')
 
 %% Plot exciter current
+
+% Initialize figure
 fig = lib.figure_time_series(xticks, xlimits);
 % Plot data
 plot(node_red.desktop_time, node_red.material_coriolis_exciter_current_1_ma, '.k')
 % Limits
 ylim([0 10])
+set(gca, "YTick", 0:2:10)
 % Labels
-ylabel('Exciter current 1 [mA]')
+ylabel('Exciter current 1 [mA]', 'interpreter', 'latex')
 % Write figure
 lib.save_figure(fig, 'exciter_current_1')
 
 %% Plot mass flow rate
+
+% Initialize figure
 fig = lib.figure_time_series(xticks, xlimits);
 % Plot data
 plot(node_red.desktop_time, node_red.material_coriolis_mass_flow_kg_min, '.k')
 plot(node_red.desktop_time, node_red.material_coriolis_mass_flow_filtered_90s_kg_min, '.b')
 % Limits
 ylim([0 12])
+set(gca, "YTick", 0:2:12)
 % Labels
-ylabel('Mass flow rate [kg/min]')
+ylabel('Mass flow rate [kg/min]', 'interpreter', 'latex')
 % Legend
-legend('Unfiltered', 'Filter E+H 90s', 'Location', 'NorthEast')
+legend('Unfiltered', 'Filter E+H 90s', 'Location', 'NorthEast', 'interpreter', 'latex')
 % Write figure
 lib.save_figure(fig, 'mass_flow')
 
 %% Plot temperature
+
+% Initialize figure
 fig = lib.figure_time_series(xticks, xlimits);
 % Plot data
 plot(node_red.desktop_time, node_red.material_coriolis_temperature_c, '.k')
@@ -180,20 +200,22 @@ plot(node_red.desktop_time, node_red.printhead_mortar_temperature_c, '.r')
 % Limits
 ylim([26 36])
 % Labels
-ylabel('Mortar temperature [C]')
+ylabel('Mortar temperature [$^\circ$C]', 'interpreter', 'latex')
 % Legend
 temp_coriolis = properties(strcmp(properties.variable, 'material_coriolis_temperature_c'), :);
 temp_pump = properties(strcmp(properties.variable, 'mai_pumping_chamber_mortar_temperature_c'), :);
 temp_head = properties(strcmp(properties.variable, 'printhead_mortar_temperature_c'), :);
-text1 = "Coriolis sensor: " + round(temp_coriolis.mean*100)/100 + sprintf(' %s ', char(177)) + round(temp_coriolis.std*100)/100;
-text2 = "Pumping chamber: " + round(temp_pump.mean*100)/100 + sprintf(' %s ', char(177)) + round(temp_pump.std*100)/100;
-text3 = "Printhead: " + round(temp_head.mean*100)/100 + sprintf(' %s ', char(177)) + round(temp_head.std*100)/100;
-legend(text1, text2, text3, 'Location', 'SouthEast')
+text1 = "Coriolis sensor: " + round(temp_coriolis.mean*100)/100 + " $\pm$ " + round(temp_coriolis.std*100)/100;
+text2 = "Pumping chamber: " + round(temp_pump.mean*100)/100 + " $\pm$ " + round(temp_pump.std*100)/100;
+text3 = "Printhead: " + round(temp_head.mean*100)/100 + " $\pm$ " + round(temp_head.std*100)/100;
+legend(text1, text2, text3, 'Location', 'SouthEast', 'interpreter', 'latex')
 % Write figure
 lib.save_figure(fig, 'mortar_temperature')
 
 %% Plot temperature
+
 %{
+% Initialize figure
 fig = lib.figure_time_series(xticks, xlimits);
 % Plot data
 plot(node_red.desktop_time, node_red.mai_pumping_chamber_mortar_temperature_c, '.b')
@@ -206,18 +228,20 @@ area(x, y, 'FaceColor', [0.5 0.5 0.5], 'EdgeColor', 'none', 'FaceAlpha', 0.5);
 % Limits
 ylim([28 32])
 % Labels
-ylabel('Mortar temperature [C]')
+ylabel('Mortar temperature [C]', 'interpreter', 'latex')
 % Legend
 text1 = "Pumping chamber";
 text2 = "Coriolis sensor";
 text3 = "Printhead";
 text4 = "Mixer run";
-legend(text1, text2, text3, text4, 'Location', 'NorthEast')
+legend(text1, text2, text3, text4, 'Location', 'NorthEast', 'interpreter', 'latex')
 % Write figure
 lib.save_figure(fig, 'mortar_temperature')
 %}
 
 %% Plot density
+
+% Initialize figure
 fig = lib.figure_time_series(xticks, xlimits);
 % Plot data
 plot(node_red.desktop_time, node_red.material_coriolis_density_kg_m3, '.k')
@@ -225,35 +249,41 @@ plot(node_red.desktop_time, node_red.material_coriolis_density_filtered_90s_kg_m
 % Limits
 ylim([2320 2400])
 % Labels
-ylabel('Density [kg/m^{3}]')
+ylabel('Density [kg/m\textsuperscript{3}]', 'interpreter', 'latex')
 % Legend
-legend('Unfiltered', 'Filter E+H 90s', 'Location', 'NorthEast')
+legend('Unfiltered', 'Filter E+H 90s', 'Location', 'NorthEast', 'interpreter', 'latex')
 % Write figure
 lib.save_figure(fig, 'density')
 
 %% Plot pump frequency
+
+% Initialize figure
 fig = lib.figure_time_series(xticks, xlimits);
 % Plot data
 plot(node_red.desktop_time, node_red.mai_pump_speed_chz, '.k')
 % Limits
 ylim([0 5000])
 % Labels
-ylabel('Pump frequency [cHz]')
+ylabel('Pump frequency [cHz]', 'interpreter', 'latex')
 % Write figure
 lib.save_figure(fig, 'mortar_pump_frequency')
 
 %% Plot pump output power
+
+% Initialize figure
 fig = lib.figure_time_series(xticks, xlimits);
 % Plot data
 plot(node_red.desktop_time, node_red.mai_pump_output_power_w, '.k')
 % Limits
 ylim([0 800])
 % Labels
-ylabel('Pump output power [W]')
+ylabel('Pump output power [W]', 'interpreter', 'latex')
 % Write figure
 lib.save_figure(fig, 'mortar_pump_output_power')
 
 %% Plot water temperature
+
+% Initialize figure
 fig = lib.figure_time_series(xticks, xlimits);
 % Plot data
 plot(node_red.desktop_time, node_red.mai_water_temp_c, '.k')
@@ -261,13 +291,15 @@ plot(node_red.desktop_time, node_red.mai_water_temp_mixer_inlet_c, '.b')
 % Limits
 ylim([floor(min(node_red.mai_water_temp_c)-1), ceil(max(node_red.mai_water_temp_c)+1)])
 % Labels
-ylabel('Water temperature [C]')
+ylabel('Water temperature [C]', 'interpreter', 'latex')
 % Legend
-legend('Sensor 1: Original', 'Sensor 2: Mixer inlet', 'Location', 'NorthEast')
+legend('Sensor 1: Original', 'Sensor 2: Mixer inlet', 'Location', 'NorthEast', 'interpreter', 'latex')
 % Write figure
 lib.save_figure(fig, 'water_temperature')
 
 %% Plot water flow
+
+% Initialize figure
 fig = lib.figure_time_series(xticks, xlimits);
 % Plot data
 plot(node_red.desktop_time, node_red.mai_water_flow_actual_lh, '.k')
@@ -275,13 +307,15 @@ plot(node_red.desktop_time, node_red.mai_water_flow_set_lh, '.b')
 % Limits
 ylim([0 400])
 % Labels
-ylabel('Water flow [L/h]')
+ylabel('Water flow [L/h]', 'interpreter', 'latex')
 % Legend
-legend('Actual', 'Setpoint', 'Location', 'NorthEast')
+legend('Actual', 'Setpoint', 'Location', 'NorthEast', 'interpreter', 'latex')
 % Write figure
 lib.save_figure(fig, 'water_flow')
 
 %% Plot water pump frequency
+
+% Initialize figure
 fig = lib.figure_time_series(xticks, xlimits);
 % Plot data
 plot(node_red.desktop_time, node_red.mai_waterpump_output_freq_chz./100, '.k')
@@ -289,13 +323,15 @@ plot(node_red.desktop_time, node_red.mai_waterpump_ref_freq_chz./100, '.b')
 % Limits
 ylim([0 30])
 % Labels
-ylabel('Water pump freq. [Hz]')
+ylabel('Water pump freq. [Hz]', 'interpreter', 'latex')
 % Legend
-legend('Actual', 'Reference', 'Location', 'NorthEast')
+legend('Actual', 'Reference', 'Location', 'NorthEast', 'interpreter', 'latex')
 % Write figure
 lib.save_figure(fig, 'water_pump_frequency')
 
 %% Ambient temperature and relative humidity
+
+% Initialize figure
 fig = lib.figure_time_series(xticks, xlimits);
 % Plot data
 plot(node_red.desktop_time, node_red.material_io_ai7_ambient_temperature_c, '.k')
@@ -308,15 +344,15 @@ yyaxis right
 ylim([floor(min(node_red.material_io_ai6_relative_humidity_perc)-2), ceil(max(node_red.material_io_ai6_relative_humidity_perc)+2)])
 % Labels
 yyaxis left
-ylabel('Ambient temperature [C]')
+ylabel('Ambient temperature [$^{\circ}$C]', 'interpreter', 'latex')
 yyaxis right
-ylabel('Relative humidity [%]')
+ylabel('Relative humidity [\%]', 'interpreter', 'latex')
 % Legend
 ambient = properties(strcmp(properties.variable, 'material_io_ai7_ambient_temperature_c'), :);
 rh = properties(strcmp(properties.variable, 'material_io_ai6_relative_humidity_perc'), :);
-text1 = "Ambient temperature: " + round(ambient.mean*100)/100 + sprintf(' %s ', char(177)) + round(ambient.std*100)/100 + " C";
-text2 = "Relative humidity: " + round(rh.mean*100)/100 + sprintf(' %s ', char(177)) + round(ambient.std*100)/100 + " %";
-legend(text1, text2, 'Location', 'NorthEast')
+text1 = "Ambient temperature: " + round(ambient.mean*100)/100 + " $\pm$ " + round(ambient.std*100)/100 + "$^{\circ}$C";
+text2 = "Relative humidity: " + round(rh.mean*100)/100 + " $\pm$ " + round(ambient.std*100)/100 + "\%";
+legend(text1, text2, 'Location', 'NorthEast', 'interpreter', 'latex')
 % Layout)
 yyaxis left
 set(gca, 'YColor','k')
@@ -326,6 +362,8 @@ set(gca, 'YColor','k')
 lib.save_figure(fig, 'ambient_temperature')
 
 %% Mixer times ratio (flow prediction)
+
+% Initialize figure
 fig = lib.figure_time_series(xticks, xlimits);
 % Plot data
 k = 8;
@@ -334,13 +372,15 @@ plot(mixer_data.times, movmean(mixer_data.ratio, [k 0]), '-k')
 % Limits
 ylim([0 0.4])
 % Labels
-ylabel('Run time / interval time')
+ylabel('Runtime / interval time', 'interpreter', 'latex')
 % Legend
-legend('Single run', sprintf('Moving mean k=%d', k), 'Location', 'NorthEast')
+legend('Single run', sprintf('Moving mean k=%d', k), 'Location', 'NorthEast', 'interpreter', 'latex')
 % Write figure
 lib.save_figure(fig, 'mixer_times_ratio')
 
 %% Mixer times (flow prediction)
+
+% Initialize figure
 fig = lib.figure_time_series(xticks, xlimits);
 % Plot data
 k = 8;
@@ -350,67 +390,59 @@ plot(mixer_data.times, mixer_data.runtimes, '.b')
 plot(mixer_data.times, movmean(mixer_data.runtimes, [k 0]), '-b')
 % Limits
 ylim([0 120])
+set(gca, "YTick", 0:20:120)
 % Labels
-ylabel('Mixer times [Seconds]')
+ylabel('Mixer times [seconds]', 'interpreter', 'latex')
 % Legend
-legend('Interval time', sprintf('Interval time mov. mean k=%d', k), 'Run time', sprintf('Run time mov. mean k=%d', k), 'Location', 'NorthEast')
+legend('Interval time', sprintf('Interval time mov. mean k=%d', k), 'Runtime', sprintf('Runtime mov. mean k=%d', k), 'Location', 'NorthEast', 'interpreter', 'latex')
 % Write figure
 lib.save_figure(fig, 'mixer_times')
 
 %% Correlation between temperature and pressure gradient
-fig = figure;
-fig.Units = 'centimeters';
-fig.Position = [1 14 11 8];
-hold on
-grid on
-box on
+
+% Initialize figure
+fig = lib.figure_box();
 % Plot data
 plot(node_red.material_coriolis_temperature_c(index1:index2), node_red.pressure_gradient1_bar_m(index1:index2), '.k')
 % Limits
-ylim([floor(min(node_red.pressure_gradient1_bar_m(index1:index2))*10-1)/10, ceil(max(node_red.pressure_gradient1_bar_m(index1:index2))*10+1)/10])
+ylim([0, ceil(max(node_red.pressure_gradient1_bar_m(index1:index2))*10+1)/10])
 xlim([floor(min(node_red.material_coriolis_temperature_c(index1:index2))-1), ceil(max(node_red.material_coriolis_temperature_c(index1:index2))+1)])
 % Labels
-xlabel('Mortar temperature [C]')
-ylabel('Pressure gradient [bar/m]')
+xlabel('Mortar temperature [C]', 'interpreter', 'latex')
+ylabel('Pressure gradient [bar/m]', 'interpreter', 'latex')
 % Write figure
 lib.save_figure(fig, 'correlation_temp_pressure_gradient')
 
 %% Correlation between viscocity and pressure gradient
-fig = figure;
-fig.Units = 'centimeters';
-fig.Position = [1 14 11 8];
-hold on
-grid on
-box on
+
+% Initialize figure
+fig = lib.figure_box();
 % Plot data
 plot(node_red.material_coriolis_dynamic_viscocity_cp(index1:index2), node_red.pressure_gradient1_bar_m(index1:index2), '.k')
 % Limits
-ylim([floor(min(node_red.pressure_gradient1_bar_m(index1:index2))*10-1)/10, ceil(max(node_red.pressure_gradient1_bar_m(index1:index2))*10+1)/10])
-xlim([floor(min(node_red.material_coriolis_dynamic_viscocity_cp(index1:index2))/500)*500, ceil(max(node_red.material_coriolis_dynamic_viscocity_cp(index1:index2))/500)*500])
+ylim([0, ceil(max(node_red.pressure_gradient1_bar_m(index1:index2))*10+1)/10])
+xlim([0, ceil(max(node_red.material_coriolis_dynamic_viscocity_cp(index1:index2))/500)*500])
 % Labels
-xlabel('Apparent dynamic viscocity [cP]')
-ylabel('Pressure gradient [bar/m]')
+xlabel('Apparent dynamic viscocity [cP]', 'interpreter', 'latex')
+ylabel('Pressure gradient [bar/m]', 'interpreter', 'latex')
 % Write figure
 lib.save_figure(fig, 'correlation_viscocity_pressure_gradient')
 
 %% Correlation between density and pressure gradient
-fig = figure;
-fig.Units = 'centimeters';
-fig.Position = [1 14 11 8];
-hold on
-grid on
-box on
+
+% Initialize figure
+fig = lib.figure_box();
 % Plot data
 plot(node_red.material_coriolis_density_kg_m3(index1:index2), node_red.pressure_gradient1_bar_m(index1:index2), '.k')
 plot(node_red.material_coriolis_density_filtered_90s_kg_m3(index1:index2), node_red.pressure_gradient1_bar_m(index1:index2), '.b')
 % Limits
-ylim([floor(min(node_red.pressure_gradient1_bar_m(index1:index2))*10-1)/10, ceil(max(node_red.pressure_gradient1_bar_m(index1:index2))*10+1)/10])
+ylim([0, ceil(max(node_red.pressure_gradient1_bar_m(index1:index2))*10+1)/10])
 xlim([floor(min(node_red.material_coriolis_density_kg_m3(index1:index2))/10)*10, ceil(max(node_red.material_coriolis_density_kg_m3(index1:index2))/10)*10])
 % Legend
-legend('Unfiltered', 'Filter E+H 90s', 'Location', 'SouthEast')
+legend('Unfiltered', 'Filter E+H 90s', 'Location', 'SouthEast', 'interpreter', 'latex')
 % Labels
-xlabel('Density [kg/m^{3}]')
-ylabel('Pressure gradient [bar/m]')
+xlabel('Density [kg/m\textsuperscript{3}]', 'interpreter', 'latex')
+ylabel('Pressure gradient [bar/m]', 'interpreter', 'latex')
 % Write figure
 lib.save_figure(fig, 'correlation_density_pressure_gradient')
 
@@ -445,6 +477,7 @@ columns = {
     {'material_io_ai0_pressure_bar', 2},...
     {'material_io_ai1_pressure_bar', 2},...
     {'material_coriolis_dynamic_viscocity_cp', 0},...
+    {'material_coriolis_exciter_current_1_ma', 3},...
     {'material_coriolis_temperature_c', 2},...
     {'material_coriolis_density_kg_m3', 0},...
     {'material_io_ai7_ambient_temperature_c', 2},...
@@ -537,6 +570,20 @@ close(report);
 
 % View the report
 rptview(report);
+
+%% Export data as CSV files
+
+%{
+% Path
+cd(filepath);
+cd('..\processed_data\')
+
+% Mixer
+writetable(mixer_data, 'mixer_data.csv');
+
+% System data
+writetable(node_red, 'system_data.csv');
+%}
 
 %% End
 disp('End of script')
