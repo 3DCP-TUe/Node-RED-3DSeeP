@@ -583,6 +583,7 @@ writetable(mixer_data, 'mixer_data.csv');
 
 % System data
 writetable(node_red, 'system_data.csv');
+writetable(properties, 'system_data_properties.csv');
 %}
 
 %% End

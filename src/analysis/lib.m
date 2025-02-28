@@ -94,6 +94,9 @@ classdef lib
             tab = table(times', interval_times', runtimes', ratio', ...
                 'VariableNames', {'times', 'interval_times', ...
                 'runtimes', 'ratio'});
+
+            % Remove last row
+            tab(end, :) = [];  
         end
 
         % -----------------------------------------------------------------
