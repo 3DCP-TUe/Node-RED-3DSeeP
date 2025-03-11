@@ -20,7 +20,7 @@ cd(filepath);
 %% Read file and set directory
 
 % Read multiple files from custom directory
-cd('logs\20240507_Arjen\')
+cd('logs\20250227_builtwise\')
 directory = pwd;
 node_red = lib.read_data(directory);
 
@@ -58,8 +58,8 @@ set(0, 'DefaultLineLineWidth', 1.5);
 %% Settings for analysis
 
 % Window for correlations, mean, std, etc. 
-window_start = duration(9, 0, 0); 
-window_end = duration(17, 0, 0);
+window_start = duration(13, 45, 0); 
+window_end = duration(14, 45, 0);
 
 % Indices
 [~, index1] = min(abs(node_red.desktop_time - window_start));
@@ -455,8 +455,9 @@ mixer_runtime = sum(dt.*node_red.mai_mixer_run_bool(2:end), 'omitnan');
 pump_runtime = sum(dt.*node_red.mai_pump_run_bool(2:end), 'omitnan');
 
 % Equivalent runtime: time * frequency / reference frequency
-ref_frequency = 50; % Hz! 
-equivalent_pump_runtime = sum((dt.*node_red.mai_pump_run_bool(2:end)) .* (node_red.mai_pump_speed_chz(2:end) ./ 100 / ref_frequency), 'omitnan');
+ref_speed = 100; % RPM! 
+speed_rpm = node_red.mai_pump_speed_chz .* 4.125 / 100;
+equivalent_pump_runtime = sum((dt.*node_red.mai_pump_run_bool(2:end)) .* (speed_rpm(2:end) ./ ref_speed), 'omitnan');
 
 %% Report generator
 
@@ -533,7 +534,7 @@ dom_table = BaseTable(T);
 runtime_list = UnorderedList();
 time_item1 = ListItem(Paragraph(['Mixer runtime [h]: ', num2str(mixer_runtime)]));
 time_item2 = ListItem(Paragraph(['Pump runtime [h]: ', num2str(pump_runtime)]));
-time_item3 = ListItem(Paragraph(['Equivalent pump runtime [h x Hz]: ', num2str(equivalent_pump_runtime)]));
+time_item3 = ListItem(Paragraph(['Equivalent pump runtime [h x RPM]: ', num2str(equivalent_pump_runtime)]));
 append(runtime_list, time_item1);
 append(runtime_list, time_item2);
 append(runtime_list, time_item3);
