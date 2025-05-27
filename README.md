@@ -2,14 +2,14 @@
 
 General dashboard and data logger for the 3D concrete printer in the [Structures Laboratory](https://www.tue.nl/en/research/research-labs/structures-laboratory) at [Eindhoven University of Technology](https://www.tue.nl/en/). 
 
-## Dependencies
+## Installation
 
-Node-RED
+Install Node-RED:
 
 - [Node-RED](https://nodered.org/) v3.1.9
 - [Node.js](https://nodejs.org/en) v20.13.0
 
-Nodes:
+Install the following packages:
 
 - [node-red-contrib-boolean-logic-ultimate](https://flows.nodered.org/node/node-red-contrib-boolean-logic-ultimate) v1.1.9
 - [node-red-contrib-fs](https://flows.nodered.org/node/node-red-contrib-fs) v1.4.1
@@ -17,6 +17,37 @@ Nodes:
 - [node-red-contrib-opcua](https://flows.nodered.org/node/node-red-contrib-opcua) v0.2.328
 - [node-red-contrib-throttle](https://flows.nodered.org/node/node-red-contrib-throttle) v0.1.7
 - [node-red-contrib-dashboard](https://flows.nodered.org/node/node-red-dashboard) v3.6.5
+
+You can start Node-RED by typing `node-red` in the command window and access it at:
+
+- Flow management: http://localhost:1880/
+- Dashboard view: http://localhost:1880/ui
+
+Download **[flows.json](src/acquisition/flows.json)** from the **[src/acquisition/](src/acquisition/)** directory and import it via the Flow Manager in Node-RED to run the developed data logger and dashboard.
+
+## Explanation of the files
+
+### Data acquisition
+
+Files related to data acquisition are located in the **[src/acquisition/](src/acquisition/)** directory and include the following:
+
+**[src/acquisition/flows.json](src/acquisition/flows.json)**: Contains the Node-RED flow configuration for the data logger and dashboard. Import this file into Node-RED to set up and used the developed flows. 
+
+**[src/acquisition/package.json](src/acquisition/package.json)**: Lists the Node-RED dependencies and versions required to run the developed flows. You can this file to install the required packages. 
+
+**[src/acquisition/function blocks](src/acquisition/function blocks)**: A collection of the larger Node-RED function blocks written in JavaScript. These are exported separately to improve readability, since reviewing them directly in the `flows.json` file is difficult.
+ 
+### Data analysis
+
+Files related to data analysis are located in the **[src/analysis/](src/analysis/)** directory and include the following:
+
+**[lib.m](lib.m):** Library with standard functions for analysis. 
+
+**[mai.m](mai.m):** This file primarily outputs time series data plots of the standard system layout for printing with the Weber 160-2 material and the MAI MULTIMIX combined with the sensing station.
+
+**[mtec.m](mtec.m):** This file primarily outputs time series data plots of the standard system layout for printing with the m-tec connect duomix 3dcp+ combined with the sensing station.
+
+The analysis files provided in this folder should be considered as templates and are fully functional with the latest version of the CSV format. You can use these files for data analysis or to quickly gain insights into your data. Store these files together with your dataset and adjust them if needed. If you add new functionality or create new templates please push these updates to this repository so that others can also benefit from them.
 
 ## Version numbering
 

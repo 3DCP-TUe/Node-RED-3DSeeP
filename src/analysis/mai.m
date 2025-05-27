@@ -20,7 +20,8 @@ cd(filepath);
 %% Read file and set directory
 
 % Read multiple files from custom directory
-cd('logs\20250227_builtwise\')
+cd('D:\OneDrive - TU Eindhoven\_logs')
+cd('20250521_tracer')
 directory = pwd;
 node_red = lib.read_data(directory);
 
@@ -58,8 +59,8 @@ set(0, 'DefaultLineLineWidth', 1.5);
 %% Settings for analysis
 
 % Window for correlations, mean, std, etc. 
-window_start = duration(13, 45, 0); 
-window_end = duration(14, 45, 0);
+window_start = duration(11, 30, 0); 
+window_end = duration(16, 0, 0);
 
 % Indices
 [~, index1] = min(abs(node_red.desktop_time - window_start));
