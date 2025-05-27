@@ -29,23 +29,19 @@ Download **[flows.json](src/acquisition/flows.json)** from the **[src/acquisitio
 
 ### Data acquisition
 
-Files related to data acquisition are located in the **[src/acquisition/](src/acquisition/)** directory and include the following:
+Files related to data acquisition are located in the **[src/acquisition/](src/acquisition/)** directory and include the following files and folders:
 
-**[src/acquisition/flows.json](src/acquisition/flows.json)**: Contains the Node-RED flow configuration for the data logger and dashboard. Import this file into Node-RED to set up and used the developed flows. 
-
-**[src/acquisition/package.json](src/acquisition/package.json)**: Lists the Node-RED dependencies and versions required to run the developed flows. You can this file to install the required packages. 
-
-**[src/acquisition/function blocks](src/acquisition/function blocks)**: A collection of the larger Node-RED function blocks written in JavaScript. These are exported separately to improve readability, since reviewing them directly in the `flows.json` file is difficult.
+- **[src/acquisition/flows.json](src/acquisition/flows.json)**: Contains the Node-RED flow configuration for the data logger and dashboard. Import this file into Node-RED to set up and used the developed flows. 
+- **[src/acquisition/package.json](src/acquisition/package.json)**: Lists the Node-RED dependencies and versions required to run the developed flows. You can this file to install the required packages. 
+- **[src/acquisition/function blocks](src/acquisition/function%20blocks)**: A collection of the larger Node-RED function blocks written in JavaScript. These are exported separately to improve readability, since reviewing them directly in the `flows.json` file is difficult.
  
 ### Data analysis
 
-Files related to data analysis are located in the **[src/analysis/](src/analysis/)** directory and include the following:
+Files related to data analysis are located in the **[src/analysis/](src/analysis/)** directory and include the following files and folders:
 
-**[lib.m](lib.m):** Library with standard functions for analysis. 
-
-**[mai.m](mai.m):** This file primarily outputs time series data plots of the standard system layout for printing with the Weber 160-2 material and the MAI MULTIMIX combined with the sensing station.
-
-**[mtec.m](mtec.m):** This file primarily outputs time series data plots of the standard system layout for printing with the m-tec connect duomix 3dcp+ combined with the sensing station.
+- **[lib.m](lib.m):** Library with standard functions for analysis. 
+- **[mai.m](mai.m):** This file primarily outputs time series data plots of the standard system layout for printing with the Weber 160-2 material and the MAI MULTIMIX combined with the sensing station.
+- **[mtec.m](mtec.m):** This file primarily outputs time series data plots of the standard system layout for printing with the m-tec connect duomix 3dcp+ combined with the sensing station.
 
 The analysis files provided in this folder should be considered as templates and are fully functional with the latest version of the CSV format. You can use these files for data analysis or to quickly gain insights into your data. Store these files together with your dataset and adjust them if needed. If you add new functionality or create new templates please push these updates to this repository so that others can also benefit from them.
 
