@@ -39,9 +39,9 @@ Files related to data acquisition are located in the **[src/acquisition/](src/ac
 
 Files related to data analysis are located in the **[src/analysis/](src/analysis/)** directory and include the following files and folders:
 
-- **[lib.m](lib.m):** Library with standard functions for analysis. 
-- **[mai.m](mai.m):** This file primarily outputs time series data plots of the standard system layout for printing with the Weber 160-2 material and the MAI MULTIMIX combined with the sensing station.
-- **[mtec.m](mtec.m):** This file primarily outputs time series data plots of the standard system layout for printing with the m-tec connect duomix 3dcp+ combined with the sensing station.
+- **[lib](src/analysis/lib):** Library with standard functions for analysis. 
+- **[mai.m](src/analysis/mai.m):** This file primarily outputs time series data plots of the standard system layout for printing with the Weber 160-2 material and the MAI MULTIMIX combined with the sensing station.
+- **[mtec.m](src/analysis/mtec.m):** This file primarily outputs time series data plots of the standard system layout for printing with the m-tec connect duomix 3dcp+ combined with the sensing station.
 
 The analysis files provided in this folder should be considered as templates and are fully functional with the latest version of the CSV format. You can use these files for data analysis or to quickly gain insights into your data. Store these files together with your dataset and adjust them if needed. If you add new functionality or create new templates please push these updates to this repository so that others can also benefit from them.
 
