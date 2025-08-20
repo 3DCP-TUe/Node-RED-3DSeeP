@@ -17,12 +17,17 @@ path = mfilename('fullpath');
 [filepath, name, ext] = fileparts(path);
 cd(filepath);
 
+%% Add lib
+
+addpath('lib/');
+
 %% Read file and set directory
 
 % Read multiple files from custom directory
-cd('logs\20250213_Frankenstein\')
+cd('D:\OneDrive - TU Eindhoven\_logs')
+cd('20250213_Frankenstein')
 directory = pwd;
-node_red = lib.read_data(directory);
+node_red = nr3dseep.read_data(directory);
 
 %% Folder to store figures and report
 
@@ -33,7 +38,7 @@ cd(folder_name)
 %% Add and remove columns (clean-up)
 
 % Add (missing from old version of the data logger)
-node_red = lib.add_missing_columns(node_red);
+node_red = nr3dseep.add_missing_columns(node_red);
 
 % Remove unused
 remove = startsWith(node_red.Properties.VariableNames, 'printhead_motor') | ...
@@ -47,8 +52,8 @@ node_red(:, remove) = [];
 
 % X-axis
 xtick = 60; % Interval of ticks on x-axis in minutes
-xlimits = [lib.floor_to_nearest(node_red.desktop_time(1), xtick) ...
-    lib.ceil_to_nearest(node_red.desktop_time(end), xtick)];
+xlimits = [nr3dseep.floor_to_nearest(node_red.desktop_time(1), xtick) ...
+    nr3dseep.ceil_to_nearest(node_red.desktop_time(end), xtick)];
 xticks = xlimits(1):minutes(xtick):xlimits(2);
 
 % Set default marker size and line width
@@ -70,7 +75,7 @@ window_end = duration(18, 30, 0);
 applyCorrection = false;
 
 if (applyCorrection == true)
-    node_red = lib.correction_analog_inputs(node_red);
+    node_red = nr3dseep.correction_analog_inputs(node_red);
 end
 
 %% Calculations: Convert sensor data
@@ -101,7 +106,7 @@ node_red.material_coriolis_mass_flow_filtered_90s_kg_min = (node_red.material_io
 node_red.material_coriolis_density_filtered_90s_kg_m3 = (node_red.material_io_ai5_ma - 4) / 16 * 3200;
 
 % Mixer timing
-mixer_data = lib.mixer_times(node_red.desktop_time, node_red.mtec_mixer_run_bool);
+mixer_data = nr3dseep.mixer_times(node_red.desktop_time, node_red.mtec_mixer_run_bool);
 
 %% Get time in minutes and seconds
 
@@ -110,14 +115,14 @@ node_red.minutes = minutes(node_red.desktop_time) - minutes(node_red.desktop_tim
 
 %% Calculate properties
 
-properties_system = lib.calculate_timetable_properties(node_red, node_red.desktop_time, window_start, window_end);
-properties_mixer = lib.calculate_timetable_properties(mixer_data, mixer_data.times, window_start, window_end);
+properties_system = nr3dseep.calculate_timetable_properties(node_red, node_red.desktop_time, window_start, window_end);
+properties_mixer = nr3dseep.calculate_timetable_properties(mixer_data, mixer_data.times, window_start, window_end);
 properties = [properties_system; properties_mixer];
 
 %% Plot pressure
 
 % Initialize figure
-fig = lib.figure_time_series(xticks, xlimits);
+fig = nr3dseep.figure_time_series(xticks, xlimits);
 % Plot data
 plot(node_red.desktop_time, node_red.material_io_ai0_pressure_bar, '.k')
 plot(node_red.desktop_time, node_red.material_io_ai1_pressure_bar, '.b')
@@ -129,12 +134,12 @@ ylabel('Pressure [bar]', 'interpreter', 'latex')
 % Legend
 legend('Pressure sensor 1', 'Pressure sensor 2', 'Pressure printhead', 'Location', 'NorthEast', 'interpreter', 'latex')
 % Write figure
-lib.save_figure(fig, 'pressure')
+nr3dseep.save_figure(fig, 'pressure')
 
 %% Plot pressure gradient
 
 % Initialize figure
-fig = lib.figure_time_series(xticks, xlimits);
+fig = nr3dseep.figure_time_series(xticks, xlimits);
 % Plot data
 plot(node_red.desktop_time, node_red.pressure_gradient1_bar_m, '.k')
 plot(node_red.desktop_time, node_red.pressure_gradient2_bar_m, '.b')
@@ -146,12 +151,12 @@ ylabel('Pressure gradient [bar/m]', 'interpreter', 'latex')
 % Legend
 legend('Coriolis', 'Hose', 'Printhead', 'Location', 'NorthEast', 'interpreter', 'latex')
 % Write figure
-lib.save_figure(fig, 'pressure_gradient')
+nr3dseep.save_figure(fig, 'pressure_gradient')
 
 %% Plot viscocity
 
 % Initialize figure
-fig = lib.figure_time_series(xticks, xlimits);
+fig = nr3dseep.figure_time_series(xticks, xlimits);
 % Plot data
 plot(node_red.desktop_time, node_red.material_coriolis_dynamic_viscocity_cp, '.k')
 % Limits
@@ -159,12 +164,12 @@ ylim([0 8000])
 % Labels
 ylabel('Apparent viscocity [cP]', 'interpreter', 'latex')
 % Write figure
-lib.save_figure(fig, 'viscocity')
+nr3dseep.save_figure(fig, 'viscocity')
 
 %% Plot exciter current
 
 % Initialize figure
-fig = lib.figure_time_series(xticks, xlimits);
+fig = nr3dseep.figure_time_series(xticks, xlimits);
 % Plot data
 plot(node_red.desktop_time, node_red.material_coriolis_exciter_current_1_ma, '.k')
 % Limits
@@ -173,12 +178,12 @@ set(gca, 'YTick', 0:2:10)
 % Labels
 ylabel('Exciter current 1 [mA]', 'interpreter', 'latex')
 % Write figure
-lib.save_figure(fig, 'exciter_current_1')
+nr3dseep.save_figure(fig, 'exciter_current_1')
 
 %% Plot mass flow rate
 
 % Initialize figure
-fig = lib.figure_time_series(xticks, xlimits);
+fig = nr3dseep.figure_time_series(xticks, xlimits);
 % Plot data
 plot(node_red.desktop_time, node_red.material_coriolis_mass_flow_kg_min, '.k')
 plot(node_red.desktop_time, node_red.material_coriolis_mass_flow_filtered_90s_kg_min, '.b')
@@ -190,12 +195,12 @@ ylabel('Mass flow rate [kg/min]', 'interpreter', 'latex')
 % Legend
 legend('Unfiltered', 'Filter E+H 90s', 'Location', 'NorthEast', 'interpreter', 'latex')
 % Write figure
-lib.save_figure(fig, 'mass_flow')
+nr3dseep.save_figure(fig, 'mass_flow')
 
 %% Plot temperature
 
 % Initialize figure
-fig = lib.figure_time_series(xticks, xlimits);
+fig = nr3dseep.figure_time_series(xticks, xlimits);
 % Plot data
 plot(node_red.desktop_time, node_red.material_coriolis_temperature_c, '.k')
 %plot(node_red.desktop_time, node_red.mtec_pumping_chamber_mortar_temperature_c, '.b')
@@ -213,12 +218,12 @@ text1 = "Coriolis sensor: " + round(temp_coriolis.mean*100)/100 + " $\pm$ "+ rou
 text3 = "Printhead: " + round(temp_head.mean*100)/100 + " $\pm$ "+ round(temp_head.std*100)/100;
 legend(text1, text3, 'Location', 'SouthEast', 'interpreter', 'latex')
 % Write figure
-lib.save_figure(fig, 'mortar_temperature')
+nr3dseep.save_figure(fig, 'mortar_temperature')
 
 %% Plot density
 
 % Initialize figure
-fig = lib.figure_time_series(xticks, xlimits);
+fig = nr3dseep.figure_time_series(xticks, xlimits);
 % Plot data
 plot(node_red.desktop_time, node_red.material_coriolis_density_kg_m3, '.k')
 plot(node_red.desktop_time, node_red.material_coriolis_density_filtered_90s_kg_m3, '.b')
@@ -229,12 +234,12 @@ ylabel('Density [kg/m\textsuperscript{3}]', 'interpreter', 'latex')
 % Legend
 legend('Unfiltered', 'Filter E+H 90s', 'Location', 'NorthEast', 'interpreter', 'latex')
 % Write figure
-lib.save_figure(fig, 'density')
+nr3dseep.save_figure(fig, 'density')
 
 %% Plot pump speed
 
 % Initialize figure
-fig = lib.figure_time_series(xticks, xlimits);
+fig = nr3dseep.figure_time_series(xticks, xlimits);
 % Plot data
 plot(node_red.desktop_time, node_red.mtec_pump_speed_actual_rpm, '.k')
 plot(node_red.desktop_time, node_red.mtec_pump_speed_set_rpm, '-r')
@@ -245,12 +250,12 @@ ylabel('Pump speed [RPM]', 'interpreter', 'latex')
 % Legend
 legend('Actual', 'Setpoint (remote control)', 'Location', 'NorthEast', 'interpreter', 'latex')
 % Write figure
-lib.save_figure(fig, 'mortar_pump_speed')
+nr3dseep.save_figure(fig, 'mortar_pump_speed')
 
 %% Plot water temperature
 
 % Initialize figure
-fig = lib.figure_time_series(xticks, xlimits);
+fig = nr3dseep.figure_time_series(xticks, xlimits);
 % Plot data
 plot(node_red.desktop_time, node_red.mtec_water_temp_c, '.k')
 % Limits
@@ -258,12 +263,12 @@ ylim([floor(min(node_red.mtec_water_temp_c)-1), ceil(max(node_red.mtec_water_tem
 % Labels
 ylabel('Water temperature [$^\circ$C]', 'interpreter', 'latex')
 % Write figure
-lib.save_figure(fig, 'water_temperature')
+nr3dseep.save_figure(fig, 'water_temperature')
 
 %% Plot water flow
 
 % Initialize figure
-fig = lib.figure_time_series(xticks, xlimits);
+fig = nr3dseep.figure_time_series(xticks, xlimits);
 % Plot data
 plot(node_red.desktop_time, node_red.mtec_water_water_valve_actual_perc, '.k')
 yyaxis right
@@ -285,12 +290,12 @@ legend('Valve position', 'Water flow', 'Location', 'NorthEast', 'interpreter', '
 % Layout
 set(gca,'YColor',[0,0,0])
 % Write figure
-lib.save_figure(fig, 'water_flow')
+nr3dseep.save_figure(fig, 'water_flow')
 
 %% Ambient temperature and relative humidity
 
 % Initialize figure
-fig = lib.figure_time_series(xticks, xlimits);
+fig = nr3dseep.figure_time_series(xticks, xlimits);
 % Plot data
 plot(node_red.desktop_time, node_red.material_io_ai7_ambient_temperature_c, '.k')
 yyaxis right
@@ -317,12 +322,12 @@ set(gca, 'YColor','k')
 yyaxis right
 set(gca, 'YColor','k')
 % Write figure
-lib.save_figure(fig, 'ambient_temperature')
+nr3dseep.save_figure(fig, 'ambient_temperature')
 
 %% Mixer times ratio (flow prediction)
 
 % Initialize figure
-fig = lib.figure_time_series(xticks, xlimits);
+fig = nr3dseep.figure_time_series(xticks, xlimits);
 % Plot data
 k = 8;
 plot(mixer_data.times, mixer_data.ratio, '.k')
@@ -334,12 +339,12 @@ ylabel('Runtime / interval time', 'interpreter', 'latex')
 % Legend
 legend('Single run', sprintf('Moving mean k=%d', k), 'Location', 'NorthEast', 'interpreter', 'latex')
 % Write figure
-lib.save_figure(fig, 'mixer_times_ratio')
+nr3dseep.save_figure(fig, 'mixer_times_ratio')
 
 %% Mixer times (flow prediction)
 
 % Initialize figure
-fig = lib.figure_time_series(xticks, xlimits);
+fig = nr3dseep.figure_time_series(xticks, xlimits);
 % Plot data
 k = 8;
 plot(mixer_data.times, mixer_data.interval_times, '.k')
@@ -354,12 +359,12 @@ ylabel('Mixer times [seconds]', 'interpreter', 'latex')
 % Legend
 legend('Interval time', sprintf('Interval time mov. mean k=%d', k), 'Runtime', sprintf('Runtime mov. mean k=%d', k), 'Location', 'NorthEast', 'interpreter', 'latex')
 % Write figure
-lib.save_figure(fig, 'mixer_times')
+nr3dseep.save_figure(fig, 'mixer_times')
 
 %% Correlation between temperature and pressure gradient
 
 % Initialize figure
-fig = lib.figure_box();
+fig = nr3dseep.figure_box();
 % Plot data
 plot(node_red.material_coriolis_temperature_c(index1:index2), node_red.pressure_gradient1_bar_m(index1:index2), '.k')
 % Limits
@@ -369,12 +374,12 @@ xlim([floor(min(node_red.material_coriolis_temperature_c(index1:index2))-1), cei
 xlabel('Mortar temperature [$^\circ$C]', 'interpreter', 'latex')
 ylabel('Pressure gradient [bar/m]', 'interpreter', 'latex')
 % Write figure
-lib.save_figure(fig, 'correlation_temp_pressure_gradient')
+nr3dseep.save_figure(fig, 'correlation_temp_pressure_gradient')
 
 %% Correlation between viscocity and pressure gradient
 
 % Initialize figure
-fig = lib.figure_box();
+fig = nr3dseep.figure_box();
 % Plot data
 plot(node_red.material_coriolis_dynamic_viscocity_cp(index1:index2), node_red.pressure_gradient1_bar_m(index1:index2), '.k')
 % Limits
@@ -384,12 +389,12 @@ xlim([0, ceil(max(node_red.material_coriolis_dynamic_viscocity_cp(index1:index2)
 xlabel('Apparent dynamic viscocity [cP]', 'interpreter', 'latex')
 ylabel('Pressure gradient [bar/m]', 'interpreter', 'latex')
 % Write figure
-lib.save_figure(fig, 'correlation_viscocity_pressure_gradient')
+nr3dseep.save_figure(fig, 'correlation_viscocity_pressure_gradient')
 
 %% Correlation between density and pressure gradient
 
 % Initialize figure
-fig = lib.figure_box();
+fig = nr3dseep.figure_box();
 % Plot data
 plot(node_red.material_coriolis_density_kg_m3(index1:index2), node_red.pressure_gradient1_bar_m(index1:index2), '.k')
 plot(node_red.material_coriolis_density_filtered_90s_kg_m3(index1:index2), node_red.pressure_gradient1_bar_m(index1:index2), '.b')
@@ -402,7 +407,7 @@ legend('Unfiltered', 'Filter E+H 90s', 'Location', 'SouthEast', 'interpreter', '
 xlabel('Density [kg/m\textsuperscript{3}]', 'interpreter', 'latex')
 ylabel('Pressure gradient [bar/m]', 'interpreter', 'latex')
 % Write figure
-lib.save_figure(fig, 'correlation_density_pressure_gradient')
+nr3dseep.save_figure(fig, 'correlation_density_pressure_gradient')
 
 %% Runtime
 

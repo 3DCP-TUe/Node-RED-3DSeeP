@@ -1,0 +1,67 @@
+%{
+This file is part of Node-RED-3DSeeP. Node-RED-3DSeeP is licensed under 
+the terms of GNU General Public License as published by the Free Software 
+Foundation. For more information and the LICENSE file, see 
+<https://github.com/3DCP-TUe/Node-RED-3DSeeP>.
+%}
+
+%CALCULATE_TIMETABLE_PROPERTIES Compute basic statistics for a timetable
+%
+%   tab = calculate_timetable_properties(timetab, times, window_start, window_end)
+%   calculates summary statistics (mean, median, standard deviation, min, max)
+%   for each numeric column of a timetable TIMETAB within a specified time window.
+%
+%   Inputs:
+%       timetab      - timetable containing numeric and/or duration variables
+%       times        - vector of time values corresponding to rows of TIMETAB
+%       window_start - start time for analysis window
+%       window_end   - end time for analysis window
+%
+%   Outputs:
+%       tab - table with columns:
+%             'variable' : name of the timetable variable
+%             'mean'     : mean of values in window
+%             'median'   : median of values in window
+%             'std'      : standard deviation of values in window
+%             'min'      : minimum value in window
+%             'max'      : maximum value in window
+%
+%   Notes:
+%       - Columns of type duration are ignored.
+%       - NaN values are automatically omitted from calculations.
+function tab = calculate_timetable_properties(timetab, ...
+        times, window_start, window_end)
+    
+    % Find indices for the window
+    [~, index1] = min(abs(times - window_start));
+    [~, index2] = min(abs(times - window_end));
+    
+    % Extract relevant rows
+    selected = timetab(index1:index2, :);
+    
+    % Find columns with 'duration' type
+    duration_columns = varfun(@(x) isa(x, 'duration'), selected, 'OutputFormat', 'uniform');
+    selected(:, duration_columns) = [];
+    
+    % Calculate statistics
+    mean_values = varfun(@(x) mean(x, 'omitnan'), selected);
+    median_values = varfun(@(x) median(x, 'omitnan'), selected);
+    std_values = varfun(@(x) std(x, 'omitnan'), selected);
+    min_values = varfun(@(x) min(x, [], 'omitnan'), selected);
+    max_values = varfun(@(x) max(x, [], 'omitnan'), selected);
+    
+    % Extract variable names (column names of timetab)
+    column_names = selected.Properties.VariableNames';
+    
+    % Convert tables to arrays for easier concatenation
+    mean_values = mean_values{:,:}';
+    median_values = median_values{:,:}';
+    std_values = std_values{:,:}';
+    min_values = min_values{:,:}';
+    max_values = max_values{:,:}';
+    
+    % Create final table with desired structure
+    tab = table(column_names, mean_values, median_values, ...
+        std_values, min_values, max_values, ...
+        'VariableNames', {'variable', 'mean', 'median', 'std', 'min', 'max'});
+end
