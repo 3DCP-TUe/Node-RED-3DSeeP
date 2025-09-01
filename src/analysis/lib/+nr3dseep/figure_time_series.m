@@ -1,16 +1,22 @@
-%{
-This file is part of Node-RED-3DSeeP. Node-RED-3DSeeP is licensed under 
-the terms of GNU General Public License as published by the Free Software 
-Foundation. For more information and the LICENSE file, see 
-<https://github.com/3DCP-TUe/Node-RED-3DSeeP>.
-%}
+% SPDX-License-Identifier: GPL-3.0-or-later
+% Node-RED-3DSeeP
+% Project: https://github.com/3DCP-TUe/Node-RED-3DSeeP
+%
+% Copyright (c) 2024-2025 Endhoven University of Technology
+%
+% Authors:
+%   - Arjen Deetman (2024-2025)
+%
+% For license details, see the LICENSE file in the project root.
 
+function fig = figure_time_series(xticks, xlimits)
 %FIGURE_TIME_SERIES Creates a time-series figure with custom x-axis ticks
 %   fig = figure_time_series(xticks, xlimits)
 %       - xticks: array of datetime values for x-axis ticks
 %       - xlimits: two-element datetime array defining x-axis limits
-function fig = figure_time_series(xticks, xlimits)
-    
+
+%------------- BEGIN CODE --------------
+
     % Initialize figure
     fig = figure;
     hold on

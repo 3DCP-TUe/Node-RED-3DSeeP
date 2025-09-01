@@ -1,10 +1,15 @@
-%{
-This file is part of Node-RED-3DSeeP. Node-RED-3DSeeP is licensed under 
-the terms of GNU General Public License as published by the Free Software 
-Foundation. For more information and the LICENSE file, see 
-<https://github.com/3DCP-TUe/Node-RED-3DSeeP>.
-%}
+% SPDX-License-Identifier: GPL-3.0-or-later
+% Node-RED-3DSeeP
+% Project: https://github.com/3DCP-TUe/Node-RED-3DSeeP
+%
+% Copyright (c) 2024-2025 Endhoven University of Technology
+%
+% Authors:
+%   - Arjen Deetman (2024-2025)
+%
+% For license details, see the LICENSE file in the project root.
 
+function data = add_missing_columns(data)
 %ADD_MISSING_COLUMNS Adds default columns to a table if missing
 %
 %   data = add_missing_columns(data) checks if certain expected columns
@@ -25,8 +30,9 @@ Foundation. For more information and the LICENSE file, see
 %   Notes:
 %       The function assumes that if 'printhead_pressure_bar' is missing,
 %       'printhead_box1_io_ai0_ma' exists to compute its values.
-function data = add_missing_columns(data)
-    
+
+%------------- BEGIN CODE --------------
+
     % Printhead: pressure
     if ~any(strcmp(data.Properties.VariableNames, ...
             'printhead_pressure_bar'))

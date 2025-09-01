@@ -1,16 +1,22 @@
-%{
-This file is part of Node-RED-3DSeeP. Node-RED-3DSeeP is licensed under 
-the terms of GNU General Public License as published by the Free Software 
-Foundation. For more information and the LICENSE file, see 
-<https://github.com/3DCP-TUe/Node-RED-3DSeeP>.
-%}
+% SPDX-License-Identifier: GPL-3.0-or-later
+% Node-RED-3DSeeP
+% Project: https://github.com/3DCP-TUe/Node-RED-3DSeeP
+%
+% Copyright (c) 2024-2025 Endhoven University of Technology
+%
+% Authors:
+%   - Arjen Deetman (2024-2025)
+%
+% For license details, see the LICENSE file in the project root.
 
+function floored = floor_to_nearest(d, m)
 %FLOOR_TO_NEAREST Floors a duration to the nearest interval in minutes
 %   floored = floor_to_nearest(d, m)
 %       - d: duration or array of durations
 %       - m: interval in minutes
-function floored = floor_to_nearest(d, m)
-    
+
+%------------- BEGIN CODE --------------
+
     % Convert the duration to total minutes
     total_minutes = minutes(d);
     

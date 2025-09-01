@@ -1,10 +1,15 @@
-%{
-This file is part of Node-RED-3DSeeP. Node-RED-3DSeeP is licensed under 
-the terms of GNU General Public License as published by the Free Software 
-Foundation. For more information and the LICENSE file, see 
-<https://github.com/3DCP-TUe/Node-RED-3DSeeP>.
-%}
+% SPDX-License-Identifier: GPL-3.0-or-later
+% Node-RED-3DSeeP
+% Project: https://github.com/3DCP-TUe/Node-RED-3DSeeP
+%
+% Copyright (c) 2024-2025 Endhoven University of Technology
+%
+% Authors:
+%   - Arjen Deetman (2024-2025)
+%
+% For license details, see the LICENSE file in the project root.
 
+function tab = mixer_times(time, bools) 
 % MIXER_TIMES Calculate mixer run durations, intervals, and duty ratios
 %
 %   tab = MIXER_TIMES(time, bools) analyzes a binary mixer signal to
@@ -34,8 +39,9 @@ Foundation. For more information and the LICENSE file, see
 %       t = datetime(2025,8,20,12,0,0) + minutes(0:10:120);
 %       b = [0 1 1 0 0 1 0 1 1 0 0 0 1]';
 %       tab = mixer_times(t, b)
-function tab = mixer_times(time, bools) 
-    
+
+%------------- BEGIN CODE --------------
+ 
     % Remove NaN values
     valid_indices = ~isnan(bools);
     bools_filtered = bools(valid_indices);

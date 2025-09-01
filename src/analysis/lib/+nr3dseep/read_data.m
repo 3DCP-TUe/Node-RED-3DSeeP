@@ -1,10 +1,16 @@
-%{
-This file is part of Node-RED-3DSeeP. Node-RED-3DSeeP is licensed under 
-the terms of GNU General Public License as published by the Free Software 
-Foundation. For more information and the LICENSE file, see 
-<https://github.com/3DCP-TUe/Node-RED-3DSeeP>.
-%}
+% SPDX-License-Identifier: GPL-3.0-or-later
+% Node-RED-3DSeeP
+% Project: https://github.com/3DCP-TUe/Node-RED-3DSeeP
+%
+% Copyright (c) 2024-2025 Endhoven University of Technology
+%
+% Authors:
+%   - Derk Bos (2024)
+%   - Arjen Deetman (2024-2025)
+%
+% For license details, see the LICENSE file in the project root.
 
+function [data] = read_data(directory)
 % READ_DATA Read and concatenate CSV files from a folder
 %
 %   data = READ_DATA(directory) reads all CSV files in the specified
@@ -24,8 +30,9 @@ Foundation. For more information and the LICENSE file, see
 %
 %   Example:
 %       data = read_data('C:\Users\Username\DataFolder');
-function [data] = read_data(directory)
-    
+
+%------------- BEGIN CODE --------------
+
     % Check if the directory exists
     if ~isfolder(directory)
         error('ERROR: The specified directory does not exist.');

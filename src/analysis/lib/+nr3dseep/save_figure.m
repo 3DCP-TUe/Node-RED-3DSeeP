@@ -1,10 +1,15 @@
-%{
-This file is part of Node-RED-3DSeeP. Node-RED-3DSeeP is licensed under 
-the terms of GNU General Public License as published by the Free Software 
-Foundation. For more information and the LICENSE file, see 
-<https://github.com/3DCP-TUe/Node-RED-3DSeeP>.
-%}
+% SPDX-License-Identifier: GPL-3.0-or-later
+% Node-RED-3DSeeP
+% Project: https://github.com/3DCP-TUe/Node-RED-3DSeeP
+%
+% Copyright (c) 2024-2025 Endhoven University of Technology
+%
+% Authors:
+%   - Arjen Deetman (2024-2025)
+%
+% For license details, see the LICENSE file in the project root.
 
+function [] = save_figure(fig, name) 
 % SAVE_FIGURE Save a figure as a PDF file
 %
 %   SAVE_FIGURE(fig, name) saves the specified figure to a PDF file with
@@ -18,8 +23,9 @@ Foundation. For more information and the LICENSE file, see
 %   Example:
 %       fig = figure; plot(1:10, rand(1,10));
 %       save_figure(fig, 'my_plot.pdf');
-% Write figure
-function [] = save_figure(fig, name) 
+
+%------------- BEGIN CODE --------------
+
     width = fig.Position(3);
     height = fig.Position(4);
     set(gcf, 'PaperPosition', [0 0 width height]);

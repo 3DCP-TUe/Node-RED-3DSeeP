@@ -1,3 +1,15 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Node-RED-3DSeeP
+// Project: https://github.com/3DCP-TUe/Node-RED-3DSeeP
+//
+// Copyright (c) 2021-2025 Endhoven University of Technology
+//
+// Authors:
+//  - Derk Bos (2021-2023)
+//  - Arjen Deetman (2024-2025)
+//
+// For license details, see the LICENSE file in the project root.
+
 global.set("name",msg.payload);
 var data ="desktop_time,"+
 
