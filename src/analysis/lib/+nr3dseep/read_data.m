@@ -2,7 +2,7 @@
 % Node-RED-3DSeeP
 % Project: https://github.com/3DCP-TUe/Node-RED-3DSeeP
 %
-% Copyright (c) 2024-2025 Endhoven University of Technology
+% Copyright (c) 2024-2025 Eindhoven University of Technology
 %
 % Authors:
 %   - Derk Bos (2024)
