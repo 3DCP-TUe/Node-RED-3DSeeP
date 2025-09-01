@@ -10,19 +10,30 @@
 % For license details, see the LICENSE file in the project root.
 
 function [] = save_figure(fig, name) 
-% SAVE_FIGURE Save a figure as a PDF file
+%SAVE_FIGURE Save a figure as a PDF file
 %
-%   SAVE_FIGURE(fig, name) saves the specified figure to a PDF file with
-%   the given filename. The figure's paper size is adjusted to match its
-%   on-screen dimensions to preserve layout.
+% This function saves the specified figure to a PDF file. The paper size 
+% of the figure is automatically adjusted to match its on-screen 
+% dimensions, ensuring that the exported PDF preserves the layout. 
 %
-%   Input:
-%       fig  - Handle to the figure to save
-%       name - Name of the output PDF file (e.g., 'figure1.pdf')
+% Syntax: save_figure(fig, name) 
 %
-%   Example:
-%       fig = figure; plot(1:10, rand(1,10));
-%       save_figure(fig, 'my_plot.pdf');
+% Inputs:
+%   fig  - MATLAB figure handle to be saved
+%   name - string or character vector specifying the name of the output 
+%          PDF file (e.g., 'figure1.pdf')
+%
+% Outputs:
+%   (none)
+%
+% Notes:
+%   - The file is always saved in PDF format regardless of the extension 
+%     provided in `name`.
+%   - The paper size is set in inches to match the figure’s on-screen size.
+%
+% Example:
+%   fig = figure; plot(1:10, rand(1,10));
+%   save_figure(fig, 'my_plot.pdf');
 
 %------------- BEGIN CODE --------------
 

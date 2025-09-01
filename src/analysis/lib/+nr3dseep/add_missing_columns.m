@@ -12,24 +12,26 @@
 function data = add_missing_columns(data)
 %ADD_MISSING_COLUMNS Adds default columns to a table if missing
 %
-%   data = add_missing_columns(data) checks if certain expected columns
-%   exist in the input table DATA. If a column is missing, it is added
-%   with default values:
-%       - 'printhead_pressure_bar' : calculated from 'printhead_box1_io_ai0_ma'
-%       - 'printhead_mortar_temperature_c' : zeros
-%       - 'mai_pumping_chamber_mortar_temperature_c' : zeros
-%       - 'mai_silo_dry_mortar_temperature_c' : zeros
-%       - 'mai_water_temp_mixer_inlet_c' : zeros
+% This function checks if certain expected columns
+% exist in the input table DATA. If a column is missing, it is added
+% with default values:
+%   - 'printhead_pressure_bar' : calculated from 'printhead_box1_io_ai0_ma'
+%   - 'printhead_mortar_temperature_c' : zeros
+%   - 'mai_pumping_chamber_mortar_temperature_c' : zeros
+%   - 'mai_silo_dry_mortar_temperature_c' : zeros
+%   - 'mai_water_temp_mixer_inlet_c' : zeros
 %
-%   Inputs:
-%       data - MATLAB table containing process or sensor data
+% Syntax: data = add_missing_columns(data) 
 %
-%   Outputs:
-%       data - table with missing columns added and initialized
+% Inputs:
+%   data - MATLAB table containing process or sensor data
 %
-%   Notes:
-%       The function assumes that if 'printhead_pressure_bar' is missing,
-%       'printhead_box1_io_ai0_ma' exists to compute its values.
+% Outputs:
+%   data - table with missing columns added and initialized
+%
+% Notes:
+%   - The function assumes that if 'printhead_pressure_bar' is missing,
+%     'printhead_box1_io_ai0_ma' exists to compute its values.
 
 %------------- BEGIN CODE --------------
 

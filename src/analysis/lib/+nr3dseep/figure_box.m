@@ -11,12 +11,24 @@
 
 function fig = figure_box()
 %FIGURE_BOX Creates a figure with predefined layout and styling
-%   fig = figure_box() returns a figure handle with:
-%       - grid and box on
-%       - font size 24
-%       - black axes lines
-%       - paper and figure size set to 4^(3/2) x 3^(3/2) inches
-
+%
+% This function generates a MATLAB figure with consistent formatting for 
+% plotting. The figure is initialized with grid lines, boxed axes, large 
+% font size, and black axis colors. Paper and figure size are set to 
+% 4^(3/2) x 3^(3/2) inches for standardized export.
+%
+% Syntax: fig = figure_box() 
+%
+% Inputs:
+%   (none)
+%
+% Outputs:
+%   fig - MATLAB figure handle for the generated plot
+%
+% Notes:
+%   - The figure dimensions are fixed for consistent appearance across plots.
+%   - Units are set to inches to ensure correct sizing for publications.
+ 
 %------------- BEGIN CODE --------------
 
     fig = figure;

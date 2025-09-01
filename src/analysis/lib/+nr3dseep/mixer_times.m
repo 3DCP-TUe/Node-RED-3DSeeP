@@ -10,35 +10,38 @@
 % For license details, see the LICENSE file in the project root.
 
 function tab = mixer_times(time, bools) 
-% MIXER_TIMES Calculate mixer run durations, intervals, and duty ratios
+%MIXER_TIMES Calculate mixer run durations, intervals, and duty ratios
 %
-%   tab = MIXER_TIMES(time, bools) analyzes a binary mixer signal to
-%   compute the start times of mixer runs, durations of each run, intervals
-%   between runs, and the duty ratio (runtime / interval).
+% This function analyzes a binary mixer signal to compute the start 
+% times of mixer runs, the duration of each run, the interval between 
+% consecutive runs, and the duty ratio (runtime / interval). The results 
+% are returned in a table.
 %
-%   Inputs:
-%       time  - Nx1 datetime or duration vector representing time points
-%       bools - Nx1 logical or numeric vector (0 or 1) representing mixer
-%               on/off states at each time point
+% Syntax: tab = mixer_times(time, bools) 
 %
-%   Output:
-%       tab - Table with the following columns:
-%           times          : start time of each mixer run (duration or datetime)
-%           interval_times : interval in seconds between consecutive runs
-%           runtimes       : duration of each mixer run in seconds
-%           ratio          : duty ratio (runtimes ./ interval_times)
+% Inputs:
+%   time  - Nx1 duration vector representing time points
+%   bools - Nx1 logical or numeric vector (0 or 1) indicating mixer 
+%           on/off states at each time point
 %
-%   Notes:
-%       - NaN values in `bools` are ignored.
-%       - The first and last points are forced to 0 (mixer off) to ensure
-%         proper calculation of intervals and runtimes.
-%       - The last row of the output table is removed to avoid incomplete
-%         interval/runs.
+% Outputs:
+%   tab - MATLAB table with the following variables:
+%       times          - start time of each mixer run (duration)
+%       interval_times - interval between consecutive runs (seconds)
+%       runtimes       - duration of each mixer run (seconds)
+%       ratio          - duty ratio (runtimes ./ interval_times)
 %
-%   Example:
-%       t = datetime(2025,8,20,12,0,0) + minutes(0:10:120);
-%       b = [0 1 1 0 0 1 0 1 1 0 0 0 1]';
-%       tab = mixer_times(t, b)
+% Notes:
+%   - NaN values in `bools` are removed prior to analysis.
+%   - The first and last states are forced to 0 (mixer off) to ensure 
+%     correct interval calculations.
+%   - The last row of the output table is removed to avoid incomplete 
+%     intervals or runs.
+%
+% Example:
+%   t = duration(12,0,0) + minutes(0:10:120);
+%   b = [0 1 1 0 0 1 0 1 1 0 0 0 1]';
+%   tab = mixer_times(t, b)
 
 %------------- BEGIN CODE --------------
  

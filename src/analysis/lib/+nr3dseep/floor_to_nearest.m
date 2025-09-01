@@ -11,9 +11,31 @@
 
 function floored = floor_to_nearest(d, m)
 %FLOOR_TO_NEAREST Floors a duration to the nearest interval in minutes
-%   floored = floor_to_nearest(d, m)
-%       - d: duration or array of durations
-%       - m: interval in minutes
+%
+% This function takes a duration (or array of durations) and floors each 
+% value to the nearest lower multiple of the specified minute interval M. 
+% The output is returned as a duration object.
+%
+% Syntax: floored = floor_to_nearest(d, m) 
+%
+% Inputs:
+%   d - duration or array of durations to be floored
+%   m - positive scalar specifying the flooring interval in minutes
+%
+% Outputs:
+%   floored - duration (or array of durations) floored to the nearest 
+%             multiple of M minutes
+%
+% Notes:
+%   - The flooring operation always rounds down to the nearest multiple 
+%     of M minutes.
+%   - If M does not evenly divide an hour, the resulting minutes will wrap 
+%     correctly using modulo arithmetic.
+%
+% Example:
+%   d = duration(2, 17, 0); % 2 hours 17 minutes
+%   floored = floor_to_nearest(d, 15);
+%   % floored = 2 hours 15 minutes
 
 %------------- BEGIN CODE --------------
 

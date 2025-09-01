@@ -10,11 +10,17 @@
 % For license details, see the LICENSE file in the project root.
 
 function table = correction_analog_inputs(table)
-%CORRECTION_ANALOG_INPUTS Corrects pre-v0.4.0 analog input conversion
-%   Before v0.4.0 (Aug 12, 2024)
-%   table = correction_analog_inputs(table) applies the correction
-%   formula to pressure columns and analog input channels.
-%   Ensures a 'date' column exists in the table.
+%CORRECTION_ANALOG_INPUTS Corrects pre-v0.4.0 (Aug 12, 2024) analog input conversion
+%
+% This function applies the correction formula to pressure columns and analog input channels.
+%
+% Syntax: table = correction_analog_inputs(table)
+% 
+% Inputs:
+%   table - Table to correct.
+% 
+% Outputs:
+%   table - Corrected table. 
 
 %------------- BEGIN CODE --------------
 

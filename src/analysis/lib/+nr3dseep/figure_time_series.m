@@ -11,9 +11,25 @@
 
 function fig = figure_time_series(xticks, xlimits)
 %FIGURE_TIME_SERIES Creates a time-series figure with custom x-axis ticks
-%   fig = figure_time_series(xticks, xlimits)
-%       - xticks: array of datetime values for x-axis ticks
-%       - xlimits: two-element datetime array defining x-axis limits
+%
+% This function generates a MATLAB figure preformatted for time-series
+% plotting. The figure has grid lines, boxed axes, large font size,
+% and a paper size suitable for publication. The x-axis ticks are 
+% formatted as clock time ('HH:MM').
+%
+% Syntax: fig = figure_time_series(xticks, xlimits) 
+%
+% Inputs:
+%   xticks  - duration values used as x-axis tick positions
+%   xlimits - two-element duration array defining the x-axis limits
+%
+% Outputs:
+%   fig - MATLAB figure handle for the generated plot
+%
+% Notes:
+%   - A temporary dummy plot is used to enable correct tick labeling 
+%     before actual data is plotted.
+%   - The figure size is set in inches for consistent export behavior.
 
 %------------- BEGIN CODE --------------
 

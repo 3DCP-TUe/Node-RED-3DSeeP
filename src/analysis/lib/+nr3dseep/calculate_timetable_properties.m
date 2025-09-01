@@ -9,32 +9,32 @@
 %
 % For license details, see the LICENSE file in the project root.
 
-function tab = calculate_timetable_properties(timetab, ...
-        times, window_start, window_end)
+function tab = calculate_timetable_properties(timetab, times, window_start, window_end)
 %CALCULATE_TIMETABLE_PROPERTIES Compute basic statistics for a timetable
 %
-%   tab = calculate_timetable_properties(timetab, times, window_start, window_end)
-%   calculates summary statistics (mean, median, standard deviation, min, max)
-%   for each numeric column of a timetable TIMETAB within a specified time window.
+% This function calculates summary statistics (mean, median, standard deviation, min, max)
+% for each numeric column of a timetable TIMETAB within a specified time window.
 %
-%   Inputs:
-%       timetab      - timetable containing numeric and/or duration variables
-%       times        - vector of time values corresponding to rows of TIMETAB
-%       window_start - start time for analysis window
-%       window_end   - end time for analysis window
+% Syntax: tab = calculate_timetable_properties(timetab, times, window_start, window_end)
 %
-%   Outputs:
-%       tab - table with columns:
-%             'variable' : name of the timetable variable
-%             'mean'     : mean of values in window
-%             'median'   : median of values in window
-%             'std'      : standard deviation of values in window
-%             'min'      : minimum value in window
-%             'max'      : maximum value in window
+% Inputs:
+%   timetab      - timetable containing numeric and/or duration variables
+%   times        - vector of time values corresponding to rows of TIMETAB
+%   window_start - start time for analysis window
+%   window_end   - end time for analysis window
 %
-%   Notes:
-%       - Columns of type duration are ignored.
-%       - NaN values are automatically omitted from calculations.
+% Outputs:
+%   tab - table with columns:
+%           - 'variable' : name of the timetable variable
+%           - 'mean'     : mean of values in window
+%           - 'median'   : median of values in window
+%           - 'std'      : standard deviation of values in window
+%           - 'min'      : minimum value in window
+%           - 'max'      : maximum value in window
+%
+% Notes:
+%   - Columns of type duration are ignored.
+%   - NaN values are automatically omitted from calculations.
 
 %------------- BEGIN CODE --------------
 

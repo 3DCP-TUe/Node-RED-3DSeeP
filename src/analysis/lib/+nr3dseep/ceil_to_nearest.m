@@ -12,15 +12,17 @@
 function ceiled = ceil_to_nearest(d, m)   
 %CEIL_TO_NEAREST Ceil a duration to the nearest multiple of m minutes
 %
-%   ceiled = ceil_to_nearest(d, m) returns a duration array where each
-%   element of d is rounded up to the nearest multiple of m minutes.
+% This function returns a duration array where each
+% element of d is rounded up to the nearest multiple of m minutes.
 %
-%   Inputs:
-%       d - duration array
-%       m - interval in minutes to ceil to (positive scalar)
+% Syntax: ceiled = ceil_to_nearest(d, m) 
 %
-%   Output:
-%       ceiled - duration array with values ceiled to nearest m minutes
+% Inputs:
+%   d - duration array
+%   m - interval in minutes to ceil to (positive scalar)
+%
+% Output:
+%   ceiled - duration array with values ceiled to nearest m minutes
 
 %------------- BEGIN CODE --------------
 

@@ -11,25 +11,29 @@
 % For license details, see the LICENSE file in the project root.
 
 function [data] = read_data(directory)
-% READ_DATA Read and concatenate CSV files from a folder
+%READ_DATA Read and concatenate CSV files from a folder
 %
-%   data = READ_DATA(directory) reads all CSV files in the specified
-%   directory and concatenates them into a single table, excluding any
-%   files whose names contain "EventComments".
+% This function reads all CSV files in the specified directory and 
+% concatenates them into a single table. Files whose names contain 
+% "EventComments" are excluded from the import.
 %
-%   Input:
-%       directory - Path to the folder containing CSV files
+% Syntax: data = read_data(directory) 
 %
-%   Output:
-%       data - Table containing the concatenated contents of all CSV files
+% Inputs:
+%   directory - string or character vector specifying the path to the 
+%               folder containing CSV files
 %
-%   Notes:
-%       - The function throws an error if the folder does not exist or if
-%         no CSV files are found.
-%       - Files containing "EventComments" in their name are skipped.
+% Outputs:
+%   data - MATLAB table containing the concatenated contents of all 
+%          eligible CSV files
 %
-%   Example:
-%       data = read_data('C:\Users\Username\DataFolder');
+% Notes:
+%   - An error is thrown if the specified folder does not exist.
+%   - An error is thrown if no `.csv` files are found in the folder.
+%   - Files containing "EventComments" in their name are skipped.
+%
+% Example:
+%   data = read_data('C:\Users\Username\DataFolder');
 
 %------------- BEGIN CODE --------------
 
