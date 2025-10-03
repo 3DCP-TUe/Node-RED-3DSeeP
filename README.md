@@ -1,6 +1,6 @@
 # Node-RED 3DSeeP
 
-General dashboard and data logger for the 3D concrete printer in the [Structures Laboratory](https://www.tue.nl/en/research/research-labs/structures-laboratory) at [Eindhoven University of Technology](https://www.tue.nl/en/). 
+Node-RED 3DSeeP is a dashboard and data logging platform for the modular 3D concrete printing system in the [Structures Laboratory](https://www.tue.nl/en/research/research-labs/structures-laboratory) at [Eindhoven University of Technology](https://www.tue.nl/en/). It provides real-time monitoring, visualization, and logging of system parameters, allowing researchers to track, analyze, and optimize the printing process. The platform also enables manual control through a user interface and automates certain control logics, such as synchronizing multiple dosing systems. Node-RED 3DSeeP primarily relies on the OPC Unified Architecture (OPC UA) framework to communicate with and collect data from the various OPC UA servers distributed across the system.
 
 ## Installation
 
