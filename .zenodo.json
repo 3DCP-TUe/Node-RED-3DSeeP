@@ -31,9 +31,11 @@
 
 	"keywords": [
 		"3DCP",
-		"3d concrete printing",
-		"data logging",
-		"dashboard"
+		"3D Concrete Printing",
+		"Node-RED",
+		"Data logging",
+		"Dashboard",
+		"Real-time monitoring"
 	],
 
 	"upload_type": "software"
