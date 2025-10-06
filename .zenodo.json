@@ -15,11 +15,11 @@
 	"contributors": [
 	   	{
 			"name": "Papp, Benedek",
-			"role": "Other"
+			"type": "Other"
 		},
 		{
 			"name": "van der Horst, Martijn",
-			"role": "Other"
+			"type": "Other"
 		}
 	],
 
