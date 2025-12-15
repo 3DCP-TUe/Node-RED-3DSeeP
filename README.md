@@ -77,6 +77,23 @@ Contributors:
 Technical support:
 - Siemens Digital Industries
 
+## How to cite
+
+For general references to this software package, the Zenodo record can be cited. The BibTeX entry is provided below:
+
+```bibtex
+@misc{NodeRED3DSeeP_Zenodo,
+    title = {{N}ode-{RED} {3DS}ee{P}: {A} {N}ode-{RED}-based dashboard and data logger for 3{D} concrete printing},
+    author = {A. Deetman and D. Bos},
+    publisher = {Zenodo},
+    year = {2025},
+    doi = {10.5281/zenodo.17278615},
+    note = {Zenodo. doi:10.5281/zenodo.17278615}
+}
+```
+
+On our [Zenodo page](https://doi.org/10.5281/zenodo.17278615), you can find how to cite specific versions of the software.
+
 ## Funding
 
 This software could be developed and maintained with the financial support of the following projects:
