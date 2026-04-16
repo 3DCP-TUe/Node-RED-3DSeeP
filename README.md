@@ -1,5 +1,12 @@
 # Node-RED 3DSeeP
 
+<p align="left"> 
+  <img src="https://img.shields.io/github/v/release/3DCP-TUe/Node-RED-3DSeeP?label=stable">
+  <img src="https://img.shields.io/github/v/release/3DCP-TUe/Node-RED-3DSeeP?label=latest&include_prereleases">
+  <img src="https://img.shields.io/github/license/3DCP-TUe/Node-RED-3DSeeP?">
+  <a href="https://zenodo.org/doi/10.5281/zenodo.17278615"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.17278615.svg" alt="DOI"></a>
+</p>
+
 Node-RED 3DSeeP is a dashboard and data logging platform for the modular 3D concrete printing system in the [Structures Laboratory](https://www.tue.nl/en/research/research-labs/structures-laboratory) at [Eindhoven University of Technology](https://www.tue.nl/en/). It provides real-time monitoring, visualization, and logging of system parameters, allowing researchers to track, analyze, and optimize the printing process. The platform also enables manual control through a user interface and automates certain control logics, such as synchronizing multiple dosing systems. Node-RED 3DSeeP primarily relies on the OPC Unified Architecture (OPC UA) framework to communicate with and collect data from the various OPC UA servers distributed across the system.
 
 ## Installation
@@ -69,6 +76,23 @@ Contributors:
 
 Technical support:
 - Siemens Digital Industries
+
+## How to cite
+
+For general references to this software package, the Zenodo record can be cited. The BibTeX entry is provided below:
+
+```bibtex
+@misc{NodeRED3DSeeP_Zenodo,
+    title = {{N}ode-{RED} {3DS}ee{P}: {A} {N}ode-{RED}-based dashboard and data logger for 3{D} concrete printing},
+    author = {A. Deetman and D. Bos},
+    publisher = {Zenodo},
+    year = {2025},
+    doi = {10.5281/zenodo.17278615},
+    note = {Zenodo. doi:10.5281/zenodo.17278615}
+}
+```
+
+On our [Zenodo page](https://doi.org/10.5281/zenodo.17278615), you can find how to cite specific versions of the software.
 
 ## Funding
 

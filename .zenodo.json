@@ -14,11 +14,13 @@
 
 	"contributors": [
 	   	{
-		      	"name": "Papp, Benedek"
+			"name": "Papp, Benedek",
+			"type": "Other"
 		},
-	    	{
-	     	 	"name": "van der Horst, Martijn"
-	    	}
+		{
+			"name": "van der Horst, Martijn",
+			"type": "Other"
+		}
 	],
 
 	"access_right": "open",
@@ -33,7 +35,7 @@
 		"3DCP",
 		"3D concrete printing",
 		"3D printing",
-		"Additive manufacturing"
+		"Additive manufacturing",
 		"Node-RED",
 		"Data logging",
 		"Dashboard",
