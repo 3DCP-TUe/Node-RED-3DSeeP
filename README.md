@@ -13,17 +13,17 @@ Node-RED 3DSeeP is a dashboard and data logging platform for the modular 3D conc
 
 Install Node-RED:
 
-- [Node-RED](https://nodered.org/) v3.1.9
-- [Node.js](https://nodejs.org/en) v20.13.0
+- [Node-RED](https://nodered.org/) v4.1.8
+- [Node.js](https://nodejs.org/en) v24.15.0
 
 Install the following packages:
 
-- [node-red-contrib-boolean-logic-ultimate](https://flows.nodered.org/node/node-red-contrib-boolean-logic-ultimate) v1.1.9
+- [node-red-contrib-boolean-logic-ultimate](https://flows.nodered.org/node/node-red-contrib-boolean-logic-ultimate) v1.2.9
 - [node-red-contrib-fs](https://flows.nodered.org/node/node-red-contrib-fs) v1.4.1
 - [node-red-contrib-moment](https://flows.nodered.org/node/node-red-contrib-moment) v5.0.0
 - [node-red-contrib-opcua](https://flows.nodered.org/node/node-red-contrib-opcua) v0.2.328
 - [node-red-contrib-throttle](https://flows.nodered.org/node/node-red-contrib-throttle) v0.1.7
-- [node-red-contrib-dashboard](https://flows.nodered.org/node/node-red-dashboard) v3.6.5
+- [node-red-contrib-dashboard](https://flows.nodered.org/node/node-red-dashboard) v3.6.6
 
 You can start Node-RED by typing `node-red` in the command window and access it at:
 
