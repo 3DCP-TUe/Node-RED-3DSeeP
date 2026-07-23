@@ -22,6 +22,14 @@
         "info": ""
     },
     {
+        "id": "db1d72e1be729b35",
+        "type": "tab",
+        "label": "Silo control",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "a71eb2e3d73a904d",
         "type": "tab",
         "label": "Gantry: Read values",
@@ -97,14 +105,6 @@
         "id": "09f74a936e34ed02",
         "type": "tab",
         "label": "M-tec: Write values",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
-        "id": "db1d72e1be729b35",
-        "type": "tab",
-        "label": "M-tec: Silo control",
         "disabled": false,
         "info": "",
         "env": []
@@ -1358,7 +1358,7 @@
         "id": "38aedf17fb117e34",
         "type": "ui_group",
         "name": "Silo",
-        "tab": "4809d57f0b02fac6",
+        "tab": "53571d4d81ebd061",
         "order": 6,
         "disp": true,
         "width": "6",
@@ -1436,16 +1436,6 @@
         "group": "66c90c1b5490c19b",
         "order": 6,
         "width": 27,
-        "height": 1
-    },
-    {
-        "id": "376b4fcd069cd7d0",
-        "type": "ui_spacer",
-        "z": "830497da8cdf302a",
-        "name": "spacer",
-        "group": "d5be84c8a2a9dbe3",
-        "order": 7,
-        "width": 6,
         "height": 1
     },
     {
@@ -2152,36 +2142,6 @@
         "className": ""
     },
     {
-        "id": "019500b17be5de46",
-        "type": "ui_spacer",
-        "z": "830497da8cdf302a",
-        "name": "spacer",
-        "group": "53d83661cfcefa23",
-        "order": 3,
-        "width": 27,
-        "height": 1
-    },
-    {
-        "id": "cc664f48d4ca29a8",
-        "type": "ui_spacer",
-        "z": "830497da8cdf302a",
-        "name": "spacer",
-        "group": "53d83661cfcefa23",
-        "order": 6,
-        "width": 27,
-        "height": 1
-    },
-    {
-        "id": "6c84f26e531775f5",
-        "type": "ui_spacer",
-        "z": "830497da8cdf302a",
-        "name": "spacer",
-        "group": "53d83661cfcefa23",
-        "order": 9,
-        "width": 27,
-        "height": 1
-    },
-    {
         "id": "c8ce7e0b23e5207f",
         "type": "ui_spacer",
         "z": "5303b788a046f513",
@@ -2202,6 +2162,65 @@
         "height": 1
     },
     {
+        "id": "27dc54d4b3c4eda1",
+        "type": "ui_tab",
+        "name": "EPC",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "2e49adcc26d76ec1",
+        "type": "ui_group",
+        "name": "Pressure",
+        "tab": "27dc54d4b3c4eda1",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "eb537c49069a580c",
+        "type": "ui_spacer",
+        "z": "db1d72e1be729b35",
+        "name": "spacer",
+        "group": "53d83661cfcefa23",
+        "order": 3,
+        "width": 27,
+        "height": 1
+    },
+    {
+        "id": "d79241ee897afc11",
+        "type": "ui_spacer",
+        "z": "db1d72e1be729b35",
+        "name": "spacer",
+        "group": "53d83661cfcefa23",
+        "order": 6,
+        "width": 27,
+        "height": 1
+    },
+    {
+        "id": "3c2f5412f6858eb7",
+        "type": "ui_spacer",
+        "z": "db1d72e1be729b35",
+        "name": "spacer",
+        "group": "53d83661cfcefa23",
+        "order": 9,
+        "width": 27,
+        "height": 1
+    },
+    {
+        "id": "89a8288fdeda95a7",
+        "type": "ui_spacer",
+        "z": "db1d72e1be729b35",
+        "name": "spacer",
+        "group": "d5be84c8a2a9dbe3",
+        "order": 7,
+        "width": 6,
+        "height": 1
+    },
+    {
         "id": "1deaa966069ed1b9",
         "type": "ui_template",
         "z": "830497da8cdf302a",
@@ -2210,7 +2229,7 @@
         "order": 2,
         "width": 0,
         "height": 0,
-        "format": "<script id=\"titleScript\" type=\"text/javascript\">\n$(function() {\n    if ($('.md-toolbar-tools').length != 0) {\n        loadToolbarItems();\n    } else {\n        setTimeout(loadToolbarItems, 500);\n    }\n});\n\nfunction loadToolbarItems() {\n    $('#clock, #version').remove();\n    var toolbar = $('.md-toolbar-tools');\n    \n    var div = $('<div/>').css({\n        'display': 'flex',\n        'align-items': 'center',\n        'margin-left': 'auto',\n        'margin-right': '5px'\n    });\n    var clockP = $('<p id=\"clock\" style=\"margin: 0 10px 0 0;\"/>');\n    var versionP = $('<p id=\"version\" style=\"margin: 0 10px 0 0;\"/>');\n    \n    div.append(clockP);\n    div.append(versionP);\n    toolbar.append(div);\n\n    // Add the version number\n    var versionNumber = 'v2.0.0';\n    versionP.text(versionNumber);\n\n    function upTime() {\n        var d = new Date();\n        clockP.text(d.toLocaleTimeString());\n    }\n\n    if (document.clockInterval) {\n        clearInterval(document.clockInterval);\n        document.clockInterval = null;\n    }\n\n    document.clockInterval = setInterval(upTime, 1000);\n}\n</script>",
+        "format": "<script id=\"titleScript\" type=\"text/javascript\">\n$(function() {\n    if ($('.md-toolbar-tools').length != 0) {\n        loadToolbarItems();\n    } else {\n        setTimeout(loadToolbarItems, 500);\n    }\n});\n\nfunction loadToolbarItems() {\n    $('#clock, #version').remove();\n    var toolbar = $('.md-toolbar-tools');\n    \n    var div = $('<div/>').css({\n        'display': 'flex',\n        'align-items': 'center',\n        'margin-left': 'auto',\n        'margin-right': '5px'\n    });\n    var clockP = $('<p id=\"clock\" style=\"margin: 0 10px 0 0;\"/>');\n    var versionP = $('<p id=\"version\" style=\"margin: 0 10px 0 0;\"/>');\n    \n    div.append(clockP);\n    div.append(versionP);\n    toolbar.append(div);\n\n    // Add the version number\n    var versionNumber = 'v2.1.0';\n    versionP.text(versionNumber);\n\n    function upTime() {\n        var d = new Date();\n        clockP.text(d.toLocaleTimeString());\n    }\n\n    if (document.clockInterval) {\n        clearInterval(document.clockInterval);\n        document.clockInterval = null;\n    }\n\n    document.clockInterval = setInterval(upTime, 1000);\n}\n</script>",
         "storeOutMessages": false,
         "fwdInMessages": false,
         "resendOnRefresh": false,
@@ -2616,7 +2635,7 @@
         "name": "Stop/break",
         "order": 6,
         "width": 6,
-        "height": 5,
+        "height": 4,
         "format": "<svg>\n<circle cx=\"150\" cy=\"120\" r=\"30\" style=\"stroke: none; fill: {{msg.payload}};\"/>\n</svg>\n\n",
         "storeOutMessages": true,
         "fwdInMessages": true,
@@ -3315,7 +3334,7 @@
         "name": "Manual mass flow measurement",
         "order": 6,
         "width": 6,
-        "height": "2",
+        "height": 2,
         "format": "<md-input-container style=\"overflow:hidden;\">\n    <span>\n        <input \n            ng-model=\"user.input\" \n            style=\"width:350px\" \n            placeholder=\"{{msg.topic}}\" \n            ng-pattern=\"/^\\d+(\\.\\d+)?$/\"\n            ng-change=\"validateFloat()\"\n        >\n        <button \n            class=\"bluebutton\" \n            ng-click=\"msg.payload = user.input; send(msg)\" \n            ng-keypress=\"($event.charCode==13)? (msg.payload = user.input; send(msg)) : null\" \n            ng-style=\"{backgroundColor: '#5bc0de'}\" \n            style=\"color: #fff; background-color: #5bc0de; border-color: #46b8da;\"\n        >\n            Append manual mass flow [kg/min]\n        </button>\n    </span>\n</md-input-container>\n<script>\n    angular.module('myApp', [])\n    .controller('myCtrl', function($scope) {\n        $scope.validateFloat = function() {\n            // Optional: Additional validation logic can be added here\n            if (!/^\\d+(\\.\\d+)?$/.test($scope.user.input)) {\n                alert(\"Please enter a valid float value.\");\n                $scope.user.input = '';\n            }\n        };\n    });\n</script>",
         "storeOutMessages": true,
         "fwdInMessages": false,
@@ -3418,7 +3437,7 @@
         "once": true,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "v2.0.0",
+        "payload": "v2.1.0",
         "payloadType": "str",
         "x": 270,
         "y": 520,
@@ -4796,6 +4815,358 @@
         "wires": [
             [
                 "1ae8481b1ac1e318"
+            ]
+        ]
+    },
+    {
+        "id": "ab6aebbc34c92536",
+        "type": "OpcUa-Item",
+        "z": "db1d72e1be729b35",
+        "item": "ns=4;i=25",
+        "datatype": "Boolean",
+        "value": "msg.payload",
+        "name": "Write DO3",
+        "x": 1570,
+        "y": 280,
+        "wires": [
+            [
+                "6d227d3cefd3230e"
+            ]
+        ]
+    },
+    {
+        "id": "6d227d3cefd3230e",
+        "type": "OpcUa-Client",
+        "z": "db1d72e1be729b35",
+        "endpoint": "9c6664b374f58bc5",
+        "action": "write",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": "",
+        "maxMessageSize": "",
+        "receiveBufferSize": "",
+        "sendBufferSize": "",
+        "name": "",
+        "x": 1780,
+        "y": 280,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "4a2ad52da78c57b6",
+        "type": "link in",
+        "z": "db1d72e1be729b35",
+        "name": "mtec mixer on/off in",
+        "links": [
+            "769cbc7c61ddfd9b"
+        ],
+        "x": 225,
+        "y": 280,
+        "wires": [
+            [
+                "1fc83aba65a590b2"
+            ]
+        ]
+    },
+    {
+        "id": "1fc83aba65a590b2",
+        "type": "function",
+        "z": "db1d72e1be729b35",
+        "name": "Only inject when value changes",
+        "func": "if (msg.payload !== context.get('prev_mixer_run')) {\n    context.set('prev_mixer_run', msg.payload);\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\n\ncontext.set('prev_mixer_run', false);",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 280,
+        "wires": [
+            [
+                "ab6aebbc34c92536",
+                "cafb92f122c1bc40"
+            ]
+        ]
+    },
+    {
+        "id": "38f54e8dbfbaa3b7",
+        "type": "inject",
+        "z": "db1d72e1be729b35",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "10",
+        "payloadType": "num",
+        "x": 190,
+        "y": 440,
+        "wires": [
+            [
+                "aada589222e61573"
+            ]
+        ]
+    },
+    {
+        "id": "aada589222e61573",
+        "type": "ui_numeric",
+        "z": "db1d72e1be729b35",
+        "name": "",
+        "label": "Run time [s]",
+        "tooltip": "",
+        "group": "38aedf17fb117e34",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": false,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "60",
+        "step": 1,
+        "className": "",
+        "x": 390,
+        "y": 440,
+        "wires": [
+            [
+                "c2edc40141939117"
+            ]
+        ]
+    },
+    {
+        "id": "c2edc40141939117",
+        "type": "change",
+        "z": "db1d72e1be729b35",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "run_time",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8a1b1e6d1d7f104d",
+        "type": "delay",
+        "z": "db1d72e1be729b35",
+        "name": "run time",
+        "pauseType": "delayv",
+        "timeout": "5000",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1180,
+        "y": 200,
+        "wires": [
+            [
+                "9b6d5b5cf34bd55d"
+            ]
+        ]
+    },
+    {
+        "id": "cafb92f122c1bc40",
+        "type": "change",
+        "z": "db1d72e1be729b35",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "delay",
+                "pt": "msg",
+                "to": "run_time",
+                "tot": "flow",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 200,
+        "wires": [
+            [
+                "ab3ffa8d57931174"
+            ]
+        ]
+    },
+    {
+        "id": "ab3ffa8d57931174",
+        "type": "function",
+        "z": "db1d72e1be729b35",
+        "name": "convert to ms",
+        "func": "msg.delay = msg.delay * 1000;\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1000,
+        "y": 200,
+        "wires": [
+            [
+                "8a1b1e6d1d7f104d"
+            ]
+        ]
+    },
+    {
+        "id": "77f488d867e7c8d7",
+        "type": "ui_button",
+        "z": "db1d72e1be729b35",
+        "name": "",
+        "group": "38aedf17fb117e34",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "RUN",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 190,
+        "y": 200,
+        "wires": [
+            [
+                "ab6aebbc34c92536",
+                "cafb92f122c1bc40"
+            ]
+        ]
+    },
+    {
+        "id": "9b6d5b5cf34bd55d",
+        "type": "ui_button",
+        "z": "db1d72e1be729b35",
+        "name": "",
+        "group": "38aedf17fb117e34",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "STOP",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1350,
+        "y": 200,
+        "wires": [
+            [
+                "ab6aebbc34c92536"
+            ]
+        ]
+    },
+    {
+        "id": "7b552b1ba763368e",
+        "type": "ui_text",
+        "z": "db1d72e1be729b35",
+        "group": "38aedf17fb117e34",
+        "order": 1,
+        "width": 6,
+        "height": 3,
+        "name": "",
+        "label": "Plug the aeration pad pneumatic valve signal cable into DO3 on the sensing station. This syncs with the m-tec and MAI pump horizontal mixer signals. Manual control is available below.",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 720,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "75c5d97db7292e02",
+        "type": "link in",
+        "z": "db1d72e1be729b35",
+        "name": "MAI mixer on/off in",
+        "links": [
+            "6cfd87fecacd594f"
+        ],
+        "x": 225,
+        "y": 320,
+        "wires": [
+            [
+                "35d4f29a0da07a58"
+            ]
+        ]
+    },
+    {
+        "id": "35d4f29a0da07a58",
+        "type": "function",
+        "z": "db1d72e1be729b35",
+        "name": "Only inject when value changes",
+        "func": "if (msg.payload !== context.get('prev_mixer_run')) {\n    context.set('prev_mixer_run', msg.payload);\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\n\ncontext.set('prev_mixer_run', false);",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 320,
+        "wires": [
+            [
+                "cafb92f122c1bc40",
+                "ab6aebbc34c92536"
             ]
         ]
     },
@@ -8060,7 +8431,7 @@
         "type": "ui_text",
         "z": "8bff11da7245afcc",
         "group": "d5be84c8a2a9dbe3",
-        "order": 9,
+        "order": 10,
         "width": 6,
         "height": 1,
         "name": "",
@@ -11867,7 +12238,7 @@
         "type": "function",
         "z": "5497c1fcd3b57568",
         "name": "Convert and add values",
-        "func": "// Set message topic\nmsg.topic = \"material\"\n\n// Pressure\nmsg.payload.material_pressure_ai0 = (msg.payload.material_io_ai0 < 0) ? 0.0 : (msg.payload.material_io_ai0 / 27648 * 25.0);\nmsg.payload.material_pressure_ai1 = (msg.payload.material_io_ai1 < 0) ? 0.0 : (msg.payload.material_io_ai1 / 27648 * 25.0);\n\n// Convert analog inputs to mA\nmsg.payload.material_io_ai0 = (msg.payload.material_io_ai0 < 0) ? 0.0 : (msg.payload.material_io_ai0 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai1 = (msg.payload.material_io_ai1 < 0) ? 0.0 : (msg.payload.material_io_ai1 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai2 = (msg.payload.material_io_ai2 < 0) ? 0.0 : (msg.payload.material_io_ai2 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai3 = (msg.payload.material_io_ai3 < 0) ? 0.0 : (msg.payload.material_io_ai3 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai4 = (msg.payload.material_io_ai4 < 0) ? 0.0 : (msg.payload.material_io_ai4 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai5 = (msg.payload.material_io_ai5 < 0) ? 0.0 : (msg.payload.material_io_ai5 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai6 = (msg.payload.material_io_ai6 < 0) ? 0.0 : (msg.payload.material_io_ai6 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai7 = (msg.payload.material_io_ai7 < 0) ? 0.0 : (msg.payload.material_io_ai7 / 27648 * 16.0 + 4.0);\n\n// Convert analog outputs (incorrect scaling on PLC)\nmsg.payload.material_io_ao0 = (msg.payload.material_io_ao0 - 4) * (32767 / 27648) + 4;\nmsg.payload.material_io_ao1 = (msg.payload.material_io_ao1 - 4) * (32767 / 27648) + 4;\nmsg.payload.material_io_ao2 = (msg.payload.material_io_ao2 - 4) * (32767 / 27648) + 4;\nmsg.payload.material_io_ao3 = (msg.payload.material_io_ao3 - 4) * (32767 / 27648) + 4;\n\n// Coriolis conversions\nmsg.payload.material_coriolis_mass_flow = msg.payload.material_coriolis_mass_flow / 60.0\nmsg.payload.material_coriolis_volume_flow = msg.payload.material_coriolis_volume_flow / 60.0\nmsg.payload.material_coriolis_density = msg.payload.material_coriolis_density * 1000.0\nmsg.payload.material_coriolis_exciter_current_0 = msg.payload.material_coriolis_exciter_current_0 * 1000.0\nmsg.payload.material_coriolis_exciter_current_1 = msg.payload.material_coriolis_exciter_current_1 * 1000.0\n\n// Bronkhorst conversion\nmsg.payload.material_bronkhorst_read_setpoint_slope = msg.payload.material_bronkhorst_read_setpoint_slope / 10.0\n\nreturn msg\n",
+        "func": "// Set message topic\nmsg.topic = \"material\"\n\n// For sensor calibration with EPC\n//msg.payload.material_pressure_ai2 = (msg.payload.material_io_ai2 < 0) ? 0.0 : (msg.payload.material_io_ai2 / 27648 * 25.0);\n//msg.payload.material_pressure_ai3 = (msg.payload.material_io_ai3 < 0) ? 0.0 : (msg.payload.material_io_ai3 / 27648 * 10.0);\n\n// Pressure\nmsg.payload.material_pressure_ai0 = (msg.payload.material_io_ai0 < 0) ? 0.0 : (msg.payload.material_io_ai0 / 27648 * 25.0);\nmsg.payload.material_pressure_ai1 = (msg.payload.material_io_ai1 < 0) ? 0.0 : (msg.payload.material_io_ai1 / 27648 * 25.0);\n\n// Convert analog inputs to mA\nmsg.payload.material_io_ai0 = (msg.payload.material_io_ai0 < 0) ? 0.0 : (msg.payload.material_io_ai0 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai1 = (msg.payload.material_io_ai1 < 0) ? 0.0 : (msg.payload.material_io_ai1 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai2 = (msg.payload.material_io_ai2 < 0) ? 0.0 : (msg.payload.material_io_ai2 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai3 = (msg.payload.material_io_ai3 < 0) ? 0.0 : (msg.payload.material_io_ai3 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai4 = (msg.payload.material_io_ai4 < 0) ? 0.0 : (msg.payload.material_io_ai4 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai5 = (msg.payload.material_io_ai5 < 0) ? 0.0 : (msg.payload.material_io_ai5 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai6 = (msg.payload.material_io_ai6 < 0) ? 0.0 : (msg.payload.material_io_ai6 / 27648 * 16.0 + 4.0);\nmsg.payload.material_io_ai7 = (msg.payload.material_io_ai7 < 0) ? 0.0 : (msg.payload.material_io_ai7 / 27648 * 16.0 + 4.0);\n\n// Convert analog outputs (incorrect scaling on PLC)\nmsg.payload.material_io_ao0 = (msg.payload.material_io_ao0 - 4) * (32767 / 27648) + 4;\nmsg.payload.material_io_ao1 = (msg.payload.material_io_ao1 - 4) * (32767 / 27648) + 4;\nmsg.payload.material_io_ao2 = (msg.payload.material_io_ao2 - 4) * (32767 / 27648) + 4;\nmsg.payload.material_io_ao3 = (msg.payload.material_io_ao3 - 4) * (32767 / 27648) + 4;\n\n// Coriolis conversions\nmsg.payload.material_coriolis_mass_flow = msg.payload.material_coriolis_mass_flow / 60.0\nmsg.payload.material_coriolis_volume_flow = msg.payload.material_coriolis_volume_flow / 60.0\nmsg.payload.material_coriolis_density = msg.payload.material_coriolis_density * 1000.0\nmsg.payload.material_coriolis_exciter_current_0 = msg.payload.material_coriolis_exciter_current_0 * 1000.0\nmsg.payload.material_coriolis_exciter_current_1 = msg.payload.material_coriolis_exciter_current_1 * 1000.0\n\n// Bronkhorst conversion\nmsg.payload.material_bronkhorst_read_setpoint_slope = msg.payload.material_bronkhorst_read_setpoint_slope / 10.0\n\nreturn msg\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -11945,7 +12316,9 @@
                 "514dacca2edbaf96",
                 "8e432093e1e255c0",
                 "6122b8273858a707",
-                "83dd30eb83afe9a6"
+                "83dd30eb83afe9a6",
+                "0cb425c99a92a058",
+                "26efd93f646164cc"
             ]
         ]
     },
@@ -12113,6 +12486,60 @@
         "color": "#000000",
         "x": 3910,
         "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "0cb425c99a92a058",
+        "type": "ui_text",
+        "z": "5497c1fcd3b57568",
+        "d": true,
+        "group": "2e49adcc26d76ec1",
+        "order": 12,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Pressure AI2 0-25 bar [bar] ",
+        "format": "{{msg.payload.material_pressure_ai2.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3800,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "26efd93f646164cc",
+        "type": "ui_text",
+        "z": "5497c1fcd3b57568",
+        "d": true,
+        "group": "2e49adcc26d76ec1",
+        "order": 12,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Pressure AI3 0-10 bar [bar] ",
+        "format": "{{msg.payload.material_pressure_ai3.toFixed(3)}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 3800,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "7bef45f11769168c",
+        "type": "comment",
+        "z": "5497c1fcd3b57568",
+        "name": "For sensor calibration with EPC",
+        "info": "",
+        "x": 3810,
+        "y": 140,
         "wires": []
     },
     {
@@ -14778,13 +15205,14 @@
         "id": "6cfd87fecacd594f",
         "type": "link out",
         "z": "a666a495869d02dc",
-        "name": "MAI water run out",
+        "name": "MAI mixer on/off",
         "mode": "link",
         "links": [
-            "1127d91bf6d47d3e"
+            "1127d91bf6d47d3e",
+            "75c5d97db7292e02"
         ],
-        "x": 3355,
-        "y": 340,
+        "x": 3335,
+        "y": 280,
         "wires": []
     },
     {
@@ -20271,321 +20699,6 @@
         "color": "#000000",
         "x": 510,
         "y": 1280,
-        "wires": []
-    },
-    {
-        "id": "ab6aebbc34c92536",
-        "type": "OpcUa-Item",
-        "z": "db1d72e1be729b35",
-        "item": "ns=4;i=25",
-        "datatype": "Boolean",
-        "value": "msg.payload",
-        "name": "Write DO3",
-        "x": 1570,
-        "y": 280,
-        "wires": [
-            [
-                "6d227d3cefd3230e"
-            ]
-        ]
-    },
-    {
-        "id": "6d227d3cefd3230e",
-        "type": "OpcUa-Client",
-        "z": "db1d72e1be729b35",
-        "endpoint": "9c6664b374f58bc5",
-        "action": "write",
-        "deadbandtype": "a",
-        "deadbandvalue": 1,
-        "time": 10,
-        "timeUnit": "s",
-        "certificate": "n",
-        "localfile": "",
-        "localkeyfile": "",
-        "securitymode": "None",
-        "securitypolicy": "None",
-        "useTransport": false,
-        "maxChunkCount": "",
-        "maxMessageSize": "",
-        "receiveBufferSize": "",
-        "sendBufferSize": "",
-        "name": "",
-        "x": 1780,
-        "y": 280,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "4a2ad52da78c57b6",
-        "type": "link in",
-        "z": "db1d72e1be729b35",
-        "name": "mtec mixer on/off in",
-        "links": [
-            "769cbc7c61ddfd9b"
-        ],
-        "x": 225,
-        "y": 280,
-        "wires": [
-            [
-                "1fc83aba65a590b2"
-            ]
-        ]
-    },
-    {
-        "id": "1fc83aba65a590b2",
-        "type": "function",
-        "z": "db1d72e1be729b35",
-        "name": "Only inject when value changes",
-        "func": "if (msg.payload !== context.get('prev_mixer_run')) {\n    context.set('prev_mixer_run', msg.payload);\n    return msg;\n}",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "// Code added here will be run once\n// whenever the node is started.\n\ncontext.set('prev_mixer_run', false);",
-        "finalize": "",
-        "libs": [],
-        "x": 450,
-        "y": 280,
-        "wires": [
-            [
-                "ab6aebbc34c92536",
-                "cafb92f122c1bc40"
-            ]
-        ]
-    },
-    {
-        "id": "38f54e8dbfbaa3b7",
-        "type": "inject",
-        "z": "db1d72e1be729b35",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "10",
-        "payloadType": "num",
-        "x": 190,
-        "y": 380,
-        "wires": [
-            [
-                "aada589222e61573"
-            ]
-        ]
-    },
-    {
-        "id": "aada589222e61573",
-        "type": "ui_numeric",
-        "z": "db1d72e1be729b35",
-        "name": "",
-        "label": "Run time [s]",
-        "tooltip": "",
-        "group": "38aedf17fb117e34",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "wrap": false,
-        "passthru": false,
-        "topic": "topic",
-        "topicType": "msg",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "60",
-        "step": 1,
-        "className": "",
-        "x": 390,
-        "y": 380,
-        "wires": [
-            [
-                "c2edc40141939117"
-            ]
-        ]
-    },
-    {
-        "id": "c2edc40141939117",
-        "type": "change",
-        "z": "db1d72e1be729b35",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "run_time",
-                "pt": "flow",
-                "to": "payload",
-                "tot": "msg",
-                "dc": true
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 610,
-        "y": 380,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "8a1b1e6d1d7f104d",
-        "type": "delay",
-        "z": "db1d72e1be729b35",
-        "name": "run time",
-        "pauseType": "delayv",
-        "timeout": "5000",
-        "timeoutUnits": "milliseconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 1180,
-        "y": 200,
-        "wires": [
-            [
-                "9b6d5b5cf34bd55d"
-            ]
-        ]
-    },
-    {
-        "id": "cafb92f122c1bc40",
-        "type": "change",
-        "z": "db1d72e1be729b35",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "delay",
-                "pt": "msg",
-                "to": "run_time",
-                "tot": "flow",
-                "dc": true
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 780,
-        "y": 200,
-        "wires": [
-            [
-                "ab3ffa8d57931174"
-            ]
-        ]
-    },
-    {
-        "id": "ab3ffa8d57931174",
-        "type": "function",
-        "z": "db1d72e1be729b35",
-        "name": "convert to ms",
-        "func": "msg.delay = msg.delay * 1000;\nreturn msg",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1000,
-        "y": 200,
-        "wires": [
-            [
-                "8a1b1e6d1d7f104d"
-            ]
-        ]
-    },
-    {
-        "id": "77f488d867e7c8d7",
-        "type": "ui_button",
-        "z": "db1d72e1be729b35",
-        "name": "",
-        "group": "38aedf17fb117e34",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "RUN",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "true",
-        "payloadType": "bool",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 190,
-        "y": 200,
-        "wires": [
-            [
-                "ab6aebbc34c92536",
-                "cafb92f122c1bc40"
-            ]
-        ]
-    },
-    {
-        "id": "9b6d5b5cf34bd55d",
-        "type": "ui_button",
-        "z": "db1d72e1be729b35",
-        "name": "",
-        "group": "38aedf17fb117e34",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "label": "STOP",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "false",
-        "payloadType": "bool",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 1350,
-        "y": 200,
-        "wires": [
-            [
-                "ab6aebbc34c92536"
-            ]
-        ]
-    },
-    {
-        "id": "7b552b1ba763368e",
-        "type": "ui_text",
-        "z": "db1d72e1be729b35",
-        "group": "38aedf17fb117e34",
-        "order": 1,
-        "width": 6,
-        "height": 1,
-        "name": "",
-        "label": "Note: Connect the plug of the valve to DO3 of the sensing station. ",
-        "format": "{{msg.payload}}",
-        "layout": "col-center",
-        "className": "",
-        "style": false,
-        "font": "",
-        "fontSize": "",
-        "color": "#000000",
-        "x": 360,
-        "y": 480,
         "wires": []
     },
     {
@@ -27955,7 +28068,7 @@
         ]
     },
     {
-        "id": "09ed3c38d121959b",
+        "id": "3fadbe751fda0986",
         "type": "global-config",
         "env": [],
         "modules": {
